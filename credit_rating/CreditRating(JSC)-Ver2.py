@@ -487,8 +487,10 @@ for standard, level in accuracy_table.index:
 
 price_table = request_price() ####################
 
+
 def graph_ticker(standard=str, level=int, ticker=str):
-    table = pd.DataFrame(index=['credit_score', 'price'], columns=periods)
+    table = pd.DataFrame(index=['credit_score', 'price'],
+                                columns=periods)
 
     table.loc['credit_score', periods] \
         = result_table.xs(key=(standard, standard + '_l' + str(level)),
@@ -498,13 +500,51 @@ def graph_ticker(standard=str, level=int, ticker=str):
     table.loc['price', periods] \
         = price_table.loc[ticker,:].values
 
-    fig, ax1 = plt.subplots(nrows=1, ncols=2)
+    fig, ax1 = plt.subplots(nrows=1, ncols=1, figsize=(8,6))
+    ax1.set_title(ticker + '\n' + standard.upper()
+                  + ' Level {} Classification'.format(level),
+                  fontsize=15, fontweight='bold', color='darkslategrey',
+                  fontfamily='Times New Roman')
     ax2 = ax1.twinx()
-    ax1.plot(periods, table.iloc[0], color='tab:blue')
-    ax2.plot(periods, table.iloc[1], color='tab:red')
-    ax1.set_ylim(top=np.min([table.iloc[0].max()*1.2], 100))
+    ax1.set_xticklabels(ax1.get_xticks(), rotation=45,
+                        fontfamily='Times New Roman', fontsize=13)
+    ax1.plot(periods, table.iloc[0], color='tab:red', label='Credit Score')
+    ax2.plot(periods, table.iloc[1], color='tab:blue', label='Stock Price')
+    ax1.plot(np.nan, color='tab:blue', label='Stock Price')
+    ax1.set_ylim(top=np.min([table.iloc[0].max()*1.2, 100]))
     ax1.set_xlabel('periods')
-    ax1.set_ylabel('credit_score')
-    ax2.set_ylabel('stock_price')
-    ax1.tick_params(axis='y', labelcolor='tab:blue')
-    ax2.tick_params(axis='y', labelcolor='tab:red')
+    ax1.tick_params(axis='y', labelcolor='tab:red', labelsize=11)
+    ax2.tick_params(axis='y', labelcolor='tab:blue', labelsize=11)
+    ax1.legend(loc='best', framealpha=5)
+    ax1.grid(alpha=0.2)
+
+def graph_classification(standard=str):
+    standard = 'gics'
+    global accuracy_table
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(6, 5))
+    ind = np.arange(
+        len(accuracy_table.xs(key=standard, axis=0, level=0).index))
+    score = accuracy_table.xs(key=standard, axis=0, level=0).values.T[0]
+    ax.bar(ind, score, 0.5, color='tab:blue', edgecolor='black')
+    level = accuracy_table.xs(key=standard,
+                                      axis=0, level=0).index.tolist()
+    for i in range(len(level)):
+        level[i] = 'Level ' + level[i][-1]
+    plt.xticks(ind, level)
+    plt.yticks(np.arange(0.5, 0.61, 0.01))
+    ax.set_ylim(bottom=0.5)
+    plt.xticks(fontfamily='Times New Roman', fontsize=13)
+    plt.yticks(fontfamily='Times New Roman', fontsize=13)
+
+    rects = ax.patches
+
+    for rect, sc in zip(rects, score):
+        height = rect.get_height()
+        ax.text(rect.get_x()+rect.get_width()/2, height+0.001, np.round(sc,3),
+                ha='center', va='bottom',
+                fontfamily='Times New Roman', fontsize=13)
+
+    standard = standard.upper()
+    plt.title('Accuracy rate of {} by level'.format(standard),
+              fontfamily='Times New Roman', fontsize=15, fontweight='bold',
+              color='midnightblue')
