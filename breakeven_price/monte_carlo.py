@@ -343,11 +343,13 @@ def montecarlo_simulation(ticker, days=66, alpha=0.001,
                                    index=connect_date)
             #graph()
             print(df['change_log_r'])
-            #return breakeven_price
+            return breakeven_price
 
         else:
             raise ValueError(f'{ticker} cannot be simulated'
                              f' with given significance level')
+
+
 
 
 def montecarlo_simulation_list(stocklist, days=66, alpha=0.001,
@@ -374,9 +376,7 @@ def montecarlo_simulation_list(stocklist, days=66, alpha=0.001,
     print(df_breakeven_price)
     return df_breakeven_price
 
-stocklist = pd.read_excel(r'C:\Users\Admin\Desktop\PhuHung\BreakevenPrice'
-                          r'\MonteCarloSimulation\Danh sách CP cho vay.xlsx',
-                          sheet_name='Sheet1')
+
 
 x = stocklist['Ticker'].iloc[:]
 y = ['VNM']

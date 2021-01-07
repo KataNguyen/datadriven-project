@@ -6,13 +6,14 @@ import os
 from os import listdir
 from os.path import isfile, isdir, join
 from win32com.client import Dispatch
+import io
 import time
 from datetime import datetime, timedelta
 import requests
 import json
 import holidays
 
-database_path = r'/database'
+database_path = join(os.path.dirname(os.path.abspath(__file__)), 'database')
 
 def reload():
 
@@ -40,7 +41,7 @@ def reload():
 
 def request_period_fs(year=int, quarter=int, fs_type=str):
 
-    folder = 'General Industry FS'
+    folder = 'fs_general_industry'
     file = fs_type + '_' + str(year) + 'q' + str(quarter) + '.xlsm'
 
     # create Workbook object, select active Worksheet
@@ -232,7 +233,7 @@ def request_period_fs(year=int, quarter=int, fs_type=str):
 
 
 def request_fs(): # this function need improving
-    folder = 'General Industry FS'
+    folder = 'fs_general_industry'
     fs_types = list(dict.fromkeys([name.split('_')[0]
                                   for name in listdir(join(database_path,
                                                            folder))]))
@@ -265,7 +266,7 @@ def request_fs(): # this function need improving
 
 def request_ticker_fs(ticker=str):
 
-    folder = 'General Industry FS'
+    folder = 'fs_general_industry'
 
     file_names = [
         f for f in listdir(join(database_path, folder))
@@ -347,7 +348,7 @@ def request_variable_names(fs_type=str):
 
 def request_period_list():
 
-    folder = 'General Industry FS'
+    folder = 'fs_general_industry'
     periods \
         = list(dict.fromkeys(
         [name[-11:-5] for name in listdir(join(database_path, folder))]))
@@ -360,7 +361,7 @@ def request_industry(standard=str):
 
     standards = request_industry_standard()
     st_dict = dict()
-    folder = 'Industry Classification Standards'
+    folder = 'industry_classification'
 
     for st in standards:
         # create Workbook object, select active Worksheet
@@ -405,7 +406,7 @@ def request_industry(standard=str):
 
 
 def request_industry_standard():
-    folder = 'Industry Classification Standards'
+    folder = 'industry_classification'
     standards \
         = list(dict.fromkeys(
         [name[:-5] for name in listdir(join(database_path, folder))]))
@@ -566,7 +567,7 @@ def request_price():
 
 def ownership_structure():
 
-    folder = 'Ownership'
+    folder = 'ownership'
     file = [f for f in listdir(join(database_path, folder))
             if isfile(join(database_path, folder, f))][-1]
 
