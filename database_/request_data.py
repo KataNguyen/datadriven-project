@@ -12,7 +12,7 @@ import requests
 import json
 import holidays
 
-database_path = r'C:\Users\Admin\PycharmProjects\phs\database'
+database_path = r'/database'
 
 def reload():
 

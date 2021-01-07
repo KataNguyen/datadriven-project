@@ -1,4 +1,4 @@
-from database.request_data import *
+from database_.request_data import *
 from sklearn.cluster import KMeans
 from scipy.stats import rankdata
 from scipy.interpolate import interp1d
@@ -488,6 +488,7 @@ for standard, level in accuracy_table.index:
 price_table = request_price() ####################
 
 
+
 def graph_ticker(standard=str, level=int, ticker=str):
     table = pd.DataFrame(index=['credit_score', 'price'],
                                 columns=periods)
@@ -519,7 +520,6 @@ def graph_ticker(standard=str, level=int, ticker=str):
     ax1.grid(alpha=0.2)
 
 def graph_classification(standard=str):
-    standard = 'gics'
     global accuracy_table
     fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(6, 5))
     ind = np.arange(
@@ -548,3 +548,4 @@ def graph_classification(standard=str):
     plt.title('Accuracy rate of {} by level'.format(standard),
               fontfamily='Times New Roman', fontsize=15, fontweight='bold',
               color='midnightblue')
+
