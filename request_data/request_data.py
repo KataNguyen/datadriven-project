@@ -235,8 +235,11 @@ def request_period_fs(year=int, quarter=int, fs_type=str):
 def request_fs(): # this function need improving
     folder = 'fs_general_industry'
     fs_types = list(dict.fromkeys([name.split('_')[0]
-                                  for name in listdir(join(database_path,
-                                                           folder))]))
+                                   for name in listdir(join(database_path,
+                                                           folder))
+                                   if isfile(join(database_path,
+                                                  folder,
+                                                  name))]))
     for fs_type in fs_types:
         if fs_type.startswith('~$'):
             fs_types.remove(fs_type)
@@ -282,7 +285,8 @@ def request_ticker_fs(ticker=str):
     fs_types \
         = list(dict.fromkeys([name.split('_')[0]
                               for name in listdir(join(database_path,
-                                                       folder))]))
+                                                       folder))
+                              if isfile(join(database_path, folder, name))]))
     fs_types.sort()
 
     for fs_type in fs_types:
@@ -351,7 +355,8 @@ def request_period_list():
     folder = 'fs_general_industry'
     periods \
         = list(dict.fromkeys(
-        [name[-11:-5] for name in listdir(join(database_path, folder))]))
+        [name[-11:-5] for name in listdir(join(database_path, folder))
+         if isfile(join(database_path, folder, name))]))
     periods.sort()
 
     return periods
@@ -409,7 +414,8 @@ def request_industry_standard():
     folder = 'industry_classification'
     standards \
         = list(dict.fromkeys(
-        [name[:-5] for name in listdir(join(database_path, folder))]))
+        [name[:-5] for name in listdir(join(database_path, folder))
+         if isfile(join(database_path, folder, name))]))
     return standards
 
 
