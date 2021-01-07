@@ -1,41 +1,14 @@
-import numpy as np
-import pandas as pd
+from request_data.request_data import *
 import scipy as sc
 from scipy import stats
 import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
-from datetime import datetime, timedelta
-import requests
-import json
 from matplotlib.dates import DateFormatter
+
 
 def montecarlo_simulation(ticker, days=66, alpha=0.001,
                           simulation=100000, location=r'Documents'):
-    """
-    This function return the simulated stock price given it passes
-    the D'Agostino-Pearson test
-    for any of these two different statistics:
-    1. log return
-    2. change in log return
-    In case the 'log return' statistic passes the test,
-    stock price is modeled based on it (which means it's more prioritized)
-
-    Parameters:
-    ------------
-    :param ticker: stock ticker
-    :param days: number of projected days
-    :param alpha: significance level in hypothesis tests
-    :param simulation: number of simulations (100000 or above is recommended)
-    :param location: where to save picture results
-
-    Return:
-    ------------
-    :return:
-    a DataFrame of simulated stock movement
-    a Line chart of simlated stock movement
-
-    """
 
     def reformat_large_tick_values(tick_val, pos):
         """
@@ -126,37 +99,25 @@ def montecarlo_simulation(ticker, days=66, alpha=0.001,
     pd.set_option("display.max_rows", None, "display.max_column", None,
                   'display.width', None, 'display.max_colwidth', 20)
 
-    # manipulate date
-    pd.options.mode.chained_assignment = None
-    fromdate = (datetime.now() - timedelta(days=1000)).strftime("%Y-%m-%d")
-    todate = datetime.now().strftime("%Y-%m-%d")
-    # extract data from API
-    r = requests.post(
-        'https://api.phs.vn/market/utilities.svc/GetShareIntraday',
-        data=json.dumps({'symbol': ticker,
-                         'fromdate': fromdate,
-                         'todate': todate}),
-        headers={'content-type': 'application/json'})
-    df = pd.DataFrame(json.loads(r.json()['d']))
+    df = request_trading_hist(ticker)
 
     # cleaning data
     df['trading_date'] \
         = pd.to_datetime(df['trading_date'])
-    df['close_price'].loc[df['close_price'] == 0] \
-        = df['prior_price'].loc[df['close_price'] == 0]
-    df['prior_price'].loc[df['prior_price'] == 0] \
-        = df['close_price'].loc[df['prior_price'] == 0]
+    df['close'].loc[df['close'] == 0] \
+        = df['ref'].loc[df['close'] == 0]
+    df['ref'].loc[df['ref'] == 0] \
+        = df['close'].loc[df['ref'] == 0]
     df['change_percent'] \
-        = df['close_price'] / df['prior_price'] - 1
+        = df['close'] / df['ref'] - 1
     df['log_r'] \
         = np.log(1 + df['change_percent'])
     for i in range(1, len(df.index)):
         df['change_log_r'] \
             = df.loc[:, 'log_r'].iloc[i] - df.loc[:, 'log_r'].iloc[i-1]
     df['change_log_r'].iloc[0] = 0
-    df['close_price'] = df['close_price'] * 1000
-    df['change'] = df['change'] * 1000
-    df.drop(columns=['change', 'prior_price'])
+    df['close'] = df['close'] * 1000
+    df.drop(columns=['ref'])
 
     # Fundamental Statistics:
     mean_logr = np.average(df['log_r'])
