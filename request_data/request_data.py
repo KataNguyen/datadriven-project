@@ -17,6 +17,7 @@ database_path = join(os.path.dirname(os.path.abspath(__file__)), 'database')
 
 def reload():
 
+    global database_path
     folder_names = [folder
                     for folder in listdir(database_path)
                     if isdir(join(database_path, folder))]
@@ -41,6 +42,7 @@ def reload():
 
 def request_period_fs(year=int, quarter=int, fs_type=str):
 
+    global database_path
     folder = 'fs_general_industry'
     file = fs_type + '_' + str(year) + 'q' + str(quarter) + '.xlsm'
 
@@ -233,6 +235,8 @@ def request_period_fs(year=int, quarter=int, fs_type=str):
 
 
 def request_fs(): # this function need improving
+
+    global database_path
     folder = 'fs_general_industry'
     fs_types = list(dict.fromkeys([name.split('_')[0]
                                    for name in listdir(join(database_path,
@@ -269,6 +273,7 @@ def request_fs(): # this function need improving
 
 def request_ticker_fs(ticker=str):
 
+    global database_path
     folder = 'fs_general_industry'
 
     file_names = [
@@ -364,6 +369,7 @@ def request_period_list():
 
 def request_industry(standard=str):
 
+    global database_path
     standards = request_industry_standard()
     st_dict = dict()
     folder = 'industry_classification'
@@ -411,6 +417,7 @@ def request_industry(standard=str):
 
 
 def request_industry_standard():
+    global database_path
     folder = 'industry_classification'
     standards \
         = list(dict.fromkeys(
@@ -573,6 +580,7 @@ def request_price():
 
 def ownership_structure():
 
+    global database_path
     folder = 'ownership'
     file = [f for f in listdir(join(database_path, folder))
             if isfile(join(database_path, folder, f))][-1]
