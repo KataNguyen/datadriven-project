@@ -5,10 +5,14 @@ import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib.dates import DateFormatter
+from matplotlib.ticker import FuncFormatter
+import matplotlib.transforms as transforms
 
 def monte_carlo(ticker, days=66, alpha=0.001,
-                simulation=100000, location=r'Documents',
-                graph='on'):
+                simulation=100000, graph='on',
+                location=join(os.getcwd(),'result')):
+
+    start_time = time.time()
 
     def reformat_large_tick_values(tick_val, pos):
         """
@@ -27,7 +31,8 @@ def monte_carlo(ticker, days=66, alpha=0.001,
         new_tick_format = str(new_tick_format)
         return new_tick_format
 
-    def graphticker():
+    def graph_ticker():
+
         fig1, ax1 = plt.subplots(1, 1, figsize=(6, 5))
         ax1.plot(df_historical['trading_date'], df_historical['close'],
                  color='darkblue')
@@ -73,10 +78,11 @@ def monte_carlo(ticker, days=66, alpha=0.001,
         ax2[0].set_ylabel('Density')
         ax2[0].axvline(breakeven_price, ls='--', linewidth=0.5,
                        color='red')
-        ax2[0].text(breakeven_price*1.05, 0.0001,
+        ax2[0].text(breakeven_price*1.05, 0.85,
                     'Breakeven Price:\n'+str(
-                        f"{round(breakeven_price):,d}"),
-                    fontsize=8)
+                        f"{round(breakeven_price):,d}"), fontsize=8,
+                    transform=transforms.blended_transform_factory(
+                        ax2[0].transData, ax2[0].transAxes))
         ax2[0].tick_params(axis='y', left=False, labelleft=False)
         ax2[0].xaxis.set_major_formatter(
             matplotlib.ticker.FuncFormatter(reformat_large_tick_values))
@@ -88,10 +94,11 @@ def monte_carlo(ticker, days=66, alpha=0.001,
         # ax2[1].axhline(0.01, ls='--', linewidth=0.5, color='red')
         ax2[1].axvline(breakeven_price, ls='--', linewidth=0.5,
                        color='red')
-        ax2[1].text(breakeven_price*1.05, 0.9,
+        ax2[1].text(breakeven_price*1.05, 0.85,
                     'Breakeven Price:\n'+str(
-                        f"{round(breakeven_price):,d}"),
-                    fontsize=8)
+                        f"{round(breakeven_price):,d}"), fontsize=8,
+                    transform=transforms.blended_transform_factory(
+                        ax2[0].transData, ax2[0].transAxes))
         ax2[1].tick_params(axis='y', left=False, labelleft=False)
         ax2[1].xaxis.set_major_formatter(
             matplotlib.ticker.FuncFormatter(reformat_large_tick_values))
@@ -150,10 +157,10 @@ def monte_carlo(ticker, days=66, alpha=0.001,
         if p3_logr <= alpha and p4_logr <= alpha:
             log_r = np.random.normal(mean_logr, std_logr,
                                      size=(simulation, days))
-        if p3_logr <= alpha and alpha <= p4_logr:
+        elif p3_logr <= alpha and alpha <= p4_logr:
             log_r = sc.stats.t.rvs(df=df['log_r'].count() - 1, loc=mean_logr,
                                    scale=std_logr, size=(simulation, days))
-        if p4_logr <= alpha and alpha <= p3_logr:
+        elif p4_logr <= alpha and alpha <= p3_logr:
             log_r = sc.stats.skewnorm.rvs(a=skew_logr, loc=mean_logr,
                                           scale=std_logr,
                                           size=(simulation, days))
@@ -191,21 +198,22 @@ def monte_carlo(ticker, days=66, alpha=0.001,
                            columns=pro_days,
                            index=simulation_no).transpose()
         price_last = df_simulated_price.iloc[-1, :]
-        ubound \
-            = pd.DataFrame(df_simulated_price.quantile(
-            q=0.95, axis=1, interpolation='linear'))
-        dbound \
-            = pd.DataFrame(df_simulated_price.quantile(
-            q=0.00, axis=1, interpolation='linear'))
-        breakeven_price \
-            = dbound.iloc[-1, 0]
+        ubound = pd.DataFrame(df_simulated_price\
+                              .quantile(q=0.95, axis=1,
+                                        interpolation='linear'))
+        dbound = pd.DataFrame(df_simulated_price\
+                              .quantile(q=0.00, axis=1,
+                                        interpolation='linear'))
+        breakeven_price = dbound.min().iloc[0]
         connect_date \
             = pd.date_range(df['trading_date'].max(), pro_days[0])[[0, -1]]
         connect \
             = pd.DataFrame({'price_u': [price_t, ubound.iloc[0, 0]],
                             'price_d': [price_t, dbound.iloc[0, 0]]},
                            index=connect_date)
-        #graph()
+
+        if graph=='on':
+            graph_ticker()
 
     else:
 
@@ -237,13 +245,13 @@ def monte_carlo(ticker, days=66, alpha=0.001,
                     = np.random.normal(loc=mean_change_logr,
                                        scale=std_change_logr,
                                        size=(simulation, days))
-            if p3_change_logr <= alpha and alpha <= p4_change_logr:
+            elif p3_change_logr <= alpha and alpha <= p4_change_logr:
                 change_logr \
                     = sc.stats.t.rvs(df=df['change_log_r'].count() - 1,
                                      loc=mean_change_logr,
                                      scale=std_change_logr,
                                      size=(simulation, days))
-            if p4_change_logr <= alpha and alpha <= p3_change_logr:
+            elif p4_change_logr <= alpha and alpha <= p3_change_logr:
                 change_logr \
                     = sc.stats.skewnorm.rvs(a=skew_change_logr,
                                             loc=mean_change_logr,
@@ -279,8 +287,8 @@ def monte_carlo(ticker, days=66, alpha=0.001,
                           ** 2 / simulated_price[i, j-2]
             df_historical \
                 = df[['trading_date', 'close']].iloc[
-                  int(max(-254,df['trading_date'].count())):
-                  ]
+                  int(max(-254,df['trading_date'].count())):]
+
             # Post-processing and graphing
             pro_days = list()
             for j in range(days * 2):
@@ -302,7 +310,7 @@ def monte_carlo(ticker, days=66, alpha=0.001,
             dbound = pd.DataFrame(df_simulated_price
                                   .quantile(q=0.00, axis=1,
                                             interpolation='linear'))
-            breakeven_price = dbound.iloc[-1, 0]
+            breakeven_price = dbound.min().iloc[0]
             connect_date = pd.date_range(df['trading_date'].max(), pro_days[0])
             connect = pd.DataFrame({'price_u': [price_t, ubound.iloc[0, 0]],
                                     'price_d': [price_t, dbound.iloc[0, 0]]},
@@ -315,33 +323,33 @@ def monte_carlo(ticker, days=66, alpha=0.001,
             raise ValueError(f'{ticker} cannot be simulated'
                              f' with given significance level')
 
+    print("The execution time is: %s seconds" %(time.time()-start_time))
     return breakeven_price
 
 
-
 def montecarlo_simulation_list(stocklist, days=66, alpha=0.001,
-                               simulation=100000, location=r'Documents'):
+                               simulation=100000,
+                               location=join(os.getcwd(),'result')):
     df_breakeven_price = pd.DataFrame(columns=['ticker', 'breakeven_price'])
     for i in stocklist:
         try:
             df_breakeven_price \
                 = df_breakeven_price.append({'ticker': i, 'breakeven_price':
-                monte_carlo(i, days=days, alpha=alpha,
-                            simulation=simulation,
-                            location=location)}, ignore_index=True)
+                monte_carlo(i, days, alpha,
+                            simulation,
+                            location)}, ignore_index=True)
         except ValueError:
             try:
                 df_breakeven_price \
                     = df_breakeven_price.append({'ticker': i,
                 'breakeven_price':
-                    monte_carlo(i, days=days, alpha=0.05,
-                                simulation=simulation,
-                                location=location)}, ignore_index=True)
+                    monte_carlo(i, days, 0.05,
+                                simulation,
+                                location)}, ignore_index=True)
             except ValueError:
                 continue
 
     return df_breakeven_price
 
-y = ['VNM']
-#montecarlo_simulation_list(y)
-monte_carlo('DTA', simulation=100000)
+
+#=====================

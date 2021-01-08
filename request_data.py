@@ -70,7 +70,7 @@ def request_period_fs(year=int, quarter=int, fs_type=str):
         raw_fiinpro.delete_rows(idx=raw_fiinpro.max_row - 21,
                                 amount=1000)
 
-    # get file info
+    # get result info
     date_of_extract = raw_fiinpro['B6'].value
     report_year = raw_fiinpro['E8'].value[-25:-21]
     report_quarter = raw_fiinpro['E8'].value[-11:-10]
@@ -619,7 +619,7 @@ def ownership_structure():
         raw_fiinpro.delete_rows(idx=raw_fiinpro.max_row - 21,
                                 amount=1000)
 
-    # get file info
+    # get result info
     date_of_extract = raw_fiinpro['B6'].value
 
     # delete header rows

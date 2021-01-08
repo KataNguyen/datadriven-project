@@ -18,7 +18,6 @@ pd.set_option("display.max_rows", sys.maxsize,
               'display.expand_frame_repr', True)
 pd.options.mode.chained_assignment = None
 
-
 agg_data = request_fs() ####################
 
 quantities = ['revenue', 'cogs', 'gross_profit', 'interest',
@@ -487,8 +486,6 @@ for standard, level in accuracy_table.index:
 
 price_table = request_price() ####################
 
-
-
 def graph_ticker(standard=str, level=int, ticker=str):
     table = pd.DataFrame(index=['credit_score', 'price'],
                                 columns=periods)
@@ -549,3 +546,4 @@ def graph_classification(standard=str):
               fontfamily='Times New Roman', fontsize=15, fontweight='bold',
               color='midnightblue')
 
+print("The execution time is: %s seconds" %(time.time() - start_time))
