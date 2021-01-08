@@ -287,7 +287,7 @@ def monte_carlo(ticker, days=66, alpha=0.001,
                           ** 2 / simulated_price[i, j-2]
             df_historical \
                 = df[['trading_date', 'close']].iloc[
-                  int(max(-254,df['trading_date'].count())):]
+                  int(max(-254,-df['trading_date'].count())):]
 
             # Post-processing and graphing
             pro_days = list()
@@ -320,6 +320,8 @@ def monte_carlo(ticker, days=66, alpha=0.001,
                 graph_ticker()
 
         else:
+            print(f'p2_logr of {ticker} is', p2_logr)
+            print(f'p2_change_logr of {ticker} is', p2_change_logr)
             raise ValueError(f'{ticker} cannot be simulated'
                              f' with given significance level')
 

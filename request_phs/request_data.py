@@ -271,8 +271,6 @@ def request_fs(): # this function need improving
 
 
 def request_ticker_fs(ticker=str):
-
-    global database_path
     folder = 'fs_general_industry'
 
     file_names = [
@@ -326,7 +324,7 @@ def request_ticker_fs(ticker=str):
 
 
 def request_ticker_list():
-    global database_path
+
     last_period = request_period_list()[-1]
     tickerlist \
         = request_period_fs(year=int(last_period[:4]),
