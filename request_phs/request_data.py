@@ -326,7 +326,7 @@ def request_ticker_fs(ticker=str):
 
 
 def request_ticker_list():
-
+    global database_path
     last_period = request_period_list()[-1]
     tickerlist \
         = request_period_fs(year=int(last_period[:4]),
