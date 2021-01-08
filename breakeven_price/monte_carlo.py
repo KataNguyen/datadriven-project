@@ -1,4 +1,4 @@
-from request_data import *
+from request_phs.request_data import *
 import scipy as sc
 from scipy import stats
 import matplotlib
