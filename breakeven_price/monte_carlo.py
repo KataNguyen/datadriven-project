@@ -8,7 +8,7 @@ from matplotlib.dates import DateFormatter
 from matplotlib.ticker import FuncFormatter
 import matplotlib.transforms as transforms
 
-def monte_carlo(ticker, days=66, alpha=0.001,
+def monte_carlo(ticker, days=66, alpha=0.01,
                 simulation=100000, graph='on',
                 location=join(os.getcwd(),'result')):
 
@@ -126,22 +126,34 @@ def monte_carlo(ticker, days=66, alpha=0.001,
         = df['close'] / df['ref'] - 1
     df['log_r'] \
         = np.log(1 + df['change_percent'])
+    df['change_log_r'] = 0
     for i in range(1, len(df.index)):
-        df['change_log_r'] \
-            = df.loc[:, 'log_r'].iloc[i] - df.loc[:, 'log_r'].iloc[i-1]
-    df['change_log_r'].iloc[0] = 0
+        df['change_log_r'].iloc[i] \
+            = df['log_r'].iloc[i] - df['log_r'].iloc[i-1]
+    df['change_log_r'].iloc[0] = df['change_log_r'].iloc[1]
     df['close'] = df['close'] * 1000
-    df.drop(columns=['ref'])
 
     # Fundamental Statistics:
-    mean_logr = np.average(df['log_r'])
-    std_logr = np.std(df['log_r'])
-    kur_logr = sc.stats.kurtosis(df['log_r'])
-    skew_logr = sc.stats.skew(df['log_r'])
+    mean_logr = np.average(df['log_r'].iloc[2:])
+    std_logr = np.std(df['log_r'].iloc[2:])
+    kur_logr = sc.stats.kurtosis(df['log_r'].iloc[2:])
+    skew_logr = sc.stats.skew(df['log_r'].iloc[2:])
 
     # D'Agostino-Pearson test for log return model
     stat2_logr, p2_logr = sc.stats.normaltest(df['log_r'], nan_policy='omit')
     print(f'p2_logr of {ticker} is', p2_logr)
+
+    # Fundamental Statistics
+    mean_change_logr = np.average(df['change_log_r'])
+    std_change_logr = np.std(df['change_log_r'])
+    kur_change_logr = sc.stats.kurtosis(df['change_log_r'])
+    skew_change_logr = sc.stats.skew(df['change_log_r'])
+
+    # D'Agostino-Pearson test for change in log return model
+    stat2_change_logr, p2_change_logr\
+        = sc.stats.normaltest(df['change_log_r'], nan_policy='omit')
+    print(f'p2_change_logr of {ticker} is', p2_change_logr)
+
 
     if p2_logr <= alpha:
 
@@ -215,143 +227,103 @@ def monte_carlo(ticker, days=66, alpha=0.001,
         if graph=='on':
             graph_ticker()
 
-    else:
+    elif p2_change_logr <= alpha:
 
-        # Fundamental Statistics
-        mean_change_logr = np.average(df['change_log_r'])
-        std_change_logr = np.std(df['change_log_r'])
-        kur_change_logr = sc.stats.kurtosis(df['change_log_r'])
-        skew_change_logr = sc.stats.skew(df['change_log_r'])
+        # Testing whether normal skewness
+        stat3_change_logr, p3_change_logr \
+            = sc.stats.skewtest(df['change_log_r'], nan_policy='omit')
+        print(f'p3_change_logr of {ticker} is', p3_change_logr)
 
-        # D'Agostino-Pearson test for change in log return model
-        stat2_change_logr, p2_change_logr \
-            = sc.stats.normaltest(df['change_log_r'], nan_policy='omit')
-        print(f'p2_change_logr of {ticker} is', p2_change_logr)
+        # Testing whether normal kurtosis
+        stat4_change_logr, p4_change_logr \
+            = sc.stats.kurtosistest(df['change_log_r'], nan_policy='omit')
+        print(f'p4_change_logr of {ticker} is', p4_change_logr)
 
-        if p2_change_logr <= alpha:
-
-            # Testing whether normal skewness
-            stat3_change_logr, p3_change_logr \
-                = sc.stats.skewtest(df['change_log_r'], nan_policy='omit')
-            print(f'p3_change_logr of {ticker} is', p3_change_logr)
-
-            # Testing whether normal kurtosis
-            stat4_change_logr, p4_change_logr \
-                = sc.stats.kurtosistest(df['change_log_r'], nan_policy='omit')
-            print(f'p4_change_logr of {ticker} is', p4_change_logr)
-
-            if p3_change_logr <= alpha and p4_change_logr <= alpha:
-                change_logr \
-                    = np.random.normal(loc=mean_change_logr,
-                                       scale=std_change_logr,
-                                       size=(simulation, days))
-            elif p3_change_logr <= alpha and alpha <= p4_change_logr:
-                change_logr \
-                    = sc.stats.t.rvs(df=df['change_log_r'].count() - 1,
-                                     loc=mean_change_logr,
-                                     scale=std_change_logr,
-                                     size=(simulation, days))
-            elif p4_change_logr <= alpha and alpha <= p3_change_logr:
-                change_logr \
-                    = sc.stats.skewnorm.rvs(a=skew_change_logr,
-                                            loc=mean_change_logr,
-                                            scale=std_change_logr,
-                                            size=(simulation, days))
-            else:
-                change_logr \
-                    = sc.stats.nct.rvs(df=df['change_log_r'].count()
-                                          - 1, nc=skew_change_logr,
-                                       loc=mean_change_logr,
-                                       scale=std_change_logr,
-                                       size=(simulation, days))
-
-            # Convert change_logr back to simulated price
-            price_t \
-                = df['close'].loc[df['trading_date']
-                                  == df['trading_date'].max()].iloc[0]
-            price_t1 \
-                = df['close'].loc[df['trading_date']
-                                  == df['trading_date'].max()
-                                  - pd.Timedelta('1 day')].iloc[0]
-            simulated_price = np.zeros(shape=(simulation, days),
-                                       dtype=np.int64)
-            for i in range(simulation):
-                simulated_price[i, 0] \
-                    = np.exp(change_logr[i, 0]) * price_t ** 2 / price_t1
-                simulated_price[i, 1] \
-                    = np.exp(change_logr[i, 1]) * simulated_price[i, 0] ** 2\
-                      / price_t
-                for j in range(days):
-                    simulated_price[i, j] \
-                        = np.exp(change_logr[i, j]) * simulated_price[i, j-1] \
-                          ** 2 / simulated_price[i, j-2]
-            df_historical \
-                = df[['trading_date', 'close']].iloc[
-                  int(max(-254,-df['trading_date'].count())):]
-
-            # Post-processing and graphing
-            pro_days = list()
-            for j in range(days * 2):
-                if pd.to_datetime(df['trading_date'].max()
-                                  + pd.Timedelta(days=j + 1)).weekday() < 5:
-                    pro_days.append(df['trading_date'].max()
-                                    + pd.Timedelta(days=j + 1))
-            pro_days = pro_days[:days]
-
-            simulation_no = [i for i in range(1, simulation + 1)]
-            df_simulated_price \
-                = pd.DataFrame(data=simulated_price,
-                               columns=pro_days,
-                               index=simulation_no).transpose()
-            price_last = df_simulated_price.iloc[-1, :]
-            ubound = pd.DataFrame(df_simulated_price
-                                  .quantile(q=0.95, axis=1,
-                                            interpolation='linear'))
-            dbound = pd.DataFrame(df_simulated_price
-                                  .quantile(q=0.00, axis=1,
-                                            interpolation='linear'))
-            breakeven_price = dbound.min().iloc[0]
-            connect_date = pd.date_range(df['trading_date'].max(), pro_days[0])
-            connect = pd.DataFrame({'price_u': [price_t, ubound.iloc[0, 0]],
-                                    'price_d': [price_t, dbound.iloc[0, 0]]},
-                                   index=connect_date)
-
-            if graph == 'on':
-                graph_ticker()
-
+        if p3_change_logr <= alpha and p4_change_logr <= alpha:
+            change_logr \
+                = np.random.normal(loc=mean_change_logr,
+                                   scale=std_change_logr,
+                                   size=(simulation, days))
+        elif p3_change_logr <= alpha and alpha <= p4_change_logr:
+            change_logr \
+                = sc.stats.t.rvs(df=df['change_log_r'].count() - 1,
+                                 loc=mean_change_logr,
+                                 scale=std_change_logr,
+                                 size=(simulation, days))
+        elif p4_change_logr <= alpha and alpha <= p3_change_logr:
+            change_logr \
+                = sc.stats.skewnorm.rvs(a=skew_change_logr,
+                                        loc=mean_change_logr,
+                                        scale=std_change_logr,
+                                        size=(simulation, days))
         else:
-            print(f'p2_logr of {ticker} is', p2_logr)
-            print(f'p2_change_logr of {ticker} is', p2_change_logr)
-            raise ValueError(f'{ticker} cannot be simulated'
-                             f' with given significance level')
+            change_logr \
+                = sc.stats.nct.rvs(df=df['change_log_r'].count()
+                                      - 1, nc=skew_change_logr,
+                                   loc=mean_change_logr,
+                                   scale=std_change_logr,
+                                   size=(simulation, days))
+
+        # Convert change_logr back to simulated price
+        price_t \
+            = df['close'].loc[df['trading_date']
+                              == df['trading_date'].max()].iloc[0]
+        price_t1 \
+            = df['close'].loc[df['trading_date']
+                              == df['trading_date'].max()
+                              - pd.Timedelta('1 day')].iloc[0]
+        simulated_price = np.zeros(shape=(simulation, days),
+                                   dtype=np.int64)
+        for i in range(simulation):
+            simulated_price[i, 0] \
+                = np.exp(change_logr[i, 0]) * price_t ** 2 / price_t1
+            simulated_price[i, 1] \
+                = np.exp(change_logr[i, 1]) * simulated_price[i, 0] ** 2\
+                  / price_t
+            for j in range(2, days):
+                simulated_price[i, j] \
+                    = np.exp(change_logr[i, j]) \
+                      * simulated_price[i, j-1]**2 \
+                      / simulated_price[i, j-2]
+        df_historical \
+            = df[['trading_date', 'close']].iloc[
+              int(max(-254,-df['trading_date'].count())):]
+
+        # Post-processing and graphing
+        pro_days = list()
+        for j in range(days * 2):
+            if pd.to_datetime(df['trading_date'].max()
+                              + pd.Timedelta(days=j + 1)).weekday() < 5:
+                pro_days.append(df['trading_date'].max()
+                                + pd.Timedelta(days=j + 1))
+        pro_days = pro_days[:days]
+
+        simulation_no = [i for i in range(1, simulation + 1)]
+        df_simulated_price \
+            = pd.DataFrame(data=simulated_price,
+                           columns=pro_days,
+                           index=simulation_no).transpose()
+        price_last = df_simulated_price.iloc[-1, :]
+        ubound = pd.DataFrame(df_simulated_price
+                              .quantile(q=0.95, axis=1,
+                                        interpolation='linear'))
+        dbound = pd.DataFrame(df_simulated_price
+                              .quantile(q=0.00, axis=1,
+                                        interpolation='linear'))
+        breakeven_price = dbound.min().iloc[0]
+        connect_date = pd.date_range(df['trading_date'].max(), pro_days[0])
+        connect = pd.DataFrame({'price_u': [price_t, ubound.iloc[0, 0]],
+                                'price_d': [price_t, dbound.iloc[0, 0]]},
+                               index=connect_date)
+
+        if graph == 'on':
+            graph_ticker()
+
+    else:
+        print(f'p2_logr of {ticker} is', p2_logr)
+        print(f'p2_change_logr of {ticker} is', p2_change_logr)
+        raise ValueError(f'{ticker} cannot be simulated'
+                         f' with given significance level')
 
     print("The execution time is: %s seconds" %(time.time()-start_time))
     return breakeven_price
-
-
-def montecarlo_simulation_list(stocklist, days=66, alpha=0.001,
-                               simulation=100000,
-                               location=join(os.getcwd(),'result')):
-    df_breakeven_price = pd.DataFrame(columns=['ticker', 'breakeven_price'])
-    for i in stocklist:
-        try:
-            df_breakeven_price \
-                = df_breakeven_price.append({'ticker': i, 'breakeven_price':
-                monte_carlo(i, days, alpha,
-                            simulation,
-                            location)}, ignore_index=True)
-        except ValueError:
-            try:
-                df_breakeven_price \
-                    = df_breakeven_price.append({'ticker': i,
-                'breakeven_price':
-                    monte_carlo(i, days, 0.05,
-                                simulation,
-                                location)}, ignore_index=True)
-            except ValueError:
-                continue
-
-    return df_breakeven_price
-
-
-#=====================
