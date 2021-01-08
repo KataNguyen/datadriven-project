@@ -1,4 +1,3 @@
-from request_data.request_data import *
 import scipy as sc
 from scipy import stats
 import matplotlib
@@ -29,7 +28,7 @@ def montecarlo_simulation(ticker, days=66, alpha=0.001,
 
     def graph():
         fig1, ax1 = plt.subplots(1, 1, figsize=(6, 5))
-        ax1.plot(df_historical['trading_date'], df_historical['close_price'],
+        ax1.plot(df_historical['trading_date'], df_historical['close'],
                  color='darkblue')
         ax1.plot(ubound, color='orange', alpha=5)
         ax1.plot(dbound, color='orange', alpha=5)
@@ -156,7 +155,7 @@ def montecarlo_simulation(ticker, days=66, alpha=0.001,
                                      scale=std_logr, size=(simulation, days))
 
         # Convert log_r back to simulated price
-        price_t = df['close_price'].loc[
+        price_t = df['close'].loc[
             df['trading_date'] == df['trading_date'].max()].iloc[0]
         simulated_price = np.zeros(shape=(simulation, days), dtype=np.int64)
         for i in range(simulation):
@@ -165,7 +164,7 @@ def montecarlo_simulation(ticker, days=66, alpha=0.001,
                 simulated_price[i, j] \
                     = np.exp(log_r[i, j]) * simulated_price[i, j-1]
         df_historical \
-            = df[['trading_date', 'close_price']].iloc[
+            = df[['trading_date', 'close']].iloc[
               int(max(-254,-df['trading_date'].count())):
               ]
 
@@ -254,12 +253,12 @@ def montecarlo_simulation(ticker, days=66, alpha=0.001,
 
             # Convert change_logr back to simulated price
             price_t \
-                = df['close_price'].loc[df['trading_date']
-                                        == df['trading_date'].max()].iloc[0]
+                = df['close'].loc[df['trading_date']
+                                  == df['trading_date'].max()].iloc[0]
             price_t1 \
-                = df['close_price'].loc[df['trading_date']
-                                        == df['trading_date'].max()
-                                        - pd.Timedelta('1 day')].iloc[0]
+                = df['close'].loc[df['trading_date']
+                                  == df['trading_date'].max()
+                                  - pd.Timedelta('1 day')].iloc[0]
             simulated_price = np.zeros(shape=(simulation, days),
                                        dtype=np.int64)
             for i in range(simulation):
@@ -273,7 +272,7 @@ def montecarlo_simulation(ticker, days=66, alpha=0.001,
                         = np.exp(change_logr[i, j]) * simulated_price[i, j-1] \
                           ** 2 / simulated_price[i, j-2]
             df_historical \
-                = df[['trading_date', 'close_price']].iloc[
+                = df[['trading_date', 'close']].iloc[
                   int(max(-254,df['trading_date'].count())):
                   ]
             # Post-processing and graphing
@@ -337,9 +336,6 @@ def montecarlo_simulation_list(stocklist, days=66, alpha=0.001,
     print(df_breakeven_price)
     return df_breakeven_price
 
-
-
-x = stocklist['Ticker'].iloc[:]
 y = ['VNM']
 #montecarlo_simulation_list(y)
 montecarlo_simulation('DTA', simulation=100000)

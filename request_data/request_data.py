@@ -13,7 +13,7 @@ import requests
 import json
 import holidays
 
-database_path = join(os.path.dirname(os.path.abspath(__file__)), 'database')
+database_path = os.path.dirname(os.getcwd())
 
 def reload():
 
