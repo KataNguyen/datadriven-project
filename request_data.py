@@ -1,19 +1,18 @@
 import numpy as np
 import pandas as pd
 import openpyxl
-import sys
 import os
+import sys
 from os import listdir
 from os.path import isfile, isdir, join
 from win32com.client import Dispatch
-import io
 import time
 from datetime import datetime, timedelta
 import requests
 import json
 import holidays
 
-database_path = os.path.dirname(os.getcwd())
+database_path = join(os.path.dirname(os.getcwd()), 'database')
 
 def reload():
 
