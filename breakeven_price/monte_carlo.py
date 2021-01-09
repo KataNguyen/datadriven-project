@@ -1,4 +1,3 @@
-from breakeven_price.chart2 import p3_change_logr
 from request_phs.request_data import *
 import scipy as sc
 from scipy import stats
@@ -172,7 +171,7 @@ def monte_carlo(ticker, days=66, alpha=0.01,
 
             deg_free = df['logr'].count() - 1
             loc = mean
-            scale = std/(df['logr'].count())**0.5
+            scale = (std**2*(deg_free-2)/deg_free)**0.5
 
             logr = sc.stats.t.rvs(deg_free, loc, scale,
                                    size=(simulation, days))
@@ -244,7 +243,7 @@ def monte_carlo(ticker, days=66, alpha=0.01,
 
             deg_free = df['change_logr'].count() - 1
             loc = mean
-            scale = std/(df['change_logr'].count())**0.5
+            scale = (std**2*(deg_free-2)/deg_free)**0.5
 
             change_logr = sc.stats.t.rvs(deg_free, loc, scale,
                                          size=(simulation, days))
@@ -331,7 +330,8 @@ def monte_carlo(ticker, days=66, alpha=0.01,
                           .quantile(q=0.00, axis=1,
                                     interpolation='linear'))
     breakeven_price = dbound.min().iloc[0]
-    connect_date = pd.date_range(df['trading_date'].max(), pro_days[0])
+    connect_date = pd.date_range(df['trading_date'].max(),
+                                 pro_days[0])[[0,-1]]
     connect = pd.DataFrame({'price_u': [price_t, ubound.iloc[0, 0]],
                             'price_d': [price_t, dbound.iloc[0, 0]]},
                            index=connect_date)
