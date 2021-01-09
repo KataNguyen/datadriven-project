@@ -1,3 +1,4 @@
+from breakeven_price.chart2 import p3_change_logr
 from request_phs.request_data import *
 import scipy as sc
 from scipy import stats
@@ -124,72 +125,99 @@ def monte_carlo(ticker, days=66, alpha=0.01,
         = df['close'].loc[df['ref'] == 0]
     df['change_percent'] \
         = df['close'] / df['ref'] - 1
-    df['log_r'] \
+    df['logr'] \
         = np.log(1 + df['change_percent'])
-    df['change_log_r'] = 0
+    df['change_logr'] = 0
     for i in range(1, len(df.index)):
-        df['change_log_r'].iloc[i] \
-            = df['log_r'].iloc[i] - df['log_r'].iloc[i-1]
-    df['change_log_r'].iloc[0] = df['change_log_r'].iloc[1]
+        df['change_logr'].iloc[i] \
+            = df['logr'].iloc[i] - df['logr'].iloc[i-1]
+    df['change_logr'].iloc[0] = df['change_logr'].iloc[1]
     df['close'] = df['close'] * 1000
-
-    # Fundamental Statistics:
-    mean_logr = np.average(df['log_r'].iloc[2:])
-    std_logr = np.std(df['log_r'].iloc[2:])
-    kur_logr = sc.stats.kurtosis(df['log_r'].iloc[2:])
-    skew_logr = sc.stats.skew(df['log_r'].iloc[2:])
+    df.drop(columns=['ref', 'high', 'low', 
+                     'change', 'change_percent',
+                     'total_volume', 'total_value'], inplace=True)
 
     # D'Agostino-Pearson test for log return model
-    stat2_logr, p2_logr = sc.stats.normaltest(df['log_r'], nan_policy='omit')
-    print(f'p2_logr of {ticker} is', p2_logr)
+    stat_logr, p_logr = sc.stats.normaltest(df['logr'], nan_policy='omit')
+    print(f'p2_logr of {ticker} is', p_logr)
 
     # Fundamental Statistics
-    mean_change_logr = np.average(df['change_log_r'])
-    std_change_logr = np.std(df['change_log_r'])
-    kur_change_logr = sc.stats.kurtosis(df['change_log_r'])
-    skew_change_logr = sc.stats.skew(df['change_log_r'])
+    mean_change_logr = np.average(df['change_logr'])
+    std_change_logr = np.std(df['change_logr'])
+    kur_change_logr = sc.stats.kurtosis(df['change_logr'])
+    skew_change_logr = sc.stats.skew(df['change_logr'])
 
     # D'Agostino-Pearson test for change in log return model
-    stat2_change_logr, p2_change_logr\
-        = sc.stats.normaltest(df['change_log_r'], nan_policy='omit')
-    print(f'p2_change_logr of {ticker} is', p2_change_logr)
+    stat_change_logr, p_change_logr\
+        = sc.stats.normaltest(df['change_logr'], nan_policy='omit')
+    print(f'p2_change_logr of {ticker} is', p_change_logr)
 
 
-    if p2_logr <= alpha:
+    if p_logr <= alpha:
 
         # Testing whether normal skewness
-        stat3_logr, p3_logr = sc.stats.skewtest(df['log_r'], nan_policy='omit')
-        print(f'p3_logr of {ticker} is', p3_logr)
+        stat_skew, p_skew = sc.stats.skewtest(df['logr'], nan_policy='omit')
+        print(f'p_skew of {ticker} is', p_skew)
 
         # Testing whether normal kurtosis.
-        stat4_logr, p4_logr = sc.stats.kurtosistest(df['log_r'],
-                                                    nan_policy='omit')
-        print(f'p4_logr of {ticker} is', p4_logr)
+        stat_kur, p_kur = sc.stats.kurtosistest(df['logr'],
+                                                nan_policy='omit')
+        print(f'p_kur of {ticker} is', p_kur)
 
-        if p3_logr <= alpha and p4_logr <= alpha:
-            log_r = np.random.normal(mean_logr, std_logr,
-                                     size=(simulation, days))
-        elif p3_logr <= alpha and alpha <= p4_logr:
-            log_r = sc.stats.t.rvs(df=df['log_r'].count() - 1, loc=mean_logr,
-                                   scale=std_logr, size=(simulation, days))
-        elif p4_logr <= alpha and alpha <= p3_logr:
-            log_r = sc.stats.skewnorm.rvs(a=skew_logr, loc=mean_logr,
-                                          scale=std_logr,
+        if p_skew <= alpha and p_kur <= alpha:
+
+            loc = np.average(df['logr'])
+            scale = np.std(df['logr'])
+            logr = np.random.normal(loc, scale, size=(simulation, days))
+
+        elif p_skew <= alpha and p_kur > alpha:
+
+            mean = np.average(df['logr'])
+            std = np.std(df['logr'])
+
+            deg_free = df['logr'].count() - 1
+            loc = mean
+            scale = std/(df['logr'].count())**0.5
+
+            logr = sc.stats.t.rvs(deg_free, loc, scale,
+                                   size=(simulation, days))
+
+        elif p_skew > alpha and p_kur <= alpha:
+
+            mean = np.average(df['logr'])
+            std = np.std(df['logr'])
+            skew = sc.stats.skew(df['logr'])
+
+            theta = (np.pi/2 * abs(skew)**(2/3)
+                     / (abs(skew)**(2/3) + ((4-np.pi)/2)**(2/3)))**0.5 \
+                    * np.sign(skew)
+            a = theta / (1-theta**2)**0.5
+            scale = std**2/(1-2*theta**2/np.pi)
+            loc = mean - scale*theta*(2/np.pi)**0.5
+
+            logr = sc.stats.skewnorm.rvs(a, loc, scale,
                                           size=(simulation, days))
-        else:
-            log_r = sc.stats.nct.rvs(df=df['log_r'].count() - 1,
-                                     nc=skew_logr, loc=mean_logr,
-                                     scale=std_logr, size=(simulation, days))
 
-        # Convert log_r back to simulated price
+        else:
+            mean = np.average(df['logr'])
+            std = np.std(df['logr'])
+            deg_free = df['logr'].count() - 1
+            loc = mean
+            scale = std/(df['logr'].count())**0.5
+            nc = mean*(1-3/(4*deg_free-1))
+
+            logr = sc.stats.nct.rvs(deg_free, nc, loc, scale,
+                                     size=(simulation, days))
+
+        # Convert logr back to simulated price
         price_t = df['close'].loc[
             df['trading_date'] == df['trading_date'].max()].iloc[0]
         simulated_price = np.zeros(shape=(simulation, days), dtype=np.int64)
         for i in range(simulation):
-            simulated_price[i, 0] = np.exp(log_r[i, 0]) * price_t
+            simulated_price[i, 0] = np.exp(logr[i, 0]) * price_t
             for j in range(1, days):
                 simulated_price[i, j] \
-                    = np.exp(log_r[i, j]) * simulated_price[i, j-1]
+                    = np.exp(logr[i, j]) * simulated_price[i, j-1]
         df_historical \
             = df[['trading_date', 'close']].iloc[
               int(max(-254,-df['trading_date'].count())):]
@@ -227,42 +255,63 @@ def monte_carlo(ticker, days=66, alpha=0.01,
         if graph=='on':
             graph_ticker()
 
-    elif p2_change_logr <= alpha:
+    elif p_change_logr <= alpha:
 
         # Testing whether normal skewness
-        stat3_change_logr, p3_change_logr \
-            = sc.stats.skewtest(df['change_log_r'], nan_policy='omit')
-        print(f'p3_change_logr of {ticker} is', p3_change_logr)
+        stat_skew, p_skew \
+            = sc.stats.skewtest(df['change_logr'], nan_policy='omit')
+        print(f'p_skew of {ticker} is', p_skew)
 
         # Testing whether normal kurtosis
-        stat4_change_logr, p4_change_logr \
-            = sc.stats.kurtosistest(df['change_log_r'], nan_policy='omit')
-        print(f'p4_change_logr of {ticker} is', p4_change_logr)
+        stat_kur, p_kur \
+            = sc.stats.kurtosistest(df['change_logr'], nan_policy='omit')
+        print(f'p_kur of {ticker} is', p_kur)
 
-        if p3_change_logr <= alpha and p4_change_logr <= alpha:
+        if p_skew <= alpha and p_kur <= alpha:
+
+            loc = np.average(df['change_logr'])
+            scale = np.std(df['change_logr'])
             change_logr \
-                = np.random.normal(loc=mean_change_logr,
-                                   scale=std_change_logr,
-                                   size=(simulation, days))
-        elif p3_change_logr <= alpha and alpha <= p4_change_logr:
-            change_logr \
-                = sc.stats.t.rvs(df=df['change_log_r'].count() - 1,
-                                 loc=mean_change_logr,
-                                 scale=std_change_logr,
-                                 size=(simulation, days))
-        elif p4_change_logr <= alpha and alpha <= p3_change_logr:
-            change_logr \
-                = sc.stats.skewnorm.rvs(a=skew_change_logr,
-                                        loc=mean_change_logr,
-                                        scale=std_change_logr,
-                                        size=(simulation, days))
+                = np.random.normal(loc, scale, size=(simulation, days))
+
+        elif p_skew <= alpha and p_kur > alpha:
+
+            mean = np.average(df['change_logr'])
+            std = np.std(df['change_logr'])
+
+            deg_free = df['change_logr'].count() - 1
+            loc = mean
+            scale = std/(df['change_logr'].count())**0.5
+
+            change_logr = sc.stats.t.rvs(deg_free, loc, scale,
+                                         size=(simulation, days))
+
+        elif p_skew > alpha and p_kur <= alpha:
+
+            mean = np.average(df['change_logr'])
+            std = np.std(df['change_logr'])
+            skew = sc.stats.skew(df['change_logr'])
+
+            theta = (np.pi/2 * abs(skew)**(2/3)
+                     / (abs(skew)**(2/3) + ((4-np.pi)/2)**(2/3)))**0.5 \
+                    * np.sign(skew)
+            a = theta / (1-theta**2)**0.5
+            scale = std**2/(1-2*theta**2/np.pi)
+            loc = mean - scale*theta*(2/np.pi)**0.5
+
+            change_logr = sc.stats.skewnorm.rvs(a, loc, scale,
+                                                size=(simulation, days))
+
         else:
-            change_logr \
-                = sc.stats.nct.rvs(df=df['change_log_r'].count()
-                                      - 1, nc=skew_change_logr,
-                                   loc=mean_change_logr,
-                                   scale=std_change_logr,
-                                   size=(simulation, days))
+            mean = np.average(df['change_logr'])
+            std = np.std(df['change_logr'])
+            deg_free = df['change_logr'].count() - 1
+            loc = mean
+            scale = std/(df['change_logr'].count())**0.5
+            nc = mean*(1-3/(4*deg_free-1))
+
+            change_logr = sc.stats.nct.rvs(deg_free, nc, loc, scale,
+                                           size=(simulation, days))
 
         # Convert change_logr back to simulated price
         price_t \
@@ -320,10 +369,11 @@ def monte_carlo(ticker, days=66, alpha=0.01,
             graph_ticker()
 
     else:
-        print(f'p2_logr of {ticker} is', p2_logr)
-        print(f'p2_change_logr of {ticker} is', p2_change_logr)
+        print(f'p2_logr of {ticker} is', p_logr)
+        print(f'p2_change_logr of {ticker} is', p_change_logr)
         raise ValueError(f'{ticker} cannot be simulated'
                          f' with given significance level')
 
     print("The execution time is: %s seconds" %(time.time()-start_time))
     return breakeven_price
+
