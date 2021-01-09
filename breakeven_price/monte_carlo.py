@@ -137,15 +137,10 @@ def monte_carlo(ticker, days=66, alpha=0.01,
                      'change', 'change_percent',
                      'total_volume', 'total_value'], inplace=True)
 
+
     # D'Agostino-Pearson test for log return model
     stat_logr, p_logr = sc.stats.normaltest(df['logr'], nan_policy='omit')
     print(f'p2_logr of {ticker} is', p_logr)
-
-    # Fundamental Statistics
-    mean_change_logr = np.average(df['change_logr'])
-    std_change_logr = np.std(df['change_logr'])
-    kur_change_logr = sc.stats.kurtosis(df['change_logr'])
-    skew_change_logr = sc.stats.skew(df['change_logr'])
 
     # D'Agostino-Pearson test for change in log return model
     stat_change_logr, p_change_logr\
@@ -222,38 +217,6 @@ def monte_carlo(ticker, days=66, alpha=0.01,
             = df[['trading_date', 'close']].iloc[
               int(max(-254,-df['trading_date'].count())):]
 
-        # Post-processing and graphing
-        pro_days = list()
-        for j in range(days*2):
-            if pd.to_datetime(df['trading_date'].max()
-                              + pd.Timedelta(days=j+1)).weekday() < 5:
-                pro_days.append(df['trading_date'].max()
-                                + pd.Timedelta(days=j+1))
-        pro_days = pro_days[:days]
-
-        simulation_no \
-            = [i for i in range(1, simulation+1)]
-        df_simulated_price \
-            = pd.DataFrame(data=simulated_price,
-                           columns=pro_days,
-                           index=simulation_no).transpose()
-        price_last = df_simulated_price.iloc[-1, :]
-        ubound = pd.DataFrame(df_simulated_price\
-                              .quantile(q=0.95, axis=1,
-                                        interpolation='linear'))
-        dbound = pd.DataFrame(df_simulated_price\
-                              .quantile(q=0.00, axis=1,
-                                        interpolation='linear'))
-        breakeven_price = dbound.min().iloc[0]
-        connect_date \
-            = pd.date_range(df['trading_date'].max(), pro_days[0])[[0, -1]]
-        connect \
-            = pd.DataFrame({'price_u': [price_t, ubound.iloc[0, 0]],
-                            'price_d': [price_t, dbound.iloc[0, 0]]},
-                           index=connect_date)
-
-        if graph=='on':
-            graph_ticker()
 
     elif p_change_logr <= alpha:
 
@@ -302,6 +265,7 @@ def monte_carlo(ticker, days=66, alpha=0.01,
             change_logr = sc.stats.skewnorm.rvs(a, loc, scale,
                                                 size=(simulation, days))
 
+
         else:
             mean = np.average(df['change_logr'])
             std = np.std(df['change_logr'])
@@ -338,41 +302,43 @@ def monte_carlo(ticker, days=66, alpha=0.01,
             = df[['trading_date', 'close']].iloc[
               int(max(-254,-df['trading_date'].count())):]
 
-        # Post-processing and graphing
-        pro_days = list()
-        for j in range(days * 2):
-            if pd.to_datetime(df['trading_date'].max()
-                              + pd.Timedelta(days=j + 1)).weekday() < 5:
-                pro_days.append(df['trading_date'].max()
-                                + pd.Timedelta(days=j + 1))
-        pro_days = pro_days[:days]
-
-        simulation_no = [i for i in range(1, simulation + 1)]
-        df_simulated_price \
-            = pd.DataFrame(data=simulated_price,
-                           columns=pro_days,
-                           index=simulation_no).transpose()
-        price_last = df_simulated_price.iloc[-1, :]
-        ubound = pd.DataFrame(df_simulated_price
-                              .quantile(q=0.95, axis=1,
-                                        interpolation='linear'))
-        dbound = pd.DataFrame(df_simulated_price
-                              .quantile(q=0.00, axis=1,
-                                        interpolation='linear'))
-        breakeven_price = dbound.min().iloc[0]
-        connect_date = pd.date_range(df['trading_date'].max(), pro_days[0])
-        connect = pd.DataFrame({'price_u': [price_t, ubound.iloc[0, 0]],
-                                'price_d': [price_t, dbound.iloc[0, 0]]},
-                               index=connect_date)
-
-        if graph == 'on':
-            graph_ticker()
 
     else:
         print(f'p2_logr of {ticker} is', p_logr)
         print(f'p2_change_logr of {ticker} is', p_change_logr)
         raise ValueError(f'{ticker} cannot be simulated'
                          f' with given significance level')
+
+    # Post-processing and graphing
+    pro_days = list()
+    for j in range(days * 2):
+        if pd.to_datetime(df['trading_date'].max()
+                          + pd.Timedelta(days=j + 1)).weekday() < 5:
+            pro_days.append(df['trading_date'].max()
+                            + pd.Timedelta(days=j + 1))
+    pro_days = pro_days[:days]
+
+    simulation_no = [i for i in range(1, simulation + 1)]
+    df_simulated_price \
+        = pd.DataFrame(data=simulated_price,
+                       columns=pro_days,
+                       index=simulation_no).transpose()
+    price_last = df_simulated_price.iloc[-1, :]
+    ubound = pd.DataFrame(df_simulated_price
+                          .quantile(q=0.95, axis=1,
+                                    interpolation='linear'))
+    dbound = pd.DataFrame(df_simulated_price
+                          .quantile(q=0.00, axis=1,
+                                    interpolation='linear'))
+    breakeven_price = dbound.min().iloc[0]
+    connect_date = pd.date_range(df['trading_date'].max(), pro_days[0])
+    connect = pd.DataFrame({'price_u': [price_t, ubound.iloc[0, 0]],
+                            'price_d': [price_t, dbound.iloc[0, 0]]},
+                           index=connect_date)
+
+    if graph == 'on':
+        graph_ticker()
+
 
     print("The execution time is: %s seconds" %(time.time()-start_time))
     return breakeven_price
