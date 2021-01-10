@@ -139,12 +139,12 @@ def monte_carlo(ticker, days=66, alpha=0.01,
 
     # D'Agostino-Pearson test for log return model
     stat_logr, p_logr = sc.stats.normaltest(df['logr'], nan_policy='omit')
-    print(f'p2_logr of {ticker} is', p_logr)
+    print(f'p_logr of {ticker} is', p_logr)
 
     # D'Agostino-Pearson test for change in log return model
     stat_change_logr, p_change_logr\
         = sc.stats.normaltest(df['change_logr'], nan_policy='omit')
-    print(f'p2_change_logr of {ticker} is', p_change_logr)
+    print(f'p_change_logr of {ticker} is', p_change_logr)
 
 
     if p_logr <= alpha:
@@ -303,8 +303,8 @@ def monte_carlo(ticker, days=66, alpha=0.01,
 
 
     else:
-        print(f'p2_logr of {ticker} is', p_logr)
-        print(f'p2_change_logr of {ticker} is', p_change_logr)
+        print(f'p_logr of {ticker} is', p_logr)
+        print(f'p_change_logr of {ticker} is', p_change_logr)
         raise ValueError(f'{ticker} cannot be simulated'
                          f' with given significance level')
 
