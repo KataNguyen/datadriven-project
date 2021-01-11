@@ -335,6 +335,21 @@ def request_ticker_list():
     return tickerlist
 
 
+def request_crash_list(benchmark=-0.5, period=str):
+    global returns
+    try:
+        returns
+    except NameError:
+        returns = request_return()
+    crash = list()
+    for ticker in returns.index:
+        if returns.loc[ticker, period] <= benchmark:
+            crash.append(ticker)
+        else:
+            continue
+    return crash
+
+
 def request_variable_names(fs_type=str):
 
     last_period = request_period_list()[-1]
@@ -787,5 +802,3 @@ def request_latest_close_price(ticker=str):
     close_price = request_trading_hist(ticker)['close'].iloc[-1]
     return close_price
 
-
-asdad
