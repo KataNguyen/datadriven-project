@@ -786,3 +786,6 @@ def request_trading_intra(ticker=str, fromdate=None, todate=None):
 def request_latest_close_price(ticker=str):
     close_price = request_trading_hist(ticker)['close'].iloc[-1]
     return close_price
+
+
+asdad
