@@ -676,7 +676,7 @@ def request_trading_hist(ticker=str, fromdate=None, todate=None):
                                    'todate': datetime.now()
                                        .strftime("%Y-%m-%d")}
                               ),
-            headers={'content-type': 'application/json'})
+                              headers={'content-type': 'application/json'})
             history = pd.DataFrame(json.loads(r.json()['d']))
         except KeyError:
             try:
