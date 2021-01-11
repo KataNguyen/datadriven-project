@@ -556,3 +556,5 @@ def graph_crash(benchmark=float, period=str):
 
 
 print("The execution time is: %s seconds" %(time.time() - start_time))
+
+fsdf = fadf
