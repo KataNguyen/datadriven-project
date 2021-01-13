@@ -546,6 +546,7 @@ def graph_classification(standard=str):
               fontfamily='Times New Roman', fontsize=15, fontweight='bold',
               color='midnightblue')
 
+
 def graph_crash(benchmark=float, period=str):
     crash_list = request_crash_list(benchmark, period)
     for ticker in crash_list:
@@ -557,4 +558,3 @@ def graph_crash(benchmark=float, period=str):
 
 print("The execution time is: %s seconds" %(time.time() - start_time))
 
-fsdf = fadf

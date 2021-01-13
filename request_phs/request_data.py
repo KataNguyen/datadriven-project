@@ -12,7 +12,7 @@ import requests
 import json
 import holidays
 
-database_path = join(os.path.dirname(os.getcwd()), 'database')
+database_path = join(os.getcwd(), 'database')
 
 def reload():
 
@@ -336,11 +336,7 @@ def request_ticker_list():
 
 
 def request_crash_list(benchmark=-0.5, period=str):
-    global returns
-    try:
-        returns
-    except NameError:
-        returns = request_return()
+    returns = request_return()
     crash = list()
     for ticker in returns.index:
         if returns.loc[ticker, period] <= benchmark:
