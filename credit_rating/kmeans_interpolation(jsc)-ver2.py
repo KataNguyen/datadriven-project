@@ -231,6 +231,14 @@ for standard in standards:
                                                 quantity], std_bound)
                         df_xs /= std_bound
 
+                        # Principal Component Analysis
+                        df_xs_mean = df_xs.loc[:, quantity].mean()
+                        df_xs_std = df_xs.loc[:, quantity].std()
+                        df_xs.loc[:,quantity] = (df_xs.loc[:,quantity]\
+                                                 - df_xs_mean)\
+                                                / df_xs_std
+
+
                     # Kmeans algorithm
                     kmeans.loc[(standard,
                                 standard+'_l'+str(level),
@@ -329,6 +337,8 @@ for row in range(labels.shape[0]):
             ticker_raw_scores.iloc[row,col] = raw
 
 class radius_tickers_:
+    def __init__(self):
+        return
     a = list()
     for row in range(radius_tickers.shape[0]):
         for col in range(radius_tickers.shape[1]):
