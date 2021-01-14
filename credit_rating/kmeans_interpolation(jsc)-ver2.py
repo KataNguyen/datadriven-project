@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 # Parameters:
 centroids = 4
 min_tickers = 4
-std_bound = 2
+nstd_bound = 2
 
 start_time = time.time()
 
@@ -213,30 +213,53 @@ for standard in standards:
                         = None
                 else:
                     for quantity in quantities_new:
-                        df_xs_median = df_xs.loc[:,quantity].median()
-                        df_xs_std = df_xs.loc[:,quantity].std()
-                        if df_xs_std == 0:
-                            continue
-                        else:
-                            df_xs.loc[:,quantity] = (df_xs.loc[:,quantity] \
-                                                     - df_xs_median) \
-                                                    / df_xs_std
-
+                        # remove outliers (Interquartile Range Method)
+                        df_xs_median = df_xs.loc[:, quantity].median()
+                        df_xs_75q = df_xs.loc[:, quantity].quantile(q=0.75)
+                        df_xs_25q = df_xs.loc[:, quantity].quantile(q=0.25)
+                        ## (have to ensure symmetry)
+                        cut_off = (df_xs_75q - df_xs_25q) * 1.5
                         for ticker in df_xs.index.get_level_values(2):
                             df_xs.loc[(year,quarter,ticker), quantity] \
                                 = max(df_xs.loc[(year,quarter,ticker),
-                                                quantity], -std_bound)
+                                                quantity], df_xs_25q-cut_off)
                             df_xs.loc[(year,quarter,ticker), quantity] \
                                 = min(df_xs.loc[(year,quarter,ticker),
-                                                quantity], std_bound)
-                        df_xs /= std_bound
+                                                quantity], df_xs_75q+cut_off)
 
-                        # Principal Component Analysis
+                        # standardize to mean=0
                         df_xs_mean = df_xs.loc[:, quantity].mean()
-                        df_xs_std = df_xs.loc[:, quantity].std()
-                        df_xs.loc[:,quantity] = (df_xs.loc[:,quantity]\
-                                                 - df_xs_mean)\
-                                                / df_xs_std
+                        for ticker in df_xs.index.get_level_values(2):
+                            df_xs.loc[(year,quarter,ticker), quantity] \
+                                = (df_xs.loc[(year,quarter,ticker),
+                                             quantity]
+                                   - df_xs_mean)
+
+                        # standardize to range (-1,1)
+                        df_xs_min = df_xs.loc[:, quantity].min()
+                        df_xs_max = df_xs.loc[:, quantity].max()
+                        for ticker in df_xs.index.get_level_values(2):
+                            df_xs.loc[(year,quarter,ticker), quantity] \
+                                = -1 \
+                                  + (df_xs.loc[(year,quarter,ticker), quantity]
+                                  - df_xs_min) / (df_xs_max-df_xs_min) * 2
+
+                    # Principal Component Analysis
+                    X = df_xs.values
+                    cov_matrix = np.dot(X.T, X) / X.shape[0]
+                    cor_matrix = np.zeros(cov_matrix.shape)
+                    for row in range(cov_matrix.shape[0]):
+                        for col in range(cov_matrix.shape[1]):
+                            cor_matrix[row,col] \
+                                = cov_matrix[row,col] \
+                                  / (cov_matrix[row,row] ** 0.5
+                                     * cov_matrix[col,col] ** 0.5)
+                    eig_vals, eig_vects = np.linalg.eig(cor_matrix)
+                    eig_dict = dict()
+                    for i in range(eig_vals.shape[0]):
+                        eig_dict[eig_vals[i]] = eig_vects[:,i]
+                    #eig_dict = {k: v for k, v in sorted(eig_dict.keys())}
+
 
 
                     # Kmeans algorithm
@@ -337,8 +360,6 @@ for row in range(labels.shape[0]):
             ticker_raw_scores.iloc[row,col] = raw
 
 class radius_tickers_:
-    def __init__(self):
-        return
     a = list()
     for row in range(radius_tickers.shape[0]):
         for col in range(radius_tickers.shape[1]):
