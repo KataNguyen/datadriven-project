@@ -327,8 +327,7 @@ for standard in standards:
                         .tolist()
 
 del df, df_xs
-
-origin = np.array([-1 for i in range(len(quantities_new))])
+############# run from here on Saturday
 
 radius_centers = pd.DataFrame(index=kmeans_index, columns=periods)
 for row in range(centers.shape[0]):
@@ -338,8 +337,9 @@ for row in range(centers.shape[0]):
         else:
             distance = np.zeros(centroids)
             for center in range(centroids):
+                # origin at (-1,-1,-1,...) whose dimension varies by PCA
                 distance[center] = ((np.array(centers.iloc[row,col][center])
-                                     - origin)**2).sum()**(1/2)
+                                     - (-1))**2).sum()**(1/2)
             radius_centers.iloc[row,col] = distance
 
 center_scores = pd.DataFrame(index=kmeans_index, columns=periods)
@@ -364,9 +364,10 @@ for row in range(labels.shape[0]):
         else:
             distance = np.zeros(len(labels.iloc[row,col]))
             for ticker in range(len(labels.iloc[row,col])):
+                # origin at (-1,-1,-1,...) whose dimension varies by PCA
                 distance[ticker] \
                     = (((np.array(kmeans_coord.iloc[row,col][ticker]))
-                        - origin)**2).sum()**(1/2)
+                        - (-1))**2).sum()**(1/2)
             radius_tickers.iloc[row,col] = distance
 
 ticker_raw_scores = pd.DataFrame(index=kmeans_index, columns=periods)#not used
