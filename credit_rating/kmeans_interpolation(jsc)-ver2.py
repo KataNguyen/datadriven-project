@@ -327,8 +327,8 @@ for standard in standards:
                         .tolist()
 
 del df, df_xs
-############# run from here on Saturday
 
+############# run from here on Saturday
 radius_centers = pd.DataFrame(index=kmeans_index, columns=periods)
 for row in range(centers.shape[0]):
     for col in range(centers.shape[1]):
