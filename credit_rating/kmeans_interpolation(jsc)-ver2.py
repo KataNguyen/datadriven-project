@@ -197,9 +197,12 @@ for standard in standards:
                 .index.tolist()
 
             for year, quarter in zip(years, quarters):
-                df_xs = df.loc[(year, quarter, ticker_list[(standard,
-                                                            level,
-                                                            industry)]), :]
+                try:
+                    df_xs = df.loc[(year, quarter, ticker_list[(standard,
+                                                                level,
+                                                                industry)]), :]
+                except KeyError:
+                    continue
                 df_xs.dropna(axis=0, how='any', inplace=True)
                 if df_xs.shape[0] < min_tickers:
                     kmeans.loc[
@@ -238,11 +241,15 @@ for standard in standards:
                         # standardize to range (-1,1)
                         df_xs_min = df_xs.loc[:, quantity].min()
                         df_xs_max = df_xs.loc[:, quantity].max()
-                        for ticker in df_xs.index.get_level_values(2):
-                            df_xs.loc[(year,quarter,ticker), quantity] \
-                                = -1 \
-                                  + (df_xs.loc[(year,quarter,ticker), quantity]
-                                  - df_xs_min) / (df_xs_max-df_xs_min) * 2
+                        if df_xs_max == df_xs_min:
+                            df_xs.drop(columns=quantity, inplace=True)
+                        else:
+                            for ticker in df_xs.index.get_level_values(2):
+                                df_xs.loc[(year,quarter,ticker), quantity] \
+                                    = -1 \
+                                      + (df_xs.loc[(year,quarter,ticker),
+                                                   quantity]
+                                      - df_xs_min) / (df_xs_max-df_xs_min) * 2
 
                     # Principal Component Analysis
                     X = df_xs.values
@@ -274,7 +281,7 @@ for standard in standards:
                     col = ['pc_'+ str(num) for num
                            in np.arange(start=1, stop=pc_matrix.shape[1]+1)]
                     df_xs = pd.DataFrame(data=pc_matrix, columns=col,
-                                         index=df_xs.index.tolist())
+                                         index=df_xs.index)
 
                     # Kmeans algorithm
                     kmeans.loc[(standard,
