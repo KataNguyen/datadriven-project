@@ -255,12 +255,26 @@ for standard in standards:
                                   / (cov_matrix[row,row] ** 0.5
                                      * cov_matrix[col,col] ** 0.5)
                     eig_vals, eig_vects = np.linalg.eig(cor_matrix)
+
                     eig_dict = dict()
-                    for i in range(eig_vals.shape[0]):
+                    for i in range(len(eig_vals)):
                         eig_dict[eig_vals[i]] = eig_vects[:,i]
-                    #eig_dict = {k: v for k, v in sorted(eig_dict.keys())}
 
+                    eig_vals = np.array(sorted(eig_vals, reverse=True))
+                    eig_matrix = np.zeros(eig_vects.shape)
+                    for i in range(len(eig_vals)):
+                        eig_matrix[:,i] = eig_dict[eig_vals[i]]
 
+                    pc_matrix = np.dot(X,eig_matrix)
+                    explained = np.zeros(len(eig_vals))
+                    for i in range(len(eig_vals)):
+                        explained[i] = eig_vals[:i].sum() / len(eig_vals)
+                    pc_matrix = pc_matrix[:, explained <= 0.9]
+
+                    col = ['pc_'+ str(num) for num
+                           in np.arange(start=1, stop=pc_matrix.shape[1]+1)]
+                    df_xs = pd.DataFrame(data=pc_matrix, columns=col,
+                                         index=df_xs.index.tolist())
 
                     # Kmeans algorithm
                     kmeans.loc[(standard,
