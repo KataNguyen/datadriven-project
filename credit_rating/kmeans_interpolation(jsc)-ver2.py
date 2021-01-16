@@ -118,7 +118,7 @@ for year in years:
                 except KeyError:
                     continue
 
-del agg_data # for memory savings
+#del agg_data # for memory savings
 
 df['cur_ratio'] = df['cur_asset'] / df['cur_liability']
 df['quick_ratio'] = (df['cur_asset'] - df['inv']) / df['cur_liability']
@@ -217,10 +217,10 @@ for standard in standards:
                 else:
                     for quantity in quantities_new:
                         # remove outliers (Interquartile Range Method)
+                        ## (have to ensure symmetry)
                         df_xs_median = df_xs.loc[:, quantity].median()
                         df_xs_75q = df_xs.loc[:, quantity].quantile(q=0.75)
                         df_xs_25q = df_xs.loc[:, quantity].quantile(q=0.25)
-                        ## (have to ensure symmetry)
                         cut_off = (df_xs_75q - df_xs_25q) * 1.5
                         for ticker in df_xs.index.get_level_values(2):
                             df_xs.loc[(year,quarter,ticker), quantity] \
@@ -326,7 +326,7 @@ for standard in standards:
                                      year + 'q' + quarter].cluster_centers_\
                         .tolist()
 
-del df, df_xs
+#del df, df_xs
 
 radius_centers = pd.DataFrame(index=kmeans_index, columns=periods)
 for row in range(centers.shape[0]):
@@ -350,9 +350,9 @@ for row in range(centers.shape[0]):
             center_scores.iloc[row,col] \
                 = rankdata(radius_centers.iloc[row,col])
             for n in range(1, centroids+1):
-                center_scores.iloc[row, col] = \
-                    np.where(center_scores.iloc[row,col] == n,
-                             2*100/(centroids*2)*n-100/(centroids*2),
+                center_scores.iloc[row,col] = \
+                    np.where(center_scores.iloc[row,col]==n,
+                             100/(centroids+1)*n,
                              center_scores.iloc[row,col])
 
 radius_tickers = pd.DataFrame(index=kmeans_index, columns=periods)
@@ -516,8 +516,11 @@ for standard, level, industry, ticker in change_result.index:
             * returns.loc[ticker,period] >= 0:
             hot_keys.loc[(standard,level,industry,ticker),
                          period] = 1
-
-hot_keys.drop(labels=request_financial_ticker(), axis=0, level=3, inplace=True)
+for financial_ in request_financial_ticker():
+    try:
+        hot_keys.drop(labels=financial_, axis=0, level=3, inplace=True)
+    except KeyError:
+        continue
 hot_keys.drop(labels='N/A', axis=0, level=2, inplace=True)
 
 def accuracy(standard=str, level=int):
