@@ -128,29 +128,29 @@ def request_period_fs(year=int, quarter=int, segment=str, fs_type=str):
                                      :header[-1]
                                       + clean_data.columns[col].split()[0]},
                             inplace=True)
-                subheader = list()
+
+                subheader = list('I')
+                print(clean_data.columns)
                 for col in range(2, len(clean_data.columns)):
                     l = clean_data.columns[col].split('.')
                     a = l[1]
-                    print(a)
+                    print('++++++++++++++')
+                    print(f'old index is {clean_data.columns[col]}')
+                    print(clean_data.columns[64])
                     if a in ['I','II','III','IV','V','VI','VII']:
-                        print(clean_data.columns[col])
                         subheader.append(a)
+                        print(f'subheader is {subheader}')
+                        print(f'old index is {clean_data.columns[col]}')
                     else:
-                        try:
-                            name_new = l
-                            print(name_new)
-                            print(subheader)
-                            name_new.insert(1,subheader[-1])
-                            print(name_new)
-                            name_new = '.'.join(name_new)
-                            clean_data.rename(
-                                columns={clean_data.columns[col]:name_new},
-                                inplace=True)
-                            print(clean_data.columns[col])
-                        except IndexError:
-                            pass
-                    print('++++++++++++++++++')
+                        name_new = l
+                        name_new.insert(1,subheader[-1])
+                        name_new = '.'.join(name_new)
+                        print(f'subheader is {subheader}')
+                        print(f'old index is {clean_data.columns[col]}')
+                        print(f'new index is{name_new}')
+                        clean_data.rename(
+                            columns={clean_data.columns[col]:name_new},
+                            inplace=True)
 
             elif fs_type == 'is':
                 for col in range(2, len(clean_data.columns)):
