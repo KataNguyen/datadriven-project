@@ -7,17 +7,23 @@ import time
 
 start_time = time.time()
 
-np.set_printoptions(linewidth=np.inf, precision=4, suppress=True, threshold=sys.maxsize)
+np.set_printoptions(linewidth=np.inf,
+                    precision=4,
+                    suppress=True,
+                    threshold=sys.maxsize)
 pd.set_option("display.max_rows", sys.maxsize,
               "display.max_columns", sys.maxsize,
               'display.expand_frame_repr', True)
 
 quantities = ['revenue', 'cogs', 'gross_profit', 'interest',
               'pbt', 'net_income', 'cur_asset', 'cash', 'ar', 'inv',
-            'ppe', 'asset', 'liability', 'cur_liability', 'lt_debt', 'equity']
-periods = ['2020:Q3', '2020:Q2', '2020:Q1', '2019:Q4', '2019:Q3', '2019:Q2', '2019:Q1']
+            'ppe', 'asset', 'liability', 'cur_liability', 'lt_debt',
+              'equity']
+periods = ['2020:Q3', '2020:Q2', '2020:Q1',
+           '2019:Q4', '2019:Q3', '2019:Q2', '2019:Q1']
 
-col = pd.MultiIndex.from_product([periods, quantities], names=['period', 'quantity'])
+col = pd.MultiIndex.from_product([periods, quantities],
+                                 names=['period', 'quantity'])
 
 df = pd.read_excel(r'C:\Users\Admin\Desktop\PhuHung'
                    r'\CreditRating\FA\Raw_Data_FiinPro(JSC).xlsm',
@@ -27,10 +33,11 @@ df.columns = col
 
 for period in periods:
     df.loc[:, (period, 'current_ratio')]\
-        = df.loc[:, (period, 'cur_asset')] / df.loc[:, (period, 'cur_liability')]
+        = df.loc[:, (period, 'cur_asset')] / \
+          df.loc[:, (period, 'cur_liability')]
     df.loc[:, (period, 'quick_ratio')] \
-        = (df.loc[:, (period, 'cur_asset')] - df.loc[:, (period, 'inv')]) / \
-                                          df.loc[:, (period, 'cur_liability')]
+        = (df.loc[:, (period, 'cur_asset')]
+           - df.loc[:, (period, 'inv')]) / df.loc[:, (period, 'cur_liability')]
     df.loc[:, (period, 'cash_ratio')] \
         = df.loc[:, (period, 'cash')] / df.loc[:, (period, 'cur_liability')]
     df.loc[:, (period, 'wc_turnover')] \

@@ -5,7 +5,7 @@ def post_breakeven_price():
 
     address = 'https://api.phs.vn/market/Utilities.svc/PostBreakevenPrice'
     #tickers = request_ticker_list()
-    tickers = ['AAA', 'ACB', 'HBC', 'CTD', 'VCB']
+    tickers = ['AAA', 'ACB', 'HBC', 'CTD', 'VCB', 'TCB']
     breakeven_price = pd.Series(index=tickers, name='price', dtype=float)
     for ticker in breakeven_price.index:
         try:
@@ -22,12 +22,13 @@ def post_breakeven_price():
         except KeyError:
             continue
 
-    json_str = breakeven_price.to_json()
+    str(breakeven_price.to_dict())
+    json_str = json.dumps({'symbol': breakeven_price.to_json()})
 
     r = requests.post(url=address,
                       data=json_str,
                       headers={'content-type': 'application/json'})
 
-    result = pd.DataFrame(json.loads(r.json()))
+    result = pd.DataFrame(json.loads(r.json()['d']))
 
 

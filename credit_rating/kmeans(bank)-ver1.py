@@ -7,7 +7,10 @@ import time
 
 start_time = time.time()
 
-np.set_printoptions(linewidth=np.inf, precision=4, suppress=True, threshold=sys.maxsize)
+np.set_printoptions(linewidth=np.inf,
+                    precision=4,
+                    suppress=True,
+                    threshold=sys.maxsize)
 pd.set_option("display.max_rows", sys.maxsize,
               "display.max_columns", sys.maxsize,
               'display.expand_frame_repr', True)
@@ -23,9 +26,11 @@ quantities = ['cash', 'asset', 'liability',
               'other_income', 'other_exp', 'div_income',
               'ga_exp', 'car_']
 
-periods = ['2020:Q3', '2020:Q2', '2020:Q1', '2019:Q4', '2019:Q3', '2019:Q2', '2019:Q1']
+periods = ['2020:Q3', '2020:Q2', '2020:Q1',
+           '2019:Q4', '2019:Q3', '2019:Q2', '2019:Q1']
 
-col = pd.MultiIndex.from_product([periods, quantities], names=['period', 'quantity'])
+col = pd.MultiIndex.from_product([periods, quantities],
+                                 names=['period', 'quantity'])
 
 df = pd.read_excel(r'C:\Users\Admin\Desktop\PhuHung\CreditRating'
                    r'\FA\Raw_Data_FiinPro(Bank).xlsm', sheet_name='Summary',
@@ -89,7 +94,7 @@ quantities_new = [i for i in list(df.columns.levels[1]) if i not in quantities]
 for period in periods:
     for ticker in df.index:
         for quantity in quantities_new:
-            if df.loc[ticker, (period, quantity)] in [np.nan, np.inf, -np.inf] \
+            if df.loc[ticker, (period, quantity)] in [np.nan, np.inf, -np.inf]\
                     or pd.isna(df.loc[ticker, (period, quantity)]):
                 df.loc[ticker, period] = np.nan
 
@@ -129,8 +134,10 @@ for i in range(len(periods)):
     centers.update({(periods[i],
                      df.index.get_level_values(level=1)
                      .drop_duplicates().values[0]):
-                        pd.DataFrame(data=np.array(kmeans.iloc[i,0].cluster_centers_),
-                                     index=['Group 1', 'Group 2', 'Group 3', 'Group 4'],
+                        pd.DataFrame(data=np.array(kmeans.iloc[i,0]
+                                                   .cluster_centers_),
+                                     index=['Group 1', 'Group 2',
+                                            'Group 3', 'Group 4'],
                                      columns=df.xs(key=periods[i],
                                                    axis=1, level=0)
                                      .dropna(how='all').columns)})
@@ -153,7 +160,8 @@ result_centers = pd.concat([centers[key] for key in centers.keys()],
                            axis=0, join='outer').set_index(centers_index)
 
 with pd.ExcelWriter(r'C:\Users\Admin\Desktop\PhuHung'
-                    r'\CreditRating\FA\KMeans_Research_Criteria(Bank).version2.xlsx') \
+                    r'\CreditRating\FA\KMeans_Research_Criteria(Bank)'
+                    r'.version2.xlsx') \
         as writer:
     result_labels.to_excel(writer, sheet_name='Ticker')
     result_centers.to_excel(writer, sheet_name='Center')

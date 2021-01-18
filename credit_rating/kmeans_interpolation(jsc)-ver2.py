@@ -3,6 +3,8 @@ from sklearn.cluster import KMeans
 from scipy.stats import rankdata
 from scipy.interpolate import interp1d
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('agg')
 
 # Parameters:
 centroids = 4
@@ -610,6 +612,6 @@ def graph_crash(benchmark=float, period=str):
         except KeyError:
             continue
 
-
-print("The execution time is: %s seconds" %(time.time() - start_time))
+execution_time = time.time() - start_time
+print(f"The execution time is: {int(execution_time)}s seconds")
 
