@@ -24,6 +24,13 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/phs-vn/datadriven-project" />
+      </set>
+    </option>
+  </component>
   <component name="ProjectId" id="1n5YlsAutC8aCTgLokcu8z9IkuT" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -44,6 +51,7 @@
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="datadriven-project" is-module-sdk="true" working-directory="$PROJECT_DIR$">
+        <option name="useSoftWraps" value="true" />
         <option name="myUseModuleSdk" value="true" />
         <option name="myModuleName" value="datadriven-project" />
         <option name="myWorkingDirectory" value="$PROJECT_DIR$" />
@@ -119,10 +127,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.request_data" />
+        <item itemvalue="Python.request_data" />
         <item itemvalue="Python.post_api" />
         <item itemvalue="Python.request_data" />
         <item itemvalue="Python.kmeans_interpolation(jsc)-ver2" />
-        <item itemvalue="Python.request_data" />
       </list>
     </recent_temporary>
   </component>
@@ -205,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610977047097</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="post_breakeven_price">
+      <created>1610982323099</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1610982323100</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

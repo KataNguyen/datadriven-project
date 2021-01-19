@@ -111,6 +111,7 @@ def request_period_fs(year=int, quarter=int, segment=str, fs_type=str):
         # fill na with 0s
         clean_data.fillna(0, inplace=True)
 
+
         if segment == 'bank':
             if fs_type == 'bs':
                 header = list()
@@ -129,28 +130,29 @@ def request_period_fs(year=int, quarter=int, segment=str, fs_type=str):
                                       + clean_data.columns[col].split()[0]},
                             inplace=True)
 
+                duplicated = clean_data.columns.duplicated()
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    if duplicated[i]:
+                        col_list[i] += '_'
+                clean_data.columns = col_list
+
                 subheader = list('I')
-                print(clean_data.columns)
                 for col in range(2, len(clean_data.columns)):
                     l = clean_data.columns[col].split('.')
                     a = l[1]
-                    print('++++++++++++++')
-                    print(f'old index is {clean_data.columns[col]}')
-                    print(clean_data.columns[64])
                     if a in ['I','II','III','IV','V','VI','VII']:
                         subheader.append(a)
-                        print(f'subheader is {subheader}')
-                        print(f'old index is {clean_data.columns[col]}')
                     else:
                         name_new = l
                         name_new.insert(1,subheader[-1])
                         name_new = '.'.join(name_new)
-                        print(f'subheader is {subheader}')
-                        print(f'old index is {clean_data.columns[col]}')
-                        print(f'new index is{name_new}')
                         clean_data.rename(
                             columns={clean_data.columns[col]:name_new},
                             inplace=True)
+
+                clean_data.rename(axis=1, mapper=
+                    lambda x: x.rstrip('_'), inplace=True)
 
             elif fs_type == 'is':
                 for col in range(2, len(clean_data.columns)):
@@ -198,8 +200,15 @@ def request_period_fs(year=int, quarter=int, segment=str, fs_type=str):
                                      : header[-1]
                                       + clean_data.columns[col].split()[0]},
                             inplace=True)
+                col_list = clean_data.columns.tolist()
+                duplicated = clean_data.columns.duplicated()
+                for i in range(2, len(clean_data.columns)):
+                    if duplicated[i]:
+                        col_list[i] += 'b.'
+                clean_data.columns = col_list
 
-        if segment == 'gen':
+
+        elif segment == 'gen':
             if fs_type == 'bs':
                 header = list()
                 for col in range(len(clean_data.columns)-1,1,-1):
@@ -216,6 +225,338 @@ def request_period_fs(year=int, quarter=int, segment=str, fs_type=str):
                                      :header[-1]
                                       + clean_data.columns[col].split()[0]},
                             inplace=True)
+
+                duplicated = clean_data.columns.duplicated()
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    if duplicated[i]:
+                        col_list[i] += '_'
+                clean_data.columns = col_list
+
+                subheader = list('I')
+                for col in range(2, len(clean_data.columns)):
+                    l = clean_data.columns[col].split('.')
+                    a = l[1]
+                    if a in ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']:
+                        subheader.append(a)
+                    else:
+                        name_new = l
+                        name_new.insert(1, subheader[-1])
+                        name_new = '.'.join(name_new)
+                        clean_data.rename(
+                            columns={clean_data.columns[col]: name_new},
+                            inplace=True)
+
+                clean_data.rename(axis=1, mapper=
+                lambda x: x.rstrip('_'), inplace=True)
+
+                duplicated = clean_data.columns.duplicated()
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    if duplicated[i] and col_list[i].split('.',1)[1] \
+                            not in ['I.','II.','III.','IV','V.','VI.','VII.']:
+                        col_list[i] += 'b.'
+                clean_data.columns = col_list
+
+                duplicated = clean_data.columns.duplicated()
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    l = col_list[i].split('.')
+                    if duplicated[i] and l[1]\
+                        in ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']:
+                        col_list[i] = l[0] + '.'
+                clean_data.columns = col_list
+
+            elif fs_type == 'is':
+                for col in range(2, len(clean_data.columns)):
+                    clean_data.rename(
+                        columns={clean_data.columns[col]
+                                 :clean_data.columns[col].split()[0]},
+                        inplace=True)
+
+            elif fs_type == 'cfi':
+                header = list()
+                for col in range(2, len(clean_data.columns)):
+                    if clean_data.columns[col]\
+                        .startswith(('I','II','III','IV','V','VI','VII')):
+                            clean_data.rename(
+                                columns={clean_data.columns[col]
+                                         : clean_data.columns[col].split()[0]},
+                                inplace=True)
+                            header.append(clean_data.columns[col])
+                    else:
+                        try:
+                            clean_data.rename(
+                                columns={clean_data.columns[col]
+                                         : header[-1]
+                                          + clean_data.columns[col].split()[0]},
+                                inplace=True)
+                        except IndexError:
+                            clean_data.rename(
+                                columns={clean_data.columns[col]
+                                         : clean_data.columns[col].split()[0]},
+                                inplace=True)
+
+            elif fs_type == 'cfd':
+                header = list()
+                for col in range(2, len(clean_data.columns)):
+                    if clean_data.columns[col]\
+                        .startswith(('I','II','III','IV','V','VI','VII')):
+                            clean_data.rename(
+                                columns={clean_data.columns[col]
+                                         : clean_data.columns[col].split()[0]},
+                                inplace=True)
+                            header.append(clean_data.columns[col])
+                    else:
+                        try:
+                            clean_data.rename(
+                                columns={clean_data.columns[col]
+                                         : header[-1]
+                                          + clean_data.columns[col].split()[0]},
+                                inplace=True)
+                        except IndexError:
+                            clean_data.rename(
+                                columns={clean_data.columns[col]
+                                         : clean_data.columns[col].split()[0]},
+                                inplace=True)
+
+
+        elif segment == 'ins':
+            if fs_type == 'bs':
+                header = list()
+                for col in range(len(clean_data.columns)-1,1,-1):
+                    if clean_data.columns[col]\
+                        .startswith(('A.','B.','C.','D.','E.','F.','G.')):
+                        clean_data.rename(
+                            columns={clean_data.columns[col]
+                                     :clean_data.columns[col].split()[0]},
+                            inplace=True)
+                        header.append(clean_data.columns[col])
+                    else:
+                        try:
+                            clean_data.rename(
+                                columns={clean_data.columns[col]
+                                         :header[-1]
+                                          + clean_data.columns[col].split()[0]},
+                                inplace=True)
+                        except IndexError:
+                            clean_data.rename(
+                                columns={clean_data.columns[col]
+                                         : clean_data.columns[col].split()[0]},
+                                inplace=True)
+
+                duplicated = clean_data.columns.duplicated()
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    if duplicated[i]:
+                        col_list[i] += '_'
+                clean_data.columns = col_list
+
+                duplicated = clean_data.columns.duplicated()
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    if duplicated[i]:
+                        col_list[i] += '_'
+                clean_data.columns = col_list
+
+                subheader = list('I')
+                for col in range(2, len(clean_data.columns)):
+                    l = clean_data.columns[col].split('.')
+                    a = l[1]
+                    if a in ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']:
+                        subheader.append(a)
+                    else:
+                        name_new = l
+                        name_new.insert(1, subheader[-1])
+                        name_new = '.'.join(name_new)
+                        clean_data.rename(
+                            columns={clean_data.columns[col]: name_new},
+                            inplace=True)
+
+                clean_data.rename(axis=1, mapper=
+                    lambda x: x.rstrip('__').rstrip('_'), inplace=True)
+
+                duplicated = clean_data.columns.duplicated()
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    l = col_list[i].split('.')
+                    if duplicated[i] and l[2] != '':
+                        col_list[i] += 'b.'
+                clean_data.columns = col_list
+
+                duplicated = clean_data.columns.duplicated()
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    l = col_list[i].split('.')
+                    if duplicated[i] and l[1]\
+                        in ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']:
+                        col_list[i] = l[0] + '.'
+                clean_data.columns = col_list
+
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    a = col_list[i].split('.')[1]
+                    if col_list[i].startswith(('1','2','3','4','5')):
+                        col_list[i] = col_list[i].replace(a + '.', '')
+                clean_data.columns = col_list
+
+            elif fs_type == 'is':
+                for col in range(2, len(clean_data.columns)):
+                    clean_data.rename(
+                        columns={clean_data.columns[col]
+                                 :clean_data.columns[col].split()[0]},
+                        inplace=True)
+                duplicated = clean_data.columns.duplicated()
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    if duplicated[i]:
+                        col_list[i] += 'b.'
+                    elif col_list[i] == '2201.':
+                        col_list[i] = '20.1.'
+                clean_data.columns = col_list
+
+            elif fs_type == 'cfi':
+                header = list()
+                for col in range(2, len(clean_data.columns)):
+                    if clean_data.columns[col]\
+                        .startswith(('I','II','III','IV','V','VI','VII')):
+                            clean_data.rename(
+                                columns={clean_data.columns[col]
+                                         : clean_data.columns[col].split()[0]},
+                                inplace=True)
+                            header.append(clean_data.columns[col])
+                    else:
+                        clean_data.rename(
+                            columns={clean_data.columns[col]
+                                     : header[-1]
+                                      + clean_data.columns[col].split()[0]},
+                            inplace=True)
+
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    a = col_list[i].split('.')
+                    if len(a[-1]) >= 5:
+                        col_list[i] = '.'.join(a[:2]) + '.'
+                clean_data.columns = col_list
+
+                duplicated = clean_data.columns.duplicated()
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    if duplicated[i]:
+                        col_list[i] += 'b.'
+                        break
+                clean_data.columns = col_list
+
+                duplicated = clean_data.columns.duplicated()
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    if duplicated[i]:
+                        col_list[i] += 'c.'
+                clean_data.columns = col_list
+
+            elif fs_type == 'cfd':
+                header = list()
+                for col in range(2, len(clean_data.columns)):
+                    if clean_data.columns[col]\
+                        .startswith(('I','II','III','IV','V','VI','VII')):
+                            clean_data.rename(
+                                columns={clean_data.columns[col]
+                                         : clean_data.columns[col].split()[0]},
+                                inplace=True)
+                            header.append(clean_data.columns[col])
+                    else:
+                        try:
+                            clean_data.rename(
+                                columns={clean_data.columns[col]
+                                         : header[-1]
+                                          + clean_data.columns[col].split()[0]},
+                                inplace=True)
+                        except IndexError:
+                            clean_data.rename(
+                                columns={clean_data.columns[col]
+                                         : clean_data.columns[col].split()[0]},
+                                inplace=True)
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    a = col_list[i].split('.')
+                    if len(a[-1]) >= 1:
+                        col_list[i] = '.'.join(a[:-1]) + '.'
+                clean_data.columns = col_list
+
+
+        elif segment == 'sec':
+            if fs_type == 'bs':
+                header = list()
+                for col in range(len(clean_data.columns)-1,1,-1):
+                    if clean_data.columns[col] \
+                            .startswith(
+                        ('A.', 'B.', 'C.', 'D.', 'E.', 'F.', 'G.')):
+                        clean_data.rename(
+                            columns={clean_data.columns[col]
+                                     : clean_data.columns[col].split()[0]},
+                            inplace=True)
+                        header.append(clean_data.columns[col])
+                    else:
+                        try:
+                            clean_data.rename(
+                                columns={clean_data.columns[col]
+                                         :header[-1]
+                                           + clean_data.columns[col].split()[0]},
+                                inplace=True)
+                        except IndexError:
+                            clean_data.rename(
+                                columns={clean_data.columns[col]
+                                         :clean_data.columns[col].split()[0]},
+                                inplace=True)
+
+
+                duplicated = clean_data.columns.duplicated()
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    if duplicated[i]:
+                        col_list[i] += '_'
+                clean_data.columns = col_list
+
+                subheader = list('I')
+                for col in range(2, len(clean_data.columns)):
+                    l = clean_data.columns[col].split('.')
+                    a = l[1]
+                    if a in ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']:
+                        subheader.append(a)
+                    else:
+                        name_new = l
+                        name_new.insert(1, subheader[-1])
+                        name_new = '.'.join(name_new)
+                        clean_data.rename(
+                            columns={clean_data.columns[col]: name_new},
+                            inplace=True)
+
+                clean_data.rename(axis=1, mapper=
+                lambda x: x.rstrip('_'), inplace=True)
+
+                duplicated = clean_data.columns.duplicated()
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    l = col_list[i].split('.')
+                    if duplicated[i] and l[1]\
+                        in ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']:
+                        col_list[i] = l[0] + '.'
+                clean_data.columns = col_list
+
+                col_list = clean_data.columns.tolist()
+                for i in range(2, len(clean_data.columns)):
+                    l = col_list[i].split('.')
+                    if l[0] in ['1','2','3','4','5'] and l[1]\
+                        in ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']:
+                        col_list[i] = col_list[i].replace('.'+l[1], '')
+                clean_data.columns = col_list
+
+            elif fs_type == 'is':
+                for col in range(2, len(clean_data.columns)):
+                    clean_data.rename(
+                        columns={clean_data.columns[col]
+                                 :clean_data.columns[col].split()[0]},
+                        inplace=True)
 
 
 
