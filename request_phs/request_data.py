@@ -559,11 +559,9 @@ def request_period_fs(year=int, quarter=int, segment=str, fs_type=str):
                         inplace=True)
 
 
-
         clean_data.columns \
             = pd.MultiIndex.from_product([[fs_type],
                                           clean_data.columns.tolist()])
-
     print('Data Extracted!')
     return clean_data
 
