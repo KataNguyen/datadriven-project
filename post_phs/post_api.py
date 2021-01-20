@@ -4,7 +4,7 @@ from breakeven_price.monte_carlo import monte_carlo
 def post_breakeven_price():
 
     address = 'https://api.phs.vn/market/Utilities.svc/PostBreakevenPrice'
-    tickers = request_ticker_list()
+    tickers = request_ticker()
     breakeven_price = dict(index=tickers, name='price', dtype='int32')
     for ticker in tickers:
         price = monte_carlo(ticker=ticker, graph='off')

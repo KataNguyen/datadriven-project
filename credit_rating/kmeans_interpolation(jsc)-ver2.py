@@ -20,15 +20,15 @@ pd.set_option("display.max_rows", sys.maxsize,
               'display.expand_frame_repr', True)
 pd.options.mode.chained_assignment = None
 
-agg_data = request_fs() ####################
+agg_data = request_fs_all()  ####################
 
 quantities = ['revenue', 'cogs', 'gross_profit', 'interest',
               'pbt', 'net_income', 'cur_asset', 'cash', 'ar', 'inv',
               'ppe', 'asset', 'liability', 'cur_liability', 'lt_debt',
               'equity']
 
-periods = request_period_list()
-tickers = request_ticker_list()
+periods = request_period()
+tickers = request_ticker()
 standards = request_industry_standard()
 
 years = list()

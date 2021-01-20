@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/kmeans_interpolation(jsc)-ver2.py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/kmeans_interpolation(jsc)-ver2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/post_phs/post_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/post_phs/post_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/request_phs/request_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_phs/request_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +48,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -58,7 +60,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.post_api">
+  <component name="RunManager" selected="Python.request_data">
     <configuration name="kmeans_interpolation(jsc)-ver2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -84,6 +86,9 @@
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/post_phs" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -123,10 +128,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.post_api" />
         <item itemvalue="Python.request_data" />
         <item itemvalue="Python.request_data" />
-        <item itemvalue="Python.post_api" />
+        <item itemvalue="Python.request_data" />
+        <item itemvalue="Python.request_data" />
         <item itemvalue="Python.request_data" />
       </list>
     </recent_temporary>
@@ -231,7 +236,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611051160856</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="post_breakeven_price">
+      <created>1611052798793</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1611052798793</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -250,5 +262,36 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="post_breakeven_price" />
     <option name="LAST_COMMIT_MESSAGE" value="post_breakeven_price" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>707</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>779</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>796</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>756</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>673</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
