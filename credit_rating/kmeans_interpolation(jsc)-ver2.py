@@ -70,51 +70,51 @@ for year in years:
                     if quantity == 'pbt':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
-                                ('is', '')]
+                                ('is', '16.')]
                     if quantity == 'net_income':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
-                                           'net_profit/(loss)_after_tax']
+                                           ('is','18.')]
                     if quantity == 'cur_asset':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
-                                           'current_assets']
+                                           ('bs', 'A.I.')]
                     if quantity == 'cash':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
-                                           'cash_and_cash_equivalents']
+                                           ('bs', 'A.I.1.')]
                     if quantity == 'ar':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
-                                           'accounts_receivable']
+                                           ('bs', 'A.I.3.')]
                     if quantity == 'inv':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
-                                           'inventories']
+                                           ('bs', 'A.I.4.')]
                     if quantity == 'ppe':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
-                                           'tangible_fixed_assets']
+                                           ('bs', 'A.II.2.')]
                     if quantity == 'asset':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
-                                           'total_assets']
+                                           ('bs', 'A.')]
                     if quantity == 'liability':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
-                                           'liabilities']
+                                           ('bs', 'B.I.')]
                     if quantity == 'cur_liability':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
-                                           'current_liabilities']
+                                           ('bs', 'B.I.1.')]
                     if quantity == 'lt_debt':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
-                                           'long_term_loans']
+                                           ('bs', 'B.I.2.8.')]
                     if quantity == 'equity':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
-                                           "owner's_equity"]
+                                           ('bs', 'B.II.')]
                     else:
                         pass
                 except KeyError:
