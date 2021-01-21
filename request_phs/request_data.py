@@ -13,7 +13,6 @@ import json
 import holidays
 from typing import Union
 
-
 database_path \
     = join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
            'database')
@@ -57,8 +56,7 @@ def request_segment_all() -> list:
     return segments
 
 
-def request_financial_ticker(sector_break=False) \
-        -> Union[list, dict[str, list]]:
+def request_financial_ticker(sector_break=False) -> Union[list, dict]:
 
     """
     This function returns all tickers of financial segments

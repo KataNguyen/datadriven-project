@@ -5,6 +5,7 @@ from scipy.interpolate import interp1d
 import matplotlib.pyplot as plt
 import matplotlib
 from os.path import dirname, realpath
+import itertools
 matplotlib.use('Agg')
 
 destination_dir = join(dirname(realpath(__file__)),
@@ -24,7 +25,7 @@ pd.set_option("display.max_rows", sys.maxsize,
               'display.expand_frame_repr', True)
 pd.options.mode.chained_assignment = None
 
-agg_data = request_fs_all('gen')  ####################
+agg_data = request_fs_all('gen')  #################### expensive
 
 quantities = ['revenue', 'cogs', 'gross_profit', 'interest',
               'pbt', 'net_income', 'cur_asset', 'cash', 'ar', 'inv',
@@ -38,14 +39,16 @@ standards = request_industry_standard()
 years = list()
 quarters = list()
 for period in periods:
-    years.append(period[:4])
-    quarters.append(period[-1])
+    years.append(int(period[:4]))
+    quarters.append(int(period[-1]))
 
-index = pd.MultiIndex.from_arrays([years*len(tickers),
-                                   quarters*len(tickers),
-                                   tickers*len(periods)],
-                                   names=['year', 'quarter', 'ticker'])\
-    .sort_values()
+period_tuple = [(year, quarter) for year, quarter in zip(years,quarters)]
+inds = [x for x in itertools.product(period_tuple, tickers)]
+
+for i in range(len(inds)):
+    inds[i] = inds[i][0] + tuple([inds[i][1]])
+
+index = pd.MultiIndex.from_tuples(inds, names=['year', 'quarter', 'ticker'])
 col = pd.Index(quantities, name='quantity')
 
 df = pd.DataFrame(np.zeros((len(index), len(col))), columns=col, index=index)
@@ -74,7 +77,7 @@ for year in years:
                     if quantity == 'pbt':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
-                                ('is', '16.')]
+                                           ('is', '16.')]
                     if quantity == 'net_income':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
@@ -293,7 +296,7 @@ for standard in standards:
                     kmeans.loc[(standard,
                                 standard+'_l'+str(level),
                                 industry),
-                               year + 'q' + quarter] \
+                               str(year) + 'q' + str(quarter)] \
                         = KMeans(n_clusters=centroids,
                                  init='k-means++',
                                  n_init=100,
@@ -305,32 +308,33 @@ for standard in standards:
                     kmeans_tickers.loc[(standard,
                                         standard + '_l' + str(level),
                                         industry),
-                                       year + 'q' + quarter] \
+                                       str(year) + 'q' + str(quarter)] \
                         = df_xs.index.get_level_values(2).tolist()
 
                     kmeans_coord.loc[(standard, standard + '_l' + str(level),
                                      industry),
-                                     year + 'q' + quarter] \
+                                     str(year) + 'q' + str(quarter)] \
                         = df_xs.values
 
                     labels.loc[(standard,
                                 standard + '_l' + str(level),
                                 industry),
-                                year + 'q' + quarter] \
+                                str(year) + 'q' + str(quarter)] \
                         = kmeans.loc[(standard,
                                       standard+'_l'+str(level),
                                       industry),
-                                     year + 'q' + quarter].labels_.tolist()
+                                     str(year) + 'q' + str(quarter)].labels_\
+                        .tolist()
 
                     centers.loc[(standard,
                                  standard + '_l' + str(level),
                                  industry),
-                                year + 'q' + quarter] \
+                                str(year) + 'q' + str(quarter)] \
                         = kmeans.loc[(standard,
                                       standard+'_l'+str(level),
                                       industry),
-                                     year + 'q' + quarter].cluster_centers_\
-                        .tolist()
+                                     str(year) + 'q' + str(quarter)]\
+                        .cluster_centers_.tolist()
 
 #del df, df_xs
 
@@ -490,7 +494,7 @@ def result(standard=str, level=int):
                              level=1, drop_level=False)
     return result
 
-returns = request_return() ####################
+returns = request_return() #################### expensive
 returns.sort_index(inplace=True) # to improve performance
 
 change_result = pd.DataFrame(index=result_table.index,
@@ -546,7 +550,7 @@ for standard, level in accuracy_table.index:
     accuracy_table.loc[(standard,level)] = accuracy(standard,int(level[-1]))
 
 
-price_table = request_price() ####################
+price_table = request_price() #################### expensive
 def graph_ticker(standard=str, level=int, ticker=str):
     table = pd.DataFrame(index=['credit_score', 'price'],
                                 columns=periods)
@@ -609,6 +613,8 @@ def graph_classification(standard=str):
     plt.title('Accuracy rate of {} by level'.format(standard),
               fontfamily='Times New Roman', fontsize=15, fontweight='bold',
               color='midnightblue')
+    plt.savefig(join(destination_dir, f'classification_{standard}_result.png'),
+                bbox_inches='tight')
 
 
 def graph_crash(benchmark=float, period=str):
@@ -618,9 +624,21 @@ def graph_crash(benchmark=float, period=str):
             graph_ticker('bics',3, ticker)
         except KeyError:
             continue
+    plt.savefig(join(destination_dir, f'crash_{period}_result.png'),
+                bbox_inches='tight')
 
+
+# Report results
+
+result_table.to_csv(join(destination_dir, f'result_table.csv'))
 
 graph_crash(benchmark=-0.5, period='2020q3')
+
+for ticker in tickers:
+    graph_ticker('bics', 3, ticker)
+
+for standard in standards:
+    graph_classification(standard)
 
 
 execution_time = time.time() - start_time
