@@ -28,11 +28,7 @@ quantities = ['revenue', 'cogs', 'gross_profit', 'interest',
               'equity']
 
 periods = request_period()
-
-ticker
-
-tickers = request_ticker()
-
+tickers = request_ticker('gen')
 standards = request_industry_standard()
 
 years = list()
@@ -58,23 +54,23 @@ for year in years:
                     if quantity == 'revenue':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
-                                           'net_sales']
+                                           ('is', '3.')]
                     if quantity == 'cogs':
                         df.loc[(year, quarter, ticker), quantity] \
                             = -agg_data.loc[(year, quarter, ticker),
-                                            'cost_of_sales']
+                                            ('is', '4.')]
                     if quantity == 'gross_profit':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
-                                           'gross_profit']
+                                           ('is', '5.')]
                     if quantity == 'interest':
                         df.loc[(year, quarter, ticker), quantity] \
                             = -agg_data.loc[(year, quarter, ticker),
-                                            'interest_expenses']
+                                            ('is', '7.1.')]
                     if quantity == 'pbt':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),
-                                'net_accounting_profit/(loss)_before_tax']
+                                ('is', '')]
                     if quantity == 'net_income':
                         df.loc[(year, quarter, ticker), quantity] \
                             = agg_data.loc[(year, quarter, ticker),

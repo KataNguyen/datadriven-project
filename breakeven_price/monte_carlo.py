@@ -1,16 +1,23 @@
 from request_phs.request_data import *
 import scipy as sc
 from scipy import stats
+from os.path import join, dirname, realpath
 import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib.dates import DateFormatter
 from matplotlib.ticker import FuncFormatter
 import matplotlib.transforms as transforms
+matplotlib.use('Agg')
+
+
+destination_dir \
+    = join(dirname(realpath(__file__)), 'monte_carlo_result')
+
 
 def monte_carlo(ticker, days=66, alpha=0.01,
                 simulation=100000, graph='on',
-                location=join(os.getcwd(),'result')):
+                location=destination_dir):
 
     start_time = time.time()
 
@@ -65,7 +72,7 @@ def monte_carlo(ticker, days=66, alpha=0.01,
         ax1.text(0.7, 1.07, "Breakeven Price: "
                  +'{:,}'.format(int(breakeven_price)),
                  fontsize=6, transform=ax1.transAxes)
-        plt.savefig(location+f'{ticker}_result1.png', bbox_inches='tight')
+        plt.savefig(location+f'{ticker}_result_1.png', bbox_inches='tight')
 
         fig2, ax2 = plt.subplots(1, 2, figsize=(8, 5))
         fig2.suptitle('Projected Stock Price: '+ticker)
@@ -102,7 +109,7 @@ def monte_carlo(ticker, days=66, alpha=0.01,
         ax2[1].tick_params(axis='y', left=False, labelleft=False)
         ax2[1].xaxis.set_major_formatter(
             matplotlib.ticker.FuncFormatter(reformat_large_tick_values))
-        plt.savefig(location+f'{ticker}_result2.png', bbox_inches='tight')
+        plt.savefig(location+f'{ticker}_result_2.png', bbox_inches='tight')
         return
 
     # customize display for numpy and pandas

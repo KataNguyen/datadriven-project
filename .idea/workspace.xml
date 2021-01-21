@@ -7,9 +7,12 @@
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/breakeven_price/monte_carlo.py" beforeDir="false" afterPath="$PROJECT_DIR$/breakeven_price/monte_carlo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakeven_price/result/DocumentsVIC_result1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakeven_price/result/DocumentsVIC_result2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakeven_price/resultABS_result1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakeven_price/resultABS_result2.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/credit_rating/kmeans_interpolation(jsc)-ver2.py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/kmeans_interpolation(jsc)-ver2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/post_phs/post_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/post_phs/post_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/request_phs/request_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_phs/request_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +64,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.post_api">
+  <component name="RunManager" selected="Python.monte_carlo">
     <configuration name="kmeans_interpolation(jsc)-ver2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -75,6 +78,24 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/credit_rating/kmeans_interpolation(jsc)-ver2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="monte_carlo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="datadriven-project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/breakeven_price" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/breakeven_price/monte_carlo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -123,11 +144,12 @@
       <item itemvalue="Python.request_data" />
       <item itemvalue="Python.post_api" />
       <item itemvalue="Python.kmeans_interpolation(jsc)-ver2" />
+      <item itemvalue="Python.monte_carlo" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.monte_carlo" />
         <item itemvalue="Python.post_api" />
-        <item itemvalue="Python.request_data" />
         <item itemvalue="Python.request_data" />
         <item itemvalue="Python.request_data" />
         <item itemvalue="Python.request_data" />
@@ -276,7 +298,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611213847705</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="post_breakeven_price">
+      <created>1611215770163</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1611215770163</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

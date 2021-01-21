@@ -12,6 +12,7 @@ def post_breakeven_price() -> None:
     :return: None
     """
 
+    start_time = time.time()
     address = 'https://api.phs.vn/market/Utilities.svc/PostBreakevenPrice'
 
     breakeven_price = dict()
@@ -44,4 +45,5 @@ def post_breakeven_price() -> None:
     df = pd.DataFrame(json.loads(r.json()['d']))
 
     print(r)
+    print("Execution time is: %s seconds" %(time.time()-start_time))
     return df
