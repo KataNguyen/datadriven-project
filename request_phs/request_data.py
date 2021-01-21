@@ -819,6 +819,23 @@ def request_ticker(segment=str) -> list:
     return ticker_list
 
 
+def request_ticker_all() -> list:
+
+    """
+    This functions returns all tickers of all segments
+
+    :param: None
+    :return: list
+    """
+
+    segments = request_segment_all()
+    tickers = []
+    for segment in segments:
+        tickers += request_ticker(segment)
+
+    return tickers
+
+
 def request_crash(benchmark=-0.5, period=str) -> list:
 
     """

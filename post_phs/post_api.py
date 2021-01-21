@@ -31,7 +31,7 @@ def post_breakeven_price() -> None:
                 else:
                     breakeven_price[ticker] \
                         = '{:.0f}'.format(round(price,-2))
-            except KeyError:
+            except (ValueError, KeyError):
                 pass
 
     json_str = {'symbol': json.dumps(breakeven_price)}
@@ -41,5 +41,7 @@ def post_breakeven_price() -> None:
                       headers={'content-type':
                                    'application/json; charset=utf-8'})
 
-    print(r)
+    df = pd.DataFrame(json.loads(r.json()['d']))
 
+    print(r)
+    return df

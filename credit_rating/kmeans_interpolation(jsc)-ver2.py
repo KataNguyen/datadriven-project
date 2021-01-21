@@ -4,7 +4,7 @@ from scipy.stats import rankdata
 from scipy.interpolate import interp1d
 import matplotlib.pyplot as plt
 import matplotlib
-matplotlib.use('agg')
+matplotlib.use('Agg')
 
 # Parameters:
 centroids = 4
@@ -20,7 +20,7 @@ pd.set_option("display.max_rows", sys.maxsize,
               'display.expand_frame_repr', True)
 pd.options.mode.chained_assignment = None
 
-agg_data = request_fs_all()  ####################
+agg_data = request_fs_all('gen')  ####################
 
 quantities = ['revenue', 'cogs', 'gross_profit', 'interest',
               'pbt', 'net_income', 'cur_asset', 'cash', 'ar', 'inv',
@@ -28,7 +28,11 @@ quantities = ['revenue', 'cogs', 'gross_profit', 'interest',
               'equity']
 
 periods = request_period()
+
+ticker
+
 tickers = request_ticker()
+
 standards = request_industry_standard()
 
 years = list()
