@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/kmeans_interpolation(jsc)-ver2.py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/kmeans_interpolation(jsc)-ver2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post_phs/post_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/post_phs/post_api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/request_phs/request_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_phs/request_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -249,7 +248,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611157268966</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="post_breakeven_price">
+      <created>1611212677013</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1611212677013</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
