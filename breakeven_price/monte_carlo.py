@@ -195,7 +195,7 @@ def monte_carlo(ticker, days=66, alpha=0.01,
                      / (abs(skew)**(2/3) + ((4-np.pi)/2)**(2/3)))**0.5 \
                     * np.sign(skew)
             a = theta / (1-theta**2)**0.5
-            scale = std**2/(1-2*theta**2/np.pi)
+            scale = (std**2/(1-2*theta**2/np.pi))**0.5
             loc = mean - scale*theta*(2/np.pi)**0.5
 
             logr = sc.stats.skewnorm.rvs(a, loc, scale,
@@ -263,11 +263,11 @@ def monte_carlo(ticker, days=66, alpha=0.01,
             std = np.std(df['change_logr'])
             skew = sc.stats.skew(df['change_logr'])
 
-            theta = (np.pi/2 * abs(skew)**(2/3)
-                     / (abs(skew)**(2/3) + ((4-np.pi)/2)**(2/3)))**0.5 \
+            theta = (np.pi/2 * skew**(2/3)
+                     / (skew**(2/3) + ((4-np.pi)/2)**(2/3)))**0.5 \
                     * np.sign(skew)
             a = theta / (1-theta**2)**0.5
-            scale = std**2/(1-2*theta**2/np.pi)
+            scale = (std**2/(1-2*theta**2/np.pi))**0.5
             loc = mean - scale*theta*(2/np.pi)**0.5
 
             change_logr = sc.stats.skewnorm.rvs(a, loc, scale,
