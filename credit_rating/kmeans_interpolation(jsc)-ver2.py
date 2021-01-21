@@ -605,7 +605,7 @@ def graph_classification(standard=str):
 
 
 def graph_crash(benchmark=float, period=str):
-    crash_list = request_crash_list(benchmark, period)
+    crash_list = request_crash(benchmark, period)
     for ticker in crash_list:
         try:
             graph_ticker('bics',3, ticker)

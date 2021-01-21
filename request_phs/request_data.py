@@ -35,11 +35,12 @@ def request_fstype() -> list:
                     if isfile(join(database_path, folder, name))]
         fs_types = list(dict.fromkeys(fs_types))
     fs_types = [x for x in fs_types if not x.startswith('~$')]
+    fs_types.sort()
 
     return fs_types
 
 
-def request_segment() -> list:
+def request_segment_all() -> list:
 
     """
     This function returns the names of segments
@@ -50,6 +51,7 @@ def request_segment() -> list:
 
     folders = [f for f in listdir(database_path) if f.startswith('fs_')]
     segments = [x.split('_')[1] for x in folders]
+    segments.sort()
 
     return segments
 
@@ -66,7 +68,6 @@ def request_financial_ticker(sector_break=False) \
 
     financials = ['bank', 'sec', 'ins']
     periods = request_period()
-    periods.sort()
     latest_period = periods[-1]
 
     tickers = []
@@ -95,6 +96,30 @@ def request_financial_ticker(sector_break=False) \
             tickers = tickers_
 
     return tickers
+
+
+def request_segment(ticker=str) -> str:
+    """
+    This function returns the segment of a given ticker
+
+    :param ticker: stock's ticker
+    :return: str
+    """
+
+    segment = ''
+    financial_tickers = request_financial_ticker()
+    if ticker not in financial_tickers:
+        segment = 'gen'
+    else:
+        financial_tickers = request_financial_ticker(True)
+        for key in financial_tickers.keys():
+            if ticker not in financial_tickers[key]:
+                pass
+            else:
+                segment = key
+                break
+
+    return segment
 
 
 def reload() -> None:
@@ -138,7 +163,7 @@ def request_fs_period(year=int, quarter=int, segment=str, fs_type=str) \
     :param year: reported year
     :param quarter: reported quarter
     :type year: int
-    :param segment: allow values in request_segment()
+    :param segment: allow values in request_segment_all()
     :type quarter: int
     :type segment: str
     :param fs_type: allow valeus in request_fstype()
@@ -150,7 +175,7 @@ def request_fs_period(year=int, quarter=int, segment=str, fs_type=str) \
     """
 
     global database_path
-    segments = request_segment()
+    segments = request_segment_all()
     fs_types = request_fstype()
 
     if segment not in segments:
@@ -664,20 +689,20 @@ def request_fs_period(year=int, quarter=int, segment=str, fs_type=str) \
 
 
     clean_data.columns \
-        = pd.MultiIndex.from_product([[segment], [fs_type],
+        = pd.MultiIndex.from_product([[fs_type],
                                       clean_data.columns.tolist()],
-                                     names = ['segment', 'fs_type', 'item'])
+                                     names = ['fs_type', 'item'])
     print('Extracting...')
     return clean_data
 
 
-def request_fs_all(segment='gen') -> pd.DataFrame:
+def request_fs_all(segment=str) -> pd.DataFrame:
 
     """
     This function returns all financial statements
     of all companies in all periods
 
-    :param segment: allow values in request_segment()
+    :param segment: allow values in request_segment_all()
     :return: pandas.DataFrame
     """
 
@@ -696,77 +721,114 @@ def request_fs_all(segment='gen') -> pd.DataFrame:
             except FileNotFoundError:
                 continue
 
-    df = pd.concat(frames, axis=1, join='outer')\
-        .groupby(axis=1, level=[2],
-                 dropna=False, sort=False, group_keys=True).transform(lambda x)\
-        .sum(min_count=1)
-    df.drop(columns=['exchange', 'full_name'], inplace=True)
+    df = pd.concat(frames, axis=1, join='outer')
+    cols = df.columns.get_level_values(0)+'__'+df.columns.get_level_values(1)
+    df.columns = cols
+    df = df.groupby(by=cols, axis=1,
+                    dropna=False, sort=False).sum(min_count=1)
+    lvl_0 = [col.split('__')[0] for col in df.columns]
+    lvl_1 = [col.split('__')[1] for col in df.columns]
+    df.columns = pd.MultiIndex.from_arrays([lvl_0, lvl_1],
+                                           names=['fs_type', 'item'])
+    df.drop(columns=['exchange', 'full_name'], level=1, inplace=True)
 
     return df
 
 
-def request_fs_ticker(ticker=str):
+def request_fs_ticker(ticker=str) -> pd.DataFrame:
+
+    """
+    This functions returns all financial statements
+    of given ticker in all periods
+
+    :param ticker: allow values in request_ticker()
+    :return: pandas.DataFrame
+    """
 
     global database_path
-    folder = 'fs_gen_industry'
+    segment = request_segment(ticker)
+    folder = 'fs_' + segment + '_industry'
+    files = listdir(join(database_path, folder))
 
-    file_names = [f for f in listdir(join(database_path, folder))
-                  if isfile(join(database_path, folder, f))]
+    file_names = []
+    for file in files:
+        if isfile(join(database_path, folder, file)) \
+                and not file.startswith('~$'):
+            file_names.append(file)
+    file_names = list(set(file_names))
+    file_names.sort()
 
     refs = [(int(name[-11:-7]),int(name[-6]),name[:2]
             if name[2]=='_' else name[:3]) for name in file_names]
 
-    fs_types \
-        = list(dict.fromkeys([name.split('_')[0]
-                              for name in listdir(join(database_path, folder))
-                              if isfile(join(database_path, folder, name))]))
-    fs_types.sort()
-
-    for fs_type in fs_types:
-        if fs_type.startswith('~$'):
-            fs_types.remove(fs_type)
-
+    fs_types = request_fstype()
     inds = list()
     for fs_type in fs_types:
-        inds.append(
-            request_fs_period(year=refs[-1][0],
-                              quarter=refs[-1][1],
-                              fs_type=fs_type) \
+        try:
+            inds += request_fs_period(refs[-1][0],
+                                      refs[-1][1],
+                                      segment,
+                                      fs_type=fs_type) \
                 .xs(ticker, axis=0, level=2) \
-                .drop(['full_name', 'exchange'], level=1, axis=1).T \
-                .index.tolist())
+                .drop(['full_name', 'exchange'], level=1, axis=1) \
+                .columns.tolist()
+        except KeyError:
+            continue
 
-    inds = dict([(fs_type, ind) for fs_type, ind in zip(fs_types, inds)])
+    dict_ind = dict()
+    for fs_type in fs_types:
+        dict_ind[fs_type] = [x[1] for x in inds if x[0] == fs_type]
 
     fs = pd.concat(
         [
-            request_fs_period(year=ref[0], quarter=ref[1], fs_type=ref[2])
-                .xs(ticker, axis=0, level=2)
-                .drop(['full_name', 'exchange'], axis=1).T
+            request_fs_period(ref[0], ref[1], segment, ref[2])\
+                .xs(ticker, axis=0, level=2)\
+                .drop(['full_name', 'exchange'], level=1, axis=1).T\
                 .set_index(pd.MultiIndex.from_product(
-                    [[ref[2]], inds[ref[2]]]))
+                    [[segment], [ref[2]], dict_ind[ref[2]]]))
             for ref in refs
         ]
     )
     fs = fs.groupby(fs.index, sort=False).sum()
 
-    print('Data Extracted!')
+    print('Finished!')
     return fs
 
 
-def request_ticker():
+def request_ticker(segment=str) -> list:
 
-    last_period = request_period()[-1]
-    tickerlist \
-        = request_fs_period(year=int(last_period[:4]),
-                            quarter=int(last_period[-1]),
-                            fs_type='is')\
-        .index.get_level_values(level=2).tolist()
+    """
+    This function returns all tickers of given segment
 
-    return tickerlist
+    :param segment: allow values in request_segment_all()
+    :return: list
+    """
+
+    if segment == 'gen':
+        last_period = request_period()[-1]
+        ticker_list \
+            = request_fs_period(int(last_period[:4]),
+                                int(last_period[-1]),
+                                segment, 'is')\
+            .index.get_level_values(level=2).tolist()
+    else:
+        fin_dict = request_financial_ticker(True)
+        ticker_list = fin_dict[segment]
+
+    return ticker_list
 
 
-def request_crash_list(benchmark=-0.5, period=str):
+def request_crash(benchmark=-0.5, period=str) -> list:
+
+    """
+    This function returns all tickers whose stock return lower than 'benchmark'
+    in a given period
+
+    :param benchmark: negative number in [-1,0]
+    :param period: allow values in request_period()
+    :return: list
+    """
+
     returns = request_return()
     crash = list()
     for ticker in returns.index:
@@ -777,13 +839,23 @@ def request_crash_list(benchmark=-0.5, period=str):
     return crash
 
 
-def request_fs_variable(fs_type=str):
+def request_fs_variable(segment=str, fs_type=str) -> list:
+
+    """
+    This function returns all variables
+    of given financial statement of given segment
+
+    :param segment: allow values in request_segment_all()
+    :param fs_type: allow valies in request_fstype()
+    :return: list
+    """
 
     last_period = request_period()[-1]
     variable_names \
-        = request_fs_period(year=int(last_period[:4]),
-                            quarter=int(last_period[-1]),
-                            fs_type=fs_type)\
+        = request_fs_period(int(last_period[:4]),
+                            int(last_period[-1]),
+                            segment,
+                            fs_type)\
         .columns.get_level_values(level=1).tolist()
     try:
         variable_names.remove('full_name')
@@ -794,19 +866,38 @@ def request_fs_variable(fs_type=str):
     return variable_names
 
 
-def request_period():
+def request_period() -> list:
 
-    folder = 'fs_gen_industry'
-    periods \
-        = list(dict.fromkeys(
-        [name[-11:-5] for name in listdir(join(database_path, folder))
-         if isfile(join(database_path, folder, name))]))
-    periods.sort()
+    """
+    This function returns all periods
+
+    :param: None
+    :return: list
+    """
+
+    segments = request_segment_all()
+    folders = ['fs_' + segment + '_industry' for segment in segments]
+
+    periods = []
+    for folder in folders:
+        periods \
+            = list(set(
+            [name[-11:-5] for name in listdir(join(database_path, folder))
+             if isfile(join(database_path, folder, name))]))
+        periods.sort()
 
     return periods
 
 
-def request_industry(standard=str):
+def request_industry(standard=str) -> pd.DataFrame:
+
+    """
+    This funtions returns industry classification instructed by
+     a given standard of all stock
+
+    :param standard: allow values in request_industry_standard()
+    :return: pandas.DataFrame
+    """
 
     global database_path
     standards = request_industry_standard()
@@ -855,7 +946,14 @@ def request_industry(standard=str):
     return st_dict[standard]
 
 
-def request_industry_standard():
+def request_industry_standard() -> list:
+
+    """
+    This function returns all industry classification standards
+
+    :param: None
+    :return: list
+    """
     global database_path
     folder = 'industry_classification'
     standards \
@@ -865,19 +963,43 @@ def request_industry_standard():
     return standards
 
 
-def request_industry_level(standard=str):
+def request_industry_level(standard=str) -> list:
+
+    """
+    This function returns all levels of given industry classification standard
+
+    :param standard: allow values in request_industry_standard()
+    :return: list
+    """
+
     levels = request_industry(standard).columns.tolist()
     return levels
 
 
-def request_industry_list(standard=str, level=int):
+def request_industry_list(standard=str, level=int) -> list:
+
+    """
+    This function returns all industry names of
+    given level of given classification standard
+
+    :param standard: allow values in request_industry_standard()
+    :param level: allow values in request_industry_level() (number only)
+    """
+
     industries \
         = request_industry(standard)[standard + '_l' + str(level)]\
         .drop_duplicates().tolist()
     return industries
 
 
-def request_return():
+def request_return() -> pd.DataFrame:
+
+    """
+    This function returns a stock returns of all tickers in all periods
+
+    :param: None
+    :return: pandas.DataFrame
+    """
 
     periods = request_period()
     tickers = request_ticker()
@@ -934,7 +1056,14 @@ def request_return():
     return returns
 
 
-def request_price():
+def request_price() -> pd.DataFrame:
+
+    """
+    This function returns stock price of all tickers in all periods
+
+    :param: None
+    :return: pandas.DataFrame
+    """
 
     periods = request_period()
     tickers = request_ticker()
@@ -987,7 +1116,14 @@ def request_price():
     return prices
 
 
-def ownership_structure():
+def ownership_structure() -> pd.DataFrame:
+
+    """
+    This function returns ownership structure of all tickers
+
+    :param: None
+    :return: pandas.DataFrame
+    """
 
     global database_path
     folder = 'ownership'
@@ -1057,7 +1193,17 @@ def ownership_structure():
     return clean_data, date_of_extract
 
 
-def request_trading_hist(ticker=str, fromdate=None, todate=None):
+def request_trading_hist(ticker=str, fromdate=None, todate=None) \
+        -> pd.DataFrame:
+
+    """
+    This function returns historical trading data of given ticker
+
+    :param ticker: allow values in request_ticker()
+    :param fromdate: [optional] allow any date with format: 'yyyy-mm-dd' or 'yyyy/mm/dd'
+    :param todate: [optional] allow any date with format: 'yyyy-mm-dd' or 'yyyy/mm/dd'
+    """
+
     address = 'https://api.phs.vn/market/utilities.svc/GetShareIntraday'
     pd.options.mode.chained_assignment = None
     if fromdate is not None and todate is not None:
@@ -1135,7 +1281,19 @@ def request_trading_hist(ticker=str, fromdate=None, todate=None):
     return history
 
 
-def request_trading_intra(ticker=str, fromdate=None, todate=None):
+def request_trading_intra(ticker=str, fromdate=None, todate=None) \
+        -> pd.DataFrame:
+
+    """
+    This function returns intraday trading data of given ticker
+
+    :param ticker: allow values in request_ticker()
+    :param fromdate: [optional] allow any date with format: 'yyyy-mm-dd' or 'yyyy/mm/dd'
+    :param todate: [optional] allow any date with format: 'yyyy-mm-dd' or 'yyyy/mm/dd'
+
+    :raise Exception: Can't extract more than 60 days
+    """
+
     address = 'https://api.phs.vn/market/Utilities.svc/GetRealShareIntraday'
     pd.options.mode.chained_assignment = None
     if fromdate is not None and todate is not None:
@@ -1195,7 +1353,15 @@ def request_trading_intra(ticker=str, fromdate=None, todate=None):
     return intraday
 
 
-def request_latest_close_price(ticker=str):
+def request_latest_close_price(ticker=str) -> float:
+
+    """
+    This function returns the latest close price of given ticker
+
+    :param ticker: allow values in request_ticker()
+    :return: float
+    """
+
     close_price = request_trading_hist(ticker)['close'].iloc[-1]
     return close_price
 
