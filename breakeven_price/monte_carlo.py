@@ -206,7 +206,7 @@ def monte_carlo(ticker, days=66, alpha=0.01,
             std = np.std(df['logr'])
             deg_free = df['logr'].count() - 1
             loc = mean
-            scale = std/(df['logr'].count())**0.5
+            scale = std
             nc = mean*(1-3/(4*deg_free-1))
 
             logr = sc.stats.nct.rvs(deg_free, nc, loc, scale,
@@ -279,7 +279,7 @@ def monte_carlo(ticker, days=66, alpha=0.01,
             std = np.std(df['change_logr'])
             deg_free = df['change_logr'].count() - 1
             loc = mean
-            scale = std/(df['change_logr'].count())**0.5
+            scale = std
             nc = mean*(1-3/(4*deg_free-1))
 
             change_logr = sc.stats.nct.rvs(deg_free, nc, loc, scale,
