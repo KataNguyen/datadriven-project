@@ -164,7 +164,7 @@ def monte_carlo(ticker, days=66, alpha=0.01,
             scale = np.std(df['logr'])
             logr = np.random.normal(loc, scale, size=(simulation, days))
 
-        elif p_skew <= alpha and p_kur > alpha:
+        elif p_skew <= alpha < p_kur:
 
             mean = np.average(df['logr'])
             std = np.std(df['logr'])
@@ -176,7 +176,7 @@ def monte_carlo(ticker, days=66, alpha=0.01,
             logr = sc.stats.t.rvs(deg_free, loc, scale,
                                    size=(simulation, days))
 
-        elif p_skew > alpha and p_kur <= alpha:
+        elif p_skew > alpha >= p_kur:
 
             mean = np.average(df['logr'])
             std = np.std(df['logr'])
@@ -236,7 +236,7 @@ def monte_carlo(ticker, days=66, alpha=0.01,
             change_logr \
                 = np.random.normal(loc, scale, size=(simulation, days))
 
-        elif p_skew <= alpha and p_kur > alpha:
+        elif p_skew <= alpha < p_kur:
 
             mean = np.average(df['change_logr'])
             std = np.std(df['change_logr'])
@@ -248,7 +248,7 @@ def monte_carlo(ticker, days=66, alpha=0.01,
             change_logr = sc.stats.t.rvs(deg_free, loc, scale,
                                          size=(simulation, days))
 
-        elif p_skew > alpha and p_kur <= alpha:
+        elif p_skew > alpha >= p_kur:
 
             mean = np.average(df['change_logr'])
             std = np.std(df['change_logr'])
