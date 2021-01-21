@@ -4,7 +4,11 @@ from scipy.stats import rankdata
 from scipy.interpolate import interp1d
 import matplotlib.pyplot as plt
 import matplotlib
+from os.path import dirname, realpath
 matplotlib.use('Agg')
+
+destination_dir = join(dirname(realpath(__file__)),
+                       'kmeans_interpolation(jsc)-ver2_results')
 
 # Parameters:
 centroids = 4
@@ -541,8 +545,8 @@ accuracy_table = pd.DataFrame(index=pd.MultiIndex.from_tuples(tuples),
 for standard, level in accuracy_table.index:
     accuracy_table.loc[(standard,level)] = accuracy(standard,int(level[-1]))
 
-price_table = request_price() ####################
 
+price_table = request_price() ####################
 def graph_ticker(standard=str, level=int, ticker=str):
     table = pd.DataFrame(index=['credit_score', 'price'],
                                 columns=periods)
@@ -572,6 +576,9 @@ def graph_ticker(standard=str, level=int, ticker=str):
     ax2.tick_params(axis='y', labelcolor='tab:blue', labelsize=11)
     ax1.legend(loc='best', framealpha=5)
     ax1.grid(alpha=0.2)
+    plt.savefig(join(destination_dir, f'{ticker}_result.png'),
+                bbox_inches='tight')
+
 
 def graph_classification(standard=str):
     global accuracy_table
@@ -611,6 +618,10 @@ def graph_crash(benchmark=float, period=str):
             graph_ticker('bics',3, ticker)
         except KeyError:
             continue
+
+
+graph_crash(benchmark=-0.5, period='2020q3')
+
 
 execution_time = time.time() - start_time
 print(f"The execution time is: {int(execution_time)}s seconds")
