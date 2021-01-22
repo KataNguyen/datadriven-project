@@ -498,7 +498,7 @@ def result(standard=str, level=int):
                              level=1, drop_level=False)
     return result
 
-returns = request_return() #################### expensive
+returns = request_return('gen') #################### expensive
 returns.sort_index(inplace=True) # to improve performance
 
 change_result = pd.DataFrame(index=result_table.index,

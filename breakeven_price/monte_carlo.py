@@ -175,8 +175,8 @@ def monte_carlo(ticker, days=66, alpha=0.05,
 
         elif p_skew <= alpha < p_kur:
 
-            mean = np.average(df['logr'])
-            std = np.std(df['logr'])
+            mean = np.nanmean(df['logr'])
+            std = np.nanstd(df['logr'])
 
             deg_free = df['logr'].count() - 1
             loc = mean
@@ -187,9 +187,9 @@ def monte_carlo(ticker, days=66, alpha=0.05,
 
         elif p_skew > alpha >= p_kur:
 
-            mean = np.average(df['logr'])
-            std = np.std(df['logr'])
-            skew = sc.stats.skew(df['logr'])
+            mean = np.nanmean(df['logr'])
+            std = np.nanstd(df['logr'])
+            skew = sc.stats.skew(df['logr'], nan_policy='omit')
 
             theta = (np.pi/2 * abs(skew)**(2/3)
                      / (abs(skew)**(2/3) + ((4-np.pi)/2)**(2/3)))**0.5 \
@@ -202,8 +202,8 @@ def monte_carlo(ticker, days=66, alpha=0.05,
                                           size=(simulation, days))
 
         else:
-            mean = np.average(df['logr'])
-            std = np.std(df['logr'])
+            mean = np.nanmean(df['logr'])
+            std = np.nanstd(df['logr'])
             deg_free = df['logr'].count() - 1
             loc = mean
             scale = std
@@ -240,15 +240,15 @@ def monte_carlo(ticker, days=66, alpha=0.05,
 
         if p_skew <= alpha and p_kur <= alpha:
 
-            loc = np.average(df['change_logr'])
-            scale = np.std(df['change_logr'])
+            loc = np.nanmean(df['change_logr'])
+            scale = np.nanstd(df['change_logr'])
             change_logr \
                 = np.random.normal(loc, scale, size=(simulation, days))
 
         elif p_skew <= alpha < p_kur:
 
-            mean = np.average(df['change_logr'])
-            std = np.std(df['change_logr'])
+            mean = np.nanmean(df['change_logr'])
+            std = np.nanstd(df['change_logr'])
 
             deg_free = df['change_logr'].count() - 1
             loc = mean
@@ -259,9 +259,9 @@ def monte_carlo(ticker, days=66, alpha=0.05,
 
         elif p_skew > alpha >= p_kur:
 
-            mean = np.average(df['change_logr'])
-            std = np.std(df['change_logr'])
-            skew = sc.stats.skew(df['change_logr'])
+            mean = np.nanmean(df['change_logr'])
+            std = np.nanstd(df['change_logr'])
+            skew = sc.stats.skew(df['change_logr'], nan_policy='omit')
 
             theta = (np.pi/2 * skew**(2/3)
                      / (skew**(2/3) + ((4-np.pi)/2)**(2/3)))**0.5 \
@@ -275,8 +275,8 @@ def monte_carlo(ticker, days=66, alpha=0.05,
 
 
         else:
-            mean = np.average(df['change_logr'])
-            std = np.std(df['change_logr'])
+            mean = np.nanmean(df['change_logr'])
+            std = np.nanstd(df['change_logr'])
             deg_free = df['change_logr'].count() - 1
             loc = mean
             scale = std
