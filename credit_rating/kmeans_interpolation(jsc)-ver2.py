@@ -636,10 +636,11 @@ def graph_crash(benchmark=float, period=str):
 result_table.to_csv(join(destination_dir, f'result_table.csv'))
 price_table.to_csv(join(destination_dir, f'price_table.csv'))
 graph_crash(benchmark=-0.5, period='2020q3')
-for ticker in tickers:
-    graph_ticker('bics', 3, ticker)
 for standard in standards:
     graph_classification(standard)
+for ticker in tickers:
+    graph_ticker('bics', 3, ticker)
+
 
 execution_time = time.time() - start_time
 print(f"The execution time is: {int(execution_time)}s seconds")
