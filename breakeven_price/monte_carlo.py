@@ -169,7 +169,7 @@ def monte_carlo(ticker, days=66, alpha=0.05,
 
         if p_skew <= alpha and p_kur <= alpha:
 
-            loc = np.nanmnean(df['logr'])
+            loc = np.nanmean(df['logr'])
             scale = np.nanstd(df['logr'])
             logr = np.random.normal(loc, scale, size=(simulation, days))
 
