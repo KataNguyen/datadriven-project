@@ -39,8 +39,8 @@ standards = request_industry_standard()
 years = list()
 quarters = list()
 for period in periods:
-    years.append(int(period[:4]))
-    quarters.append(int(period[-1]))
+    years.append(period[:4])
+    quarters.append(period[-1])
 
 period_tuple = [(year, quarter) for year, quarter in zip(years,quarters)]
 inds = [x for x in itertools.product(period_tuple, tickers)]
@@ -296,7 +296,7 @@ for standard in standards:
                     kmeans.loc[(standard,
                                 standard+'_l'+str(level),
                                 industry),
-                               str(year) + 'q' + str(quarter)] \
+                               year + 'q' + quarter] \
                         = KMeans(n_clusters=centroids,
                                  init='k-means++',
                                  n_init=100,
@@ -308,32 +308,32 @@ for standard in standards:
                     kmeans_tickers.loc[(standard,
                                         standard + '_l' + str(level),
                                         industry),
-                                       str(year) + 'q' + str(quarter)] \
+                                       year + 'q' + quarter] \
                         = df_xs.index.get_level_values(2).tolist()
 
                     kmeans_coord.loc[(standard, standard + '_l' + str(level),
                                      industry),
-                                     str(year) + 'q' + str(quarter)] \
+                                     year + 'q' + quarter] \
                         = df_xs.values
 
                     labels.loc[(standard,
                                 standard + '_l' + str(level),
                                 industry),
-                                str(year) + 'q' + str(quarter)] \
+                                year + 'q' + quarter] \
                         = kmeans.loc[(standard,
                                       standard+'_l'+str(level),
                                       industry),
-                                     str(year) + 'q' + str(quarter)].labels_\
+                                     year + 'q' + quarter].labels_\
                         .tolist()
 
                     centers.loc[(standard,
                                  standard + '_l' + str(level),
                                  industry),
-                                str(year) + 'q' + str(quarter)] \
+                                year + 'q' + quarter] \
                         = kmeans.loc[(standard,
                                       standard+'_l'+str(level),
                                       industry),
-                                     str(year) + 'q' + str(quarter)]\
+                                     year + 'q' + quarter]\
                         .cluster_centers_.tolist()
 
 #del df, df_xs
