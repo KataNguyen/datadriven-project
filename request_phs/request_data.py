@@ -1008,17 +1008,18 @@ def request_industry_list(standard=str, level=int) -> list:
     return industries
 
 
-def request_return() -> pd.DataFrame:
+def request_return(segment=str) -> pd.DataFrame:
 
     """
-    This function returns a stock returns of all tickers in all periods
+    This function returns stock returns of all tickers of given segment
+    in all periods
 
-    :param: None
+    :param segment: None
     :return: pandas.DataFrame
     """
 
     periods = request_period()
-    tickers = request_ticker()
+    tickers = request_ticker(segment)
 
     returns = pd.DataFrame(data=np.zeros((len(tickers),len(periods))),
                            columns=[periods[i]

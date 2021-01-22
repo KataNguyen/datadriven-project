@@ -6,7 +6,8 @@ import matplotlib.pyplot as plt
 import matplotlib
 from os.path import dirname, realpath
 import itertools
-matplotlib.use('agg')
+matplotlib.use('Agg')
+plt.switch_backend('Agg')
 
 destination_dir = join(dirname(realpath(__file__)),
                        'kmeans_interpolation(jsc)-ver2_results')
@@ -407,12 +408,15 @@ for row in range(radius_tickers.shape[0]):
         if radius_tickers.iloc[row,col] is None:
             ticker_scores.iloc[row,col] = None
         else:
+            min_ = min(radius_centers.iloc[row, col])
+            max_ = max(radius_centers.iloc[row, col])
+            range_ = max_ - min_
             f = interp1d(np.sort(np.append(radius_centers.iloc[row,col],
-                                           [radius_tickers_.min-1e-12,
-                                            radius_tickers_.max+1e-12])),
+                                           [min_-range_/(centroids-1),
+                                            max_+range_/(centroids-1)])),
                          np.sort(np.append(center_scores.iloc[row,col],
                                            [0,100])),
-                         kind='linear')
+                         kind='linear', bounds_error=False, fill_value=(0,100))
             ticker_scores.iloc[row,col] = f(radius_tickers.iloc[row,col])
             for n in range(len(ticker_scores.iloc[row,col])):
                 ticker_scores.iloc[row, col][n] \
