@@ -18,7 +18,7 @@ def post_breakeven_price() -> None:
     breakeven_price = dict()
     for segment in request_segment_all():
         tickers = request_ticker(segment)
-        breakeven_price = dict(index=tickers, name='price', dtype='int32')
+        breakeven_price = dict()
         for ticker in tickers:
             try:
                 price = monte_carlo(ticker=ticker, graph='off')
@@ -42,7 +42,7 @@ def post_breakeven_price() -> None:
                       headers={'content-type':
                                    'application/json; charset=utf-8'})
 
-    df = pd.DataFrame(json.loads(r.json()['d']))
+    df = pd.DataFrame(json.loads(r.json()['d']), index=['price'])
 
     print(r)
     print("Execution time is: %s seconds" %(time.time()-start_time))

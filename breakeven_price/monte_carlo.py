@@ -15,7 +15,7 @@ destination_dir \
     = join(dirname(realpath(__file__)), 'monte_carlo_result')
 
 
-def monte_carlo(ticker, days=66, alpha=0.01,
+def monte_carlo(ticker, days=66, alpha=0.05,
                 simulation=100000, graph='on',
                 location=destination_dir):
 

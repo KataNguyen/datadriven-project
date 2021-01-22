@@ -740,7 +740,7 @@ def request_fs_ticker(ticker=str) -> pd.DataFrame:
     This functions returns all financial statements
     of given ticker in all periods
 
-    :param ticker: allow values in request_ticker()
+    :param ticker: allow values in request_ticker_all()
     :return: pandas.DataFrame
     """
 
@@ -1083,7 +1083,7 @@ def request_price() -> pd.DataFrame:
     """
 
     periods = request_period()
-    tickers = request_ticker()
+    tickers = request_ticker_all()
 
     prices = pd.DataFrame(data=np.zeros((len(tickers),len(periods))),
                           columns=[periods[i]
@@ -1216,7 +1216,7 @@ def request_trading_hist(ticker=str, fromdate=None, todate=None) \
     """
     This function returns historical trading data of given ticker
 
-    :param ticker: allow values in request_ticker()
+    :param ticker: allow values in request_ticker_all()
     :param fromdate: [optional] allow any date with format: 'yyyy-mm-dd' or 'yyyy/mm/dd'
     :param todate: [optional] allow any date with format: 'yyyy-mm-dd' or 'yyyy/mm/dd'
     """
@@ -1304,7 +1304,7 @@ def request_trading_intra(ticker=str, fromdate=None, todate=None) \
     """
     This function returns intraday trading data of given ticker
 
-    :param ticker: allow values in request_ticker()
+    :param ticker: allow values in request_ticker_all()
     :param fromdate: [optional] allow any date with format: 'yyyy-mm-dd' or 'yyyy/mm/dd'
     :param todate: [optional] allow any date with format: 'yyyy-mm-dd' or 'yyyy/mm/dd'
 
@@ -1375,7 +1375,7 @@ def request_latest_close_price(ticker=str) -> float:
     """
     This function returns the latest close price of given ticker
 
-    :param ticker: allow values in request_ticker()
+    :param ticker: allow values in request_ticker_all()
     :return: float
     """
 
