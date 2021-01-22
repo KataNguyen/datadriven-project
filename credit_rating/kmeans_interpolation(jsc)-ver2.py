@@ -634,6 +634,7 @@ def graph_crash(benchmark=float, period=str):
 
 # Report results
 result_table.to_csv(join(destination_dir, f'result_table.csv'))
+price_table.to_csv(join(destination_dir, f'price_table.csv'))
 graph_crash(benchmark=-0.5, period='2020q3')
 for ticker in tickers:
     graph_ticker('bics', 3, ticker)
