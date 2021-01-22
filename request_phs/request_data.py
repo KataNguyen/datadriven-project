@@ -834,18 +834,19 @@ def request_ticker_all() -> list:
     return tickers
 
 
-def request_crash(benchmark=-0.5, period=str) -> list:
+def request_crash(benchmark=-0.5, segment=str, period=str) -> list:
 
     """
     This function returns all tickers whose stock return lower than 'benchmark'
     in a given period
 
     :param benchmark: negative number in [-1,0]
+    :param segment: allow values in request_segment_all()
     :param period: allow values in request_period()
     :return: list
     """
 
-    returns = request_return()
+    returns = request_return(segment)
     crash = list()
     for ticker in returns.index:
         if returns.loc[ticker, period] <= benchmark:

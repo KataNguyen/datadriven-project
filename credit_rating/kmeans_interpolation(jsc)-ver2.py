@@ -621,8 +621,8 @@ def graph_classification(standard=str):
                 bbox_inches='tight')
 
 
-def graph_crash(benchmark=float, period=str):
-    crash_list = request_crash(benchmark, period)
+def graph_crash(benchmark=float, segment=str, period=str):
+    crash_list = request_crash(benchmark, segment, period)
     for ticker in crash_list:
         try:
             graph_ticker('bics',3, ticker)
@@ -635,12 +635,20 @@ def graph_crash(benchmark=float, period=str):
 # Report results
 result_table.to_csv(join(destination_dir, f'result_table.csv'))
 price_table.to_csv(join(destination_dir, f'price_table.csv'))
-graph_crash(benchmark=-0.5, period='2020q3')
-for standard in standards:
-    graph_classification(standard)
-for ticker in tickers:
-    graph_ticker('bics', 3, ticker)
 
+graph_crash(-0.5, 'gen', '2020q3')
+
+for standard in standards:
+    try:
+        graph_classification(standard)
+    except KeyError:
+        pass
+
+for ticker in tickers:
+    try:
+        graph_ticker('gics', 1, ticker)
+    except KeyError:
+        pass
 
 execution_time = time.time() - start_time
 print(f"The execution time is: {int(execution_time)}s seconds")
