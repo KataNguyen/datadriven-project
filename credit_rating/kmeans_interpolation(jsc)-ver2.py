@@ -7,7 +7,6 @@ import matplotlib
 from os.path import dirname, realpath
 import itertools
 matplotlib.use('Agg')
-plt.switch_backend('Agg')
 
 destination_dir = join(dirname(realpath(__file__)),
                        'kmeans_interpolation(jsc)-ver2_results')
@@ -147,9 +146,9 @@ df['ebit/int'] = (df['pbt'] + df['interest']) / df['interest']
 
 df.drop(columns=quantities, inplace=True)
 df.sort_index(axis=1, inplace=True)
-df.replace([np.inf, -np.inf], np.nan)
+df.replace([np.inf, -np.inf], np.nan, inplace=True)
 
-quantities_new = [i for i in list(df.columns) if i not in quantities]
+quantities_new = [i for i in df.columns]
 
 for year, quarter in zip(years, quarters):
     for ticker in tickers:

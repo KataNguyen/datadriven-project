@@ -16,7 +16,7 @@ destination_dir \
 
 
 def monte_carlo(ticker, days=66, alpha=0.05,
-                simulation=100000, graph='on',
+                simulation=1000000, graph='on',
                 location=destination_dir):
 
     start_time = time.time()
