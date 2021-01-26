@@ -4,6 +4,7 @@ from scipy.stats import rankdata
 from scipy.interpolate import interp1d
 import matplotlib.pyplot as plt
 import matplotlib
+import matplotlib.ticker as mticker
 from os.path import dirname, realpath
 import itertools
 matplotlib.use('Agg')
@@ -301,7 +302,7 @@ for standard in standards:
                                  init='k-means++',
                                  n_init=100,
                                  max_iter=10000,
-                                 tol=1e-20,
+                                 tol=1e-9,
                                  random_state=1)\
                         .fit(df_xs.dropna(axis=0, how='any'))
 
@@ -476,135 +477,65 @@ for standard in standards:
 result_table = result_table.unstack(level=4)
 result_table.columns = result_table.columns.droplevel(0)
 
-def result(standard=str, level=int):
-    global result_table
-    result = result_table.xs(key=standard+'_l'+str(level), axis=0,
-                             level=1, drop_level=False)
-    return result
-
-
-"""
-returns = request_return('gen') #################### expensive
-returns.sort_index(inplace=True) # to improve performance
-
-change_result = pd.DataFrame(index=result_table.index,
-                             columns=result_table.columns)
-change_result.drop(columns=[result_table.columns[0]], inplace=True)
-for col in range(len(result_table.columns)-1):
-    change_result.iloc[:,col] \
-        = result_table.iloc[:,col+1] - result_table.iloc[:,col]
-
-hot_keys = pd.DataFrame(index=change_result.index,
-                        columns=change_result.columns)
-for standard, level, industry, ticker in change_result.index:
-    for period in change_result.columns:
-        if change_result.loc[(standard,level,industry,ticker),
-                             period] is None \
-            or change_result.loc[(standard,level,industry,ticker),
-                                 period] == np.nan \
-            or returns.loc[ticker,period] is None \
-                or returns.loc[ticker,period] == np.nan:
-            hot_keys.loc[(standard,level,industry,ticker),
-                         period] = np.nan
-        if change_result.loc[(standard,level,industry,ticker),
-                             period] \
-            * returns.loc[ticker,period] < 0:
-            hot_keys.loc[(standard,level,industry,ticker),
-                         period] = 0
-        if change_result.loc[(standard,level,industry,ticker),
-                             period] \
-            * returns.loc[ticker,period] >= 0:
-            hot_keys.loc[(standard,level,industry,ticker),
-                         period] = 1
-for financial_ in request_financial_ticker():
-    try:
-        hot_keys.drop(labels=financial_, axis=0, level=3, inplace=True)
-    except KeyError:
-        continue
-hot_keys.drop(labels='N/A', axis=0, level=2, inplace=True)
-
-def accuracy(standard=str, level=int):
-    global hot_keys
-    a = hot_keys.xs((standard,standard+'_l'+str(level))).sum().sum() \
-        / hot_keys.xs((standard,standard+'_l'+str(level))).count().sum()
-    return a
-
-tuples = list()
-for standard in standards:
-    for level in request_industry_level(standard):
-        tuples.append((standard,level))
-
-accuracy_table = pd.DataFrame(index=pd.MultiIndex.from_tuples(tuples),
-                              columns=['accuracy_rate'])
-for standard, level in accuracy_table.index:
-    accuracy_table.loc[(standard,level)] = accuracy(standard,int(level[-1]))
-
-
-price_table = request_price() #################### expensive
-"""
 
 def graph_ticker(standard=str, level=int, ticker=str):
     table = pd.DataFrame(index=['credit_score'],
-                                columns=periods)
+                         columns=periods)
 
     table.loc['credit_score', periods] \
         = result_table.xs(key=(standard, standard + '_l' + str(level)),
                           axis=0, level=[0,1])\
         .xs(key=ticker, axis=0, level=1).values
 
-    fig, ax1 = plt.subplots(nrows=1, ncols=1, figsize=(8,6))
-    ax1.set_title(ticker + '\n' + standard.upper()
-                  + ' Level {} Classification'.format(level),
-                  fontsize=15, fontweight='bold', color='darkslategrey',
-                  fontfamily='Times New Roman')
-    ax2 = ax1.twinx()
-    ax1.set_xticklabels(ax1.get_xticks(), rotation=45,
-                        fontfamily='Times New Roman', fontsize=13)
-    ax1.plot(periods, table.iloc[0], color='tab:red', label='Credit Score')
-    ax2.plot(periods, table.iloc[1], color='tab:blue', label='Stock Price')
-    ax1.plot(np.nan, color='tab:blue', label='Stock Price')
-    ax1.set_ylim(top=np.min([table.iloc[0].max()*1.2, 100]))
-    ax1.set_xlabel('periods')
-    ax1.tick_params(axis='y', labelcolor='tab:red', labelsize=11)
-    ax2.tick_params(axis='y', labelcolor='tab:blue', labelsize=11)
-    ax1.legend(loc='best', framealpha=5)
-    ax1.grid(alpha=0.2)
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(8,6))
+    ax.set_title(ticker + '\n' + standard.upper()
+                 + ' Level {} Classification'.format(level),
+                 fontsize=15, fontweight='bold', color='darkslategrey',
+                 fontfamily='Times New Roman')
+    ax.set_ylim(top=110)
+
+    xloc = np.arange(table.shape[1]) # label locations
+    rects = ax.bar(xloc, table.iloc[0], width=0.8,
+                   color='tab:blue', label='Credit Score', edgecolor='black')
+    for rect in rects:
+        height = rect.get_height()
+        ax.annotate('{:.0f}'.format(height),
+                    xy=(rect.get_x()+rect.get_width()/2, height),
+                    xytext=(0,3),  # 3 points vertical offset
+                    textcoords="offset points",
+                    ha='center', va='bottom')
+
+    ax.set_xticks(np.arange(len(xloc)))
+    ax.set_xticklabels(table.columns.tolist(), rotation=45, x=xloc,
+                       fontfamily='Times New Roman', fontsize=13)
+
+    ax.set_yticks(np.array([0,25,50,75,100]))
+    ax.tick_params(axis='y', labelcolor='black', labelsize=11)
+
+    Acolor = 'green'
+    Bcolor = 'olivedrab'
+    Ccolor = 'darkorange'
+    Dcolor = 'firebrick'
+
+    ax.axhline(100, ls='--', linewidth=0.5, color=Acolor)
+    ax.axhline(75, ls='--', linewidth=0.5, color=Bcolor)
+    ax.axhline(50, ls='--', linewidth=0.5, color=Ccolor)
+    ax.axhline(25, ls='--', linewidth=0.5, color=Dcolor)
+    ax.fill_between([-0.4,xloc[-1]+0.4], 100, 75,
+                    color=Acolor, alpha=0.2)
+    ax.fill_between([-0.4,xloc[-1]+0.4], 75, 50,
+                    color=Bcolor, alpha=0.25)
+    ax.fill_between([-0.4,xloc[-1]+0.4], 50, 25,
+                    color=Ccolor, alpha=0.2)
+    ax.fill_between([-0.4,xloc[-1]+0.4], 25, 0,
+                    color=Dcolor, alpha=0.2)
+
+    plt.xlim(-0.6, xloc[-1] + 0.6)
+    ax.legend(loc='best', framealpha=5)
+    ax.margins(tight=True)
     plt.savefig(join(destination_dir, f'{ticker}_result.png'),
                 bbox_inches='tight')
 
-"""
-def graph_classification(standard=str):
-    global accuracy_table
-    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(6, 5))
-    ind = np.arange(
-        len(accuracy_table.xs(key=standard, axis=0, level=0).index))
-    score = accuracy_table.xs(key=standard, axis=0, level=0).values.T[0]
-    ax.bar(ind, score, 0.5, color='tab:blue', edgecolor='black')
-    level = accuracy_table.xs(key=standard,
-                                      axis=0, level=0).index.tolist()
-    for i in range(len(level)):
-        level[i] = 'Level ' + level[i][-1]
-    plt.xticks(ind, level)
-    plt.yticks(np.arange(0.5, 0.61, 0.01))
-    ax.set_ylim(bottom=0.5)
-    plt.xticks(fontfamily='Times New Roman', fontsize=13)
-    plt.yticks(fontfamily='Times New Roman', fontsize=13)
-
-    rects = ax.patches
-
-    for rect, sc in zip(rects, score):
-        height = rect.get_height()
-        ax.text(rect.get_x()+rect.get_width()/2, height+0.001, np.round(sc,3),
-                ha='center', va='bottom',
-                fontfamily='Times New Roman', fontsize=13)
-
-    standard = standard.upper()
-    plt.title('Accuracy rate of {} by level'.format(standard),
-              fontfamily='Times New Roman', fontsize=15, fontweight='bold',
-              color='midnightblue')
-    plt.savefig(join(destination_dir, f'classification_{standard}_result.png'),
-                bbox_inches='tight')
-"""
 
 def graph_crash(benchmark=float, segment=str, period=str):
     crash_list = request_crash(benchmark, segment, period)
@@ -617,18 +548,9 @@ def graph_crash(benchmark=float, segment=str, period=str):
                 bbox_inches='tight')
 
 
-# Report results
+# Output results
 result_table.to_csv(join(destination_dir, f'result_table(3centroids).csv'))
-price_table.to_csv(join(destination_dir, f'price_table(3centroids).csv'))
-
 graph_crash(-0.5, 'gen', '2020q3')
-
-for standard in standards:
-    try:
-        graph_classification(standard)
-    except KeyError:
-        pass
-
 for ticker in tickers:
     try:
         graph_ticker('gics', 1, ticker)
