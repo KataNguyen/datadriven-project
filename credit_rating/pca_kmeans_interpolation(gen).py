@@ -12,7 +12,7 @@ destination_dir = join(dirname(realpath(__file__)),
                        'kmeans_interpolation(jsc)-ver2_results')
 
 # Parameters:
-centroids = 4
+centroids = 3
 min_tickers = 4
 nstd_bound = 2
 
@@ -195,7 +195,7 @@ for standard in standards:
     sector_table[standard].columns \
         = pd.RangeIndex(start=1, stop=sector_table[standard].shape[1]+1)
 
-    for level in sector_table[standard].columns.tolist():
+    for level in sector_table[standard].columns:
         industry_list[(standard, level)] \
             = sector_table[standard][level].drop_duplicates().tolist()
 
@@ -390,17 +390,6 @@ for row in range(labels.shape[0]):
                 raw[n] = center_scores.iloc[row,col][labels.iloc[row,col][n]]
             ticker_raw_scores.iloc[row,col] = raw
 
-class radius_tickers_:
-    a = list()
-    for row in range(radius_tickers.shape[0]):
-        for col in range(radius_tickers.shape[1]):
-            if radius_tickers.iloc[row,col] is None:
-                continue
-            else:
-                for i in range(len(radius_tickers.iloc[row,col])):
-                    a.append(radius_tickers.iloc[row,col][i])
-    min = min(a) ; max = max(a)
-
 ticker_scores = pd.DataFrame(index=kmeans_index, columns=periods)
 for row in range(radius_tickers.shape[0]):
     for col in range(radius_tickers.shape[1]):
@@ -431,19 +420,15 @@ for standard in standards:
         for industry in request_industry_list(standard, int(level[-1])):
             for period in periods:
                 try:
-                    if isinstance(
-                            kmeans_tickers.loc[
-                                (standard,level,industry),period
-                            ], str
-                    ) is True:
+                    if isinstance(kmeans_tickers.loc[
+                                      (standard,level,industry),period],
+                                  str) is True:
                         ind_standards.append(standard)
                         ind_levels.append(level)
                         ind_names.append(industry)
                         ind_tickers.append(
                             kmeans_tickers.loc[
-                                (standard,level,industry),period
-                            ]
-                        )
+                                (standard,level,industry),period])
                         ind_periods.append(period)
                     else:
                         for ticker in kmeans_tickers.loc[
@@ -497,6 +482,8 @@ def result(standard=str, level=int):
                              level=1, drop_level=False)
     return result
 
+
+"""
 returns = request_return('gen') #################### expensive
 returns.sort_index(inplace=True) # to improve performance
 
@@ -554,17 +541,16 @@ for standard, level in accuracy_table.index:
 
 
 price_table = request_price() #################### expensive
+"""
+
 def graph_ticker(standard=str, level=int, ticker=str):
-    table = pd.DataFrame(index=['credit_score', 'price'],
+    table = pd.DataFrame(index=['credit_score'],
                                 columns=periods)
 
     table.loc['credit_score', periods] \
         = result_table.xs(key=(standard, standard + '_l' + str(level)),
                           axis=0, level=[0,1])\
         .xs(key=ticker, axis=0, level=1).values
-
-    table.loc['price', periods] \
-        = price_table.loc[ticker,:].values
 
     fig, ax1 = plt.subplots(nrows=1, ncols=1, figsize=(8,6))
     ax1.set_title(ticker + '\n' + standard.upper()
@@ -586,7 +572,7 @@ def graph_ticker(standard=str, level=int, ticker=str):
     plt.savefig(join(destination_dir, f'{ticker}_result.png'),
                 bbox_inches='tight')
 
-
+"""
 def graph_classification(standard=str):
     global accuracy_table
     fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(6, 5))
@@ -618,7 +604,7 @@ def graph_classification(standard=str):
               color='midnightblue')
     plt.savefig(join(destination_dir, f'classification_{standard}_result.png'),
                 bbox_inches='tight')
-
+"""
 
 def graph_crash(benchmark=float, segment=str, period=str):
     crash_list = request_crash(benchmark, segment, period)
@@ -632,8 +618,8 @@ def graph_crash(benchmark=float, segment=str, period=str):
 
 
 # Report results
-result_table.to_csv(join(destination_dir, f'result_table.csv'))
-price_table.to_csv(join(destination_dir, f'price_table.csv'))
+result_table.to_csv(join(destination_dir, f'result_table(3centroids).csv'))
+price_table.to_csv(join(destination_dir, f'price_table(3centroids).csv'))
 
 graph_crash(-0.5, 'gen', '2020q3')
 
