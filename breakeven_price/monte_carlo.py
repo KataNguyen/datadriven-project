@@ -345,8 +345,10 @@ def monte_carlo(ticker, days=66, alpha=0.05,
                             'price_d': [price_t, dbound.iloc[0, 0]]},
                            index=connect_date)
 
+
+    graph_ticker()
     if graph == 'on':
-        graph_ticker()
+        plt.show()
 
 
     print("The execution time is: %s seconds" %(time.time()-start_time))
