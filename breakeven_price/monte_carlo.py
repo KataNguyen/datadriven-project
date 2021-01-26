@@ -9,7 +9,7 @@ from matplotlib.dates import DateFormatter
 from matplotlib.ticker import FuncFormatter
 import matplotlib.transforms as transforms
 matplotlib.use('Agg')
-
+plt.ioff()
 
 destination_dir \
     = join(dirname(realpath(__file__)), 'monte_carlo_result')

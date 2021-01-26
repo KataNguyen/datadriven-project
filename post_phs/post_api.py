@@ -23,7 +23,7 @@ def post_breakeven_price(tickers='all') -> None:
 
     for ticker in tickers:
         try:
-            price = monte_carlo(ticker=ticker, graph='off')
+            price = monte_carlo(ticker=ticker, graph='on')
             breakeven_price[ticker] = price
             if price < 10000:
                 breakeven_price[ticker] \
@@ -47,5 +47,5 @@ def post_breakeven_price(tickers='all') -> None:
 
     print(r)
     print("Total execution time is: %s seconds" %(time.time()-start_time))
-    df = pd.DataFrame(json.loads(r.json()['d']), index=['price'])
+    df = pd.DataFrame(json.loads(r.json()['d']), index=['breakeven_price'])
     return df
