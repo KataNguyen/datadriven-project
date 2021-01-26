@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/kmeans_interpolation(jsc)-ver2_results/VCW_result.png" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/kmeans_interpolation(jsc)-ver2_results/VCW_result.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen).py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen).py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,7 +172,7 @@
         <item itemvalue="Python.TexasHoldem" />
         <item itemvalue="Python.TexasHoldem" />
         <item itemvalue="Python.TexasHoldem" />
-        <item itemvalue="Python.monte_carlo" />
+        <item itemvalue="Python.TexasHoldem" />
       </list>
     </recent_temporary>
   </component>
@@ -466,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611646548444</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="post_breakeven_price">
+      <created>1611658014254</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1611658014254</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

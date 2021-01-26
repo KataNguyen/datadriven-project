@@ -14,7 +14,7 @@ destination_dir = join(dirname(realpath(__file__)),
 
 # Parameters:
 centroids = 3
-min_tickers = 4
+min_tickers = 3
 nstd_bound = 2
 
 start_time = time.time()
