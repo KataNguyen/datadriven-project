@@ -35,7 +35,7 @@ def post_breakeven_price(tickers='all') -> None:
                 breakeven_price[ticker] \
                     = '{:.0f}'.format(round(price,-2))
         except (ValueError, KeyError):
-            print(ticker + 'cannot be run by Monte Carlo')
+            print(ticker + ' cannot be run by Monte Carlo')
             pass
 
     json_str = {'symbol': json.dumps(breakeven_price)}

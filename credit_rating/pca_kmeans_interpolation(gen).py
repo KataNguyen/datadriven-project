@@ -4,7 +4,6 @@ from scipy.stats import rankdata
 from scipy.interpolate import interp1d
 import matplotlib.pyplot as plt
 import matplotlib
-import matplotlib.ticker as mticker
 from os.path import dirname, realpath
 import itertools
 matplotlib.use('Agg')
@@ -145,7 +144,8 @@ df['roe'] = df['net_income'] / df['equity']
 df['roa'] = df['net_income'] / df['asset']
 df['ebit/int'] = (df['pbt'] + df['interest']) / df['interest']
 
-df.drop(columns=quantities, inplace=True)
+df_original = df
+df = df.drop(columns=quantities)
 df.sort_index(axis=1, inplace=True)
 df.replace([np.inf, -np.inf], np.nan, inplace=True)
 
@@ -262,36 +262,29 @@ for standard in standards:
                                       - df_xs_min) / (df_xs_max-df_xs_min) * 2
 
                     # Principal Component Analysis
-                    X = df_xs.values
-                    cov_matrix = np.dot(X.T, X) / X.shape[0]
-                    cor_matrix = np.zeros(cov_matrix.shape)
-                    for row in range(cov_matrix.shape[0]):
-                        for col in range(cov_matrix.shape[1]):
-                            cor_matrix[row,col] \
-                                = cov_matrix[row,col] \
-                                  / (cov_matrix[row,row] ** 0.5
-                                     * cov_matrix[col,col] ** 0.5)
-                    eig_vals, eig_vects = np.linalg.eig(cor_matrix)
-
-                    eig_dict = dict()
-                    for i in range(len(eig_vals)):
-                        eig_dict[eig_vals[i]] = eig_vects[:,i]
-
-                    eig_vals = np.array(sorted(eig_vals, reverse=True))
-                    eig_matrix = np.zeros(eig_vects.shape)
-                    for i in range(len(eig_vals)):
-                        eig_matrix[:,i] = eig_dict[eig_vals[i]]
-
-                    pc_matrix = np.dot(X,eig_matrix)
-                    explained = np.zeros(len(eig_vals))
-                    for i in range(len(eig_vals)):
-                        explained[i] = eig_vals[:i].sum() / len(eig_vals)
-                    pc_matrix = pc_matrix[:, explained <= 0.9]
-
-                    col = ['pc_'+ str(num) for num
-                           in np.arange(start=1, stop=pc_matrix.shape[1]+1)]
-                    df_xs = pd.DataFrame(data=pc_matrix, columns=col,
-                                         index=df_xs.index)
+#                    X = df_xs.values
+#                    cov_matrix = np.dot(X.T, X) / X.shape[0]
+#                    eig_vals, eig_vects = np.linalg.eigh(cov_matrix)
+#
+#                    eig_dict = dict()
+#                    for i in range(len(eig_vals)):
+#                        eig_dict[eig_vals[i]] = eig_vects[:,i]
+#
+#                    eig_vals = np.array(sorted(eig_vals, reverse=True))
+#                    eig_matrix = np.zeros(eig_vects.shape)
+#                    for i in range(len(eig_vals)):
+#                        eig_matrix[:,i] = eig_dict[eig_vals[i]]
+#
+#                    pc_matrix = np.dot(X,eig_matrix)
+#                    explained = np.zeros(len(eig_vals))
+#                    for i in range(len(eig_vals)):
+#                        explained[i] = eig_vals[:i].sum() / eig_vals.sum()
+#                    pc_matrix = pc_matrix[:, explained <= 0.9]
+#
+#                    col = ['pc_'+ str(num) for num
+#                           in np.arange(start=1, stop=pc_matrix.shape[1]+1)]
+#                    df_xs = pd.DataFrame(data=pc_matrix, columns=col,
+#                                         index=df_xs.index)
 
                     # Kmeans algorithm
                     kmeans.loc[(standard,
@@ -300,8 +293,8 @@ for standard in standards:
                                str(year) + 'q' + str(quarter)] \
                         = KMeans(n_clusters=centroids,
                                  init='k-means++',
-                                 n_init=100,
-                                 max_iter=10000,
+                                 n_init=10,
+                                 max_iter=1000,
                                  tol=1e-9,
                                  random_state=1)\
                         .fit(df_xs.dropna(axis=0, how='any'))
@@ -531,6 +524,17 @@ def graph_ticker(standard=str, level=int, ticker=str):
                     color=Dcolor, alpha=0.2)
 
     plt.xlim(-0.6, xloc[-1] + 0.6)
+
+    midpoints = [12.5, 37.5, 62.5, 87.5]
+    labels = ['A', 'B', 'C', 'D']
+    colors = [Acolor, Bcolor, Ccolor, Dcolor]
+    for loc in zip(midpoints, labels, colors):
+        ax.annotate(loc[1],
+                    xy=(-0.4, loc[0]),
+                    textcoords="offset points",
+                    ha='center', va='bottom',
+                    color=loc[2])
+
     ax.legend(loc='best', framealpha=5)
     ax.margins(tight=True)
     plt.savefig(join(destination_dir, f'{ticker}_result.png'),
@@ -548,14 +552,25 @@ def graph_crash(benchmark=float, segment=str, period=str):
                 bbox_inches='tight')
 
 
+def graph_all(standard=str, level=int):
+    global tickers
+    for ticker in tickers:
+        try:
+            graph_ticker(standard, level, ticker)
+        except KeyError:
+            pass
+
+
+def export_result_table(file=str):
+    global destination_dir
+    result_table.to_csv(join(destination_dir, file))
+
+
 # Output results
-result_table.to_csv(join(destination_dir, f'result_table(3centroids).csv'))
+export_result_table('result_table(3centroids).csv')
+graph_all('gics', 1)
 graph_crash(-0.5, 'gen', '2020q3')
-for ticker in tickers:
-    try:
-        graph_ticker('gics', 1, ticker)
-    except KeyError:
-        pass
+
 
 execution_time = time.time() - start_time
 print(f"The execution time is: {int(execution_time)}s seconds")
