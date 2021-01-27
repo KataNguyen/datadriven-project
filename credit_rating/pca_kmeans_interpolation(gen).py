@@ -459,7 +459,6 @@ def graph_ticker(standard=str, level=int, ticker=str):
                  + ' Level {} Classification'.format(level),
                  fontsize=15, fontweight='bold', color='darkslategrey',
                  fontfamily='Times New Roman')
-    ax.set_ylim(top=110)
 
     xloc = np.arange(table.shape[1]) # label locations
     rects = ax.bar(xloc, table.iloc[0], width=0.8,
@@ -470,11 +469,11 @@ def graph_ticker(standard=str, level=int, ticker=str):
                     xy=(rect.get_x()+rect.get_width()/2, height),
                     xytext=(0,3),  # 3 points vertical offset
                     textcoords="offset points",
-                    ha='center', va='bottom')
+                    ha='center', va='bottom', fontsize=11)
 
     ax.set_xticks(np.arange(len(xloc)))
     ax.set_xticklabels(table.columns.tolist(), rotation=45, x=xloc,
-                       fontfamily='Times New Roman', fontsize=13)
+                       fontfamily='Times New Roman', fontsize=11)
 
     ax.set_yticks(np.array([0,25,50,75,100]))
     ax.tick_params(axis='y', labelcolor='black', labelsize=11)
@@ -499,22 +498,24 @@ def graph_ticker(standard=str, level=int, ticker=str):
 
     plt.xlim(-0.6, xloc[-1] + 0.6)
 
-    midpoints = [87.5, 62.5, 37.5, 12.5]
-    labels = ['A', 'B', 'C', 'D']
+    ax.set_ylim(top=110)
+    midpoints = np.array([87.5, 62.5, 37.5, 12.5])/110
+    labels = ['Group A', 'Group B', 'Group C', 'Group D']
     colors = [Acolor, Bcolor, Ccolor, Dcolor]
     for loc in zip(midpoints, labels, colors):
         ax.annotate(loc[1],
-                    xy=(-0.4, loc[0]),
-                    xycoords='data',
+                    xy=(-0.1, loc[0]),
+                    xycoords='axes fraction',
                     textcoords="offset points",
+                    xytext=(0,-5),
                     ha='center', va='bottom',
                     color=loc[2], fontweight='bold',
-                    fontsize='x-large')
+                    fontsize='large')
 
     ax.legend(loc='best', framealpha=5)
     ax.margins(tight=True)
-    plt.savefig(join(destination_dir, 'newly-run', f'{ticker}_result.png'),
-                bbox_inches='tight')
+    plt.subplots_adjust(left=0.15, bottom=0.1, right=0.95, top=0.9)
+    plt.savefig(join(destination_dir, 'newly-run', f'{ticker}_result.png'))
 
 
 def graph_crash(benchmark=float, segment=str, period=str):
@@ -524,7 +525,8 @@ def graph_crash(benchmark=float, segment=str, period=str):
             graph_ticker('bics',3, ticker)
         except KeyError:
             continue
-    plt.savefig(join(destination_dir, 'newly-run', f'crash_{period}_result.png'),
+    plt.savefig(join(destination_dir, 'newly-run',
+                     f'crash_{period}_result.png'),
                 bbox_inches='tight')
 
 
@@ -539,13 +541,13 @@ def graph_all(standard=str, level=int):
 
 def export_result_table(file=str):
     global destination_dir
-    result_table.to_csv(join(destination_dir, file))
+    result_table.to_csv(join(destination_dir, 'newly-run', file))
 
 
 # Output results
-#export_result_table('result_table(3centroids).csv')
-#graph_all('gics', 1)
-#graph_crash(-0.5, 'gen', '2020q3')
+export_result_table('result_table(3centroids).csv')
+graph_all('gics', 3)
+graph_crash(-0.5, 'gen', '2020q3')
 
 
 execution_time = time.time() - start_time
