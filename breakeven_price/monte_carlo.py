@@ -336,7 +336,7 @@ def monte_carlo(ticker, days=66, alpha=0.05,
                           .quantile(q=0.95, axis=1,
                                     interpolation='linear'))
     dbound = pd.DataFrame(df_simulated_price
-                          .quantile(q=0.00, axis=1,
+                          .quantile(q=0.01, axis=1,
                                     interpolation='linear'))
     breakeven_price = dbound.min().iloc[0]
     connect_date = pd.date_range(df['trading_date'].max(),

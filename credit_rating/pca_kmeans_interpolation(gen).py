@@ -261,31 +261,6 @@ for standard in standards:
                                                    quantity]
                                       - df_xs_min) / (df_xs_max-df_xs_min) * 2
 
-                    # Principal Component Analysis
-#                    X = df_xs.values
-#                    cov_matrix = np.dot(X.T, X) / X.shape[0]
-#                    eig_vals, eig_vects = np.linalg.eigh(cov_matrix)
-#
-#                    eig_dict = dict()
-#                    for i in range(len(eig_vals)):
-#                        eig_dict[eig_vals[i]] = eig_vects[:,i]
-#
-#                    eig_vals = np.array(sorted(eig_vals, reverse=True))
-#                    eig_matrix = np.zeros(eig_vects.shape)
-#                    for i in range(len(eig_vals)):
-#                        eig_matrix[:,i] = eig_dict[eig_vals[i]]
-#
-#                    pc_matrix = np.dot(X,eig_matrix)
-#                    explained = np.zeros(len(eig_vals))
-#                    for i in range(len(eig_vals)):
-#                        explained[i] = eig_vals[:i].sum() / eig_vals.sum()
-#                    pc_matrix = pc_matrix[:, explained <= 0.9]
-#
-#                    col = ['pc_'+ str(num) for num
-#                           in np.arange(start=1, stop=pc_matrix.shape[1]+1)]
-#                    df_xs = pd.DataFrame(data=pc_matrix, columns=col,
-#                                         index=df_xs.index)
-
                     # Kmeans algorithm
                     kmeans.loc[(standard,
                                 standard+'_l'+str(level),
@@ -525,15 +500,17 @@ def graph_ticker(standard=str, level=int, ticker=str):
 
     plt.xlim(-0.6, xloc[-1] + 0.6)
 
-    midpoints = [12.5, 37.5, 62.5, 87.5]
+    midpoints = [87.5, 62.5, 37.5, 12.5]
     labels = ['A', 'B', 'C', 'D']
     colors = [Acolor, Bcolor, Ccolor, Dcolor]
     for loc in zip(midpoints, labels, colors):
         ax.annotate(loc[1],
                     xy=(-0.4, loc[0]),
+                    xycoords='data',
                     textcoords="offset points",
                     ha='center', va='bottom',
-                    color=loc[2])
+                    color=loc[2], fontweight='bold',
+                    fontsize='x-large')
 
     ax.legend(loc='best', framealpha=5)
     ax.margins(tight=True)
@@ -567,9 +544,9 @@ def export_result_table(file=str):
 
 
 # Output results
-export_result_table('result_table(3centroids).csv')
-graph_all('gics', 1)
-graph_crash(-0.5, 'gen', '2020q3')
+#export_result_table('result_table(3centroids).csv')
+#graph_all('gics', 1)
+#graph_crash(-0.5, 'gen', '2020q3')
 
 
 execution_time = time.time() - start_time
