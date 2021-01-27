@@ -24,6 +24,7 @@ def post_breakeven_price(tickers='all') -> None:
     for ticker in tickers:
         try:
             price = monte_carlo(ticker=ticker)
+            print(f'Breakeven price of {ticker} is ' + str(price))
             breakeven_price[ticker] = price
             if price < 10000:
                 breakeven_price[ticker] \
