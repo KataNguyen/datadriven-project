@@ -64,7 +64,7 @@ def monte_carlo(ticker, days=66, alpha=0.05,
             .FuncFormatter(
             reformat_large_tick_values))
 
-        ax1.text(0.7, 1.01, "Worst case: "
+        ax1.text(0.7, 1.01, "1% Worst case: "
                  +'{:,}'.format(round((breakeven_price/price_t-1)*100, 2))
                  +'%', fontsize=6, transform=ax1.transAxes)
         ax1.text(0.7, 1.04, "Working days: "
