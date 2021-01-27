@@ -8,8 +8,7 @@ from os.path import dirname, realpath
 import itertools
 matplotlib.use('Agg')
 
-destination_dir = join(dirname(realpath(__file__)),
-                       'kmeans_interpolation(jsc)-ver2_results')
+destination_dir = join(dirname(realpath(__file__)), 'result')
 
 # Parameters:
 centroids = 3
@@ -514,7 +513,7 @@ def graph_ticker(standard=str, level=int, ticker=str):
 
     ax.legend(loc='best', framealpha=5)
     ax.margins(tight=True)
-    plt.savefig(join(destination_dir, f'{ticker}_result.png'),
+    plt.savefig(join(destination_dir, 'newly-run', f'{ticker}_result.png'),
                 bbox_inches='tight')
 
 
@@ -525,7 +524,7 @@ def graph_crash(benchmark=float, segment=str, period=str):
             graph_ticker('bics',3, ticker)
         except KeyError:
             continue
-    plt.savefig(join(destination_dir, f'crash_{period}_result.png'),
+    plt.savefig(join(destination_dir, 'newly-run', f'crash_{period}_result.png'),
                 bbox_inches='tight')
 
 
