@@ -25,7 +25,6 @@ def post_breakeven_price(tickers='all') -> None:
         try:
             price = monte_carlo(ticker=ticker)
             print(f'Breakeven price of {ticker} is ' + str(price))
-            breakeven_price[ticker] = price
             if price < 10000:
                 breakeven_price[ticker] \
                     = '{:.0f}'.format(round(price,-1))
@@ -35,6 +34,8 @@ def post_breakeven_price(tickers='all') -> None:
             else:
                 breakeven_price[ticker] \
                     = '{:.0f}'.format(round(price,-2))
+            print(f'Breakeven price of {ticker} is '
+                  + str(breakeven_price[ticker]))
         except (ValueError, KeyError):
             print(ticker + ' cannot be run by Monte Carlo')
             pass
