@@ -56,12 +56,53 @@ def request_segment_all() -> list:
     return segments
 
 
-def request_financial_ticker(sector_break=False) -> Union[list, dict]:
+def request_exchange_all() -> pd.DataFrame:
+
+    """
+    This function returns stock exchanges of all tickers
+
+    :param: None
+    :return: pandas.DataFrame
+    """
+
+    periods = request_period()
+    latest_period = periods[-1]
+    a = pd.DataFrame(columns=['exchange'])
+    for segment in request_segment_all():
+        table = request_fs_period(int(latest_period[:4]),
+                                  int(latest_period[-1]),
+                                  segment, 'is', 'all')
+        table = table.xs(key='exchange', axis=1, level=1)
+        table = table.droplevel(level=['year', 'quarter'],)
+        table.columns = ['exchange']
+        a = pd.concat([a,table])
+
+    return a
+
+
+def request_exchange(ticker) -> str:
+
+    """
+    This function returns stock exchange of given stock
+
+    :param ticker: stock's ticker
+    :type ticker: str
+    :return: str
+    """
+
+    exchange_table = request_exchange_all()
+    exchange = exchange_table.loc[ticker].iloc[0]
+    return exchange
+
+
+def request_financial_ticker(sector_break=False, exchange='all') \
+        -> Union[list, dict]:
 
     """
     This function returns all tickers of financial segments
 
     :param sector_break: False: ignore sectors, True: show sectors
+    :para exchange: allow values in request_
     :return: list (sector_break=False), dictionary (sector_break=True)
     """
 
@@ -795,31 +836,6 @@ def request_fs_ticker(ticker=str) -> pd.DataFrame:
 
     print('Finished!')
     return fs
-
-
-def request_exchange() -> pd.DataFrame:
-
-    """
-    This function returns exchanges of all tickers
-
-    :param: None
-    :return: pandas.DataFrame
-    """
-
-    segments = request_segment_all()
-    a = pd.DataFrame(columns=['exchange'])
-    for segment in segments:
-        last_period = request_period()[-1]
-        table = request_fs_period(int(last_period[:4]),
-                                  int(last_period[-1]),
-                                  segment, 'is')
-        ticker_list = table.index.get_level_values(2).tolist()
-        exchange_list = table.iloc[:, 1].values.tolist()
-        table = pd.DataFrame({'ticker': ticker_list,
-                              'exchange': exchange_list}).set_index('ticker')
-        pd.concat([a, table])
-
-    return a
 
 
 def request_ticker(segment=str, exchange=str) -> list:
