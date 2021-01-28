@@ -6,8 +6,33 @@
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c-api.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/c-api.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/distributing.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/distributing.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extending.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/extending.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/faq.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/faq.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/howto-argparse.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/howto-argparse.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/howto-clinic.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/howto-clinic.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/howto-cporting.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/howto-cporting.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/howto-curses.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/howto-curses.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/howto-descriptor.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/howto-descriptor.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/howto-functional.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/howto-functional.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/howto-instrumentation.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/howto-instrumentation.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/howto-ipaddress.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/howto-ipaddress.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/howto-logging-cookbook.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/howto-logging-cookbook.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/howto-logging.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/howto-logging.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/howto-pyporting.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/howto-pyporting.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/howto-regex.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/howto-regex.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/howto-sockets.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/howto-sockets.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/howto-sorting.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/howto-sorting.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/howto-unicode.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/howto-unicode.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/howto-urllib2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/howto-urllib2.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/installing.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/installing.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/library.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reference.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/reference.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/request_phs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_phs/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/request_phs/request_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_phs/request_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/tutorial.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/using.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/using.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/whatsnew.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/python-doc/whatsnew.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +99,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hiepdang\PycharmProjects\datadriven-project\python-doc" />
       <recent name="C:\Users\hiepdang\PycharmProjects\datadriven-project\credit_rating\kmeans_interpolation(jsc)-ver2_results\bics_l3" />
       <recent name="C:\Users\Admin\PycharmProjects\datadriven-project\credit_rating" />
     </key>
@@ -203,13 +229,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
-    </task>
-    <task id="LOCAL-00002" summary="post_breakeven_price">
-      <created>1610690409997</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1610690409997</updated>
     </task>
     <task id="LOCAL-00003" summary="post_breakeven_price">
       <created>1610690530311</created>
@@ -547,7 +566,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611801579831</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="post_breakeven_price">
+      <created>1611819414233</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1611819414233</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

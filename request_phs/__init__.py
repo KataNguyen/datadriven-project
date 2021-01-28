@@ -831,7 +831,7 @@ class fs:
         return exchange
 
 
-    def _tickers(self):
+    def tickers(self):
 
         """
         This function returns all tickers of given segment or exchange
@@ -845,24 +845,13 @@ class fs:
                             int(self.latest_period[-1]),
                             self.segment, 'is') \
                 .index.get_level_values(level=2).tolist()
-        else:
+        elif self.segment is not None:
             fin_dict = self.fin_tickers(True)
             ticker_list = fin_dict[self.segment]
 
-        return ticker_list
-
-
-    def tickers(self):
-
-        """
-        This method returns all tickers
-
-        :param: None
-        :return: list
-        """
-
         tickers = []
         for s in self.segments:
-            tickers += self.__init__(segment=s)._tickers(self)
+            tickers +=
 
-        return tickers
+        return ticker_list
+
