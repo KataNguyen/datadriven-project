@@ -19,8 +19,10 @@ class fs:
     database_path \
         = join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
                'database')
+    financials = ['bank', 'sec', 'ins']
 
-    def __init__(self, ticker=None, segment=None, exchange=None):
+    # Constructor:
+    def __init__(self):
 
         folders = [f for f in listdir(self.database_path) if f.startswith('fs_')]
         fs_types = []
@@ -28,7 +30,7 @@ class fs:
             fs_types = [name.split('_')[0]
                         for name in listdir(join(self.database_path, folder))
                         if isfile(join(self.database_path, folder, name))]
-            fs_types = list(dict.fromkeys(fs_types))
+        fs_types = list(set(fs_types))
         self.fs_types = [x for x in fs_types if not x.startswith('~$')]
         self.fs_types.sort() # Returns all valid financial statements
 
@@ -45,10 +47,6 @@ class fs:
             periods.sort()
         self.periods = periods # Returns all periods
         self.latest_period = periods[-1]
-
-        self.ticker = ticker # Specified ticker
-        self.segment = segment # Specified segment
-        self.exchange = exchange # Specified exchange
 
 
     def reload(self) -> None:
@@ -86,22 +84,19 @@ class fs:
             -> Union[list, dict]:
 
         """
-        This function returns all tickers of financial segments
+        This method returns all tickers of financial segments
 
         :param sector_break: False: ignore sectors, True: show sectors
-        :para exchange: allow values in request_
+        :type sector_break: bool
         :return: list (sector_break=False), dictionary (sector_break=True)
         """
 
-        financials = ['bank', 'sec', 'ins']
-        latest_period = self.periods[-1]
-
         tickers = []
         tickers_ = dict()
-        for segment in financials:
+        for segment in self.financials:
             folder = 'fs_' + segment + '_industry'
-            file = 'is_' + latest_period[:4] + 'q' + latest_period[
-                -1] + '.xlsm'
+            file = 'is_' + self.latest_period[:4] + 'q' \
+                   + self.latest_period[-1] + '.xlsm'
             raw_fiinpro \
                 = openpyxl.load_workbook(
                 os.path.join(self.database_path, folder, file)).active
@@ -125,33 +120,33 @@ class fs:
         return tickers
 
 
-    def core(self, year, quarter, segment, fs_type, exchange='all') \
-            -> pd.DataFrame:
+    def core(self, year, quarter, segment,
+             fs_type, exchange='all') -> pd.DataFrame:
 
         """
-            This method extracts data from Github server, clean up
-            and make it ready for use
+        This method extracts data from Github server, clean up
+        and make it ready for use
 
-            :param year: reported year
-            :param quarter: reported quarter
-            :param segment: allow values in request_segment_all()
-            :param fs_type: allow values in request_fstype()
-            :param exchange: allow values in ['HOSE', 'HNX', 'UPCOM'] or 'all'
-            :type year: int
-            :type quarter: int
-            :type segment: str
-            :type fs_type: str
-            :type exchange: str
+        :param year: reported year
+        :param quarter: reported quarter
+        :param segment: allow values in request_segment_all()
+        :param fs_type: allow values in request_fstype()
+        :param exchange: allow values in ['HOSE', 'HNX', 'UPCOM'] or 'all'
+        :type year: int
+        :type quarter: int
+        :type segment: str
+        :type fs_type: str
+        :type exchange: str
 
-            :return: pandas.DataFrame
-            :raise ValueError: this function yet supported cashflow for
-            securities companies
+        :return: pandas.DataFrame
+        :raise ValueError: this function yet supported cashflow for
+        securities companies
         """
 
         if segment not in self.segments:
             raise ValueError(f'sector must be in {self.segments}')
 
-        if fs_type not in self.segments:
+        if fs_type not in self.fs_types:
             raise ValueError(f'sector must be in {self.fs_types}')
 
         folder = 'fs_' + segment + '_industry'
@@ -680,20 +675,22 @@ class fs:
         return clean_data
 
 
-    def _segment(self) -> str:
+    def segment(self, ticker) -> str:
 
         """
         This method returns the segment of a given ticker
 
+        :param ticker: stock's ticker
+        :type ticker: str
         :return: str
         """
 
         segment = ''
-        if self.ticker not in self.fin_tickers():
+        if ticker not in self.fin_tickers():
             segment = 'gen'
         else:
             for key in self.fin_tickers(True):
-                if self.ticker not in self.fin_tickers(True)[key]:
+                if ticker not in self.fin_tickers(True)[key]:
                     pass
                 else:
                     segment = key
@@ -702,13 +699,12 @@ class fs:
         return segment
 
 
-    def ticker(self, ticker) -> pd.DataFrame:
+    def ticker(self) -> pd.DataFrame:
 
         """
         This method returns all financial statements
         of given ticker in all periods
 
-        :param ticker: allow values in request_ticker_all()
         :return: pandas.DataFrame
         """
 
@@ -731,7 +727,7 @@ class fs:
             try:
                 inds += self.core(refs[-1][0],
                                   refs[-1][1],
-                                  self._segment(),
+                                  self.segment(),
                                   fs_type) \
                     .xs(ticker, axis=0, level=2) \
                     .drop(['full_name', 'exchange'], level=1, axis=1) \
@@ -745,11 +741,11 @@ class fs:
 
         fs = pd.concat(
             [
-                self.core(ref[0], ref[1], self._segment, ref[2]) \
+                self.core(ref[0], ref[1], self.segment, ref[2]) \
                     .xs(ticker, axis=0, level=2) \
                     .drop(['full_name', 'exchange'], level=1, axis=1).T \
                     .set_index(pd.MultiIndex.from_product(
-                    [[self._segment], [ref[2]], dict_ind[ref[2]]]))
+                    [[self.segment], [ref[2]], dict_ind[ref[2]]]))
                 for ref in refs
             ]
         )
@@ -839,19 +835,25 @@ class fs:
         :return: list
         """
 
+        ticker_list = []
         if self.segment == 'gen':
             ticker_list \
                 = self.core(int(self.latest_period[:4]),
                             int(self.latest_period[-1]),
                             self.segment, 'is') \
                 .index.get_level_values(level=2).tolist()
-        elif self.segment is not None:
+        elif self.segment in self.segments:
             fin_dict = self.fin_tickers(True)
             ticker_list = fin_dict[self.segment]
-
-        tickers = []
-        for s in self.segments:
-            tickers +=
+        elif self.segment is None:
+            ticker_list = []
+            for segment in self.segments:
+                ticker_list \
+                    += self.core(int(self.latest_period[:4]),
+                                 int(self.latest_period[-1]),
+                                 segment, 'is') \
+                    .index.get_level_values(level=2).tolist()
 
         return ticker_list
 
+fs = fs()

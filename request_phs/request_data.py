@@ -102,7 +102,6 @@ def request_financial_ticker(sector_break=False) \
     This function returns all tickers of financial segments
 
     :param sector_break: False: ignore sectors, True: show sectors
-    :para exchange: allow values in request_
     :return: list (sector_break=False), dictionary (sector_break=True)
     """
 
