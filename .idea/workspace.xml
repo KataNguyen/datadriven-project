@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
-      <change afterPath="$PROJECT_DIR$/request_phs/request.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/request_phs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_phs/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/request_phs/request_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_phs/request_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +78,7 @@
       <recent name="C:\Users\Admin\PycharmProjects\datadriven-project\credit_rating" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.request_data">
+  <component name="RunManager" selected="Python.__init__">
     <configuration name="TexasHoldem" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -100,19 +100,16 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="monte_carlo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/breakeven_price" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/request_phs" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/breakeven_price/monte_carlo.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/request_phs/__init__.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -184,16 +181,16 @@
     <list>
       <item itemvalue="Python.request_data" />
       <item itemvalue="Python.post_api" />
-      <item itemvalue="Python.monte_carlo" />
       <item itemvalue="Python.TexasHoldem" />
       <item itemvalue="Python.pca_kmeans_interpolation(gen)" />
+      <item itemvalue="Python.__init__" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.__init__" />
         <item itemvalue="Python.request_data" />
         <item itemvalue="Python.request_data" />
         <item itemvalue="Python.post_api" />
-        <item itemvalue="Python.pca_kmeans_interpolation(gen)" />
         <item itemvalue="Python.pca_kmeans_interpolation(gen)" />
       </list>
     </recent_temporary>
@@ -206,13 +203,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
-    </task>
-    <task id="LOCAL-00001" summary="post_breakeven_price">
-      <created>1610690403538</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1610690403538</updated>
     </task>
     <task id="LOCAL-00002" summary="post_breakeven_price">
       <created>1610690409997</created>
@@ -550,7 +540,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611748590472</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="post_breakeven_price">
+      <created>1611801579830</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1611801579831</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -569,5 +566,76 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="post_breakeven_price" />
     <option name="LAST_COMMIT_MESSAGE" value="post_breakeven_price" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>20</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>42</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>165</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>930</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>97</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>196</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>741</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>140</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>780</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>58</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>82</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
+          <line>840</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -95,7 +95,7 @@ def request_exchange(ticker) -> str:
     return exchange
 
 
-def request_financial_ticker(sector_break=False, exchange='all') \
+def request_financial_ticker(sector_break=False) \
         -> Union[list, dict]:
 
     """
