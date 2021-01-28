@@ -24,7 +24,7 @@ def post_breakeven_price(tickers='all') -> None:
     for ticker in tickers:
         try:
             price = monte_carlo(ticker=ticker)
-            breakeven_price[ticker] = price
+            print(f'Breakeven price of {ticker} is ' + str(price))
             if price < 10000:
                 breakeven_price[ticker] \
                     = '{:.0f}'.format(round(price,-1))
@@ -34,8 +34,10 @@ def post_breakeven_price(tickers='all') -> None:
             else:
                 breakeven_price[ticker] \
                     = '{:.0f}'.format(round(price,-2))
+            print(f'Breakeven price of {ticker} is '
+                  + str(breakeven_price[ticker]))
         except (ValueError, KeyError):
-            print(ticker + 'cannot be run by Monte Carlo')
+            print(ticker + ' cannot be run by Monte Carlo')
             pass
 
     json_str = {'symbol': json.dumps(breakeven_price)}

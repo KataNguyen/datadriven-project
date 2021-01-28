@@ -56,12 +56,53 @@ def request_segment_all() -> list:
     return segments
 
 
-def request_financial_ticker(sector_break=False) -> Union[list, dict]:
+def request_exchange_all() -> pd.DataFrame:
+
+    """
+    This function returns stock exchanges of all tickers
+
+    :param: None
+    :return: pandas.DataFrame
+    """
+
+    periods = request_period()
+    latest_period = periods[-1]
+    a = pd.DataFrame(columns=['exchange'])
+    for segment in request_segment_all():
+        table = request_fs_period(int(latest_period[:4]),
+                                  int(latest_period[-1]),
+                                  segment, 'is', 'all')
+        table = table.xs(key='exchange', axis=1, level=1)
+        table = table.droplevel(level=['year', 'quarter'],)
+        table.columns = ['exchange']
+        a = pd.concat([a,table])
+
+    return a
+
+
+def request_exchange(ticker) -> str:
+
+    """
+    This function returns stock exchange of given stock
+
+    :param ticker: stock's ticker
+    :type ticker: str
+    :return: str
+    """
+
+    exchange_table = request_exchange_all()
+    exchange = exchange_table.loc[ticker].iloc[0]
+    return exchange
+
+
+def request_financial_ticker(sector_break=False) \
+        -> Union[list, dict]:
 
     """
     This function returns all tickers of financial segments
 
     :param sector_break: False: ignore sectors, True: show sectors
+    :para exchange: allow values in request_
     :return: list (sector_break=False), dictionary (sector_break=True)
     """
 
@@ -98,6 +139,7 @@ def request_financial_ticker(sector_break=False) -> Union[list, dict]:
 
 
 def request_segment(ticker=str) -> str:
+
     """
     This function returns the segment of a given ticker
 
@@ -152,8 +194,8 @@ def reload() -> None:
             excel.ActiveWorkbook.Close()
 
 
-def request_fs_period(year=int, quarter=int, segment=str, fs_type=str) \
-        -> pd.DataFrame:
+def request_fs_period(year, quarter, segment,
+                      fs_type, exchange='all') -> pd.DataFrame:
 
     """
     This function extracts data from Github server, clean up
@@ -161,12 +203,14 @@ def request_fs_period(year=int, quarter=int, segment=str, fs_type=str) \
 
     :param year: reported year
     :param quarter: reported quarter
-    :type year: int
     :param segment: allow values in request_segment_all()
+    :param fs_type: allow values in request_fstype()
+    :param exchange: allow values in ['HOSE', 'HNX', 'UPCOM'] or 'all'
+    :type year: int
     :type quarter: int
     :type segment: str
-    :param fs_type: allow valeus in request_fstype()
     :type fs_type: str
+    :type exchange: str
 
     :return: pandas.DataFrame
     :raise ValueError: this function yet supported cashflow for
@@ -678,19 +722,19 @@ def request_fs_period(year=int, quarter=int, segment=str, fs_type=str) \
 
         elif fs_type == 'cfi':
             pass
-#            raise ValueError('This functionality was not '
-#                             'written in "request_phs"')
 
         elif fs_type == 'cfd':
             pass
-#            raise ValueError('This functionality was not '
-#                             'written in "request_phs"')
 
 
     clean_data.columns \
         = pd.MultiIndex.from_product([[fs_type],
                                       clean_data.columns.tolist()],
                                      names = ['fs_type', 'item'])
+    if exchange != 'all':
+        clean_data \
+            = clean_data.loc[clean_data.loc[:,(fs_type,'exchange')]==exchange]
+
     print('Extracting...')
     return clean_data
 
@@ -794,12 +838,13 @@ def request_fs_ticker(ticker=str) -> pd.DataFrame:
     return fs
 
 
-def request_ticker(segment=str) -> list:
+def request_ticker(segment=str, exchange=str) -> list:
 
     """
-    This function returns all tickers of given segment
+    This function returns all tickers of given segment or exchange
 
     :param segment: allow values in request_segment_all()
+    :param exchange: allow values in ['HOSE', 'HNX', 'UPCOM']
     :return: list
     """
 
