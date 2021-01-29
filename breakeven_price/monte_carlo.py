@@ -1,4 +1,4 @@
-from request_phs.request_data import *
+from request_phs import *
 import scipy as sc
 from scipy import stats
 from os.path import join, dirname, realpath
@@ -122,7 +122,7 @@ def monte_carlo(ticker, days=66, alpha=0.05,
                   'display.width', None,
                   'display.max_colwidth', 20)
 
-    df = request_trading_hist(ticker)
+    df = ta.hist(ticker)
 
     # cleaning data
     df['trading_date'] \
