@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
-      <change beforePath="$PROJECT_DIR$/.idea/datadriven-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/datadriven-project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen).py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/fs_bank_industry/bs_2018q1.xlsm" beforeDir="false" afterPath="$PROJECT_DIR$/database/fs_bank_industry/bs_2018q1.xlsm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/industry_classification/bics.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/database/industry/bics.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/industry_classification/gics.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/database/industry/gics.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/industry_classification/icb.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/database/industry/icb.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/ownership/own_20201218.xlsm" beforeDir="false" afterPath="$PROJECT_DIR$/database/ownership/own_20201218.xlsm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/request_phs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_phs/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/request_phs/request_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_phs/request_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,13 +206,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
-    </task>
-    <task id="LOCAL-00004" summary="post_breakeven_price">
-      <created>1610697332189</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1610697332189</updated>
     </task>
     <task id="LOCAL-00005" summary="post_breakeven_price">
       <created>1610713792945</created>
@@ -559,7 +543,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611820645319</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="post_breakeven_price">
+      <created>1611911365699</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1611911365699</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

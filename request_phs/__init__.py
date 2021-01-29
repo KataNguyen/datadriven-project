@@ -1213,8 +1213,8 @@ class ta:
                     pass
                 return int_
 
-            day = addzero(date.split('/')[0])
-            month = addzero(date.split('/')[1])
+            day = addzero(date.split('/')[1])
+            month = addzero(date.split('/')[0])
             date = date.split('/')[2][:4] + '-' \
                    + month + '-' \
                    + day + ' ' \
@@ -1409,6 +1409,7 @@ class ta:
         before = before.strftime("%Y-%m-%d")
         today = datetime.now().strftime("%Y-%m-%d")
         now = self.intra(ticker, before, today)['price'].iloc[-1]
+
         return now
 
 
@@ -1427,3 +1428,5 @@ class ta:
 
 
 ta = ta()
+
+###############################################################################
