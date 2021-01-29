@@ -11,7 +11,7 @@ import json
 from matplotlib.dates import DateFormatter
 
 
-ticker = 'CLG'
+fs = 'CLG'
 days = 66
 alpha = 0.001
 simulation = 100000
@@ -46,7 +46,7 @@ fromdate = (datetime.now() - timedelta(days=1000)).strftime("%Y-%m-%d")
 todate = datetime.now().strftime("%Y-%m-%d")
 # extract data from API
 r = requests.post('https://api.phs.vn/market/utilities.svc/GetShareIntraday',
-                  data=json.dumps({'symbol': ticker, 'fromdate': fromdate, 'todate': todate}),
+                  data=json.dumps({'symbol': fs, 'fromdate': fromdate, 'todate': todate}),
                   headers={'content-type': 'application/json'})
 df = pd.DataFrame(json.loads(r.json()['d']))
 
@@ -71,17 +71,17 @@ skew_logr = sc.stats.skew(df['log_r'])
 
 # D'Agostino-Pearson test for log return model
 stat2_logr, p2_logr = sc.stats.normaltest(df['log_r'], nan_policy='omit')
-print(f'p2_logr of {ticker} is', p2_logr)
+print(f'p2_logr of {fs} is', p2_logr)
 
 if p2_logr <= alpha:
 
     # Testing whether normal skewness
     stat3_logr, p3_logr = sc.stats.skewtest(df['log_r'], nan_policy='omit')
-    print(f'p3_logr of {ticker} is', p3_logr)
+    print(f'p3_logr of {fs} is', p3_logr)
 
     # Testing whether normal kurtosis.
     stat4_logr, p4_logr = sc.stats.kurtosistest(df['log_r'], nan_policy='omit')
-    print(f'p4_logr of {ticker} is', p4_logr)
+    print(f'p4_logr of {fs} is', p4_logr)
 
     if p3_logr <= alpha and p4_logr <= alpha:
         log_r = np.random.normal(mean_logr, std_logr, size=(simulation, days))
@@ -128,19 +128,19 @@ else:
     # D'Agostino-Pearson test for change in log return model
     stat2_change_logr, p2_change_logr = sc.stats.normaltest(df['change_log_r'],
                                                             nan_policy='omit')
-    print(f'p2_change_logr of {ticker} is', p2_change_logr)
+    print(f'p2_change_logr of {fs} is', p2_change_logr)
 
     if p2_change_logr <= alpha:
 
         # Testing whether normal skewness
         stat3_change_logr, p3_change_logr = sc.stats.skewtest(df['change_log_r'],
                                                               nan_policy='omit')
-        print(f'p3_change_logr of {ticker} is', p3_change_logr)
+        print(f'p3_change_logr of {fs} is', p3_change_logr)
 
         # Testing whether normal kurtosis
         stat4_change_logr, p4_change_logr = sc.stats.kurtosistest(df['change_log_r'],
                                                                   nan_policy='omit')
-        print(f'p4_change_logr of {ticker} is', p4_change_logr)
+        print(f'p4_change_logr of {fs} is', p4_change_logr)
 
         if p3_change_logr <= alpha and p4_change_logr <= alpha:
             change_logr = np.random.normal(loc=mean_change_logr,
@@ -188,7 +188,7 @@ else:
         price_last = df_simulated_price.iloc[-1, :]
 
     else:
-        raise ValueError(f'{ticker} cannot be simulated with given significance level')
+        raise ValueError(f'{fs} cannot be simulated with given significance level')
 
 
 alpha = 0.5
@@ -221,10 +221,10 @@ ax3.scatter(df_historical['trading_date'][trough_locations],
             s=16, label='Trough')
 
 ax3.plot(df_historical['trading_date'], df_historical['close_price'],
-         color='midnightblue', alpha=0.9, lw=2, label='{}'.format(ticker))
+         color='midnightblue', alpha=0.9, lw=2, label='{}'.format(fs))
 ax3.set_ylabel('Stock Price', fontsize=12)
 ax3.xaxis.set_major_formatter(DateFormatter('%d/%m/%Y'))
-ax3.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(reformat_large_tick_values))
+ax3.yaxis.set_major_formatter(matplotlib.fs.FuncFormatter(reformat_large_tick_values))
 plt.xticks(rotation=15)
 plt.yticks(fontsize=11)
 ax3.grid(axis='both', alpha=0.3)

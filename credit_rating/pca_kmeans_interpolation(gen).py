@@ -47,7 +47,7 @@ inds = [x for x in itertools.product(period_tuple, tickers)]
 for i in range(len(inds)):
     inds[i] = inds[i][0] + tuple([inds[i][1]])
 
-index = pd.MultiIndex.from_tuples(inds, names=['year', 'quarter', 'ticker'])
+index = pd.MultiIndex.from_tuples(inds, names=['year', 'quarter', 'fs'])
 col = pd.Index(quantities, name='quantity')
 
 df = pd.DataFrame(np.zeros((len(index), len(col))), columns=col, index=index)
@@ -418,7 +418,7 @@ result_index = pd.MultiIndex.from_arrays([ind_standards,
                                          names=['standard',
                                                 'level',
                                                 'industry',
-                                                'ticker',
+                                                'fs',
                                                 'period'])
 
 result_table = pd.DataFrame(index=result_index, columns=['credit_score'])

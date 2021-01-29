@@ -85,7 +85,7 @@ def request_exchange(ticker) -> str:
     """
     This function returns stock exchange of given stock
 
-    :param ticker: stock's ticker
+    :param ticker: stock's fs
     :type ticker: str
     :return: str
     """
@@ -140,9 +140,9 @@ def request_financial_ticker(sector_break=False) \
 def request_segment(ticker=str) -> str:
 
     """
-    This function returns the segment of a given ticker
+    This function returns the segment of a given fs
 
-    :param ticker: stock's ticker
+    :param ticker: stock's fs
     :return: str
     """
 
@@ -252,7 +252,7 @@ def request_fs_period(year, quarter, segment,
         = pd.MultiIndex.from_arrays([[year]*len(clean_data),
                                      [quarter]*len(clean_data),
                                      clean_data['Ticker'].tolist()])
-    clean_data.index.set_names(['year', 'quarter', 'ticker'], inplace=True)
+    clean_data.index.set_names(['year', 'quarter', 'fs'], inplace=True)
 
     # rename 2 columns
     clean_data.rename(columns=
@@ -781,7 +781,7 @@ def request_fs_ticker(ticker=str) -> pd.DataFrame:
 
     """
     This functions returns all financial statements
-    of given ticker in all periods
+    of given fs in all periods
 
     :param ticker: allow values in request_ticker_all()
     :return: pandas.DataFrame
@@ -980,7 +980,7 @@ def request_industry(standard=str) -> pd.DataFrame:
         clean_data.drop(index=0, inplace=True)
         # set index and columns
         clean_data.index = clean_data.iloc[:,0]
-        clean_data.index.rename('ticker')
+        clean_data.index.rename('fs')
         clean_data.columns = clean_data.iloc[0,:]
         clean_data.columns.rename('level')
         # remore unwanted columns, rows
@@ -1241,7 +1241,7 @@ def ownership_structure() -> pd.DataFrame:
     clean_data.drop(columns=[0], inplace=True)
     clean_data.drop(index=[0], inplace=True)
 
-    # set ticker as index
+    # set fs as index
     clean_data.index = clean_data.iloc[:,0]
     clean_data.drop(clean_data.columns[0], axis=1, inplace=True)
 
@@ -1259,7 +1259,7 @@ def request_trading_hist(ticker=str, fromdate=None, todate=None) \
         -> pd.DataFrame:
 
     """
-    This function returns historical trading data of given ticker
+    This function returns historical trading data of given fs
 
     :param ticker: allow values in request_ticker_all()
     :param fromdate: [optional] allow any date with format: 'yyyy-mm-dd' or 'yyyy/mm/dd'
@@ -1314,7 +1314,7 @@ def request_trading_hist(ticker=str, fromdate=None, todate=None) \
             except KeyError:
                 raise Exception('Date Format Required: yyyy-mm-dd, yyyy/mm/dd')
 
-    history.rename(columns={'symbol':'ticker',
+    history.rename(columns={'symbol':'fs',
                             'prior_price':'ref',
                             'close_price':'close'}, inplace=True)
 
@@ -1347,7 +1347,7 @@ def request_trading_intra(ticker=str, fromdate=None, todate=None) \
         -> pd.DataFrame:
 
     """
-    This function returns intraday trading data of given ticker
+    This function returns intraday trading data of given fs
 
     :param ticker: allow values in request_ticker_all()
     :param fromdate: [optional] allow any date with format: 'yyyy-mm-dd' or 'yyyy/mm/dd'
@@ -1418,7 +1418,7 @@ def request_trading_intra(ticker=str, fromdate=None, todate=None) \
 def request_latest_close_price(ticker=str) -> float:
 
     """
-    This function returns the latest close price of given ticker
+    This function returns the latest close price of given fs
 
     :param ticker: allow values in request_ticker_all()
     :return: float

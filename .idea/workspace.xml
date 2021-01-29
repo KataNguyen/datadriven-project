@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
+    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/datadriven-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/datadriven-project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/fs_bank_industry/bs_2018q1.xlsm" beforeDir="false" afterPath="$PROJECT_DIR$/database/fs_bank_industry/bs_2018q1.xlsm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/fs_bank_industry/bs_2018q2.xlsm" beforeDir="false" afterPath="$PROJECT_DIR$/database/fs_bank_industry/bs_2018q2.xlsm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakeven_price/chart2_last" beforeDir="false" afterPath="$PROJECT_DIR$/breakeven_price/chart2_last" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/kmeans(bank)-ver1.py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/kmeans(bank)-ver1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/kmeans(jsc)-ver1.py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/kmeans(jsc)-ver1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen).py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/bics_l3 - 20210122/result_table.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/bics_l3 - 20210122/result_table.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/gics_l1 (3centroids) - 20210127/result_table(3centroids).csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/gics_l1 (3centroids) - 20210127/result_table(3centroids).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/gics_l1 - 20210122/result_table.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/gics_l1 - 20210122/result_table.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/result_table(3centroids).csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/result_table(3centroids).csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/request_phs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_phs/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/request_phs/request_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_phs/request_data.py" afterDir="false" />
     </list>
@@ -16,19 +24,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="local" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -60,9 +56,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/request_phs/request_data.py" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Colors" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -76,33 +71,10 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\hiepdang\PycharmProjects\datadriven-project\python-doc" />
-      <recent name="C:\Users\hiepdang\PycharmProjects\datadriven-project\credit_rating\kmeans_interpolation(jsc)-ver2_results\bics_l3" />
       <recent name="C:\Users\Admin\PycharmProjects\datadriven-project\credit_rating" />
     </key>
   </component>
   <component name="RunManager" selected="Python.__init__">
-    <configuration name="TexasHoldem" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="datadriven-project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/TexasHoldem.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -121,7 +93,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pca_kmeans_interpolation(gen)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="kmeans_interpolation(jsc)-ver2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -133,7 +105,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen).py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/credit_rating/kmeans_interpolation(jsc)-ver2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="monte_carlo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="datadriven-project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/breakeven_price" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/breakeven_price/monte_carlo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -187,16 +180,16 @@
     <list>
       <item itemvalue="Python.request_data" />
       <item itemvalue="Python.post_api" />
-      <item itemvalue="Python.TexasHoldem" />
-      <item itemvalue="Python.pca_kmeans_interpolation(gen)" />
+      <item itemvalue="Python.kmeans_interpolation(jsc)-ver2" />
+      <item itemvalue="Python.monte_carlo" />
       <item itemvalue="Python.__init__" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.__init__" />
-        <item itemvalue="Python.__init__" />
-        <item itemvalue="Python.__init__" />
-        <item itemvalue="Python.request_data" />
+        <item itemvalue="Python.kmeans_interpolation(jsc)-ver2" />
+        <item itemvalue="Python.kmeans_interpolation(jsc)-ver2" />
+        <item itemvalue="Python.kmeans_interpolation(jsc)-ver2" />
         <item itemvalue="Python.request_data" />
       </list>
     </recent_temporary>
@@ -209,6 +202,27 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
+    </task>
+    <task id="LOCAL-00001" summary="post_breakeven_price">
+      <created>1610690403538</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1610690403538</updated>
+    </task>
+    <task id="LOCAL-00002" summary="post_breakeven_price">
+      <created>1610690409997</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1610690409997</updated>
+    </task>
+    <task id="LOCAL-00003" summary="post_breakeven_price">
+      <created>1610690530311</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1610690530311</updated>
     </task>
     <task id="LOCAL-00004" summary="post_breakeven_price">
       <created>1610697332189</created>
@@ -386,174 +400,13 @@
       <updated>1611282626380</updated>
     </task>
     <task id="LOCAL-00029" summary="post_breakeven_price">
-      <created>1611298454999</created>
+      <created>1611294457265</created>
       <option name="number" value="00029" />
       <option name="presentableId" value="LOCAL-00029" />
       <option name="project" value="LOCAL" />
-      <updated>1611298454999</updated>
+      <updated>1611294457266</updated>
     </task>
-    <task id="LOCAL-00030" summary="post_breakeven_price">
-      <created>1611300315068</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1611300315068</updated>
-    </task>
-    <task id="LOCAL-00031" summary="post_breakeven_price">
-      <created>1611300413744</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1611300413744</updated>
-    </task>
-    <task id="LOCAL-00032" summary="post_breakeven_price">
-      <created>1611300479543</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1611300479543</updated>
-    </task>
-    <task id="LOCAL-00033" summary="post_breakeven_price">
-      <created>1611302055480</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1611302055480</updated>
-    </task>
-    <task id="LOCAL-00034" summary="post_breakeven_price">
-      <created>1611302161671</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1611302161671</updated>
-    </task>
-    <task id="LOCAL-00035" summary="post_breakeven_price">
-      <created>1611314548893</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1611314548893</updated>
-    </task>
-    <task id="LOCAL-00036" summary="post_breakeven_price">
-      <created>1611638826827</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1611638826827</updated>
-    </task>
-    <task id="LOCAL-00037" summary="post_breakeven_price">
-      <created>1611640189252</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1611640189252</updated>
-    </task>
-    <task id="LOCAL-00038" summary="post_breakeven_price">
-      <created>1611641660439</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1611641660439</updated>
-    </task>
-    <task id="LOCAL-00039" summary="post_breakeven_price">
-      <created>1611641737583</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1611641737583</updated>
-    </task>
-    <task id="LOCAL-00040" summary="post_breakeven_price">
-      <created>1611646548444</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1611646548444</updated>
-    </task>
-    <task id="LOCAL-00041" summary="post_breakeven_price">
-      <created>1611658014254</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1611658014254</updated>
-    </task>
-    <task id="LOCAL-00042" summary="post_breakeven_price">
-      <created>1611661166936</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1611661166936</updated>
-    </task>
-    <task id="LOCAL-00043" summary="post_breakeven_price">
-      <created>1611728838072</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1611728838072</updated>
-    </task>
-    <task id="LOCAL-00044" summary="post_breakeven_price">
-      <created>1611730584887</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1611730584887</updated>
-    </task>
-    <task id="LOCAL-00045" summary="post_breakeven_price">
-      <created>1611732150430</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1611732150430</updated>
-    </task>
-    <task id="LOCAL-00046" summary="post_breakeven_price">
-      <created>1611732730429</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1611732730429</updated>
-    </task>
-    <task id="LOCAL-00047" summary="post_breakeven_price">
-      <created>1611732970753</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1611732970753</updated>
-    </task>
-    <task id="LOCAL-00048" summary="post_breakeven_price">
-      <created>1611733563018</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1611733563018</updated>
-    </task>
-    <task id="LOCAL-00049" summary="post_breakeven_price">
-      <created>1611748590472</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1611748590472</updated>
-    </task>
-    <task id="LOCAL-00050" summary="post_breakeven_price">
-      <created>1611801579830</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1611801579831</updated>
-    </task>
-    <task id="LOCAL-00051" summary="post_breakeven_price">
-      <created>1611819414233</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1611819414233</updated>
-    </task>
-    <task id="LOCAL-00052" summary="post_breakeven_price">
-      <created>1611820645319</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1611820645319</updated>
-    </task>
-    <option name="localTasksCounter" value="53" />
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -573,75 +426,22 @@
     <MESSAGE value="post_breakeven_price" />
     <option name="LAST_COMMIT_MESSAGE" value="post_breakeven_price" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
-          <line>20</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
-          <line>42</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
-          <line>164</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
-          <line>929</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
-          <line>15</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
-          <line>97</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
-          <line>195</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
-          <line>740</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
-          <line>139</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
-          <line>779</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
-          <line>58</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
-          <line>82</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/request_phs/request_data.py</url>
-          <line>839</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="WindowStateProjectService">
+    <state x="535" y="142" key="CommitChangelistDialog2" timestamp="1611294455286">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="535" y="142" key="CommitChangelistDialog2/0.30.1920.1050@0.30.1920.1050" timestamp="1611294455286" />
+    <state x="740" y="310" key="FileChooserDialogImpl" timestamp="1611240342156">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="740" y="310" key="FileChooserDialogImpl/0.30.1920.1050@0.30.1920.1050" timestamp="1611240342156" />
+    <state x="461" y="200" key="SettingsEditor" timestamp="1611840094947">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="461" y="200" key="SettingsEditor/0.30.1920.1050@0.30.1920.1050" timestamp="1611840094947" />
+    <state x="552" y="288" key="Vcs.Push.Dialog.v2" timestamp="1611294464027">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="552" y="288" key="Vcs.Push.Dialog.v2/0.30.1920.1050@0.30.1920.1050" timestamp="1611294464027" />
   </component>
 </project>

@@ -1,4 +1,4 @@
-standard,level,industry,ticker,2018q1,2018q2,2018q3,2018q4,2019q1,2019q2,2019q3,2019q4,2020q1,2020q2,2020q3
+standard,level,industry,fs,2018q1,2018q2,2018q3,2018q4,2019q1,2019q2,2019q3,2019q4,2020q1,2020q2,2020q3
 bics,bics_l1,Communications,ABC,100.0,65.0,33.0,58.0,81.0,54.0,55.0,87.0,34.0,100.0,42.0
 bics,bics_l1,Communications,BDB,100.0,52.0,41.0,,26.0,43.0,55.0,15.0,66.0,52.0,44.0
 bics,bics_l1,Communications,BST,,58.0,31.0,62.0,,21.0,60.0,56.0,100.0,26.0,50.0

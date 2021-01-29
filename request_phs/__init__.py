@@ -24,7 +24,8 @@ class fs:
     # Constructor:
     def __init__(self):
 
-        folders = [f for f in listdir(self.database_path) if f.startswith('fs_')]
+        folders = [f for f in listdir(self.database_path)
+                   if f.startswith('fs_')]
         fs_types = []
         for folder in folders:
             fs_types = [name.split('_')[0]
@@ -80,7 +81,7 @@ class fs:
                 excel.ActiveWorkbook.Close()
 
 
-    def fin_tickers(self, sector_break=False) \
+    def fin_tickers(self, sector_break:bool=False) \
             -> Union[list, dict]:
 
         """
@@ -120,8 +121,8 @@ class fs:
         return tickers
 
 
-    def core(self, year, quarter, segment,
-             fs_type, exchange='all') -> pd.DataFrame:
+    def core(self, year:int, quarter:int, segment:str,
+             fs_type:str, exchange:str='all') -> pd.DataFrame:
 
         """
         This method extracts data from Github server, clean up
@@ -175,7 +176,7 @@ class fs:
             = pd.MultiIndex.from_arrays([[year] * len(clean_data),
                                          [quarter] * len(clean_data),
                                          clean_data['Ticker'].tolist()])
-        clean_data.index.set_names(['year', 'quarter', 'ticker'], inplace=True)
+        clean_data.index.set_names(['year', 'quarter', 'fs'], inplace=True)
 
         # rename 2 columns
         clean_data.rename(columns=
@@ -675,12 +676,12 @@ class fs:
         return clean_data
 
 
-    def segment(self, ticker) -> str:
+    def segment(self, ticker:str) -> str:
 
         """
-        This method returns the segment of a given ticker
+        This method returns the segment of a given fs
 
-        :param ticker: stock's ticker
+        :param ticker: stock's fs
         :type ticker: str
         :return: str
         """
@@ -699,12 +700,14 @@ class fs:
         return segment
 
 
-    def ticker(self) -> pd.DataFrame:
+    def fs(self, ticker:str) -> pd.DataFrame:
 
         """
         This method returns all financial statements
-        of given ticker in all periods
+        of given fs in all periods
 
+        :param ticker: stock's ticker
+        :type ticker: str
         :return: pandas.DataFrame
         """
 
@@ -755,13 +758,15 @@ class fs:
         return fs
 
 
-    def all(self, segment) -> pd.DataFrame:
+    def all(self, segment:str, exchange:str='all') -> pd.DataFrame:
 
         """
-        This method returns all financial statements
-        of all companies in all periods
+        This method returns all financial statements of all companies
 
         :param segment: allow values in all_segments()
+        :param exchange: allow values in all_segments()
+        :type segment: allow values in all_segments()
+        :type exchange: allow values in all_segments()
         :return: pandas.DataFrame
         """
 
@@ -772,7 +777,7 @@ class fs:
                     frames.append(
                         self.core(int(period[:4]),
                                   int(period[-1]),
-                                  segment, fs_type))
+                                  segment, fs_type, exchange))
                 except FileNotFoundError:
                     continue
 
@@ -822,7 +827,7 @@ class fs:
         """
 
         exchange_table = self.exchanges()
-        exchange = exchange_table.loc[self.ticker].iloc[0]
+        exchange = exchange_table.loc[self.fs].iloc[0]
 
         return exchange
 

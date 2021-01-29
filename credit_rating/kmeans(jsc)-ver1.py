@@ -380,7 +380,7 @@ result_labels \
     .sum(min_count=1)\
     .sort_index(axis=1)\
     .sort_index(axis=0, level=1)
-result_labels.index.set_names(names=['ticker', 'sector'],
+result_labels.index.set_names(names=['fs', 'sector'],
                               level=[0,1], inplace=True)
 
 centers_index = pd.MultiIndex.from_product([periods,
