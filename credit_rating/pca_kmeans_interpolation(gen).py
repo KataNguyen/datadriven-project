@@ -524,9 +524,9 @@ def graph_crash(benchmark:float, standard:str, level:int,
             graph_ticker(standard, level, ticker)
         except KeyError:
             continue
-    plt.savefig(join(destination_dir, 'newly-run',
-                     f'crash_{period}_{exchange}_result.png'),
-                bbox_inches='tight')
+        plt.savefig(join(destination_dir, 'newly-run',
+                         f'crash_{period}_{ticker}_result.png'),
+                    bbox_inches='tight')
 
 
 def graph_all(standard:str, level:int):
