@@ -963,7 +963,7 @@ def request_industry(standard=str) -> pd.DataFrame:
     global database_path
     standards = request_industry_standard()
     st_dict = dict()
-    folder = 'industry_classification'
+    folder = 'industry'
 
     for st in standards:
         # create Workbook object, select active Worksheet
@@ -1016,7 +1016,7 @@ def request_industry_standard() -> list:
     :return: list
     """
     global database_path
-    folder = 'industry_classification'
+    folder = 'industry'
     standards \
         = list(dict.fromkeys(
         [name[:-5] for name in listdir(join(database_path, folder))

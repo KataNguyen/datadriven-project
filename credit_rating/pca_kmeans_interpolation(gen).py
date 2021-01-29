@@ -186,7 +186,7 @@ kmeans_tickers = pd.DataFrame(index = kmeans_index, columns = periods)
 kmeans_coord = pd.DataFrame(index = kmeans_index, columns = periods)
 
 # sector_table['standard_name'] -> return: DataFrame (Full table)
-# industry_list[('standard_name', level)] -> return: list (all industries)
+# industry_list[('standard_name', level)] -> return: list (all classification)
 # ticker_list[('standard_name', level, 'industry')]
 # -> return: list (all companies in a particular industry)
 
