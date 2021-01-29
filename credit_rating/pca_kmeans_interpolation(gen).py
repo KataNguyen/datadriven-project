@@ -1,4 +1,4 @@
-from request_phs.request_data import *
+from request_phs import *
 from sklearn.cluster import KMeans
 from scipy.stats import rankdata
 from scipy.interpolate import interp1d
@@ -24,16 +24,15 @@ pd.set_option("display.max_rows", sys.maxsize,
               'display.expand_frame_repr', True)
 pd.options.mode.chained_assignment = None
 
-agg_data = request_fs_all('gen')  #################### expensive
+agg_data = fa.all('gen')  #################### expensive
 
 quantities = ['revenue', 'cogs', 'gross_profit', 'interest',
               'pbt', 'net_income', 'cur_asset', 'cash', 'ar', 'inv',
               'ppe', 'asset', 'liability', 'cur_liability', 'lt_debt',
               'equity']
-
-periods = request_period()
-tickers = request_ticker('gen')
-standards = request_industry_standard()
+periods = fa.periods
+tickers = fa.tickers('gen')
+standards = fa.standards
 
 years = list()
 quarters = list()
@@ -168,8 +167,8 @@ ind_standards = list()
 ind_levels = list()
 ind_names = list()
 for standard in standards:
-    for level in request_industry_level(standard):
-        for industry in request_industry_list(standard, int(level[-1])):
+    for level in fa.levels(standard):
+        for industry in fa.industries(standard, int(level[-1])):
             ind_standards.append(standard)
             ind_levels.append(level)
             ind_names.append(industry)
@@ -191,7 +190,7 @@ kmeans_coord = pd.DataFrame(index = kmeans_index, columns = periods)
 # -> return: list (all companies in a particular industry)
 
 for standard in standards:
-    sector_table[standard] = request_industry(standard)
+    sector_table[standard] = fa.classification(standard)
     sector_table[standard].columns \
         = pd.RangeIndex(start=1, stop=sector_table[standard].shape[1]+1)
 
@@ -384,8 +383,8 @@ ind_names = list()
 ind_tickers = list()
 ind_periods = list()
 for standard in standards:
-    for level in request_industry_level(standard):
-        for industry in request_industry_list(standard, int(level[-1])):
+    for level in fa.levels(standard):
+        for industry in fa.industries(standard, int(level[-1])):
             for period in periods:
                 try:
                     if isinstance(kmeans_tickers.loc[
@@ -423,8 +422,8 @@ result_index = pd.MultiIndex.from_arrays([ind_standards,
 
 result_table = pd.DataFrame(index=result_index, columns=['credit_score'])
 for standard in standards:
-    for level in request_industry_level(standard):
-        for industry in request_industry_list(standard, int(level[-1])):
+    for level in fa.levels(standard):
+        for industry in fa.industries(standard, int(level[-1])):
             for period in periods:
                 try:
                     for n in range(len(kmeans_tickers.loc[
@@ -519,7 +518,7 @@ def graph_ticker(standard=str, level=int, ticker=str):
 
 
 def graph_crash(benchmark=float, segment=str, period=str):
-    crash_list = request_crash(benchmark, segment, period)
+    crash_list = ta.crash(benchmark, period, segment, 'HOSE')
     for ticker in crash_list:
         try:
             graph_ticker('bics',3, ticker)
