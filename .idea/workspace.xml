@@ -5,12 +5,79 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/DAH_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/PDC_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q3_DAH_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q3_PDC_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/HAX_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/HSG_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/LDG_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/NKG_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/NSH_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/PHR_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/PNJ_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/ROS_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/TLD_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q2_HAX_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q2_HSG_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q2_LDG_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q2_NKG_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q2_PHR_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q2_PNJ_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q2_ROS_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q3_TLD_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q4_HCD_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q4_NHH_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q4_NSH_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q4_POM_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q4_SJF_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q4_TDG_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q4_TGG_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q4_TNA_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q2_DIH_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q3_API_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q3_DPC_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q3_KTS_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q3_L61_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q3_VHE_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q4_C69_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q4_DPS_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q4_NRC_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q4_TKC_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q4_TTB_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q4_TTZ_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q4_VHC_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q4_VTJ_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_AMV_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_AST_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_BST_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_CCL_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_FIT_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_HVH_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_IJC_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_LCG_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_LDG_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_LGL_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_MAS_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_MBG_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_MPT_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_PCG_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_PTB_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_PVB_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_PVD_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_PVT_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_PXS_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_ROS_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_TCH_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_TGG_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_V21_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_VCM_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_VRC_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q2_ABS_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q2_C92_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q2_LM7_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q2_TNI_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q2_V21_result.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q3_HOSE_result.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen).py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/newly-run/DAH_result.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/newly-run/PDC_result.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +135,6 @@
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="datadriven-project" is-module-sdk="true" working-directory="$PROJECT_DIR$">
-        <option name="useSoftWraps" value="true" />
         <option name="myUseModuleSdk" value="true" />
         <option name="myModuleName" value="datadriven-project" />
         <option name="myWorkingDirectory" value="$PROJECT_DIR$" />
@@ -207,13 +273,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
-    </task>
-    <task id="LOCAL-00010" summary="post_breakeven_price">
-      <created>1610977047097</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1610977047097</updated>
     </task>
     <task id="LOCAL-00011" summary="post_breakeven_price">
       <created>1610982323099</created>
@@ -551,7 +610,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611921458190</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="post_breakeven_price">
+      <created>1611922523084</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1611922523084</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
