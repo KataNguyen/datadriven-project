@@ -552,3 +552,41 @@ graph_crash(-0.5, 'gics', 1, '2020q3', 'gen', 'HOSE')
 execution_time = time.time() - start_time
 print(f"The execution time is: {int(execution_time)}s seconds")
 
+
+def graph_1(ticker:str):
+    # Graph 1:
+    table = df_original.xs(ticker, axis=0, level=2)
+    fig, ax = plt.subplots(figsize=(14,6))
+    ax.set_xlabel('period')
+    xaxis = periods
+
+    for quantity, i in zip(quantities_new,range(14)):
+        axis = ax.twinx()
+        axis.plot(xaxis, table[quantity], label=quantity, legend=True)
+        axis.spines['left'].set_position(('outward', 30*(i+1)))
+        axis.spines['left'].set_visible(True)
+        axis.yaxis.set_label_position('left')
+        axis.yaxis.set_ticks_position('left')
+    plt.savefig(join(r'C:\Users\Admin\Desktop','pyplot_multiple_y-axis.png'))
+
+def test_(ticker:str):
+    plt.subplots(figsize=(8, 6))
+    table = df_original.xs(ticker, axis=0, level=2)
+    for quantity in quantities_new:
+        table[quantity].plot(label=quantity,
+                             secondary_y=True,
+                             legend=True)
+    plt.savefig(join(r'C:\Users\Admin\Desktop', 'pyplot_multiple_y-axis.png'))
+
+def test(ticker:str):
+    table = df_original.xs(ticker, axis=0, level=2)
+    num_quantities = len(quantities_new)
+    fig = plt.subplots(num_quantities, 1, figsize=(7,16), sharex=True)
+    plt.suptitle(ticker, x=0.52)
+    for i in range(num_quantities):
+        fig[1][i].plot(periods, table[quantities_new[i]])
+        matplotlib.rcParams['legend.handlelength'] = 0
+        fig[1][i].legend([quantities_new[i]], loc=1, bbox_to_anchor=(1, 1),
+                         frameon=False)
+        plt.subplots_adjust(left=0.08, right=0.98, top=0.95, bottom=0.02)
+    plt.savefig(join(r'C:\Users\Admin\Desktop', 'pyplot_multiple_y-axis.png'))

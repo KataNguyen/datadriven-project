@@ -4,99 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/HAX_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/HSG_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/LDG_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/NKG_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/NSH_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/PHR_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/PNJ_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/ROS_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/TLD_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q2_HAX_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q2_HSG_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q2_LDG_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q2_NKG_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q2_PHR_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q2_PNJ_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q2_ROS_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q3_TLD_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q4_HCD_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q4_NHH_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q4_NSH_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q4_POM_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q4_SJF_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q4_TDG_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q4_TGG_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2018q4_TNA_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q2_DIH_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q3_API_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q3_DPC_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q3_KTS_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q3_L61_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q3_VHE_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q4_C69_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q4_DPS_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q4_NRC_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q4_TKC_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q4_TTB_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q4_TTZ_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q4_VHC_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2019q4_VTJ_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_AMV_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_AST_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_BST_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_CCL_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_FIT_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_HVH_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_IJC_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_LCG_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_LDG_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_LGL_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_MAS_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_MBG_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_MPT_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_PCG_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_PTB_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_PVB_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_PVD_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_PVT_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_PXS_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_ROS_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_TCH_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_TGG_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_V21_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_VCM_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q1_VRC_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q2_ABS_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q2_C92_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q2_LM7_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q2_TNI_result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/crash_2020q2_V21_result.png" afterDir="false" />
+    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/datadriven-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/datadriven-project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_01_2021_12_59_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_01_2021_12_59_PM__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen).py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/newly-run/DAH_result.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/newly-run/PDC_result.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="local" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -128,13 +48,13 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/request_phs/request_data.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="datadriven-project" is-module-sdk="true" working-directory="$PROJECT_DIR$">
+        <option name="useSoftWraps" value="true" />
         <option name="myUseModuleSdk" value="true" />
         <option name="myModuleName" value="datadriven-project" />
         <option name="myWorkingDirectory" value="$PROJECT_DIR$" />
@@ -143,33 +63,10 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\hiepdang\PycharmProjects\datadriven-project\python-doc" />
-      <recent name="C:\Users\hiepdang\PycharmProjects\datadriven-project\credit_rating\kmeans_interpolation(jsc)-ver2_results\bics_l3" />
       <recent name="C:\Users\Admin\PycharmProjects\datadriven-project\credit_rating" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.__init__">
-    <configuration name="TexasHoldem" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="datadriven-project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/TexasHoldem.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.pca_kmeans_interpolation(gen)">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -180,6 +77,48 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/request_phs/__init__.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="kmeans_interpolation(jsc)-ver2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="datadriven-project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/credit_rating" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/credit_rating/kmeans_interpolation(jsc)-ver2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="monte_carlo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="datadriven-project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/breakeven_price" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/breakeven_price/monte_carlo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -227,41 +166,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="request_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="datadriven-project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/request_phs" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/request_phs/request_data.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Python.request_data" />
       <item itemvalue="Python.post_api" />
-      <item itemvalue="Python.TexasHoldem" />
-      <item itemvalue="Python.pca_kmeans_interpolation(gen)" />
+      <item itemvalue="Python.kmeans_interpolation(jsc)-ver2" />
+      <item itemvalue="Python.monte_carlo" />
       <item itemvalue="Python.__init__" />
+      <item itemvalue="Python.pca_kmeans_interpolation(gen)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pca_kmeans_interpolation(gen)" />
         <item itemvalue="Python.__init__" />
-        <item itemvalue="Python.pca_kmeans_interpolation(gen)" />
-        <item itemvalue="Python.pca_kmeans_interpolation(gen)" />
-        <item itemvalue="Python.pca_kmeans_interpolation(gen)" />
-        <item itemvalue="Python.pca_kmeans_interpolation(gen)" />
+        <item itemvalue="Python.__init__" />
+        <item itemvalue="Python.kmeans_interpolation(jsc)-ver2" />
+        <item itemvalue="Python.kmeans_interpolation(jsc)-ver2" />
       </list>
     </recent_temporary>
   </component>
@@ -273,6 +191,76 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
+    </task>
+    <task id="LOCAL-00001" summary="post_breakeven_price">
+      <created>1610690403538</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1610690403538</updated>
+    </task>
+    <task id="LOCAL-00002" summary="post_breakeven_price">
+      <created>1610690409997</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1610690409997</updated>
+    </task>
+    <task id="LOCAL-00003" summary="post_breakeven_price">
+      <created>1610690530311</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1610690530311</updated>
+    </task>
+    <task id="LOCAL-00004" summary="post_breakeven_price">
+      <created>1610697332189</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1610697332189</updated>
+    </task>
+    <task id="LOCAL-00005" summary="post_breakeven_price">
+      <created>1610713792945</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1610713792945</updated>
+    </task>
+    <task id="LOCAL-00006" summary="post_breakeven_price">
+      <created>1610715007296</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1610715007296</updated>
+    </task>
+    <task id="LOCAL-00007" summary="post_breakeven_price">
+      <created>1610715107336</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1610715107336</updated>
+    </task>
+    <task id="LOCAL-00008" summary="post_breakeven_price">
+      <created>1610715294208</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1610715294208</updated>
+    </task>
+    <task id="LOCAL-00009" summary="post_breakeven_price">
+      <created>1610781562461</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1610781562461</updated>
+    </task>
+    <task id="LOCAL-00010" summary="post_breakeven_price">
+      <created>1610977047097</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1610977047097</updated>
     </task>
     <task id="LOCAL-00011" summary="post_breakeven_price">
       <created>1610982323099</created>
@@ -401,223 +389,13 @@
       <updated>1611282626380</updated>
     </task>
     <task id="LOCAL-00029" summary="post_breakeven_price">
-      <created>1611298454999</created>
+      <created>1611294457265</created>
       <option name="number" value="00029" />
       <option name="presentableId" value="LOCAL-00029" />
       <option name="project" value="LOCAL" />
-      <updated>1611298454999</updated>
+      <updated>1611294457266</updated>
     </task>
-    <task id="LOCAL-00030" summary="post_breakeven_price">
-      <created>1611300315068</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1611300315068</updated>
-    </task>
-    <task id="LOCAL-00031" summary="post_breakeven_price">
-      <created>1611300413744</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1611300413744</updated>
-    </task>
-    <task id="LOCAL-00032" summary="post_breakeven_price">
-      <created>1611300479543</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1611300479543</updated>
-    </task>
-    <task id="LOCAL-00033" summary="post_breakeven_price">
-      <created>1611302055480</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1611302055480</updated>
-    </task>
-    <task id="LOCAL-00034" summary="post_breakeven_price">
-      <created>1611302161671</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1611302161671</updated>
-    </task>
-    <task id="LOCAL-00035" summary="post_breakeven_price">
-      <created>1611314548893</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1611314548893</updated>
-    </task>
-    <task id="LOCAL-00036" summary="post_breakeven_price">
-      <created>1611638826827</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1611638826827</updated>
-    </task>
-    <task id="LOCAL-00037" summary="post_breakeven_price">
-      <created>1611640189252</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1611640189252</updated>
-    </task>
-    <task id="LOCAL-00038" summary="post_breakeven_price">
-      <created>1611641660439</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1611641660439</updated>
-    </task>
-    <task id="LOCAL-00039" summary="post_breakeven_price">
-      <created>1611641737583</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1611641737583</updated>
-    </task>
-    <task id="LOCAL-00040" summary="post_breakeven_price">
-      <created>1611646548444</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1611646548444</updated>
-    </task>
-    <task id="LOCAL-00041" summary="post_breakeven_price">
-      <created>1611658014254</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1611658014254</updated>
-    </task>
-    <task id="LOCAL-00042" summary="post_breakeven_price">
-      <created>1611661166936</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1611661166936</updated>
-    </task>
-    <task id="LOCAL-00043" summary="post_breakeven_price">
-      <created>1611728838072</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1611728838072</updated>
-    </task>
-    <task id="LOCAL-00044" summary="post_breakeven_price">
-      <created>1611730584887</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1611730584887</updated>
-    </task>
-    <task id="LOCAL-00045" summary="post_breakeven_price">
-      <created>1611732150430</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1611732150430</updated>
-    </task>
-    <task id="LOCAL-00046" summary="post_breakeven_price">
-      <created>1611732730429</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1611732730429</updated>
-    </task>
-    <task id="LOCAL-00047" summary="post_breakeven_price">
-      <created>1611732970753</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1611732970753</updated>
-    </task>
-    <task id="LOCAL-00048" summary="post_breakeven_price">
-      <created>1611733563018</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1611733563018</updated>
-    </task>
-    <task id="LOCAL-00049" summary="post_breakeven_price">
-      <created>1611748590472</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1611748590472</updated>
-    </task>
-    <task id="LOCAL-00050" summary="post_breakeven_price">
-      <created>1611801579830</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1611801579831</updated>
-    </task>
-    <task id="LOCAL-00051" summary="post_breakeven_price">
-      <created>1611819414233</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1611819414233</updated>
-    </task>
-    <task id="LOCAL-00052" summary="post_breakeven_price">
-      <created>1611820645319</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1611820645319</updated>
-    </task>
-    <task id="LOCAL-00053" summary="post_breakeven_price">
-      <created>1611911365699</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1611911365699</updated>
-    </task>
-    <task id="LOCAL-00054" summary="post_breakeven_price">
-      <created>1611912451526</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1611912451526</updated>
-    </task>
-    <task id="LOCAL-00055" summary="post_breakeven_price">
-      <created>1611912505530</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1611912505531</updated>
-    </task>
-    <task id="LOCAL-00056" summary="post_breakeven_price">
-      <created>1611914823812</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1611914823812</updated>
-    </task>
-    <task id="LOCAL-00057" summary="post_breakeven_price">
-      <created>1611920939634</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1611920939634</updated>
-    </task>
-    <task id="LOCAL-00058" summary="post_breakeven_price">
-      <created>1611921458190</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1611921458190</updated>
-    </task>
-    <task id="LOCAL-00059" summary="post_breakeven_price">
-      <created>1611922523084</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1611922523084</updated>
-    </task>
-    <option name="localTasksCounter" value="60" />
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -636,5 +414,27 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="post_breakeven_price" />
     <option name="LAST_COMMIT_MESSAGE" value="post_breakeven_price" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="535" y="142" key="CommitChangelistDialog2" timestamp="1611294455286">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="535" y="142" key="CommitChangelistDialog2/0.30.1920.1050@0.30.1920.1050" timestamp="1611294455286" />
+    <state x="740" y="310" key="FileChooserDialogImpl" timestamp="1611240342156">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="740" y="310" key="FileChooserDialogImpl/0.30.1920.1050@0.30.1920.1050" timestamp="1611240342156" />
+    <state x="461" y="200" key="SettingsEditor" timestamp="1612073724287">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="461" y="200" key="SettingsEditor/0.30.1920.1050@0.30.1920.1050" timestamp="1612073724287" />
+    <state x="552" y="288" key="Vcs.Push.Dialog.v2" timestamp="1611294464027">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="552" y="288" key="Vcs.Push.Dialog.v2/0.30.1920.1050@0.30.1920.1050" timestamp="1611294464027" />
+    <state x="606" y="169" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1612114764898">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="606" y="169" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.30.1920.1050@0.30.1920.1050" timestamp="1612114764898" />
   </component>
 </project>
