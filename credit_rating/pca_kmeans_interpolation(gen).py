@@ -547,7 +547,7 @@ def breakdown(ticker:str):
     num_quantities = len(quantities_new)
     fig = plt.subplots(num_quantities, 1,
                        figsize=(6,14), sharex=True)
-    plt.suptitle(f'Raw Component Movements: {ticker}', x=0.52, ha='center',
+    plt.suptitle(f'Raw Component Movement: {ticker}', x=0.52, ha='center',
                  fontweight='bold', color='darkslategrey',
                  fontfamily='Times New Roman', fontsize=17)
     colors = plt.rcParams["axes.prop_cycle"]()
