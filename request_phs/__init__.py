@@ -987,38 +987,12 @@ class fa:
         excel.Visible = True
         for wb in [wb for wb in excel.Workbooks]:
             wb.Close(True)
-        excel.Workbooks.Open(os.path.join(self.database_path, folder, file))
-        time.sleep(3)  # suspend 3 secs for excel to catch up python
-        excel.Range("A1:XFD1048576").Select()
-        excel.Selection.Copy()
-        excel.Selection.PasteSpecial(Paste=-4163)
-        excel.ActiveWorkbook.Save()
-        excel.ActiveWorkbook.Close()
 
         # create Workbook object, select active Worksheet
         raw_fiinpro = openpyxl.load_workbook(
             os.path.join(self.database_path, folder, file)).active
-        try:
-            # delete StoxPlux Sign
-            raw_fiinpro.delete_rows(idx=raw_fiinpro.max_row - 21, amount=1000)
-        except IndexError:
-            excel = Dispatch("Excel.Application")
-            excel.Visible = True
-            for wb in [wb for wb in excel.Workbooks]:
-                wb.Close(True)
-            excel.Workbooks.Open(os.path.join(self.database_path, file))
-            time.sleep(3)  # suspend 3 secs for excel to catch up python
-            excel.Range("A1:XFD1048576").Select()
-            excel.Selection.Copy()
-            excel.Selection.PasteSpecial(Paste=-4163)
-            excel.ActiveWorkbook.Save()
-            excel.ActiveWorkbook.Close()
-            # delete StoxPlux Sign
-            raw_fiinpro.delete_rows(idx=raw_fiinpro.max_row - 21,
-                                    amount=1000)
-
-        # get result info
-        date_of_extract = raw_fiinpro['B6'].value
+        # delete StoxPlux Sign
+        raw_fiinpro.delete_rows(idx=raw_fiinpro.max_row - 21, amount=1000)
 
         # delete header rows
         raw_fiinpro.delete_rows(idx=0, amount=7)
@@ -1044,6 +1018,19 @@ class fa:
 
         return clean_data
 
+
+    def markercaps(self) -> pd.DataFrame:
+
+       """
+       This function returns market capitalization of all stocks
+
+       :param: None
+       :return: pandas.DataFrame
+       """
+
+       folder = 'ownership'
+       file = [f for f in listdir(join(self.database_path, folder))
+               if isfile(join(self.database_path, folder, f))][-1]
 
 fa = fa()
 

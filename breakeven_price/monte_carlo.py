@@ -289,17 +289,21 @@ def monte_carlo(ticker, days=66, alpha=0.05,
         price_t \
             = df['close'].loc[df['trading_date']
                               == df['trading_date'].max()].iloc[0]
+
+        date_t1 = df['trading_date'].max() - timedelta(days=1)
+        while date_t1.weekday() in holidays.WEEKEND \
+            or date_t1 in holidays.VN():
+            date_t1 -= timedelta(days=1)
         price_t1 \
             = df['close'].loc[df['trading_date']
-                              == df['trading_date'].max()
-                              - pd.Timedelta('1 day')].iloc[0]
+                              == date_t1].iloc[0]
         simulated_price = np.zeros(shape=(simulation, days),
                                    dtype=np.int64)
         for i in range(simulation):
             simulated_price[i, 0] \
-                = np.exp(change_logr[i, 0]) * price_t ** 2 / price_t1
+                = np.exp(change_logr[i, 0]) * price_t**2 / price_t1
             simulated_price[i, 1] \
-                = np.exp(change_logr[i, 1]) * simulated_price[i, 0] ** 2\
+                = np.exp(change_logr[i, 1]) * simulated_price[i, 0]**2\
                   / price_t
             for j in range(2, days):
                 simulated_price[i, j] \
