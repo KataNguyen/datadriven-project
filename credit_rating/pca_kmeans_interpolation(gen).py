@@ -133,15 +133,14 @@ df['wc_turnover'] = df['revenue'] / (df['cur_asset'] - df['cur_liability'])
 df['inv_turnover'] = df['cogs'] / df['inv']
 df['ar_turnover'] = df['revenue'] / df['ar']
 df['ppe_turnover'] = df['revenue'] / df['ppe']
-df['lib/asset'] = -df['liability'] / df['asset']
-df['lt_debt/equity'] = -df['lt_debt'] / df['equity']
+df['(-) lib/asset'] = -df['liability'] / df['asset']
+df['(-) lt_debt/equity'] = -df['lt_debt'] / df['equity']
 df['gross_margin'] = df['gross_profit'] / df['revenue']
 df['net_margin'] = df['net_income'] / df['revenue']
 df['roe'] = df['net_income'] / df['equity']
 df['roa'] = df['net_income'] / df['asset']
 df['ebit/int'] = (df['pbt'] + df['interest']) / df['interest']
 
-df_original = df
 df = df.drop(columns=quantities)
 df.sort_index(axis=1, inplace=True)
 df.replace([np.inf, -np.inf], np.nan, inplace=True)
@@ -543,50 +542,50 @@ def export_result_table(file:str):
     result_table.to_csv(join(destination_dir, 'newly-run', file))
 
 
+def breakdown(ticker:str):
+    table = df.xs(ticker, axis=0, level=2)
+    num_quantities = len(quantities_new)
+    fig = plt.subplots(num_quantities, 1,
+                       figsize=(6,14), sharex=True)
+    plt.suptitle(f'Raw Component Movements: {ticker}', x=0.52, ha='center',
+                 fontweight='bold', color='darkslategrey',
+                 fontfamily='Times New Roman', fontsize=17)
+    colors = plt.rcParams["axes.prop_cycle"]()
+    for i in range(num_quantities):
+        yval = table[quantities_new[i]].values
+        while len(yval) < 11:
+            yval = np.insert(yval, 0, np.nan)
+        fig[1][i].plot(periods, yval,
+                       color=next(colors)["color"])
+        fig[1][i].grid(True, which='both', axis='x', alpha=0.6)
+        fig[1][i].margins(tight=True)
+        fig[1][i].set_yticks([])
+        fig[1][i].set_ylabel(quantities_new[i], labelpad=1,
+                             ha='center', fontsize=8.5)
+
+    plt.subplots_adjust(left=0.05,
+                        right=0.98,
+                        bottom=0.04,
+                        top=0.95,
+                        hspace=0.1)
+    plt.xticks(rotation=45, fontfamily='Times New Roman', fontsize=11)
+    plt.savefig(join(destination_dir, 'newly-run', f'{ticker}_components'))
+
+
+def breakdown_all(segment:str, exchange:str):
+    for ticker in fa.tickers(segment, exchange):
+        try:
+            breakdown(ticker)
+        except KeyError:
+            pass
+
+
 # Output results
 export_result_table('result_table(3centroids).csv')
 graph_all('gics', 3)
 graph_crash(-0.5, 'gics', 1, '2020q3', 'gen', 'HOSE')
+breakdown_all('gen')
 
 
 execution_time = time.time() - start_time
 print(f"The execution time is: {int(execution_time)}s seconds")
-
-
-def graph_1(ticker:str):
-    # Graph 1:
-    table = df_original.xs(ticker, axis=0, level=2)
-    fig, ax = plt.subplots(figsize=(14,6))
-    ax.set_xlabel('period')
-    xaxis = periods
-
-    for quantity, i in zip(quantities_new,range(14)):
-        axis = ax.twinx()
-        axis.plot(xaxis, table[quantity], label=quantity, legend=True)
-        axis.spines['left'].set_position(('outward', 30*(i+1)))
-        axis.spines['left'].set_visible(True)
-        axis.yaxis.set_label_position('left')
-        axis.yaxis.set_ticks_position('left')
-    plt.savefig(join(r'C:\Users\Admin\Desktop','pyplot_multiple_y-axis.png'))
-
-def test_(ticker:str):
-    plt.subplots(figsize=(8, 6))
-    table = df_original.xs(ticker, axis=0, level=2)
-    for quantity in quantities_new:
-        table[quantity].plot(label=quantity,
-                             secondary_y=True,
-                             legend=True)
-    plt.savefig(join(r'C:\Users\Admin\Desktop', 'pyplot_multiple_y-axis.png'))
-
-def test(ticker:str):
-    table = df_original.xs(ticker, axis=0, level=2)
-    num_quantities = len(quantities_new)
-    fig = plt.subplots(num_quantities, 1, figsize=(7,16), sharex=True)
-    plt.suptitle(ticker, x=0.52)
-    for i in range(num_quantities):
-        fig[1][i].plot(periods, table[quantities_new[i]])
-        matplotlib.rcParams['legend.handlelength'] = 0
-        fig[1][i].legend([quantities_new[i]], loc=1, bbox_to_anchor=(1, 1),
-                         frameon=False)
-        plt.subplots_adjust(left=0.08, right=0.98, top=0.95, bottom=0.02)
-    plt.savefig(join(r'C:\Users\Admin\Desktop', 'pyplot_multiple_y-axis.png'))

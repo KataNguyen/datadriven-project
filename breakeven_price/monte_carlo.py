@@ -16,7 +16,7 @@ destination_dir \
 
 
 def monte_carlo(ticker, days=66, alpha=0.05,
-                simulation=1000000, graph='on',
+                simulation=1000000,
                 location=destination_dir):
 
     start_time = time.time()
@@ -344,12 +344,7 @@ def monte_carlo(ticker, days=66, alpha=0.05,
     connect = pd.DataFrame({'price_u': [price_t, ubound.iloc[0, 0]],
                             'price_d': [price_t, dbound.iloc[0, 0]]},
                            index=connect_date)
-
-
     graph_ticker()
-    if graph == 'on':
-        plt.show()
-
 
     print("The execution time is: %s seconds" %(time.time()-start_time))
     return breakeven_price
