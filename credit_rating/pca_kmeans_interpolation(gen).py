@@ -415,7 +415,7 @@ result_index = pd.MultiIndex.from_arrays([ind_standards,
                                          names=['standard',
                                                 'level',
                                                 'industry',
-                                                'fs',
+                                                'ticker',
                                                 'period'])
 
 result_table = pd.DataFrame(index=result_index, columns=['credit_score'])
@@ -586,6 +586,13 @@ graph_all('gics', 3)
 graph_crash(-0.5, 'gics', 1, '2020q3', 'gen', 'HOSE')
 breakdown_all('gen')
 
+
+# Compare wiwth current method from RS
+rs_file = join(dirname(realpath(__file__)),'research_rating.xlsx')
+rs_rating = pd.read_excel(rs_file, sheet_name='summary', index_col='ticker')
+output_file = join(dirname(realpath(__file__)),
+                   'result', 'result_table(3centroids).csv')
+model_rating = pd.read_csv(output_file, index_col=[14])
 
 execution_time = time.time() - start_time
 print(f"The execution time is: {int(execution_time)}s seconds")

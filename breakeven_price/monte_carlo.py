@@ -16,7 +16,7 @@ destination_dir \
 
 
 def monte_carlo(ticker, days=66, alpha=0.05,
-                simulation=1000000,
+                simulation=100000,
                 location=destination_dir):
 
     start_time = time.time()
@@ -328,7 +328,7 @@ def monte_carlo(ticker, days=66, alpha=0.05,
                           .quantile(q=0.95, axis=1,
                                     interpolation='linear'))
     dbound = pd.DataFrame(df_simulated_price
-                          .quantile(q=0.01, axis=1,
+                          .quantile(q=0, axis=1,
                                     interpolation='linear'))
     breakeven_price = dbound.min().iloc[0]
     connect_date = pd.date_range(df['trading_date'].max(),
@@ -337,7 +337,9 @@ def monte_carlo(ticker, days=66, alpha=0.05,
                             'price_d': [price_t, dbound.iloc[0, 0]]},
                            index=connect_date)
     graph_ticker()
+    plt.close('all')
 
+    print(f'Breakeven price of {ticker} is ' + str(breakeven_price))
     print("The execution time is: %s seconds" %(time.time()-start_time))
     return breakeven_price
 

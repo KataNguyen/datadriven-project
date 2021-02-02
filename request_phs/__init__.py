@@ -750,7 +750,7 @@ class fa:
                  .drop(['full_name', 'exchange'], level=1, axis=1).T \
                  .set_index(pd.MultiIndex.from_product(
                  [[segment], [ref[2]], dict_ind[ref[2]]]))
-             for ref in refs])
+                for ref in refs])
         fs = fs.groupby(fs.index, sort=False).sum()
 
         print('Finished!')
@@ -804,8 +804,7 @@ class fa:
         table = pd.DataFrame(columns=['exchange'])
         for segment in self.segments:
             a = self.core(int(self.latest_period[:4]),
-                          int(self.latest_period[-1]), segment,
-                          'is', 'all')
+                          int(self.latest_period[-1]), 'is', segment)
             a = a.xs(key='exchange', axis=1, level=1)
             a = a.droplevel(level=['year', 'quarter'], axis=0)
             a.columns = ['exchange']
@@ -973,7 +972,7 @@ class fa:
     def ownerships(self) -> pd.DataFrame:
 
         """
-        This function returns ownership structure of all tickers
+        This method returns ownership structure of all tickers
 
         :param: None
         :return: pandas.DataFrame
@@ -1019,19 +1018,69 @@ class fa:
         return clean_data
 
 
-    def markercaps(self) -> pd.DataFrame:
+    def marketcaps(self) -> pd.DataFrame:
 
-       """
-       This function returns market capitalization of all stocks
+        """
+        This method returns market capitalization of all stocks
 
-       :param: None
-       :return: pandas.DataFrame
-       """
+        :param: None
+        :return: pandas.DataFrame
+        """
 
-       folder = 'ownership'
-       file = [f for f in listdir(join(self.database_path, folder))
+        folder = 'market_cap'
+        file = [f for f in listdir(join(self.database_path, folder))
                if isfile(join(self.database_path, folder, f))][-1]
 
+        excel = Dispatch("Excel.Application")
+        excel.Visible = False
+        for wb in [wb for wb in excel.Workbooks]:
+           wb.Close(True)
+
+        # create Workbook object, select active Worksheet
+        raw_fiinpro = openpyxl.load_workbook(
+            os.path.join(self.database_path, folder, file)).active
+        # delete StoxPlux Sign
+        raw_fiinpro.delete_rows(idx=raw_fiinpro.max_row - 21, amount=1000)
+
+        # delete header rows
+        raw_fiinpro.delete_rows(idx=0, amount=7)
+        raw_fiinpro.delete_rows(idx=2, amount=1)
+        raw_fiinpro.delete_cols(idx=6, amount=1000)
+
+        # import to DataFrame
+        clean_data = pd.DataFrame(raw_fiinpro.values)
+
+        # drop unwanted index and columns
+        clean_data.drop(columns=[0,2,3], inplace=True)
+        clean_data.drop(index=[0], inplace=True)
+
+        # set fs as index
+        clean_data.index = clean_data.iloc[:, 0]
+        clean_data.drop(clean_data.columns[0], axis=1, inplace=True)
+
+        # rename columns
+        clean_data.columns = ['marketcap']
+
+        # change unit from VND billion
+        clean_data['marketcap'] *= 1e9
+
+        return clean_data
+
+
+    def marketcap(self, ticker:str) -> str:
+
+        """
+        This method returns market capitalization of given stock
+
+        :param ticker: stock's ticker
+        :type ticker: str
+        :return: str
+        """
+
+        table = self.marketcaps()
+        marketcap = table.loc[ticker, 'marketcap']
+
+        return marketcap
 
 
 fa = fa()
