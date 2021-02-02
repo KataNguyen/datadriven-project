@@ -205,6 +205,7 @@ def monte_carlo(ticker, days=66, alpha=0.05,
             mean = np.nanmean(df['logr'])
             std = np.nanstd(df['logr'])
             deg_free = df['logr'].count() - 1
+
             loc = mean
             scale = std
             nc = mean*(1-3/(4*deg_free-1))
@@ -240,14 +241,14 @@ def monte_carlo(ticker, days=66, alpha=0.05,
 
         if p_skew <= alpha and p_kur <= alpha:
 
-            loc = np.nanmean(df['change_logr'])
+            loc = 0
             scale = np.nanstd(df['change_logr'])
             change_logr \
                 = np.random.normal(loc, scale, size=(simulation, days))
 
         elif p_skew <= alpha < p_kur:
 
-            mean = np.nanmean(df['change_logr'])
+            mean = 0
             std = np.nanstd(df['change_logr'])
 
             deg_free = df['change_logr'].count() - 1
@@ -259,7 +260,7 @@ def monte_carlo(ticker, days=66, alpha=0.05,
 
         elif p_skew > alpha >= p_kur:
 
-            mean = np.nanmean(df['change_logr'])
+            mean = 0
             std = np.nanstd(df['change_logr'])
             skew = sc.stats.skew(df['change_logr'], nan_policy='omit')
 
@@ -273,11 +274,11 @@ def monte_carlo(ticker, days=66, alpha=0.05,
             change_logr = sc.stats.skewnorm.rvs(a, loc, scale,
                                                 size=(simulation, days))
 
-
         else:
-            mean = np.nanmean(df['change_logr'])
+            mean = 0
             std = np.nanstd(df['change_logr'])
             deg_free = df['change_logr'].count() - 1
+
             loc = mean
             scale = std
             nc = mean*(1-3/(4*deg_free-1))
@@ -290,30 +291,17 @@ def monte_carlo(ticker, days=66, alpha=0.05,
             = df['close'].loc[df['trading_date']
                               == df['trading_date'].max()].iloc[0]
 
-        date_t1 = df['trading_date'].max() - timedelta(days=1)
-        while date_t1.weekday() in holidays.WEEKEND \
-            or date_t1 in holidays.VN():
-            date_t1 -= timedelta(days=1)
-        price_t1 \
-            = df['close'].loc[df['trading_date']
-                              == date_t1].iloc[0]
         simulated_price = np.zeros(shape=(simulation, days),
                                    dtype=np.int64)
         for i in range(simulation):
             simulated_price[i, 0] \
-                = np.exp(change_logr[i, 0]) * price_t**2 / price_t1
-            simulated_price[i, 1] \
-                = np.exp(change_logr[i, 1]) * simulated_price[i, 0]**2\
-                  / price_t
-            for j in range(2, days):
+                = np.exp(change_logr[i, 0]) * price_t
+            for j in range(1, days):
                 simulated_price[i, j] \
-                    = np.exp(change_logr[i, j]) \
-                      * simulated_price[i, j-1]**2 \
-                      / simulated_price[i, j-2]
+                    = np.exp(change_logr[i, j]) * simulated_price[i, j-1]
         df_historical \
             = df[['trading_date', 'close']].iloc[
               int(max(-254,-df['trading_date'].count())):]
-
 
     else:
         print(f'p_logr of {ticker} is', p_logr)
