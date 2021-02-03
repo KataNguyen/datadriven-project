@@ -579,6 +579,59 @@ def breakdown_all(segment:str, exchange:str):
         except KeyError:
             pass
 
+def compare_industry(ticker:str, standard:str, level:int):
+    full_list = fa.classification(standard).iloc[:,level-1]
+    industry = full_list.loc[ticker]
+    peers = full_list.loc[full_list == industry].index.tolist()
+
+    table = df.loc[df.index.get_level_values(2).isin(peers)]
+    table.dropna(axis=0, how='all', inplace=True)
+
+    median = table.groupby(axis=0, level=[0,1]).median()
+    quantities = table.xs(ticker, axis=0, level=2)
+
+    comparison = pd.concat([quantities, median], axis=1, join='outer',
+                           keys=[ticker, 'median'])
+
+    fig, ax = plt.subplots(3,5, figsize=(18,8),
+                           tight_layout=True)
+
+    periods = [str(q[0]) + 'q' + str(q[1]) for q in comparison.index]
+    variables \
+        = comparison.columns.get_level_values(1).drop_duplicates().to_numpy()
+    variables = np.append(variables, None)
+    variables = np.reshape(variables, (3,5))
+    for row in range(3):
+        for col in range(5):
+            w = 0.35
+            l = np.arange(11)  # the label locations
+            if variables[row,col] is None:
+                ax[row, col].axis('off')
+            else:
+                ax[row,col].bar(l-w/2, quantities.iloc[:, row*5+col],
+                                width=w, label=ticker,
+                                color='tab:orange', edgecolor='black')
+                print(quantities.iloc[:, row*4+col])
+                ax[row,col].bar(l+w/2, median.iloc[:, row*5+col],
+                                width=w, label='Industry\'s Average',
+                                color='tab:blue', edgecolor='black')
+                plt.setp(ax[row,col].xaxis.get_majorticklabels(), rotation=45)
+                ax[row,col].set_xticks(l)
+                ax[row,col].set_xticklabels(periods, fontsize=7)
+                ax[row, col].set_yticks([])
+                ax[row,col].set_autoscaley_on(True)
+                ax[row,col].set_title(variables[row,col], fontsize=9)
+
+    fig.suptitle(f'{ticker} \n Comparison with the industry\'s average',
+                 fontweight='bold', color='darkslategrey',
+                 fontfamily='Times New Roman', fontsize=14)
+    handles, labels = ax[0,0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc='upper left',
+               bbox_to_anchor=(0.01, 0.98), ncol=2, fontsize=9,
+               markerscale=0.7)
+
+    plt.show()
+
 
 # Output results
 export_result_table('result_table(3centroids).csv')
