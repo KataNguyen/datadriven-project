@@ -8,6 +8,7 @@ from os.path import dirname, realpath
 import itertools
 matplotlib.use('Agg')
 
+
 destination_dir = join(dirname(realpath(__file__)), 'result')
 
 # Parameters:
@@ -580,6 +581,7 @@ def breakdown_all(segment:str, exchange:str):
             pass
 
 def compare_industry(ticker:str, standard:str, level:int):
+
     full_list = fa.classification(standard).iloc[:,level-1]
     industry = full_list.loc[ticker]
     peers = full_list.loc[full_list == industry].index.tolist()
@@ -611,7 +613,6 @@ def compare_industry(ticker:str, standard:str, level:int):
                 ax[row,col].bar(l-w/2, quantities.iloc[:, row*5+col],
                                 width=w, label=ticker,
                                 color='tab:orange', edgecolor='black')
-                print(quantities.iloc[:, row*4+col])
                 ax[row,col].bar(l+w/2, median.iloc[:, row*5+col],
                                 width=w, label='Industry\'s Average',
                                 color='tab:blue', edgecolor='black')
@@ -633,19 +634,116 @@ def compare_industry(ticker:str, standard:str, level:int):
     plt.show()
 
 
+def compare_rs(tickers: list, standard: str, level: int):
+
+    rs_file = join(dirname(realpath(__file__)), 'research_rating.xlsx')
+    rs_rating = pd.read_excel(rs_file, sheet_name='summary',
+                              index_col='ticker')
+
+    def scoring(rating: str) -> int:
+        mapping = {'AAA': 95, 'AA': 85, 'A': 77.5,
+                   'BBB': 72.5, 'BB': 67.5, 'B': 62.5,
+                   'CCC': 57.5, 'CC': 52.5, 'C': 47.5,
+                   'DDD': 40, 'DD': 30, 'D': 20}
+        try:
+            return mapping[rating]
+        except KeyError:
+            return np.nan
+
+    rs_rating = rs_rating.applymap(scoring)
+    for i in range(rs_rating.shape[0]):
+        for j in range(1, rs_rating.shape[1] - 1):
+            before = rs_rating.iloc[i, j - 1]
+            after = np.nan
+            k = 0
+            if not np.isnan(before) and np.isnan(rs_rating.iloc[i, j]):
+                while np.isnan(after):
+                    k += 1
+                    after = rs_rating.iloc[i, j + k]
+                rs_rating.iloc[i, j] = before + (after - before) / (k + 1)
+
+    model_file = join(dirname(realpath(__file__)),
+                      'result', 'result_table(3centroids).csv')
+    model_rating = pd.read_csv(model_file, index_col='ticker')
+    model_rating \
+        = model_rating.loc[model_rating['standard'] == standard]
+    model_rating \
+        = model_rating.loc[
+        model_rating['level'] == standard + '_l' + str(level)]
+    model_rating.drop(columns=['standard', 'level', 'industry'], inplace=True)
+
+    for ticker in tickers:
+
+        try:
+
+            fig, ax = plt.subplots(1, 1, figsize=(8, 6))
+            periods = [q for q in model_rating.columns]
+            w = 0.35
+            xloc = np.arange(11)  # the label locations
+            ax.bar(xloc - w / 2, model_rating.loc[ticker, :],
+                   width=w, label='K-Means',
+                   color='tab:blue', edgecolor='black')
+            ax.bar(xloc + w / 2, rs_rating.loc[ticker, :],
+                   width=w, label='Research\'s Rating',
+                   color='tab:gray', edgecolor='black')
+            plt.setp(ax.xaxis.get_majorticklabels(), rotation=45)
+            ax.set_xticks(xloc)
+            ax.set_xticklabels(periods, fontsize=11)
+
+            ax.set_yticks(np.array([0, 25, 50, 75, 100]))
+            ax.tick_params(axis='y', labelcolor='black', labelsize=11)
+
+            Acolor = 'green'
+            Bcolor = 'olivedrab'
+            Ccolor = 'darkorange'
+            Dcolor = 'firebrick'
+
+            ax.axhline(100, ls='--', linewidth=0.5, color=Acolor)
+            ax.axhline(75, ls='--', linewidth=0.5, color=Bcolor)
+            ax.axhline(50, ls='--', linewidth=0.5, color=Ccolor)
+            ax.axhline(25, ls='--', linewidth=0.5, color=Dcolor)
+            ax.fill_between([-0.4, xloc[-1] + 0.4], 100, 75,
+                            color=Acolor, alpha=0.2)
+            ax.fill_between([-0.4, xloc[-1] + 0.4], 75, 50,
+                            color=Bcolor, alpha=0.25)
+            ax.fill_between([-0.4, xloc[-1] + 0.4], 50, 25,
+                            color=Ccolor, alpha=0.2)
+            ax.fill_between([-0.4, xloc[-1] + 0.4], 25, 0,
+                            color=Dcolor, alpha=0.2)
+
+            plt.xlim(-0.6, xloc[-1] + 0.6)
+
+            ax.set_ylim(top=110)
+            midpoints = np.array([87.5, 62.5, 37.5, 12.5]) / 110
+            labels = ['Group A', 'Group B', 'Group C', 'Group D']
+            colors = [Acolor, Bcolor, Ccolor, Dcolor]
+            for loc in zip(midpoints, labels, colors):
+                ax.annotate(loc[1],
+                            xy=(-0.1, loc[0]),
+                            xycoords='axes fraction',
+                            textcoords="offset points",
+                            xytext=(0, -5),
+                            ha='center', va='bottom',
+                            color=loc[2], fontweight='bold',
+                            fontsize='large')
+            ax.legend(loc='best', framealpha=5)
+            ax.margins(tight=True)
+            plt.subplots_adjust(left=0.15, bottom=0.1, right=0.95, top=0.9)
+            ax.set_title(ticker + '\n' + "Comparison with Research's Rating",
+                         fontsize=15, fontweight='bold', color='darkslategrey',
+                         fontfamily='Times New Roman')
+        except KeyError:
+            pass
+
+        plt.savefig(join(destination_dir, 'newly-run',
+                         f'{ticker}_compare_rs.png'))
+
+
 # Output results
 export_result_table('result_table(3centroids).csv')
 graph_all('gics', 3)
 graph_crash(-0.5, 'gics', 1, '2020q3', 'gen', 'HOSE')
 breakdown_all('gen')
-
-
-# Compare wiwth current method from RS
-rs_file = join(dirname(realpath(__file__)),'research_rating.xlsx')
-rs_rating = pd.read_excel(rs_file, sheet_name='summary', index_col='ticker')
-output_file = join(dirname(realpath(__file__)),
-                   'result', 'result_table(3centroids).csv')
-model_rating = pd.read_csv(output_file, index_col=[14])
 
 execution_time = time.time() - start_time
 print(f"The execution time is: {int(execution_time)}s seconds")
