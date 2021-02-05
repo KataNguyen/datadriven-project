@@ -673,9 +673,7 @@ def compare_rs(tickers: list, standard: str, level: int):
     model_rating.drop(columns=['standard', 'level', 'industry'], inplace=True)
 
     for ticker in tickers:
-
         try:
-
             fig, ax = plt.subplots(1, 1, figsize=(8, 6))
             periods = [q for q in model_rating.columns]
             w = 0.35
