@@ -134,8 +134,8 @@ df['wc_turnover'] = df['revenue'] / (df['cur_asset'] - df['cur_liability'])
 df['inv_turnover'] = df['cogs'] / df['inv']
 df['ar_turnover'] = df['revenue'] / df['ar']
 df['ppe_turnover'] = df['revenue'] / df['ppe']
-df['(-) lib/asset'] = -df['liability'] / df['asset']
-df['(-) lt_debt/equity'] = -df['lt_debt'] / df['equity']
+df['(-)lib/asset'] = -df['liability'] / df['asset']
+df['(-)lt_debt/equity'] = -df['lt_debt'] / df['equity']
 df['gross_margin'] = df['gross_profit'] / df['revenue']
 df['net_margin'] = df['net_income'] / df['revenue']
 df['roe'] = df['net_income'] / df['equity']
@@ -730,18 +730,58 @@ def compare_rs(tickers: list, standard: str, level: int):
             ax.set_title(ticker + '\n' + "Comparison with Research's Rating",
                          fontsize=15, fontweight='bold', color='darkslategrey',
                          fontfamily='Times New Roman')
+            plt.savefig(join(destination_dir, 'newly-run',
+                             f'{ticker}_compare_rs.png'))
         except KeyError:
             pass
-
-        plt.savefig(join(destination_dir, 'newly-run',
-                         f'{ticker}_compare_rs.png'))
 
 
 # Output results
 export_result_table('result_table(3centroids).csv')
-graph_all('gics', 3)
-graph_crash(-0.5, 'gics', 1, '2020q3', 'gen', 'HOSE')
-breakdown_all('gen')
+#graph_all('gics', 3)
+#graph_crash(-0.5, 'gics', 1, '2020q3', 'gen', 'HOSE')
+#breakdown_all('gen')
+
+
+def mlist_group(standard:str, level:int, year:int, quarter:int) -> dict:
+
+    file = join(dirname(realpath(__file__)),
+                'result', 'result_table(3centroids).csv')
+    table = pd.read_csv(file, index_col='ticker')
+
+    table = table.loc[table['standard'] == standard]
+    table = table.loc[table['level'] == standard + '_l' + str(level)]
+    table.drop(columns=['standard', 'level', 'industry'], inplace=True)
+
+    series = table[str(year) + 'q' + str(quarter)]
+    mlist = internal.mlist('all')
+    fin_tickers = fa.fin_tickers(False)
+    ticker_list = [ticker for ticker in mlist if ticker not in fin_tickers]
+    model_tickers = table.index.to_list() # delete cai nay sau khi sua lai model
+    ticker_list = list(set(ticker_list).intersection(model_tickers)) # delete cai nay sau khi sua lai model
+    series = series.loc[ticker_list]
+
+    def f(score):
+        if score <= 25:
+            return 'D'
+        elif score <= 50:
+            return 'C'
+        elif score <= 75:
+            return 'B'
+        elif score <= 100:
+            return 'A'
+        else:
+            return np.nan
+
+    series = series.map(f).dropna()
+    groups = series.drop_duplicates().to_numpy()
+    d = dict()
+    for group in groups:
+        tickers = series.loc[series==group].index.to_list()
+        d[group] = tickers
+
+    return d
+
 
 execution_time = time.time() - start_time
 print(f"The execution time is: {int(execution_time)}s seconds")

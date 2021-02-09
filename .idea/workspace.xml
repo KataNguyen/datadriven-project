@@ -5,7 +5,265 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
-      <change afterPath="$PROJECT_DIR$/presentation/Credit Rating - Version 3 (Comparison).pptx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/AST_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/BMC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/BMP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/CAP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/CLC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/CSV_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/CVT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/DBD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/DGW_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/DHG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/DHT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/DPM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/DPR_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/DRC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/DTD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/FPT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/GAS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/GDT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/GIL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/GSP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/HAP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/HAX_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/HMC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/HMH_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/HTI_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/HTN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/L14_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/MWG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/NDN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/NTL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/NVL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/PDN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/PDR_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/PGC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/PHN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/PHR_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/PME_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/PNJ_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/PPC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/PVC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/PVS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/PVT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/SAB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/SAV_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/SDG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/SFI_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/SJD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/SMB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/SMC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/SRC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/ST8_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/SZB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/SZL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/TBC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/TCH_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/TCO_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/TIP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/TLD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/TLG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/TMP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/TRA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/TTT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/UIC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/VCS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/VHM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/VNM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/VPS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/VRE_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/VSC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group A/VTB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/AAV_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/ACC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/AGM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/BTP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/BWE_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/CAV_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/CCL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/CDC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/CLW_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/CTF_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/DBC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/DCM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/DGC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/DHC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/DIG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/DRH_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/EID_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/ELC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/FCM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/FIR_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/FIT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/FLC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/FMC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/GMD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/GVR_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/HAH_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/HDG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/HII_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/HJS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/HPG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/HSG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/HUB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/HVH_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/ICG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/IDC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/IDJ_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/IMP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/INN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/ITA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/ITD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/KSB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/LDG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/LGC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/LHG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/LIX_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/NBB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/NET_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/NLG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/NRC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/PET_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/POW_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/PSD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/PTB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/RAL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/REE_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/SBA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/SRA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/SVC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/SZC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/TA9_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/TAC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/TCL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/TCM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/TDM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/THG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/TIG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/TMS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/TNA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/TV2_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/TYA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/VC3_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/VGC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/VGS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/VHC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/VIP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/VPD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/VPG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/VRC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group B/VTO_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/AAA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/ACL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/ANV_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/ASM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/ASP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/BCC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/BCE_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/BCG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/BFC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/C32_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/CKG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/CMG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/CMX_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/CRC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/CSM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/CTI_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/DCL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/DDG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/DNP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/DPG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/DQC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/FCN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/FRT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/GAB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/GEG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/GEX_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/GKM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/GMC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/HBC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/HDC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/HPX_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/HRC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/HT1_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/ICT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/IJC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/ITC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/KBC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/KDC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/LCG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/LSS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/NAF_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/NHH_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/NKG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/NSC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/NTH_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/PAC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/PAN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/PC1_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/PGS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/PHC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/PLC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/PMG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/PVD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/S55_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/S99_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/SAM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/SBT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/SBV_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/SCI_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/SD5_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/SFG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/SGR_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/SHA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/SHI_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/SHN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/SHP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/SJE_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/SLS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/SRF_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/STK_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/TCD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/TDC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/TDT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/TNG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/TTB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/TVT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/VC7_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/VDP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/VHE_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/VID_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/VIT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/VJC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/VNE_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/VNG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/VPI_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/VSI_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group C/VTV_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/AGG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/C47_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/CEO_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/CII_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/DAG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/DBT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/DNM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/IDI_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/LIG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/MDC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/MSN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/NT2_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/RDP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/SCR_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/SD9_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/SGT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/SJS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/TDN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/THT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/TVD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/VIC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/newly-run/Group D/VMC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/internal/marginlist_20210208.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/breakeven_price/monte_carlo_result/AAA_result_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/breakeven_price/monte_carlo_result/AAA_result_1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/breakeven_price/monte_carlo_result/AAA_result_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/breakeven_price/monte_carlo_result/AAA_result_2.png" afterDir="false" />
@@ -1484,6 +1742,17 @@
       <change beforePath="$PROJECT_DIR$/breakeven_price/monte_carlo_result/YEG_result_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/breakeven_price/monte_carlo_result/YEG_result_1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/breakeven_price/monte_carlo_result/YEG_result_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/breakeven_price/monte_carlo_result/YEG_result_2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen).py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/newly-run/API_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/newly-run/DAH_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/newly-run/FTM_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/newly-run/MAS_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/newly-run/NSH_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/newly-run/ROS_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/newly-run/TKC_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/newly-run/TNI_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/newly-run/TTB_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/newly-run/V21_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/request_phs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_phs/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1536,6 +1805,7 @@
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="datadriven-project" is-module-sdk="true" working-directory="$PROJECT_DIR$">
+        <option name="useSoftWraps" value="true" />
         <option name="myUseModuleSdk" value="true" />
         <option name="myModuleName" value="datadriven-project" />
         <option name="myWorkingDirectory" value="$PROJECT_DIR$" />
@@ -1548,17 +1818,17 @@
       <recent name="C:\Users\Admin\PycharmProjects\datadriven-project\credit_rating" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.__init__">
+  <component name="RunManager" selected="Python.pca_kmeans_interpolation(gen)">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/post_phs" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/request_phs" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/post_phs/__init__.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/request_phs/__init__.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -1571,6 +1841,9 @@
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/breakeven_price" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -1607,6 +1880,9 @@
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -1625,6 +1901,9 @@
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/credit_rating" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -1641,19 +1920,19 @@
     </configuration>
     <list>
       <item itemvalue="Python.request_data" />
-      <item itemvalue="Python.monte_carlo" />
       <item itemvalue="Python.__init__" />
+      <item itemvalue="Python.monte_carlo" />
       <item itemvalue="Python.pca_kmeans_interpolation(gen)" />
       <item itemvalue="Python.test" />
       <item itemvalue="Python.vgc" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pca_kmeans_interpolation(gen)" />
         <item itemvalue="Python.__init__" />
-        <item itemvalue="Python.vgc" />
-        <item itemvalue="Python.test" />
         <item itemvalue="Python.__init__" />
-        <item itemvalue="Python.monte_carlo" />
+        <item itemvalue="Python.__init__" />
+        <item itemvalue="Python.__init__" />
       </list>
     </recent_temporary>
   </component>
@@ -1911,7 +2190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612426417486</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="post_breakeven_price">
+      <created>1612519940619</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1612519940619</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

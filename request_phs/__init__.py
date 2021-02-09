@@ -4,7 +4,7 @@ import openpyxl
 import os
 import sys
 from os import listdir
-from os.path import isfile, isdir, join
+from os.path import isfile, isdir, join, realpath
 from win32com.client import Dispatch
 import time
 from datetime import datetime, timedelta
@@ -16,12 +16,120 @@ from typing import Union
 
 ###############################################################################
 
+database_path \
+    = join(os.path.dirname(os.path.dirname(realpath(__file__))),
+           'database')
+
+###############################################################################
+
+class internal:
+
+    database_path = globals()['database_path']
+
+    # Constructor:
+    def __init__(self):
+        folder_name = 'internal'
+        folder = join(self.database_path, folder_name)
+        file_name = [f for f in listdir(folder) if f.startswith('marginlist')]
+        file_name.sort()
+        self.margin = pd.read_excel(join(folder, file_name[-1]),
+                               index_col=[1])
+        self.margin.drop(['No.', 'Tỷ lệ TSĐB KQ (%)',
+                     'Tỷ lệ TSĐB TC (%)'],
+                    axis=1, inplace=True)
+        self.margin.dropna(axis=0, how='all', inplace=True)
+        self.margin.dropna(axis=1, how='all', inplace=True)
+        col_names = ['mrate', 'drate', 'max_price', 'general_room', 'exchange']
+        self.margin.columns = col_names
+
+
+    def mlist(self, exchanges:list='all') -> list:
+
+        """
+        This method returns margin list of a given exchange
+
+        :param exchanges: allow ['HOSE', 'HNX', 'UPCOM'] or 'all'
+        :type exchanges: list
+        """
+
+        tickers = []
+        if exchanges == 'all':
+            exchanges = ['HOSE', 'HNX', 'UPCOM']
+        for exchange in exchanges:
+            table = self.margin.loc[self.margin['exchange']==exchange]
+            tickers += table.index.to_list()
+
+        return tickers
+
+
+    def mrate(self, ticker:str) -> float:
+
+        """
+        This method returns margin rate of a given ticker
+
+        :param ticker: allow any ticker in mlist(exchanges='all')
+        :type ticker: str
+        :return: deposit rate
+        """
+
+        rate = self.margin.loc[ticker, 'mrate']
+
+        return rate
+
+
+    def drate(self, ticker:str) -> float:
+
+        """
+        This method returns deposit rate of a given ticker
+
+        :param ticker: allow any ticker in mlist(exchanges='all')
+        :type ticker: str
+        :return: deposit rate
+        """
+
+        rate = self.margin.loc[ticker, 'drate']
+
+        return rate
+
+
+    def mprice(self, ticker:str) -> int:
+
+        """
+        This method returns max price of a given ticker
+
+        :param ticker: allow any ticker in mlist(exchanges='all')
+        :type ticker: str
+        :return: max price
+        """
+
+        price = self.margin.loc[ticker, 'max_price']
+
+        return int(price)
+
+
+    def groom(self, ticker:str) -> int:
+
+        """
+        This method returns general room of a given ticker
+
+        :param ticker: allow any ticker in mlist(exchanges='all')
+        :type ticker: str
+        :return: general room
+        """
+
+        room = self.margin.loc[ticker, 'general_room']
+
+        return int(room)
+
+internal = internal()
+
+
+###############################################################################
+
 
 class fa:
 
-    database_path \
-        = join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
-               'database')
+    database_path = globals()['database_path']
     financials = ['bank', 'sec', 'ins']
 
     # Constructor:
