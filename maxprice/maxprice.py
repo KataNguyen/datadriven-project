@@ -132,7 +132,7 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
                            ax[0].transData, ax[0].transAxes),
                        ha='center', color=Acolor, fontsize=10)
 
-        ax[0].annotate(f"Reference Price: {historical_price['close'][-1]}",
+        ax[0].annotate(f"Reference Price: {historical_price['close'].iloc[-1]}",
                        xy=(0.8, 0.9),
                        xycoords=ax[0].transAxes,
                        ha='left', color=Acolor, fontsize=6)
@@ -141,15 +141,14 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
                        xycoords=ax[0].transAxes,
                        ha='left', color=Acolor, fontsize=6)
         ax[0].annotate(f"Credit Rating: {rating}",
-                       xy=(0.8, 0.85),
+                       xy=(0.8, 0.8),
                        xycoords=ax[0].transAxes,
                        ha='left', color=Acolor, fontsize=6)
         ax[0].annotate("Implied Margin Rate: "
                        + '{:.0f}'.format(breakeven_price/maxprice*100) + '%',
-                       xy=(0.8, 0.85),
+                       xy=(0.8, 0.75),
                        xycoords=ax[0].transAxes,
                        ha='left', color=Acolor, fontsize=6)
-
 
         ax[0].tick_params(axis='y', left=False, labelleft=False)
         ax[0].xaxis.set_major_formatter(
