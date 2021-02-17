@@ -4,7 +4,7 @@ import openpyxl
 import os
 import sys
 from os import listdir
-from os.path import isfile, isdir, join, realpath
+from os.path import isfile, isdir, join, realpath, dirname
 from win32com.client import Dispatch
 import time
 from datetime import datetime, timedelta
@@ -17,8 +17,7 @@ from typing import Union
 ###############################################################################
 
 database_path \
-    = join(os.path.dirname(os.path.dirname(realpath(__file__))),
-           'database')
+    = join(dirname(dirname(realpath(__file__))), 'database')
 
 ###############################################################################
 
@@ -33,7 +32,7 @@ class internal:
         file_name = [f for f in listdir(folder) if f.startswith('marginlist')]
         file_name.sort()
         self.margin = pd.read_excel(join(folder, file_name[-1]),
-                               index_col=[1])
+                               index_col=[1], engine='openpyxl')
         self.margin.drop(['No.', 'Tỷ lệ TSĐB KQ (%)',
                      'Tỷ lệ TSĐB TC (%)'],
                     axis=1, inplace=True)

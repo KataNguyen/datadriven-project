@@ -1,7 +1,6 @@
 from request_phs import *
 import scipy as sc
 from scipy import stats
-from os.path import join, dirname, realpath
 import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -14,12 +13,16 @@ plt.ioff()
 destination_dir \
     = join(dirname(realpath(__file__)), 'monte_carlo_result')
 
+q_upper = 0.95
+q_lower = 0
 
-def monte_carlo(ticker, days=66, alpha=0.05,
-                simulation=100000,
-                location=destination_dir):
+def monte_carlo(ticker:str, days=66, alpha=0.05,
+                simulation=100000, savefigure:bool=True,
+                fulloutput:bool=False):
 
     start_time = time.time()
+
+    global destination_dir
 
     def reformat_large_tick_values(tick_val, pos):
         """
@@ -72,15 +75,16 @@ def monte_carlo(ticker, days=66, alpha=0.05,
         ax1.text(0.7, 1.07, "Breakeven Price: "
                  +'{:,}'.format(int(breakeven_price)),
                  fontsize=6, transform=ax1.transAxes)
-        plt.savefig(join(location,f'{ticker}_result_1.png'),
-                    bbox_inches='tight')
+        if savefigure is True:
+            plt.savefig(join(destination_dir,f'{ticker}_result_1.png'),
+                        bbox_inches='tight')
 
         fig2, ax2 = plt.subplots(1, 2, figsize=(8, 5))
-        fig2.suptitle('Projected Stock Price: '+ticker)
+        fig2.suptitle('Projected Stock Price: ' + ticker)
         fig2.subplots_adjust(left=0.05, right=0.95, bottom=0.15,
                              top=0.9, wspace=0.15)
 
-        sns.histplot(price_last, ax=ax2[0], bins=100,
+        sns.histplot(last_price, ax=ax2[0], bins=100,
                      legend=False, color='darkblue', stat='density')
         ax2[0].set_xlabel('Stock Price')
         ax2[0].set_ylabel('Density')
@@ -95,7 +99,7 @@ def monte_carlo(ticker, days=66, alpha=0.05,
         ax2[0].xaxis.set_major_formatter(
             matplotlib.ticker.FuncFormatter(reformat_large_tick_values))
 
-        sns.ecdfplot(price_last, stat='proportion', ax=ax2[1],
+        sns.ecdfplot(last_price, stat='proportion', ax=ax2[1],
                      legend=False, color='black')
         ax2[1].set_xlabel('Stock Price')
         ax2[1].set_ylabel('Probability')
@@ -110,8 +114,9 @@ def monte_carlo(ticker, days=66, alpha=0.05,
         ax2[1].tick_params(axis='y', left=False, labelleft=False)
         ax2[1].xaxis.set_major_formatter(
             matplotlib.ticker.FuncFormatter(reformat_large_tick_values))
-        plt.savefig(join(location,f'{ticker}_result_2.png'),
-                         bbox_inches='tight')
+        if savefigure is True:
+            plt.savefig(join(destination_dir,f'{ticker}_result_2.png'),
+                             bbox_inches='tight')
         return
 
     # customize display for numpy and pandas
@@ -323,12 +328,12 @@ def monte_carlo(ticker, days=66, alpha=0.05,
         = pd.DataFrame(data=simulated_price,
                        columns=pro_days,
                        index=simulation_no).transpose()
-    price_last = df_simulated_price.iloc[-1, :]
+    last_price = df_simulated_price.iloc[-1, :]
     ubound = pd.DataFrame(df_simulated_price
-                          .quantile(q=0.95, axis=1,
+                          .quantile(q=q_upper, axis=1,
                                     interpolation='linear'))
     dbound = pd.DataFrame(df_simulated_price
-                          .quantile(q=0, axis=1,
+                          .quantile(q=q_lower, axis=1,
                                     interpolation='linear'))
     breakeven_price = dbound.min().iloc[0]
     connect_date = pd.date_range(df['trading_date'].max(),
@@ -341,5 +346,15 @@ def monte_carlo(ticker, days=66, alpha=0.05,
 
     print(f'Breakeven price of {ticker} is ' + str(breakeven_price))
     print("The execution time is: %s seconds" %(time.time()-start_time))
-    return breakeven_price
 
+    if fulloutput is False:
+        return breakeven_price
+    else:
+        input_ = dict()
+        input_['breakeven_price'] = breakeven_price
+        input_['historical_price'] = df_historical
+        input_['simulated_price'] = df_simulated_price.T
+        input_['last_price'] = last_price
+        input_['ubound'] = ubound
+        input_['dbound'] = dbound
+        return input_

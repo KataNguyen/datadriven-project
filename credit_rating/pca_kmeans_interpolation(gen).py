@@ -50,83 +50,82 @@ for i in range(len(inds)):
 index = pd.MultiIndex.from_tuples(inds, names=['year', 'quarter', 'fs'])
 col = pd.Index(quantities, name='quantity')
 
-df = pd.DataFrame(np.zeros((len(index), len(col))), columns=col, index=index)
+df = pd.DataFrame(columns=col, index=index)
 
 for year, quarter in period_tuple:
     for ticker in tickers:
         for quantity in quantities:
-            try:
-                if quantity == 'revenue':
-                    df.loc[(year, quarter, ticker), quantity] \
-                        = agg_data.loc[(year, quarter, ticker),
-                                       ('is', '3.')]
-                if quantity == 'cogs':
-                    df.loc[(year, quarter, ticker), quantity] \
-                        = -agg_data.loc[(year, quarter, ticker),
-                                        ('is', '4.')]
-                if quantity == 'gross_profit':
-                    df.loc[(year, quarter, ticker), quantity] \
-                        = agg_data.loc[(year, quarter, ticker),
-                                       ('is', '5.')]
-                if quantity == 'interest':
-                    df.loc[(year, quarter, ticker), quantity] \
-                        = -agg_data.loc[(year, quarter, ticker),
-                                        ('is', '7.1.')]
-                if quantity == 'pbt':
-                    df.loc[(year, quarter, ticker), quantity] \
-                        = agg_data.loc[(year, quarter, ticker),
-                                       ('is', '16.')]
-                if quantity == 'net_income':
-                    df.loc[(year, quarter, ticker), quantity] \
-                        = agg_data.loc[(year, quarter, ticker),
-                                       ('is','18.')]
-                if quantity == 'cur_asset':
-                    df.loc[(year, quarter, ticker), quantity] \
-                        = agg_data.loc[(year, quarter, ticker),
-                                       ('bs', 'A.I.')]
-                if quantity == 'cash':
-                    df.loc[(year, quarter, ticker), quantity] \
-                        = agg_data.loc[(year, quarter, ticker),
-                                       ('bs', 'A.I.1.')]
-                if quantity == 'ar':
-                    df.loc[(year, quarter, ticker), quantity] \
-                        = agg_data.loc[(year, quarter, ticker),
-                                       ('bs', 'A.I.3.')]
-                if quantity == 'inv':
-                    df.loc[(year, quarter, ticker), quantity] \
-                        = agg_data.loc[(year, quarter, ticker),
-                                       ('bs', 'A.I.4.')]
-                if quantity == 'ppe':
-                    df.loc[(year, quarter, ticker), quantity] \
-                        = agg_data.loc[(year, quarter, ticker),
-                                       ('bs', 'A.II.2.')]
-                if quantity == 'asset':
-                    df.loc[(year, quarter, ticker), quantity] \
-                        = agg_data.loc[(year, quarter, ticker),
-                                       ('bs', 'A.')]
-                if quantity == 'liability':
-                    df.loc[(year, quarter, ticker), quantity] \
-                        = agg_data.loc[(year, quarter, ticker),
-                                       ('bs', 'B.I.')]
-                if quantity == 'cur_liability':
-                    df.loc[(year, quarter, ticker), quantity] \
-                        = agg_data.loc[(year, quarter, ticker),
-                                       ('bs', 'B.I.1.')]
-                if quantity == 'lt_debt':
-                    df.loc[(year, quarter, ticker), quantity] \
-                        = agg_data.loc[(year, quarter, ticker),
-                                       ('bs', 'B.I.2.8.')]
-                if quantity == 'equity':
-                    df.loc[(year, quarter, ticker), quantity] \
-                        = agg_data.loc[(year, quarter, ticker),
-                                       ('bs', 'B.II.')]
-                else:
-                    pass
-            except KeyError:
-                continue
+            if quantity == 'revenue':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('is', '3.')]
+            elif quantity == 'cogs':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = -agg_data.loc[(year, quarter, ticker),
+                                    ('is', '4.')]
+            elif quantity == 'gross_profit':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('is', '5.')]
+            elif quantity == 'interest':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = -agg_data.loc[(year, quarter, ticker),
+                                    ('is', '7.1.')]
+            elif quantity == 'pbt':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('is', '16.')]
+            elif quantity == 'net_income':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('is','18.')]
+            elif quantity == 'cur_asset':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'A.I.')]
+            elif quantity == 'cash':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'A.I.1.')]
+            elif quantity == 'ar':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'A.I.3.')]
+            elif quantity == 'inv':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'A.I.4.')]
+            elif quantity == 'ppe':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'A.II.2.')]
+            elif quantity == 'asset':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'A.')]
+            elif quantity == 'liability':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'B.I.')]
+            elif quantity == 'cur_liability':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'B.I.1.')]
+            elif quantity == 'lt_debt':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'B.I.2.8.')]
+            elif quantity == 'equity':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'B.II.')]
+            else:
+                pass
 
-#del agg_data # for memory savings
 
+del agg_data # for memory savings
+
+df = df.loc[~(df==0).all(axis=1)]
 df['cur_ratio'] = df['cur_asset'] / df['cur_liability']
 df['quick_ratio'] = (df['cur_asset'] - df['inv']) / df['cur_liability']
 df['cash_ratio'] = df['cash'] / df['cur_liability']
@@ -140,21 +139,15 @@ df['gross_margin'] = df['gross_profit'] / df['revenue']
 df['net_margin'] = df['net_income'] / df['revenue']
 df['roe'] = df['net_income'] / df['equity']
 df['roa'] = df['net_income'] / df['asset']
+
+df['interest'] = df['interest'].replace(to_replace=0, value=1e3)
 df['ebit/int'] = (df['pbt'] + df['interest']) / df['interest']
 
 df = df.drop(columns=quantities)
 df.sort_index(axis=1, inplace=True)
 df.replace([np.inf, -np.inf], np.nan, inplace=True)
 
-quantities_new = [i for i in df.columns]
-
-for year, quarter in zip(years, quarters):
-    for ticker in tickers:
-        for quantity in quantities_new:
-            if df.loc[(year, quarter, ticker), quantity] \
-                    in [np.nan, np.inf, -np.inf] \
-                    or pd.isna(df.loc[(year, quarter, ticker), quantity]):
-                df.loc[(year, quarter, ticker), quantity] = np.nan
+quantities_new = df.columns.to_list()
 
 df.dropna(inplace=True, how='all')
 
@@ -195,19 +188,19 @@ for standard in standards:
 
     for level in sector_table[standard].columns:
         industry_list[(standard, level)] \
-            = sector_table[standard][level].drop_duplicates().tolist()
+            = sector_table[standard][level].drop_duplicates().to_list()
 
         for industry in industry_list[standard, level]:
             ticker_list[(standard, level, industry)] \
                 = sector_table[standard][level]\
                 .loc[sector_table[standard][level]==industry]\
-                .index.tolist()
+                .index.to_list()
 
             for year, quarter in zip(years, quarters):
+                # cross section
+                tickers = ticker_list[(standard, level, industry)]
                 try:
-                    df_xs = df.loc[(year, quarter, ticker_list[(standard,
-                                                                level,
-                                                                industry)]), :]
+                    df_xs = df.loc[(year, quarter, tickers), :]
                 except KeyError:
                     continue
                 df_xs.dropna(axis=0, how='any', inplace=True)
@@ -267,7 +260,7 @@ for standard in standards:
                                  init='k-means++',
                                  n_init=10,
                                  max_iter=1000,
-                                 tol=1e-9,
+                                 tol=1e-6,
                                  random_state=1)\
                         .fit(df_xs.dropna(axis=0, how='any'))
 
@@ -513,7 +506,7 @@ def graph_ticker(standard:str, level:int, ticker:str):
     ax.legend(loc='best', framealpha=5)
     ax.margins(tight=True)
     plt.subplots_adjust(left=0.15, bottom=0.1, right=0.95, top=0.9)
-    plt.savefig(join(destination_dir, 'newly-run', f'{ticker}_result.png'))
+    plt.savefig(join(destination_dir, f'{ticker}_result.png'))
 
 
 def graph_crash(benchmark:float, standard:str, level:int,
@@ -522,7 +515,7 @@ def graph_crash(benchmark:float, standard:str, level:int,
     for ticker in crash_list:
         try:
             graph_ticker(standard, level, ticker)
-            plt.savefig(join(destination_dir, 'newly-run',
+            plt.savefig(join(destination_dir,
                              f'crash_{period}_{ticker}_result.png'),
                         bbox_inches='tight')
         except KeyError:
@@ -540,7 +533,8 @@ def graph_all(standard:str, level:int):
 
 def export_result_table(file:str):
     global destination_dir
-    result_table.to_csv(join(destination_dir, 'newly-run', file))
+    global result_table
+    result_table.to_csv(join(destination_dir, file))
 
 
 def breakdown(ticker:str):
@@ -570,7 +564,7 @@ def breakdown(ticker:str):
                         top=0.95,
                         hspace=0.1)
     plt.xticks(rotation=45, fontfamily='Times New Roman', fontsize=11)
-    plt.savefig(join(destination_dir, 'newly-run', f'{ticker}_components'))
+    plt.savefig(join(destination_dir, f'{ticker}_components'))
 
 
 def breakdown_all(segment:str, exchange:str):
@@ -638,7 +632,7 @@ def compare_rs(tickers: list, standard: str, level: int):
 
     rs_file = join(dirname(realpath(__file__)), 'research_rating.xlsx')
     rs_rating = pd.read_excel(rs_file, sheet_name='summary',
-                              index_col='ticker')
+                              index_col='ticker', engine='openpyxl')
 
     def scoring(rating: str) -> int:
         mapping = {'AAA': 95, 'AA': 85, 'A': 77.5,
@@ -663,7 +657,7 @@ def compare_rs(tickers: list, standard: str, level: int):
                 rs_rating.iloc[i, j] = before + (after - before) / (k + 1)
 
     model_file = join(dirname(realpath(__file__)),
-                      'result', 'result_table(3centroids).csv')
+                      'result', 'result_table.csv')
     model_rating = pd.read_csv(model_file, index_col='ticker')
     model_rating \
         = model_rating.loc[model_rating['standard'] == standard]
@@ -730,23 +724,15 @@ def compare_rs(tickers: list, standard: str, level: int):
             ax.set_title(ticker + '\n' + "Comparison with Research's Rating",
                          fontsize=15, fontweight='bold', color='darkslategrey',
                          fontfamily='Times New Roman')
-            plt.savefig(join(destination_dir, 'newly-run',
-                             f'{ticker}_compare_rs.png'))
+            plt.savefig(join(destination_dir, f'{ticker}_compare_rs.png'))
         except KeyError:
             pass
-
-
-# Output results
-export_result_table('result_table(3centroids).csv')
-#graph_all('gics', 3)
-#graph_crash(-0.5, 'gics', 1, '2020q3', 'gen', 'HOSE')
-#breakdown_all('gen')
 
 
 def mlist_group(standard:str, level:int, year:int, quarter:int) -> dict:
 
     file = join(dirname(realpath(__file__)),
-                'result', 'result_table(3centroids).csv')
+                'result', 'result_table.csv')
     table = pd.read_csv(file, index_col='ticker')
 
     table = table.loc[table['standard'] == standard]
@@ -757,8 +743,9 @@ def mlist_group(standard:str, level:int, year:int, quarter:int) -> dict:
     mlist = internal.mlist('all')
     fin_tickers = fa.fin_tickers(False)
     ticker_list = [ticker for ticker in mlist if ticker not in fin_tickers]
-    model_tickers = table.index.to_list() # delete cai nay sau khi sua lai model
-    ticker_list = list(set(ticker_list).intersection(model_tickers)) # delete cai nay sau khi sua lai model
+    # some tickers in margin list do not have enough data to run K-Means
+    model_tickers = table.index.to_list()
+    ticker_list = list(set(ticker_list).intersection(model_tickers))
     series = series.loc[ticker_list]
 
     def f(score):
@@ -781,6 +768,13 @@ def mlist_group(standard:str, level:int, year:int, quarter:int) -> dict:
         d[group] = tickers
 
     return d
+
+
+# Output results
+export_result_table('result_table.csv')
+#graph_all('gics', 1)
+#graph_crash(-0.5, 'gics', 1, '2020q3', 'gen', 'HOSE')
+#breakdown_all('gen')
 
 
 execution_time = time.time() - start_time
