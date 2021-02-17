@@ -9,7 +9,7 @@ class post:
     def __init__(self):
         pass
 
-    def breakeven(self, tickers=None, exchanges=None) -> pd.DataFrame:
+    def breakeven(self, tickers:list=None, exchanges:list=None) -> pd.DataFrame:
 
         """
         This method post Monte Carlo model's results in breakeven_price
