@@ -91,8 +91,8 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
         ax2[0].axvline(breakeven_price, ls='--', linewidth=0.5,
                        color='red')
         ax2[0].text(breakeven_price*1.05, 0.85,
-                    'Breakeven Price:\n'+str(
-                        f"{round(breakeven_price):,d}"), fontsize=8,
+                    'Breakeven Price:\n' + f'{int(breakeven_price):,d}',
+                    fontsize=8,
                     transform=transforms.blended_transform_factory(
                         ax2[0].transData, ax2[0].transAxes))
         ax2[0].tick_params(axis='y', left=False, labelleft=False)
@@ -107,8 +107,8 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
         ax2[1].axvline(breakeven_price, ls='--', linewidth=0.5,
                        color='red')
         ax2[1].text(breakeven_price*1.05, 0.85,
-                    'Breakeven Price:\n'+str(
-                        f"{round(breakeven_price):,d}"), fontsize=8,
+                    'Breakeven Price:\n'+f'{int(breakeven_price):,d}',
+                    fontsize=8,
                     transform=transforms.blended_transform_factory(
                         ax2[0].transData, ax2[0].transAxes))
         ax2[1].tick_params(axis='y', left=False, labelleft=False)
@@ -351,10 +351,12 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
         return breakeven_price
     else:
         input_ = dict()
-        input_['breakeven_price'] = breakeven_price
-        input_['historical_price'] = df_historical
+        input_['breakeven_price'] = breakeven_price   # float
+        input_['historical_price'] \
+            = pd.DataFrame(df_historical['close'].to_numpy(),
+                           index=df_historical['trading_date'].to_numpy())
         input_['simulated_price'] = df_simulated_price.T
-        input_['last_price'] = last_price
-        input_['ubound'] = ubound
-        input_['dbound'] = dbound
+        input_['last_price'] = last_price.to_numpy()
+        input_['ubound'] = ubound   # pd.DataFrame
+        input_['dbound'] = dbound   # pd.DataFrame
         return input_

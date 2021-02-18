@@ -9,10 +9,7 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
     input_ = monte_carlo(ticker, savefigure=False, fulloutput=True)
     breakeven_price = input_['breakeven_price']
     historical_price = input_['historical_price']
-    simulated_price = input_['simulated_price']
     last_price = input_['last_price']
-    ubound = input_['ubound']
-    dbound = input_['dbound']
 
     # from credit rating
     credit_file = join(dirname(dirname(realpath(__file__))),
@@ -32,12 +29,16 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
         rating = 'C'
     elif score <= 75:
         rating = 'B'
-    else:
+    elif score <= 100:
         rating = 'A'
+    else:
+        rating = 'Unclassifiable' # might never happen
 
     # combine to produce maxprice
-    upper = np.quantile(last_price, q=0.99)
-    lower = np.quantile(last_price, q=0)
+    q_upper = 0.99
+    q_lower = 0
+    upper = np.quantile(last_price, q=q_upper)
+    lower = np.quantile(last_price, q=q_lower)
     last_price_truncated = last_price
     last_price_truncated = last_price_truncated[last_price_truncated >= lower]
     last_price_truncated = last_price_truncated[last_price_truncated <= upper]
@@ -64,6 +65,14 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
         new_tick_format = str(new_tick_format)
         return new_tick_format
 
+    def adjprice(price) -> str:
+        if price < 10000:
+            return f'{int(round(price,-1)):,d}'
+        elif 10000 <= price < 50000:
+            return f'{50*int(round(price/50)):,d}'
+        else:
+            return f'{int(round(price,-2)):,d}'
+
     def graph_maxprice():
 
         Acolor = 'green'
@@ -71,8 +80,10 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
         Ccolor = 'darkorange'
         Dcolor = 'firebrick'
 
-        fig, ax = plt.subplots(1, 2, figsize=(10, 6))
-        fig.suptitle('Projected Stock Price: ' + ticker)
+        fig, ax = plt.subplots(1, 2, figsize=(12, 6))
+        fig.suptitle('Max Price Analysis: ' + ticker, ha='center',
+                     fontweight='bold', color='darkslategrey',
+                     fontfamily='Arial', fontsize=17)
         fig.subplots_adjust(left=0.05, right=0.95, bottom=0.15,
                              top=0.9, wspace=0.15)
 
@@ -80,7 +91,7 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
                      legend=False, color='tab:blue', stat='density')
         sns.kdeplot(last_price, ax=ax[0])
 
-        y_upper = ax[0].get_ylim()[-1]*1.03
+        y_upper = ax[0].get_ylim()[1]*1.03
         y_lower = ax[0].get_ylim()[0]
         ax[0].set_ylim(y_lower, y_upper)
         ax[0].fill_betweenx([y_lower, y_upper], breakeven_price, price_25q,
@@ -94,20 +105,34 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
 
         ax[0].set_xlabel('Stock Price')
         ax[0].set_ylabel('Density')
-        ax[0].axvline(breakeven_price, ls='--', linewidth=0.5,
-                       color='red')
-        ax[0].text(breakeven_price*1.05, 0.9,
-                    'Breakeven Price:\n'+str(
-                        f"{round(breakeven_price):,d}"), fontsize=6,
-                    transform=transforms.blended_transform_factory(
-                        ax[0].transData, ax[0].transAxes))
-        ax[0].axvline(maxprice, ls='-', linewidth=3,
-                      color='green')
-        ax[0].text(maxprice * 1.05, 0.9,
-                   'Max Price:\n' + str(
-                       f"{round(maxprice):,d}"), fontsize=6,
-                   transform=transforms.blended_transform_factory(
-                       ax[0].transData, ax[0].transAxes))
+        ax[0].axvline(breakeven_price, ls='-', linewidth=2,
+                       color=Dcolor)
+        ax[0].annotate('Breakeven Price:\n' + f'{adjprice(breakeven_price)}',
+                       xy=(breakeven_price, 0.9),
+                       xycoords=transforms.blended_transform_factory(
+                           ax[0].transData, ax[0].transAxes),
+                       xytext=(3,0), # 3 pixels horizontal offset
+                       textcoords='offset pixels',
+                       ha='left', fontsize=7)
+
+        if score <= 25:
+            mpcolor = Dcolor
+        elif score <= 50:
+            mpcolor = Ccolor
+        elif score <= 75:
+            mpcolor = Bcolor
+        else:
+            mpcolor = Acolor
+
+        ax[0].axvline(maxprice, linestyle='-', linewidth=2,
+                      color=mpcolor)
+        ax[0].annotate('Max Price:\n' + f'{adjprice(maxprice)}',
+                       xy=(maxprice, 0.9),
+                       xycoords=transforms.blended_transform_factory(
+                           ax[0].transData, ax[0].transAxes),
+                       xytext=(3,0), # 3 pixels horizontal offset
+                       textcoords='offset pixels',
+                       ha='left', fontsize=7)
 
         ax[0].annotate('D',
                        xy=(np.mean([breakeven_price, price_25q]), 1.01),
@@ -132,47 +157,101 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
                            ax[0].transData, ax[0].transAxes),
                        ha='center', color=Acolor, fontsize=10)
 
-        ax[0].annotate(f"Reference Price: {historical_price['close'].iloc[-1]}",
-                       xy=(0.8, 0.9),
+        ax[0].annotate(f'Reference Price: '
+                       + f'{adjprice(historical_price.iloc[-1,-1])} \n'
+                       + f'{int((q_upper-q_lower)*100)}% Confidence Interval:\n'
+                       + f'{adjprice(breakeven_price)}' + ' - '
+                       + f'{adjprice(price_100q)} \n'
+                       + '------------------------- \n'
+                       + f'Credit Score: {score:.0f} \n'
+                       + f'Credit Rating: {rating} \n'
+                       + f'Breakeven Price: {adjprice(breakeven_price)} \n'
+                       + f'Max Price: {adjprice(maxprice)} \n'
+                       + f'Implied Margin Rate: '
+                       + f'{int(breakeven_price / maxprice * 100):,d}%',
+                       xy=(0.72, 0.95),
                        xycoords=ax[0].transAxes,
-                       ha='left', color=Acolor, fontsize=6)
-        ax[0].annotate(f"Credit Score: {score}",
-                       xy=(0.8, 0.85),
-                       xycoords=ax[0].transAxes,
-                       ha='left', color=Acolor, fontsize=6)
-        ax[0].annotate(f"Credit Rating: {rating}",
-                       xy=(0.8, 0.8),
-                       xycoords=ax[0].transAxes,
-                       ha='left', color=Acolor, fontsize=6)
-        ax[0].annotate("Implied Margin Rate: "
-                       + '{:.0f}'.format(breakeven_price/maxprice*100) + '%',
-                       xy=(0.8, 0.75),
-                       xycoords=ax[0].transAxes,
-                       ha='left', color=Acolor, fontsize=6)
+                       ha='left', va='top', color='black', fontsize=7)
 
         ax[0].tick_params(axis='y', left=False, labelleft=False)
         ax[0].xaxis.set_major_formatter(
             matplotlib.ticker.FuncFormatter(reformat_large_tick_values))
 
-
-
-
+        #===================================================
 
         sns.ecdfplot(last_price, stat='proportion', ax=ax[1],
                      legend=False, color='black')
+
         ax[1].set_xlabel('Stock Price')
         ax[1].set_ylabel('Probability')
-        # ax[1].axhline(0.01, ls='--', linewidth=0.5, color='red')
-        ax[1].axvline(breakeven_price, ls='--', linewidth=0.5,
-                       color='red')
-        ax[1].text(breakeven_price*1.05, 0.9,
-                   'Breakeven Price:\n'+str(
-                       f"{round(breakeven_price):,d}"), fontsize=8,
-                   transform=transforms.blended_transform_factory(
-                       ax[0].transData, ax[0].transAxes))
+
+        adjust_multiplier = 1.01
+        yrange = ax[1].get_ylim()
+        y_upper = yrange[1] * adjust_multiplier
+        y_lower = yrange[0]
+        ax[1].set_ylim(y_lower, y_upper)
+
+        ax[1].axvline(breakeven_price, ls='-', linewidth=2,
+                       color=Dcolor)
+
+        ax[1].axvline(maxprice, linestyle='-', linewidth=2,
+                      color=mpcolor)
+
+        def f(start:float, stop:float, array:np.array, num:int=100):
+            x_val = np.linspace(start, stop, 100)
+            y_val = np.array([np.sum(array<=x) for x in x_val]) \
+                             / len(array)
+            return x_val, y_val
+
+        def nearest(value:float, array:np.array):
+            distance = np.abs(array-value)
+            index = distance.argmin()
+            nearest_point = array[index]
+            return nearest_point
+
+        xy = f(breakeven_price, maxprice, last_price)
+        ax[1].fill_between(xy[0], 0, xy[1],
+                           color='tab:red', alpha=0.2)
+
+        downside_risk = xy[1][-1]
+        y_loc = downside_risk/4
+        x_loc = (xy[0][xy[1] == nearest(y_loc, xy[1])][0] +  maxprice)/2
+        ax[1].annotate(f'{round(downside_risk*100)}%',
+                       xy=(x_loc, y_loc),
+                       xycoords= ax[1].transData,
+                       ha='center', va='center', fontsize=10, color='tab:red',
+                       fontweight= 'bold')
+
+        xy = f(maxprice, last_price.max(), last_price)
+        ax[1].fill_between(xy[0], xy[1], 1*adjust_multiplier,
+                           color='tab:green', alpha=0.2)
+
+        upside_risk = 1 - downside_risk
+        y_loc = downside_risk + upside_risk*4/5
+        x_loc = (xy[0][xy[1] == nearest(y_loc, xy[1])][0] +  maxprice)/2
+        ax[1].annotate(f'{round(upside_risk*100)}%',
+                       xy=(x_loc, y_loc),
+                       xycoords= ax[1].transData,
+                       ha='center', va='center', fontsize=10, color='g',
+                       fontweight= 'bold')
+
+        ax[1].annotate(f'Downside Risk: {round(downside_risk*100)}% \n'
+                       + 'This risk measure the likelihood \n'
+                       + 'of maxprice\'s deterioration \n'
+                       + 'in response to altering credit score \n'
+                       + '-------------------------\n'
+                       + f'Upside Risk: {round(upside_risk*100)}% \n'
+                       + 'This risk measure the likelihood \n'
+                       + 'of maxprice\'s enhancement \n'
+                       + 'in response to altering credit score',
+                       xy=(0.62, 0.4),
+                       xycoords=ax[1].transAxes,
+                       ha='left', va='center', color='black', fontsize=7)
+
         ax[1].tick_params(axis='y', left=False, labelleft=False)
         ax[1].xaxis.set_major_formatter(
             matplotlib.ticker.FuncFormatter(reformat_large_tick_values))
+
         if savefigure is True:
             plt.savefig(join(destination_dir, f'{ticker}_maxprice.png'),
                         bbox_inches='tight')
