@@ -65,14 +65,6 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
         new_tick_format = str(new_tick_format)
         return new_tick_format
 
-    def adjprice(price) -> str:
-        if price < 10000:
-            return f'{int(round(price,-1)):,d}'
-        elif 10000 <= price < 50000:
-            return f'{50*int(round(price/50)):,d}'
-        else:
-            return f'{int(round(price,-2)):,d}'
-
     def graph_maxprice():
 
         Acolor = 'green'
@@ -198,7 +190,7 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
                       color=mpcolor)
 
         def f(start:float, stop:float, array:np.array, num:int=100):
-            x_val = np.linspace(start, stop, 100)
+            x_val = np.linspace(start, stop, num)
             y_val = np.array([np.sum(array<=x) for x in x_val]) \
                              / len(array)
             return x_val, y_val

@@ -251,6 +251,22 @@ for standard in standards:
                                                    quantity]
                                       - df_xs_min) / (df_xs_max-df_xs_min) * 2
 
+                    # PCA algorithm
+                    ## N: number of observations (tickers)
+                    ## n: number of features
+                    X = df_xs.values # (Nxn)
+                    cov_matrix = X.T.dot(X) / X.shape[0]
+                    cor_matrix = np.zeros_like(cov_matrix)
+                    for row in range(X.shape[0]):
+                        for col in range(X.shape[1]):
+                            cor_matrix[row,col] \
+                                = cov_matrix[row,col]/cov_matrix[row,row]**0.5/\
+                                  cov_matrix[col,col]**0.5
+
+
+
+
+
                     # Kmeans algorithm
                     kmeans.loc[(standard,
                                 standard+'_l'+str(level),

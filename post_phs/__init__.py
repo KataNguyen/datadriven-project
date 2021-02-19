@@ -37,15 +37,7 @@ class post:
         for ticker in tickers:
             try:
                 price = monte_carlo(ticker=ticker)
-                if price < 10000:
-                    breakeven_price[ticker] \
-                        = '{:.0f}'.format(round(price,-1))
-                elif 10000 <= price < 50000:
-                    breakeven_price[ticker] \
-                        = '{:.0f}'.format(50 * round(price/50))
-                else:
-                    breakeven_price[ticker] \
-                        = '{:.0f}'.format(round(price,-2))
+                breakeven_price[ticker] = adjprice(price)
             except (ValueError, KeyError, IndexError):
                 print(ticker + ' cannot be run by Monte Carlo')
                 pass

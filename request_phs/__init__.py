@@ -21,6 +21,27 @@ database_path \
 
 ###############################################################################
 
+
+def adjprice(price: Union[float, int]) -> str:
+
+    """
+    This method returns adjusted price for minimum price steps,
+    used for display only
+
+    :param price: stock price
+    :type price: float or int
+    """
+
+    if price < 10000:
+        price_string = f'{int(round(price, -1)):,d}'
+    elif 10000 <= price < 50000:
+        price_string = f'{50 * int(round(price/50)):,d}'
+    else:
+        price_string = f'{int(round(price, -2)):,d}'
+
+    return price_string
+
+
 class internal:
 
     database_path = globals()['database_path']

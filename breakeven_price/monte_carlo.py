@@ -56,25 +56,24 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
         ax1.xaxis.set_major_formatter(DateFormatter('%d/%m/%Y'))
         plt.xticks(rotation=15)
         ax1.axhline(breakeven_price, ls='--', linewidth=0.5, color='red')
-        ax1.text(df['trading_date']
-                 .iloc[int(max(-200, -df['trading_date'].count()))],
-                 breakeven_price*1.02,
-                 'Breakeven Price: '
-                 +str(f"{round(breakeven_price):,d}"),
-                 fontsize=7)
+        ax1.annotate('Breakeven Price: ' + adjprice(breakeven_price),
+                     xy=(0.8,breakeven_price),
+                     xycoords=transforms
+                     .blended_transform_factory(ax1.transAxes, ax1.transData),
+                     xytext=(0,-2), textcoords='offset pixels',
+                     ha='left', va='top', fontsize=7)
         ax1.yaxis\
             .set_major_formatter(matplotlib.ticker\
             .FuncFormatter(
             reformat_large_tick_values))
-
-        ax1.text(0.7, 1.01, "1% Worst case: "
-                 +'{:,}'.format(round((breakeven_price/price_t-1)*100, 2))
-                 +'%', fontsize=6, transform=ax1.transAxes)
-        ax1.text(0.7, 1.04, "Working days: "
-                 +'{}'.format(days), fontsize=6, transform=ax1.transAxes)
-        ax1.text(0.7, 1.07, "Breakeven Price: "
-                 +'{:,}'.format(int(breakeven_price)),
-                 fontsize=6, transform=ax1.transAxes)
+        ax1.annotate('Worst Case over \n'
+                     + f'{int(simulation):,d}' + ' Simulations: '
+                     + f'{round((breakeven_price/price_t-1)*100, 2):,} % \n'
+                     + 'Trading Days: ' + f'{days} \n'
+                     + 'Breakeven Price: ' + adjprice(breakeven_price),
+                     xy=(0.7, 1.01),
+                     xycoords=ax1.transAxes,
+                     ha='left', va='bottom', fontsize=6)
         if savefigure is True:
             plt.savefig(join(destination_dir,f'{ticker}_result_1.png'),
                         bbox_inches='tight')
@@ -90,11 +89,14 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
         ax2[0].set_ylabel('Density')
         ax2[0].axvline(breakeven_price, ls='--', linewidth=0.5,
                        color='red')
-        ax2[0].text(breakeven_price*1.05, 0.85,
-                    'Breakeven Price:\n' + f'{int(breakeven_price):,d}',
-                    fontsize=8,
-                    transform=transforms.blended_transform_factory(
-                        ax2[0].transData, ax2[0].transAxes))
+
+        ax2[0].annotate('Breakeven Price:\n' + adjprice(breakeven_price),
+                        xy=(breakeven_price,0.85),
+                        xycoords=transforms.blended_transform_factory\
+                            (ax2[0].transData,ax2[0].transAxes),
+                        xytext=(2,0), textcoords='offset pixels',
+                        ha='left', va='center', fontsize=8)
+
         ax2[0].tick_params(axis='y', left=False, labelleft=False)
         ax2[0].xaxis.set_major_formatter(
             matplotlib.ticker.FuncFormatter(reformat_large_tick_values))
@@ -106,11 +108,15 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
         # ax2[1].axhline(0.01, ls='--', linewidth=0.5, color='red')
         ax2[1].axvline(breakeven_price, ls='--', linewidth=0.5,
                        color='red')
-        ax2[1].text(breakeven_price*1.05, 0.85,
-                    'Breakeven Price:\n'+f'{int(breakeven_price):,d}',
-                    fontsize=8,
-                    transform=transforms.blended_transform_factory(
-                        ax2[0].transData, ax2[0].transAxes))
+
+        ax2[1].annotate('Breakeven Price:\n' + adjprice(breakeven_price),
+                        xy=(breakeven_price,0.85),
+                        xycoords=transforms
+                        .blended_transform_factory\
+                            (ax2[1].transData,ax2[1].transAxes),
+                        xytext=(2,0), textcoords='offset pixels',
+                        ha='left', va='center', fontsize=8)
+
         ax2[1].tick_params(axis='y', left=False, labelleft=False)
         ax2[1].xaxis.set_major_formatter(
             matplotlib.ticker.FuncFormatter(reformat_large_tick_values))
