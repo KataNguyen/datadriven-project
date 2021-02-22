@@ -435,6 +435,7 @@ for standard in standards:
 result_table = result_table.unstack(level=4)
 result_table.columns = result_table.columns.droplevel(0)
 
+#==============================================================================
 
 component_filename = 'component_talbe'
 def export_component_table():
@@ -553,7 +554,7 @@ def graph_all(standard:str, level:int):
 
 def breakdown(ticker:str):
     table = df.xs(ticker, axis=0, level=2)
-    num_quantities = len(quantities_new)
+    num_quantities = table.shape[1]
     fig = plt.subplots(num_quantities, 1,
                        figsize=(6,14), sharex=True)
     plt.suptitle(f'Raw Component Movement: {ticker}', x=0.52, ha='center',
@@ -561,15 +562,15 @@ def breakdown(ticker:str):
                  fontfamily='Times New Roman', fontsize=17)
     colors = plt.rcParams["axes.prop_cycle"]()
     for i in range(num_quantities):
-        yval = table[quantities_new[i]].values
-        while len(yval) < 11:
+        yval = table[table.columns[i]].values
+        while len(yval) < len(fa.periods):
             yval = np.insert(yval, 0, np.nan)
         fig[1][i].plot(periods, yval,
                        color=next(colors)["color"])
         fig[1][i].grid(True, which='both', axis='x', alpha=0.6)
         fig[1][i].margins(tight=True)
         fig[1][i].set_yticks([])
-        fig[1][i].set_ylabel(quantities_new[i], labelpad=1,
+        fig[1][i].set_ylabel(table.columns[i], labelpad=1,
                              ha='center', fontsize=8.5)
 
     plt.subplots_adjust(left=0.05,
@@ -578,7 +579,7 @@ def breakdown(ticker:str):
                         top=0.95,
                         hspace=0.1)
     plt.xticks(rotation=45, fontfamily='Times New Roman', fontsize=11)
-    plt.savefig(join(destination_dir,'breakdown', f'{ticker}_components'))
+    plt.savefig(join(destination_dir, f'{ticker}_components'))
 
 
 def breakdown_all(segment:str, exchange:str):
@@ -598,7 +599,13 @@ def compare_industry(ticker:str, standard:str, level:int):
     table.dropna(axis=0, how='all', inplace=True)
 
     median = table.groupby(axis=0, level=[0,1]).median()
-    quantities = table.xs(ticker, axis=0, level=2)
+    # to avoid cases of missing data right at the first period, result in mis-shaped
+    quantities = pd.DataFrame(np.zeros_like(median),
+                              index=median.index,
+                              columns=median.columns)
+    ref_table = table.xs(ticker, axis=0, level=2)
+    quantities = pd.concat([quantities, ref_table], axis=0)
+    quantities = quantities.groupby(level=[0,1], axis=0).sum()
 
     comparison = pd.concat([quantities, median], axis=1, join='outer',
                            keys=[ticker, 'median'])
@@ -614,7 +621,7 @@ def compare_industry(ticker:str, standard:str, level:int):
     for row in range(3):
         for col in range(5):
             w = 0.35
-            l = np.arange(11)  # the label locations
+            l = np.arange(len(periods))  # the label locations
             if variables[row,col] is None:
                 ax[row, col].axis('off')
             else:
@@ -638,8 +645,7 @@ def compare_industry(ticker:str, standard:str, level:int):
     fig.legend(handles, labels, loc='upper left',
                bbox_to_anchor=(0.01, 0.98), ncol=2, fontsize=9,
                markerscale=0.7)
-
-    plt.show()
+    plt.savefig(join(destination_dir, f'{ticker}_compare_industry.png'))
 
 
 def compare_rs(tickers: list, standard: str, level: int):
@@ -667,8 +673,8 @@ def compare_rs(tickers: list, standard: str, level: int):
             if not np.isnan(before) and np.isnan(rs_rating.iloc[i, j]):
                 while np.isnan(after):
                     k += 1
-                    after = rs_rating.iloc[i, j + k]
-                rs_rating.iloc[i, j] = before + (after - before) / (k + 1)
+                    after = rs_rating.iloc[i, j+k]
+                rs_rating.iloc[i, j] = before + (after-before)/(k+1)
 
     model_file = join(dirname(realpath(__file__)),
                       'result', 'result_table.csv')
@@ -685,7 +691,7 @@ def compare_rs(tickers: list, standard: str, level: int):
             fig, ax = plt.subplots(1, 1, figsize=(8, 6))
             periods = [q for q in model_rating.columns]
             w = 0.35
-            xloc = np.arange(11)  # the label locations
+            xloc = np.arange(len(periods))  # the label locations
             ax.bar(xloc - w / 2, model_rating.loc[ticker, :],
                    width=w, label='K-Means',
                    color='tab:blue', edgecolor='black')
@@ -740,7 +746,7 @@ def compare_rs(tickers: list, standard: str, level: int):
                          fontfamily='Times New Roman')
             plt.savefig(join(destination_dir, f'{ticker}_compare_rs.png'))
         except KeyError:
-            pass
+            print(f'{ticker} has KeyError')
 
 
 def mlist_group(standard:str, level:int, year:int, quarter:int) -> dict:

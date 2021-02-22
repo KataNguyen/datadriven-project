@@ -206,16 +206,19 @@ class fa:
                           if isfile(join(self.database_path, folder, file))]
 
             for file in file_names:
-                excel = Dispatch("Excel.Application")
-                excel.Visible = True
-                excel.Workbooks.Open(os.path.join(self.database_path,
-                                                  folder, file))
-                time.sleep(3)  # suspend 3 secs for excel to catch up python
-                excel.Range("A1:XFD1048576").Select()
-                excel.Selection.Copy()
-                excel.Selection.PasteSpecial(Paste=-4163)
-                excel.ActiveWorkbook.Save()
-                excel.ActiveWorkbook.Close()
+                if file.startswith('~'):
+                    pass
+                else:
+                    excel = Dispatch("Excel.Application")
+                    excel.Visible = True
+                    excel.Workbooks.Open(os.path.join(self.database_path,
+                                                      folder, file))
+                    time.sleep(3)  # suspend 3 secs for excel to catch up python
+                    excel.Range("A1:XFD1048576").Select()
+                    excel.Selection.Copy()
+                    excel.Selection.PasteSpecial(Paste=-4163)
+                    excel.ActiveWorkbook.Save()
+                    excel.ActiveWorkbook.Close()
 
 
     def fin_tickers(self, sector_break:bool=False) \

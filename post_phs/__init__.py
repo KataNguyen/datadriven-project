@@ -37,7 +37,7 @@ class post:
         for ticker in tickers:
             try:
                 price = monte_carlo(ticker=ticker)
-                breakeven_price[ticker] = adjprice(price)
+                breakeven_price[ticker] = int(adjprice(price).replace(',',''))
             except (ValueError, KeyError, IndexError):
                 print(ticker + ' cannot be run by Monte Carlo')
                 pass
