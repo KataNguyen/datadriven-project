@@ -25,22 +25,13 @@ pd.set_option("display.max_rows", sys.maxsize,
               'display.expand_frame_repr', True)
 pd.options.mode.chained_assignment = None
 
-agg_data = fa.all('bank')  #################### expensive
+agg_data = fa.all('ins')  #################### expensive
 
-quantities = ['int_income', 'placement', 'trading_sec', 'loans',
-              'avaisale_sec', 'held_inv',
-              'net_income', 'asset', 'equity'
-              'substd', 'doubt', 'bad',
-              'provision',
-              'cash', 'balance_sbv', 'liability',
-              'deposit',
-              'equity',
-              'int_exp', 'feecommision_exp', 'other_exp' , 'ga_exp',
-              'int_income', 'feecomision_income', 'gainloss_forgn',
-              'gainloss_trading', 'gainloss_invst', 'other_income', 'dividend_income']
+quantities = ['ca', 'cl', 'cash', 'lib', 'asset', 'lt_loans', 'equity',
+              'gprofit_ins', 'revenue_ins', 'net_income']
 
 periods = fa.periods
-tickers = fa.tickers('bank')
+tickers = fa.tickers('ins')
 
 years = list()
 quarters = list()
@@ -62,43 +53,43 @@ df = pd.DataFrame(columns=col, index=index)
 for year, quarter in period_tuple:
     for ticker in tickers:
         for quantity in quantities:
-            if quantity == 'int_income':
-                df.loc[(year, quarter, ticker), quantity] \
-                    = agg_data.loc[(year, quarter, ticker),
-                                   ('is', '1.')]
-            elif quantity == 'placement':
-                df.loc[(year, quarter, ticker), quantity] \
-                    = -agg_data.loc[(year, quarter, ticker),
-                                    ('bs', 'A.I.3.1.')]
-            elif quantity == 'trading_sec':
-                df.loc[(year, quarter, ticker), quantity] \
-                    = agg_data.loc[(year, quarter, ticker),
-                                   ('bs', 'A.I.4.')]
-            elif quantity == 'loans':
-                df.loc[(year, quarter, ticker), quantity] \
-                    = -agg_data.loc[(year, quarter, ticker),
-                                    ('bs', 'A.I.6.')]
-            elif quantity == 'avaisale_sec':
-                df.loc[(year, quarter, ticker), quantity] \
-                    = agg_data.loc[(year, quarter, ticker),
-                                   ('bs', 'A.I.8.1.')]
-            elif quantity == 'held_inv':
-                df.loc[(year, quarter, ticker), quantity] \
-                    = agg_data.loc[(year, quarter, ticker),
-                                   ('bs','A.I.8.2.')]
-            elif quantity == 'net_income':
-                df.loc[(year, quarter, ticker), quantity] \
-                    = agg_data.loc[(year, quarter, ticker),
-                                   ('is', '14.')]
-            elif quantity == 'asset':
+            if quantity == 'ca':
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
                                    ('bs', 'A.I.')]
-            elif quantity == 'equity':
+            elif quantity == 'cl':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = -agg_data.loc[(year, quarter, ticker),
+                                    ('bs', 'B.I.1.')]
+            elif quantity == 'cash':
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
-                                   ('bs', 'B.II.')]
-            elif quantity == 'substd':
+                                   ('bs', 'A.I.1.')]
+            elif quantity == 'lib':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = -agg_data.loc[(year, quarter, ticker),
+                                    ('is', '7.1.')]
+            elif quantity == 'pbt':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('is', '16.')]
+            elif quantity == 'net_income':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('is','18.')]
+            elif quantity == 'cur_asset':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'A.I.')]
+            elif quantity == 'cash':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'A.I.1.')]
+            elif quantity == 'ar':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'A.I.3.')]
+            elif quantity == 'inv':
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
                                    ('bs', 'A.I.4.')]

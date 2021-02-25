@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
-      <change afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(bank).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_01_2021_12_59_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_01_2021_12_59_PM__Default_Changelist_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(ins).py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/Standard and Formula Rating Q4.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/Standard and Formula Rating Q4.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guideline/placement" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/renamedata/Placement" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(bank).py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(bank).py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,11 +181,11 @@
     </configuration>
     <list>
       <item itemvalue="Python.request_data" />
-      <item itemvalue="Python.__init__" />
+      <item itemvalue="Python.vgc" />
       <item itemvalue="Python.maxprice" />
       <item itemvalue="Python.monte_carlo" />
       <item itemvalue="Python.pca_kmeans_interpolation(gen)" />
-      <item itemvalue="Python.vgc" />
+      <item itemvalue="Python.__init__" />
     </list>
     <recent_temporary>
       <list>
@@ -489,7 +486,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613994655995</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="post_breakeven_price">
+      <created>1614162442609</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1614162442609</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
