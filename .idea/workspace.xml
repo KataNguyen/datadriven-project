@@ -5,46 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group A/Securities/A_list.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group A/Securities/Compare with Industry Average/VIX_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group A/Securities/Compare with Research Rating/VIX_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group B/Securities/B_list.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group B/Securities/Compare with Industry Average/APG_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group B/Securities/Compare with Industry Average/EVS_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group B/Securities/Compare with Industry Average/SHS_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group B/Securities/Compare with Industry Average/TVS_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group B/Securities/Compare with Research Rating/APG_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group B/Securities/Compare with Research Rating/EVS_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group B/Securities/Compare with Research Rating/SHS_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group B/Securities/Compare with Research Rating/TVS_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/C_list.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Industry Average/BSI_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Industry Average/BVS_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Industry Average/CTS_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Industry Average/FTS_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Industry Average/HCM_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Industry Average/MBS_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Industry Average/SSI_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Industry Average/TVB_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Industry Average/VCI_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Industry Average/VDS_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Industry Average/VND_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Research Rating/BSI_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Research Rating/BVS_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Research Rating/CTS_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Research Rating/FTS_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Research Rating/HCM_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Research Rating/MBS_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Research Rating/SSI_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Research Rating/TVB_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Research Rating/VCI_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Research Rating/VDS_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group C/Securities/Compare with Research Rating/VND_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Group D/Securities/D_list.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/mlist_sec.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/Standard and Formula Rating Q4.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/Standard and Formula Rating Q4.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(sec).py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(sec).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen)_exp.py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen)_exp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +72,7 @@
       <recent name="C:\Users\Admin\PycharmProjects\datadriven-project\credit_rating" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.pca_kmeans_interpolation(sec)">
+  <component name="RunManager" selected="Python.pca_kmeans_interpolation(gen)_exp">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -150,19 +112,16 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pca_kmeans_interpolation(gen)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="pca_kmeans_interpolation(gen)_exp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/credit_rating" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen).py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen)_exp.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -210,18 +169,18 @@
     <list>
       <item itemvalue="Python.request_data" />
       <item itemvalue="Python.maxprice" />
-      <item itemvalue="Python.pca_kmeans_interpolation(gen)" />
       <item itemvalue="Python.__init__" />
       <item itemvalue="Python.pca_kmeans_interpolation(ins)" />
       <item itemvalue="Python.pca_kmeans_interpolation(sec)" />
+      <item itemvalue="Python.pca_kmeans_interpolation(gen)_exp" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.pca_kmeans_interpolation(sec)" />
-        <item itemvalue="Python.__init__" />
-        <item itemvalue="Python.pca_kmeans_interpolation(ins)" />
-        <item itemvalue="Python.maxprice" />
-        <item itemvalue="Python.pca_kmeans_interpolation(gen)" />
+        <item itemvalue="Python.pca_kmeans_interpolation(gen)_exp" />
+        <item itemvalue="Python.pca_kmeans_interpolation(gen)_exp" />
+        <item itemvalue="Python.pca_kmeans_interpolation(gen)_exp" />
+        <item itemvalue="Python.pca_kmeans_interpolation(gen)_exp" />
+        <item itemvalue="Python.pca_kmeans_interpolation(gen)_exp" />
       </list>
     </recent_temporary>
   </component>
@@ -542,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614305270436</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="post_breakeven_price">
+      <created>1614322487313</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1614322487313</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

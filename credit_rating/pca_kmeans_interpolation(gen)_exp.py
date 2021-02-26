@@ -2,6 +2,7 @@ from request_phs import *
 from sklearn.cluster import KMeans
 from scipy.stats import rankdata
 from scipy.interpolate import interp1d
+from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import matplotlib
 from os.path import dirname, realpath
@@ -151,10 +152,6 @@ quantities_new = df.columns.to_list()
 
 df.dropna(inplace=True, how='all')
 
-sector_table = dict()
-industry_list = dict()
-ticker_list = dict()
-
 ind_standards = list()
 ind_levels = list()
 ind_names = list()
@@ -170,11 +167,17 @@ kmeans_index = pd.MultiIndex.from_arrays([ind_standards,
                                          names=['standard',
                                                 'level',
                                                 'industry'])
+
+benmrks = pd.DataFrame(index = kmeans_index, columns = periods)
 kmeans = pd.DataFrame(index = kmeans_index, columns = periods)
 labels = pd.DataFrame(index = kmeans_index, columns = periods)
 centers = pd.DataFrame(index = kmeans_index, columns = periods)
 kmeans_tickers = pd.DataFrame(index = kmeans_index, columns = periods)
 kmeans_coord = pd.DataFrame(index = kmeans_index, columns = periods)
+
+sector_table = dict()
+industry_list = dict()
+ticker_list = dict()
 
 # sector_table['standard_name'] -> return: DataFrame (Full table)
 # industry_list[('standard_name', level)] -> return: list (all classification)
@@ -216,19 +219,26 @@ for standard in standards:
                         = None
                 else:
                     for quantity in quantities_new:
+
                         # remove outliers (Interquartile Range Method)
                         ## (have to ensure symmetry)
                         df_xs_median = df_xs.loc[:, quantity].median()
                         df_xs_75q = df_xs.loc[:, quantity].quantile(q=0.75)
                         df_xs_25q = df_xs.loc[:, quantity].quantile(q=0.25)
-                        cut_off = (df_xs_75q - df_xs_25q) * 1.5
-                        for ticker in df_xs.index.get_level_values(2):
-                            df_xs.loc[(year,quarter,ticker), quantity] \
-                                = max(df_xs.loc[(year,quarter,ticker),
-                                                quantity], df_xs_25q-cut_off)
-                            df_xs.loc[(year,quarter,ticker), quantity] \
-                                = min(df_xs.loc[(year,quarter,ticker),
-                                                quantity], df_xs_75q+cut_off)
+                        # deal with rare cases in which most tickers = 0, few != 0
+                        if df_xs_75q == df_xs_25q == 0:
+                            pass
+                        else:
+                            cut_off = (df_xs_75q - df_xs_25q) * 1.5
+                            for ticker in df_xs.index.get_level_values(2):
+                                df_xs.loc[(year,quarter,ticker), quantity] \
+                                    = max(df_xs.loc[(year,quarter,ticker),
+                                                    quantity],
+                                          df_xs_25q-cut_off)
+                                df_xs.loc[(year,quarter,ticker), quantity] \
+                                    = min(df_xs.loc[(year,quarter,ticker),
+                                                    quantity],
+                                          df_xs_75q+cut_off)
 
                         # standardize to mean=0
                         df_xs_mean = df_xs.loc[:, quantity].mean()
@@ -252,26 +262,29 @@ for standard in standards:
                                       - df_xs_min) / (df_xs_max-df_xs_min) * 2
 
                     # PCA algorithm
-                    ## N: number of observations (tickers)
-                    ## n: number of features
-                    X = df_xs.values # (Nxn)
-                    cov_matrix = X.T.dot(X) / X.shape[0]
-                    cor_matrix = np.zeros_like(cov_matrix)
-                    for row in range(X.shape[0]):
-                        for col in range(X.shape[1]):
-                            cor_matrix[row,col] \
-                                = cov_matrix[row,col]/cov_matrix[row,row]**0.5/\
-                                  cov_matrix[col,col]**0.5
+                    X = df_xs.values
+                    benmrk_vector \
+                        = np.array([-1 for n in range(df_xs.shape[1])])
+                    benmrk_vector \
+                        = benmrk_vector.reshape((1, benmrk_vector.shape[0]))
+                    X = np.append(benmrk_vector, X, axis=0)
+                    PCs = PCA(n_components=0.9).fit_transform(X)
 
+                    idx = df_xs.index.to_list()
+                    idx = idx.insert(0, (year, quarter, 'BM_'))
+                    cols = ['PC_'+str(i+1) for i in range(PCs.shape[1])]
+                    df_xs = pd.DataFrame(PCs, index=idx, columns=cols)
 
-
-
+                    benmrks.loc[(standard,
+                                standard+'_l'+str(level),
+                                industry),
+                                str(year) + 'q' + str(quarter)] = PCs[0]
 
                     # Kmeans algorithm
                     kmeans.loc[(standard,
                                 standard+'_l'+str(level),
                                 industry),
-                               str(year) + 'q' + str(quarter)] \
+                                str(year) + 'q' + str(quarter)] \
                         = KMeans(n_clusters=centroids,
                                  init='k-means++',
                                  n_init=10,
@@ -283,8 +296,7 @@ for standard in standards:
                     kmeans_tickers.loc[(standard,
                                         standard + '_l' + str(level),
                                         industry),
-                                       str(year) + 'q' + str(quarter)] \
-                        = df_xs.index.get_level_values(2).tolist()
+                                       str(year) + 'q' + str(quarter)] = idx
 
                     kmeans_coord.loc[(standard, standard + '_l' + str(level),
                                      industry),
@@ -323,7 +335,8 @@ for row in range(centers.shape[0]):
             for center in range(centroids):
                 # origin at (-1,-1,-1,...) whose dimension varies by PCA
                 distance[center] = ((np.array(centers.iloc[row,col][center])
-                                     - (-1))**2).sum()**(1/2)
+                                     - np.array(benmrks.iloc[row,col]))
+                                    **2).sum()**(1/2)
             radius_centers.iloc[row,col] = distance
 
 center_scores = pd.DataFrame(index=kmeans_index, columns=periods)
@@ -348,22 +361,10 @@ for row in range(labels.shape[0]):
         else:
             distance = np.zeros(len(labels.iloc[row,col]))
             for ticker in range(len(labels.iloc[row,col])):
-                # origin at (-1,-1,-1,...) whose dimension varies by PCA
                 distance[ticker] \
                     = (((np.array(kmeans_coord.iloc[row,col][ticker]))
-                        - (-1))**2).sum()**(1/2)
+                        - np.array(benmrks.iloc[row,col]))**2).sum()**(1/2)
             radius_tickers.iloc[row,col] = distance
-
-ticker_raw_scores = pd.DataFrame(index=kmeans_index, columns=periods)#not used
-for row in range(labels.shape[0]):
-    for col in range(labels.shape[1]):
-        if labels.iloc[row,col] is None:
-            ticker_raw_scores.iloc[row,col] = None
-        else:
-            raw = np.zeros(len(labels.iloc[row,col]))
-            for n in range(len(labels.iloc[row,col])):
-                raw[n] = center_scores.iloc[row,col][labels.iloc[row,col][n]]
-            ticker_raw_scores.iloc[row,col] = raw
 
 ticker_scores = pd.DataFrame(index=kmeans_index, columns=periods)
 for row in range(radius_tickers.shape[0]):
@@ -462,7 +463,7 @@ export_component_table()
 df = pd.read_csv(join(destination_dir, component_filename+'.csv'),
                  index_col=['year','quarter','ticker'])
 
-result_filename = 'result_table'
+result_filename = 'result_table_gen(pca)'
 def export_result_table():
     global destination_dir
     global result_table
@@ -660,6 +661,7 @@ def compare_industry(ticker:str, standard:str, level:int):
 
 def compare_rs(tickers: list, standard: str, level: int):
 
+    global result_filename
     rs_file = join(dirname(realpath(__file__)), 'research_rating.xlsx')
     rs_rating = pd.read_excel(rs_file, sheet_name='summary',
                               index_col='ticker', engine='openpyxl')
@@ -687,7 +689,7 @@ def compare_rs(tickers: list, standard: str, level: int):
                 rs_rating.iloc[i, j] = before + (after - before) / (k + 1)
 
     model_file = join(dirname(realpath(__file__)),
-                      'result', 'result_table.csv')
+                      'result', result_filename+'.csv')
     model_rating = pd.read_csv(model_file, index_col='ticker')
     model_rating \
         = model_rating.loc[model_rating['standard'] == standard]
@@ -761,8 +763,9 @@ def compare_rs(tickers: list, standard: str, level: int):
 
 def mlist_group(standard:str, level:int, year:int, quarter:int) -> dict:
 
+    global result_filename
     file = join(dirname(realpath(__file__)),
-                'result', 'result_table.csv')
+                'result', result_filename+'.csv')
     table = pd.read_csv(file, index_col='ticker')
 
     table = table.loc[table['standard'] == standard]
