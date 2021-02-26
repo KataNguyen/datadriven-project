@@ -296,7 +296,8 @@ for standard in standards:
                     kmeans_tickers.loc[(standard,
                                         standard + '_l' + str(level),
                                         industry),
-                                       str(year) + 'q' + str(quarter)] = idx
+                                       str(year) + 'q' + str(quarter)] \
+                        = df_xs.index.get_level_values(2).to_list()
 
                     kmeans_coord.loc[(standard, standard + '_l' + str(level),
                                      industry),
