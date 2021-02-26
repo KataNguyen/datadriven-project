@@ -27,7 +27,7 @@ pd.options.mode.chained_assignment = None
 
 agg_data = fa.all('sec')  #################### expensive
 
-quantities = ['ca', 'cl', 'cash', 'revenue', 'cogs', 'inv', 'ar', 'fixed_asset',
+quantities = ['ca', 'cl', 'cash', 'revenue', 'cogs', 'ar', 'fixed_asset',
               'lib', 'asset', 'gprofit', 'net_income', 'equity']
 
 periods = fa.periods
@@ -64,35 +64,43 @@ for year, quarter in period_tuple:
             elif quantity == 'cash':
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
-                                   ('bs', 'A.I.1.')]
+                                   ('bs', 'A.I.1.1.')]
+            elif quantity == 'revenue':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                    ('is', '3.')]
+            elif quantity == 'cogs':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = -agg_data.loc[(year, quarter, ticker),
+                                    ('is', '4.')]
+            elif quantity == 'ar':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'A.I.1.3.')]
+            elif quantity == 'fixed_asset':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'A.II.2.')]
             elif quantity == 'lib':
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
-                                    ('bs', 'B.I.')]
+                                   ('bs', 'B.I.')]
             elif quantity == 'asset':
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
                                    ('bs', 'A.')]
-            elif quantity == 'lt_loans':
+            elif quantity == 'gprofit':
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
-                                   ('bs','B.I.3.7.')]
+                                   ('is', '5.')]
+            elif quantity == 'net_income':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('is', '17.')]
             elif quantity == 'equity':
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
                                    ('bs', 'B.II.')]
-            elif quantity == 'gprofit_ins':
-                df.loc[(year, quarter, ticker), quantity] \
-                    = agg_data.loc[(year, quarter, ticker),
-                                   ('is', '17.')]
-            elif quantity == 'revenue_ins':
-                df.loc[(year, quarter, ticker), quantity] \
-                    = agg_data.loc[(year, quarter, ticker),
-                                   ('is', '6.')]
-            elif quantity == 'net_income':
-                df.loc[(year, quarter, ticker), quantity] \
-                    = agg_data.loc[(year, quarter, ticker),
-                                   ('is', '31.')]
             else:
                 pass
 
@@ -102,12 +110,32 @@ del agg_data # for memory savings
 df = df.loc[~(df==0).all(axis=1)]
 df['cur_ratio'] = df['ca'] / df['cl']
 df['cash_ratio'] = df['cash'] / df['cl']
-df['(-)lib/asset'] = -df['lib'] / df['asset']
-df['(-)lt_loans/equity'] = -df['lt_loans'] / df['equity']
-df['gross_margin'] = df['gprofit_ins'] / df['revenue_ins']
-df['net_margin'] = df['net_income'] / df['revenue_ins']
+df['ar_turnover'] = df['revenue'] / df['ar']
+df['fixed_turnover'] = df['revenue'] / df['fixed_asset']
+df['(-)debt/asset'] = -df['lib'] / df['asset']
 df['roe'] = df['net_income'] / df['equity']
 df['roa'] = df['net_income'] / df['asset']
+
+# handle negative revenue, return negative quantities_new
+df['np_margin'] = np.nan
+df['gp_margin'] = np.nan
+df['wc_turnover'] = np.nan
+for row in range(df.shape[0]):
+    if df['revenue'].iloc[row]>0:
+        df['np_margin'].iloc[row] \
+            = df['net_income'].iloc[row]/df['revenue'].iloc[row]
+        df['gp_margin'].iloc[row] \
+            = df['gprofit'].iloc[row] / df['revenue'].iloc[row]
+        df['wc_turnover'].iloc[row] \
+            = df['revenue'].iloc[row]/(df['ca'].iloc[row]-df['cl'].iloc[row])
+    else:
+        df['np_margin'].iloc[row] \
+            = -df['net_income'].iloc[row] / df['revenue'].iloc[row] # net_income must also < 0
+        df['gp_margin'].iloc[row] \
+            = -df['gprofit'].iloc[row] / df['revenue'].iloc[row] # gprofit must also < 0
+        df['wc_turnover'].iloc[row] \
+            = df['revenue'].iloc[row]/(np.abs(df['ca'].iloc[row]-df['cl'].iloc[row]))
+        # equivalent to 2 if phrases
 
 df = df.drop(columns=quantities)
 df.sort_index(axis=1, inplace=True)
@@ -439,14 +467,15 @@ def compare_industry(ticker:str):
     comparison = pd.concat([quantities, median], axis=1, join='outer',
                            keys=[ticker, 'median'])
 
-    fig, ax = plt.subplots(2, 4, figsize=(18,6),
+    fig, ax = plt.subplots(3, 4, figsize=(18,8),
                            tight_layout=True)
 
     periods = [str(q[0]) + 'q' + str(q[1]) for q in comparison.index]
     variables \
         = comparison.columns.get_level_values(1).drop_duplicates().to_numpy()
-    variables = np.reshape(variables, (2,4))
-    for row in range(2):
+    variables = np.append(variables, [None, None])
+    variables = np.reshape(variables, (3,4))
+    for row in range(3):
         for col in range(4):
             w = 0.35
             l = np.arange(len(periods))  # the label locations
