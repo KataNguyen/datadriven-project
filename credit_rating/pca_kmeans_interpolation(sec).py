@@ -25,13 +25,13 @@ pd.set_option("display.max_rows", sys.maxsize,
               'display.expand_frame_repr', True)
 pd.options.mode.chained_assignment = None
 
-agg_data = fa.all('ins')  #################### expensive
+agg_data = fa.all('sec')  #################### expensive
 
-quantities = ['ca', 'cl', 'cash', 'lib', 'asset', 'lt_loans', 'equity',
-              'gprofit_ins', 'revenue_ins', 'net_income']
+quantities = ['ca', 'cl', 'cash', 'revenue', 'cogs', 'inv', 'ar', 'fixed_asset',
+              'lib', 'asset', 'gprofit', 'net_income', 'equity']
 
 periods = fa.periods
-tickers = fa.tickers('ins')
+tickers = fa.tickers('sec')
 
 years = list()
 quarters = list()
@@ -117,7 +117,7 @@ quantities_new = df.columns.to_list()
 
 df.dropna(inplace=True, how='all')
 
-kmeans_index = pd.Index(['insurance'])
+kmeans_index = pd.Index(['securities'])
 kmeans = pd.DataFrame(index = kmeans_index, columns = periods)
 labels = pd.DataFrame(index = kmeans_index, columns = periods)
 centers = pd.DataFrame(index = kmeans_index, columns = periods)
@@ -126,7 +126,7 @@ kmeans_coord = pd.DataFrame(index = kmeans_index, columns = periods)
 
 for year, quarter in zip(years, quarters):
     # cross section
-    tickers = fa.fin_tickers(True)['ins']
+    tickers = fa.fin_tickers(True)['sec']
     try:
         df_xs = df.loc[(year, quarter, tickers), :]
     except KeyError:
@@ -170,7 +170,7 @@ for year, quarter in zip(years, quarters):
                       - df_xs_min) / (df_xs_max-df_xs_min) * 2
 
     # Kmeans algorithm
-    kmeans.loc['insurance', str(year) + 'q' + str(quarter)] \
+    kmeans.loc['securities', str(year) + 'q' + str(quarter)] \
         = KMeans(n_clusters=centroids,
                  init='k-means++',
                  n_init=10,
@@ -179,17 +179,17 @@ for year, quarter in zip(years, quarters):
                  random_state=1)\
         .fit(df_xs.dropna(axis=0, how='any'))
 
-    kmeans_tickers.loc['insurance', str(year) + 'q' + str(quarter)] \
+    kmeans_tickers.loc['securities', str(year) + 'q' + str(quarter)] \
         = df_xs.index.get_level_values(2).tolist()
 
-    kmeans_coord.loc['insurance', str(year) + 'q' + str(quarter)] \
+    kmeans_coord.loc['securities', str(year) + 'q' + str(quarter)] \
         = df_xs.values
 
-    labels.loc['insurance', str(year) + 'q' + str(quarter)] \
-        = kmeans.loc['insurance', str(year) + 'q' + str(quarter)].labels_.tolist()
+    labels.loc['securities', str(year) + 'q' + str(quarter)] \
+        = kmeans.loc['securities', str(year) + 'q' + str(quarter)].labels_.tolist()
 
-    centers.loc['insurance', str(year) + 'q' + str(quarter)] \
-        = kmeans.loc['insurance', str(year) + 'q' + str(quarter)]\
+    centers.loc['securities', str(year) + 'q' + str(quarter)] \
+        = kmeans.loc['securities', str(year) + 'q' + str(quarter)]\
         .cluster_centers_.tolist()
 
 del df_xs # for memory saving
@@ -265,16 +265,16 @@ for col in range(radius_tickers.shape[1]):
 result_table = pd.DataFrame(index=pd.Index(tickers, name='ticker'))
 for period in periods:
     try:
-        for n in range(len(kmeans_tickers.loc['insurance',period])):
+        for n in range(len(kmeans_tickers.loc['securities',period])):
             result_table.loc[
-                 kmeans_tickers.loc['insurance', period][n], period] \
-                = ticker_scores.loc['insurance', period][n]
+                 kmeans_tickers.loc['securities', period][n], period] \
+                = ticker_scores.loc['securities', period][n]
     except TypeError:
         continue
 
 #==============================================================================
 
-component_filename = 'component_table_ins'
+component_filename = 'component_table_sec'
 def export_component_table():
     global destination_dir
     global df
@@ -284,7 +284,7 @@ export_component_table()
 df = pd.read_csv(join(destination_dir, component_filename+'.csv'),
                  index_col=['year','quarter','ticker'])
 
-result_filename = 'result_table_ins'
+result_filename = 'result_table_sec'
 def export_result_table():
     global destination_dir
     global result_table
@@ -367,7 +367,7 @@ def graph_ticker(ticker: str):
 def graph_crash(benchmark:float,
                 period:str,
                 exchange:str='HOSE'):
-    crash_list = ta.crash(benchmark, period, 'ins', exchange)
+    crash_list = ta.crash(benchmark, period, 'sec', exchange)
     for ticker in crash_list:
         try:
             graph_ticker(ticker)
@@ -418,7 +418,7 @@ def breakdown(ticker:str):
 
 
 def breakdown_all(exchange:str):
-    for ticker in fa.tickers('ins', exchange):
+    for ticker in fa.tickers('sec', exchange):
         try:
             breakdown(ticker)
         except KeyError:
@@ -581,7 +581,7 @@ def mlist_group(year:int, quarter:int) -> dict:
 
     series = table[str(year) + 'q' + str(quarter)]
     mlist = internal.mlist('all')
-    ticker_list = fa.fin_tickers(True)['ins']
+    ticker_list = fa.fin_tickers(True)['sec']
     # some tickers in margin list do not have enough data to run K-Means
     model_tickers = table.index.to_list()
     ticker_list = list(set(ticker_list)

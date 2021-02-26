@@ -1,7 +1,3 @@
-BVH
 BIC
-PRE
 PVI
-AIC
 VNR
-MIG
