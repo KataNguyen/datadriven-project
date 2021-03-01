@@ -37,25 +37,25 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
     price_B = np.quantile(last_price_truncated, q=0.55)
     price_A = np.quantile(last_price_truncated, q=1)
 
-    if 0 <= score <= 25:
+    if score <= 25:
         prange = last_price_truncated
         prange = prange[prange >= breakeven_price]
         prange = prange[prange <= price_D]
         maxprice = np.percentile(prange, q=(score-0)/25*100)
         rating = 'D'
-    elif 25 <= score <= 50:
+    elif score <= 50:
         prange = last_price_truncated
         prange = prange[prange >= price_D]
         prange = prange[prange <= price_C]
         maxprice = np.percentile(prange, q=(score-25)/25*100)
         rating = 'C'
-    elif 50 <= score <= 75:
+    elif score <= 75:
         prange = last_price_truncated
         prange = prange[prange >= price_C]
         prange = prange[prange <= price_B]
         maxprice = np.percentile(prange, q=(score-50)/25*100)
         rating = 'B'
-    elif 75 <= score <= 100:
+    elif score <= 100:
         prange = last_price_truncated
         prange = prange[prange >= price_B]
         prange = prange[prange <= price_A]
