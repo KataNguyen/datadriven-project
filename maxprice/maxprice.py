@@ -23,30 +23,47 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
         credit_result['level'] == standard + '_l' + str(level)]
     score = credit_result.iloc[0,-1]
 
-    if score <= 25:
-        rating = 'D'
-    elif score <= 50:
-        rating = 'C'
-    elif score <= 75:
-        rating = 'B'
-    elif score <= 100:
-        rating = 'A'
-    else:
-        rating = 'Unclassifiable' # might never happen
-
     # combine to produce maxprice
-    q_upper = 0.99
+    q_upper = 0.95
     q_lower = 0
     upper = np.quantile(last_price, q=q_upper)
     lower = np.quantile(last_price, q=q_lower)
     last_price_truncated = last_price
     last_price_truncated = last_price_truncated[last_price_truncated >= lower]
     last_price_truncated = last_price_truncated[last_price_truncated <= upper]
-    maxprice = np.percentile(last_price_truncated, q=score)
-    price_25q = np.quantile(last_price_truncated, q=0.25)
-    price_50q = np.quantile(last_price_truncated, q=0.5)
-    price_75q = np.quantile(last_price_truncated, q=0.75)
-    price_100q = np.quantile(last_price_truncated, q=1)
+
+    price_D = np.quantile(last_price_truncated, q=0.01)
+    price_C = np.quantile(last_price_truncated, q=0.15)
+    price_B = np.quantile(last_price_truncated, q=0.55)
+    price_A = np.quantile(last_price_truncated, q=1)
+
+    if 0 <= score <= 25:
+        prange = last_price_truncated
+        prange = prange[prange >= breakeven_price]
+        prange = prange[prange <= price_D]
+        maxprice = np.percentile(prange, q=(score-0)/25*100)
+        rating = 'D'
+    elif 25 <= score <= 50:
+        prange = last_price_truncated
+        prange = prange[prange >= price_D]
+        prange = prange[prange <= price_C]
+        maxprice = np.percentile(prange, q=(score-25)/25*100)
+        rating = 'C'
+    elif 50 <= score <= 75:
+        prange = last_price_truncated
+        prange = prange[prange >= price_C]
+        prange = prange[prange <= price_B]
+        maxprice = np.percentile(prange, q=(score-50)/25*100)
+        rating = 'B'
+    elif 75 <= score <= 100:
+        prange = last_price_truncated
+        prange = prange[prange >= price_B]
+        prange = prange[prange <= price_A]
+        maxprice = np.percentile(prange, q=(score-75)/25*100)
+        rating = 'A'
+    else:
+        maxprice = None
+        rating = 'Unclassifiable' # might never happen
 
     def reformat_large_tick_values(tick_val, pos):
         """
@@ -86,13 +103,13 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
         y_upper = ax[0].get_ylim()[1]*1.03
         y_lower = ax[0].get_ylim()[0]
         ax[0].set_ylim(y_lower, y_upper)
-        ax[0].fill_betweenx([y_lower, y_upper], breakeven_price, price_25q,
+        ax[0].fill_betweenx([y_lower, y_upper], breakeven_price, price_D,
                             color=Dcolor, alpha=0.2)
-        ax[0].fill_betweenx([y_lower, y_upper], price_25q, price_50q,
+        ax[0].fill_betweenx([y_lower, y_upper], price_D, price_C,
                             color=Ccolor, alpha=0.2)
-        ax[0].fill_betweenx([y_lower, y_upper], price_50q, price_75q,
+        ax[0].fill_betweenx([y_lower, y_upper], price_C, price_B,
                             color=Bcolor, alpha=0.2)
-        ax[0].fill_betweenx([y_lower, y_upper], price_75q, price_100q,
+        ax[0].fill_betweenx([y_lower, y_upper], price_B, price_A,
                             color=Acolor, alpha=0.2)
 
         ax[0].set_xlabel('Stock Price')
@@ -127,40 +144,45 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
                        ha='left', fontsize=7)
 
         ax[0].annotate('D',
-                       xy=(np.mean([breakeven_price, price_25q]), 1.01),
+                       xy=(np.mean([breakeven_price, price_D]), 1.01),
                        xycoords=transforms.blended_transform_factory(
                            ax[0].transData, ax[0].transAxes),
                        ha='center', color=Dcolor, fontsize=10)
         ax[0].annotate('C',
-                       xy=(np.mean([price_25q, price_50q]), 1.01),
+                       xy=(np.mean([price_D, price_C]), 1.01),
                        xycoords=transforms.blended_transform_factory(
                            ax[0].transData, ax[0].transAxes),
                        ha='center', color=Ccolor, fontsize=10)
 
         ax[0].annotate('B',
-                       xy=(np.mean([price_50q, price_75q]), 1.01),
+                       xy=(np.mean([price_C, price_B]), 1.01),
                        xycoords=transforms.blended_transform_factory(
                            ax[0].transData, ax[0].transAxes),
                        ha='center', color=Bcolor, fontsize=10)
 
         ax[0].annotate('A',
-                       xy=(np.mean([price_75q, price_100q]), 1.01),
+                       xy=(np.mean([price_B, price_A]), 1.01),
                        xycoords=transforms.blended_transform_factory(
                            ax[0].transData, ax[0].transAxes),
                        ha='center', color=Acolor, fontsize=10)
 
+        ref_price = historical_price.iloc[-1,-1]
+        if maxprice < ref_price: dorp = '% Discount: '
+        else: dorp = '% Premium: '
         ax[0].annotate(f'Reference Price: '
-                       + f'{adjprice(historical_price.iloc[-1,-1])} \n'
+                       + f'{adjprice(ref_price)} \n'
                        + f'{int((q_upper-q_lower)*100)}% Confidence Interval:\n'
                        + f'{adjprice(breakeven_price)}' + ' - '
-                       + f'{adjprice(price_100q)} \n'
+                       + f'{adjprice(price_A)} \n'
                        + '------------------------- \n'
                        + f'Credit Score: {score:.0f} \n'
                        + f'Credit Rating: {rating} \n'
+                       + '------------------------- \n'
                        + f'Breakeven Price: {adjprice(breakeven_price)} \n'
                        + f'Max Price: {adjprice(maxprice)} \n'
-                       + f'Implied Margin Rate: '
-                       + f'{int(breakeven_price / maxprice * 100):,d}%',
+                       + dorp + f'{(maxprice/ref_price-1)*100:.2f}% \n'
+                       + f'Mark-up Value: {adjprice(maxprice-breakeven_price)} \n'
+                       + f'% Mark-up: {(maxprice/breakeven_price-1)*100:.2f}%',
                        xy=(0.72, 0.95),
                        xycoords=ax[0].transAxes,
                        ha='left', va='top', color='black', fontsize=7)

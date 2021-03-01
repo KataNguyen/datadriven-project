@@ -271,7 +271,8 @@ for standard in standards:
                     PCs = PCA(n_components=0.9).fit_transform(X)
 
                     idx = df_xs.index.to_list()
-                    idx = idx.insert(0, (year, quarter, 'BM_'))
+                    idx.insert(0, (year, quarter, 'BM_'))
+                    idx = pd.MultiIndex.from_tuples(idx)
                     cols = ['PC_'+str(i+1) for i in range(PCs.shape[1])]
                     df_xs = pd.DataFrame(PCs, index=idx, columns=cols)
 
@@ -323,6 +324,9 @@ for standard in standards:
                                       industry),
                                      str(year) + 'q' + str(quarter)]\
                         .cluster_centers_.tolist()
+                    print(f'Passed:: Standard: {standard.upper()} '
+                          f'- Level: {int(level)} -- {industry} '
+                          f'-- Year: {int(year)}, Quarter: {int(quarter)}')
 
 del df_xs # for memory saving
 
@@ -580,7 +584,7 @@ def breakdown(ticker:str):
     colors = plt.rcParams["axes.prop_cycle"]()
     for i in range(num_quantities):
         yval = table[quantities_new[i]].values
-        while len(yval) < 11:
+        while len(yval) < len(periods):
             yval = np.insert(yval, 0, np.nan)
         fig[1][i].plot(periods, yval,
                        color=next(colors)["color"])
@@ -632,7 +636,7 @@ def compare_industry(ticker:str, standard:str, level:int):
     for row in range(3):
         for col in range(5):
             w = 0.35
-            l = np.arange(11)  # the label locations
+            l = np.arange(len(periods))  # the label locations
             if variables[row,col] is None:
                 ax[row, col].axis('off')
             else:
@@ -704,11 +708,11 @@ def compare_rs(tickers: list, standard: str, level: int):
             fig, ax = plt.subplots(1, 1, figsize=(8, 6))
             periods = [q for q in model_rating.columns]
             w = 0.35
-            xloc = np.arange(11)  # the label locations
-            ax.bar(xloc - w / 2, model_rating.loc[ticker, :],
+            xloc = np.arange(len(periods))  # the label locations
+            ax.bar(xloc - w/2, model_rating.loc[ticker, :],
                    width=w, label='K-Means',
                    color='tab:blue', edgecolor='black')
-            ax.bar(xloc + w / 2, rs_rating.loc[ticker, :],
+            ax.bar(xloc + w/2, rs_rating.loc[ticker, :],
                    width=w, label='Research\'s Rating',
                    color='tab:gray', edgecolor='black')
             plt.setp(ax.xaxis.get_majorticklabels(), rotation=45)

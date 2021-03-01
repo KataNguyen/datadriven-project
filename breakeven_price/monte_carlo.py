@@ -351,7 +351,7 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
     plt.close('all')
 
     print(f'Breakeven price of {ticker} is ' + str(breakeven_price))
-    print("The execution time is: %s seconds" %(time.time()-start_time))
+    print("The execution time is: %s seconds" %(int(time.time()-start_time)))
 
     if fulloutput is False:
         return breakeven_price
