@@ -1,14 +1,5 @@
+from phs import *
 from request_phs import *
-from sklearn.cluster import KMeans
-from scipy.stats import rankdata
-from scipy.interpolate import interp1d
-from sklearn.decomposition import PCA
-import matplotlib.pyplot as plt
-import matplotlib
-from os.path import dirname, realpath
-import itertools
-matplotlib.use('Agg')
-
 
 destination_dir = join(dirname(realpath(__file__)), 'result')
 
@@ -31,7 +22,9 @@ agg_data = fa.all('gen')  #################### expensive
 quantities = ['revenue', 'cogs', 'gross_profit', 'interest',
               'pbt', 'net_income', 'cur_asset', 'cash', 'ar', 'inv',
               'ppe', 'asset', 'liability', 'cur_liability', 'lt_debt',
-              'equity']
+              'equity', 'retn_earnings', 'lt_invst', 'depre_tgbl', 'depre_gw',
+              's_exp', 'ga_exp', 'oprtng_income', 'cfo', 'st_debt']
+
 periods = fa.periods
 tickers = fa.tickers('gen')
 standards = fa.standards
@@ -120,6 +113,42 @@ for year, quarter in period_tuple:
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
                                    ('bs', 'B.II.')]
+            elif quantity == 'retn_earnings':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'B.II.1.12.')]
+            elif quantity == 'lt_invst':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'A.II.5.')]
+            elif quantity == 'depre_tgbl':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('cfi', 'I.2.')] # tai sao mot so thang <0?
+            elif quantity == 'depre_gw':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('cfi', 'I.3.')]
+            elif quantity == 's_exp':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = -agg_data.loc[(year, quarter, ticker),
+                                   ('is', '9.')]
+            elif quantity == 'ga_exp':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = -agg_data.loc[(year, quarter, ticker),
+                                   ('is', '10.')]
+            elif quantity == 'oprtng_income':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('is', '11.')]
+            elif quantity == 'cfo':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('cfi', 'I.')]
+            elif quantity == 'st_debt':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'B.I.1.10.')]
             else:
                 pass
 
@@ -143,6 +172,20 @@ df['roa'] = df['net_income'] / df['asset']
 
 df['interest'] = df['interest'].replace(to_replace=0, value=1e3)
 df['ebit/int'] = (df['pbt'] + df['interest']) / df['interest']
+
+df['wc/asset'] = (df['cur_asset'] - df['cur_liability']) / df['asset']
+df['retn_earning/asset'] = df['retn_earnings'] / df['asset']
+df['ebit/asset'] = (df['pbt'] + df['interest']) / df['asset']
+df['rev/asset'] = df['revenue'] / df['asset']
+df['dsri'] = -df['ar'] / df['revenue']
+df['aqi'] = (df['cur_asset'] + df['ppe'] + df['lt_invst']) / df['asset']
+df['depi'] = (df['depre_tgbl'] + df['depre_gw']) \
+             / (df['ppe'] + df['depre_tgbl'] + df['depre_gw'])
+df['sgai'] = -(df['s_exp'] + df['ga_exp']) / df['revenue']
+df['lvgi'] = -(df['cur_liability'] + df['lt_debt'] + df['st_debt']) / df['asset']
+df['tata'] = -(df['oprtng_income'] - df['cfo']) / df['asset']
+df['cfo/debt'] = df['cfo'] / (df['lt_debt'] + df['st_debt'])
+
 
 df = df.drop(columns=quantities)
 df.sort_index(axis=1, inplace=True)
@@ -468,7 +511,7 @@ export_component_table()
 df = pd.read_csv(join(destination_dir, component_filename+'.csv'),
                  index_col=['year','quarter','ticker'])
 
-result_filename = 'result_table_gen(pca)'
+result_filename = 'result_table_gen(pca)-allvariables'
 def export_result_table():
     global destination_dir
     global result_table

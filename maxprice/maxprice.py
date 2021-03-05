@@ -1,69 +1,167 @@
+from function_phs import *
 from request_phs import *
 from breakeven_price.monte_carlo import *
 
 def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
 
-    destination_dir = join(dirname(realpath(__file__)), 'result')
+    destination_dir = join(dirname(dirname(realpath(__file__))),
+                           'credit_rating', 'result')
+    file_name = 'result_table_gen(pca)-allvariables.csv'
+    rating_file = join(destination_dir, file_name)
 
-    # from breakeven price
-    input_ = monte_carlo(ticker, savefigure=False, fulloutput=True)
-    breakeven_price = input_['breakeven_price']
-    historical_price = input_['historical_price']
-    last_price = input_['last_price']
 
-    # from credit rating
-    credit_file = join(dirname(dirname(realpath(__file__))),
-                       'credit_rating', 'result', 'result_table.csv')
-    credit_result = pd.read_csv(credit_file, index_col='ticker')
-    credit_result = credit_result.loc[ticker]
-    credit_result \
-        = credit_result.loc[credit_result['standard'] == standard]
-    credit_result \
-        = credit_result.loc[
-        credit_result['level'] == standard + '_l' + str(level)]
-    score = credit_result.iloc[0,-1]
+    def graph_maxprice1():
 
-    # combine to produce maxprice
-    q_upper = 0.95
-    q_lower = 0
-    upper = np.quantile(last_price, q=q_upper)
-    lower = np.quantile(last_price, q=q_lower)
-    last_price_truncated = last_price
-    last_price_truncated = last_price_truncated[last_price_truncated >= lower]
-    last_price_truncated = last_price_truncated[last_price_truncated <= upper]
+        rating_result = pd.read_csv(rating_file, index_col='ticker')
+        rating_result = rating_result.loc[ticker]
+        rating_result \
+            = rating_result.loc[rating_result['level']==f'{standard}_l{level}'].T
+        rating_result.drop(index=['standard', 'level', 'industry'],
+                           inplace=True)
 
-    price_D = np.quantile(last_price_truncated, q=0.01)
-    price_C = np.quantile(last_price_truncated, q=0.15)
-    price_B = np.quantile(last_price_truncated, q=0.55)
-    price_A = np.quantile(last_price_truncated, q=1)
+        highlow = ta.prhighlow(ticker, fquarters=1)
+        plow = highlow['low'][['low_price']]
+        phigh = highlow['high'][['high_price']]
 
-    if score <= 25:
-        prange = last_price_truncated
-        prange = prange[prange >= breakeven_price]
-        prange = prange[prange <= price_D]
-        maxprice = np.percentile(prange, q=(score-0)/25*100)
-        rating = 'D'
-    elif score <= 50:
-        prange = last_price_truncated
-        prange = prange[prange >= price_D]
-        prange = prange[prange <= price_C]
-        maxprice = np.percentile(prange, q=(score-25)/25*100)
-        rating = 'C'
-    elif score <= 75:
-        prange = last_price_truncated
-        prange = prange[prange >= price_C]
-        prange = prange[prange <= price_B]
-        maxprice = np.percentile(prange, q=(score-50)/25*100)
-        rating = 'B'
-    elif score <= 100:
-        prange = last_price_truncated
-        prange = prange[prange >= price_B]
-        prange = prange[prange <= price_A]
-        maxprice = np.percentile(prange, q=(score-75)/25*100)
-        rating = 'A'
-    else:
-        maxprice = None
-        rating = 'Unclassifiable' # might never happen
+        fig, ax = plt.subplots(1,1,figsize=(8,6))
+        x = rating_result
+        ylow = plow.shift(periods=-1, axis=0).loc[x.index]
+        yhigh = phigh.shift(periods=-1, axis=0).loc[x.index]
+
+        for i in range(x.shape[0]):
+            ax.scatter(x.iloc[i,0], ylow.iloc[i,0],
+                       color='firebrick', edgecolors='firebrick',
+                       marker='^')
+            ax.scatter(x.iloc[i,0], yhigh.iloc[i,0],
+                       color='forestgreen', edgecolors='forestgreen',
+                       marker='v')
+            ax.plot([x.iloc[i,0], x.iloc[i,0]],
+                    [ylow.iloc[i,0], yhigh.iloc[i,0]],
+                    color='black')
+            ax.annotate(x.index[i], xy=(x.iloc[i,0], ylow.iloc[i,0]),
+                           xycoords=ax.transData,
+                           xytext=(3,5),
+                           textcoords='offset pixels',
+                           ha='left', fontsize=7)
+
+        ax.xaxis.set_major_locator(MaxNLocator(min_n_ticks=10,
+                                               integer=True,
+                                               steps=[1,2,5],
+                                               symmetric=True))
+
+        plt.show()
+
+
+    def graph_maxprice2():
+
+        ticker = 'VNM'
+        standard = 'bics'
+        level = 1
+
+        last_period = fa.periods[-1]
+        rating_result = pd.read_csv(rating_file, index_col='ticker')
+
+        peers = fa.peers(ticker, standard, level)
+        peers = list(set(peers) & set(rating_result.index))
+        # (some ticker were excluded by not having data for CreditRating)
+
+        rating_result = rating_result.loc[peers]
+        rating_result \
+            = rating_result.loc[rating_result['level']==f'{standard}_l{level}']
+        rating_result.drop(columns=['standard', 'level', 'industry'],
+                           inplace=True)
+
+        delta_scores = rating_result.diff(periods=1, axis=1)
+        delta_scores = delta_scores[[last_period]]
+
+        fig, ax = plt.subplots(1,1, figsize=(8,6))
+        mpl.use('TkAgg')
+
+        table = pd.DataFrame(delta_scores)
+        table[['low_return', 'high_return']] = np.nan
+
+        folder = 'prhighlow' ; file = 'prhighlow.csv'
+        highlow = pd.read_csv(join(dirname(dirname(realpath(__file__))),
+                                   'database', folder, file), index_col=[0])
+
+        for ticker in peers:
+            string = highlow.loc[ticker][-1].replace('(', '').replace(')', '')
+            string = string.split(',')
+            table.loc[ticker, 'low_return'] = float(string[3])
+            table.loc[ticker, 'high_return'] = float(string[4])
+
+        x = table.index
+        ylow = table['low_return']
+        yhigh = table['high_return']
+
+
+        #     ax.scatter(x.iloc[i,0], ylow.iloc[i,0],
+        #                color='firebrick', edgecolors='firebrick',
+        #                marker='^')
+        #     ax.scatter(x.iloc[i,0], yhigh.iloc[i,0],
+        #                color='forestgreen', edgecolors='forestgreen',
+        #                marker='v')
+        #     ax.plot([x.iloc[i,0], x.iloc[i,0]],
+        #             [ylow.iloc[i,0], yhigh.iloc[i,0]],
+        #             color='black')
+        #     ax.annotate(x.index[i], xy=(x.iloc[i,0], ylow.iloc[i,0]),
+        #                    xycoords=ax.transData,
+        #                    xytext=(3,5),
+        #                    textcoords='offset pixels',
+        #                    ha='left', fontsize=7)
+        #
+        # ax.xaxis.set_major_locator(MaxNLocator(min_n_ticks=10,
+        #                                        integer=True,
+        #                                        steps=[1,2,5],
+        #                                        symmetric=True))
+        # ax.yaxis.set_major_locator(MaxNLocator(symmetric=True))
+        # ax.yaxis.set_major_formatter(mpl.ticker.PercentFormatter(1.0))
+        #
+        # ax.axhline(0, ls='--', linewidth=0.5, color='black')
+        # ax.axvline(0, ls='--', linewidth=0.5, color='black')
+        #
+        # plt.show()
+
+        return
+
+
+    #
+    # q_upper = 0.99
+    # q_lower = 0
+    #
+    # price_D = np.quantile(last_price, q=0.001)
+    # price_C = np.quantile(last_price, q=0.10)
+    # price_B = np.quantile(last_price, q=0.55)
+    # price_A = np.quantile(last_price, q=q_upper)
+    #
+    # drange = f_period()
+    # prange = ta.hist(ticker, fromdate=drange[0], todate=drange[1])['close']
+    # lowest = prange.min()
+    #
+    # prange = last_price
+    # if scores[-1] <= 25:
+    #     prange = prange[prange >= breakeven_price]
+    #     prange = prange[prange <= price_D]
+    #     maxprice = np.percentile(prange, q=(scores[-1]-0)/25*100)
+    #     rating = 'D'
+    # elif scores[-1] <= 50:
+    #     prange = prange[prange >= price_D]
+    #     prange = prange[prange <= price_C]
+    #     maxprice = np.percentile(prange, q=(scores[-1]-25)/25*100)
+    #     rating = 'C'
+    # elif scores[-1] <= 75:
+    #     prange = prange[prange >= price_C]
+    #     prange = prange[prange <= price_B]
+    #     maxprice = np.percentile(prange, q=(scores[-1]-50)/25*100)
+    #     rating = 'B'
+    # elif scores[-1] <= 100:
+    #     prange = prange[prange >= price_B]
+    #     prange = prange[prange <= price_A]
+    #     maxprice = np.percentile(prange, q=(scores[-1]-75)/25*100)
+    #     rating = 'A'
+    # else:
+    #     maxprice = None
+    #     rating = 'Unclassifiable' # might never happen
 
     def reformat_large_tick_values(tick_val, pos):
         """
@@ -82,7 +180,14 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
         new_tick_format = str(new_tick_format)
         return new_tick_format
 
-    def graph_maxprice():
+    def graph_maxprice3():
+
+        # from breakeven price
+        input_ = monte_carlo(ticker, hdays=252,
+                             savefigure=False, fulloutput=True)
+        breakeven_price = input_['breakeven_price']
+        historical_price = input_['historical_price']
+        last_price = input_['last_price']
 
         Acolor = 'green'
         Bcolor = 'olivedrab'
@@ -94,7 +199,7 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
                      fontweight='bold', color='darkslategrey',
                      fontfamily='Arial', fontsize=17)
         fig.subplots_adjust(left=0.05, right=0.95, bottom=0.15,
-                             top=0.9, wspace=0.15)
+                            top=0.9, wspace=0.15)
 
         sns.histplot(last_price, ax=ax[0], bins=100,
                      legend=False, color='tab:blue', stat='density')
@@ -115,7 +220,7 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
         ax[0].set_xlabel('Stock Price')
         ax[0].set_ylabel('Density')
         ax[0].axvline(breakeven_price, ls='-', linewidth=2,
-                       color=Dcolor)
+                      color=Dcolor)
         ax[0].annotate('Breakeven Price:\n' + f'{adjprice(breakeven_price)}',
                        xy=(breakeven_price, 0.9),
                        xycoords=transforms.blended_transform_factory(
@@ -124,11 +229,11 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
                        textcoords='offset pixels',
                        ha='left', fontsize=7)
 
-        if score <= 25:
+        if scores[-1] <= 25:
             mpcolor = Dcolor
-        elif score <= 50:
+        elif scores[-1] <= 50:
             mpcolor = Ccolor
-        elif score <= 75:
+        elif scores[-1] <= 75:
             mpcolor = Bcolor
         else:
             mpcolor = Acolor
@@ -175,7 +280,7 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
                        + f'{adjprice(breakeven_price)}' + ' - '
                        + f'{adjprice(price_A)} \n'
                        + '------------------------- \n'
-                       + f'Credit Score: {score:.0f} \n'
+                       + f'Credit Score: {scores[-1]:.0f} \n'
                        + f'Credit Rating: {rating} \n'
                        + '------------------------- \n'
                        + f'Breakeven Price: {adjprice(breakeven_price)} \n'
@@ -206,7 +311,7 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
         ax[1].set_ylim(y_lower, y_upper)
 
         ax[1].axvline(breakeven_price, ls='-', linewidth=2,
-                       color=Dcolor)
+                      color=Dcolor)
 
         ax[1].axvline(maxprice, linestyle='-', linewidth=2,
                       color=mpcolor)
@@ -214,7 +319,7 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
         def f(start:float, stop:float, array:np.array, num:int=100):
             x_val = np.linspace(start, stop, num)
             y_val = np.array([np.sum(array<=x) for x in x_val]) \
-                             / len(array)
+                    / len(array)
             return x_val, y_val
 
         def nearest(value:float, array:np.array):
@@ -270,6 +375,8 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
             plt.savefig(join(destination_dir, f'{ticker}_maxprice.png'),
                         bbox_inches='tight')
 
-    graph_maxprice()
+    graph_maxprice1()
+    graph_maxprice2()
+    graph_maxprice3()
 
     return maxprice

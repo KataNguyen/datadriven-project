@@ -1,3 +1,4 @@
+from function_phs import *
 from request_phs import *
 import scipy as sc
 from scipy import stats
@@ -16,7 +17,7 @@ destination_dir \
 q_upper = 0.95
 q_lower = 0
 
-def monte_carlo(ticker:str, days=66, alpha=0.05,
+def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
                 simulation=100000, savefigure:bool=True,
                 fulloutput:bool=False):
 
@@ -54,7 +55,7 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
         ax1.set_title(ticker)
         ax1.set_ylabel('Stock Price')
         ax1.xaxis.set_major_formatter(DateFormatter('%d/%m/%Y'))
-        plt.xticks(rotation=15)
+        plt.xticks(rotation=45)
         ax1.axhline(breakeven_price, ls='--', linewidth=0.5, color='red')
         ax1.annotate('Breakeven Price: ' + adjprice(breakeven_price),
                      xy=(0.8,breakeven_price),
@@ -62,14 +63,14 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
                      .blended_transform_factory(ax1.transAxes, ax1.transData),
                      xytext=(0,-2), textcoords='offset pixels',
                      ha='left', va='top', fontsize=7)
-        ax1.yaxis\
-            .set_major_formatter(matplotlib.ticker\
+        ax1.yaxis \
+            .set_major_formatter(matplotlib.ticker \
             .FuncFormatter(
             reformat_large_tick_values))
         ax1.annotate('Worst Case over \n'
                      + f'{int(simulation):,d}' + ' Simulations: '
                      + f'{round((breakeven_price/price_t-1)*100, 2):,} % \n'
-                     + 'Trading Days: ' + f'{days} \n'
+                     + 'Trading Days: ' + f'{pdays} \n'
                      + 'Breakeven Price: ' + adjprice(breakeven_price),
                      xy=(0.7, 1.01),
                      xycoords=ax1.transAxes,
@@ -92,7 +93,7 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
 
         ax2[0].annotate('Breakeven Price:\n' + adjprice(breakeven_price),
                         xy=(breakeven_price,0.85),
-                        xycoords=transforms.blended_transform_factory\
+                        xycoords=transforms.blended_transform_factory \
                             (ax2[0].transData,ax2[0].transAxes),
                         xytext=(2,0), textcoords='offset pixels',
                         ha='left', va='center', fontsize=8)
@@ -112,7 +113,7 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
         ax2[1].annotate('Breakeven Price:\n' + adjprice(breakeven_price),
                         xy=(breakeven_price,0.85),
                         xycoords=transforms
-                        .blended_transform_factory\
+                        .blended_transform_factory \
                             (ax2[1].transData,ax2[1].transAxes),
                         xytext=(2,0), textcoords='offset pixels',
                         ha='left', va='center', fontsize=8)
@@ -122,7 +123,7 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
             matplotlib.ticker.FuncFormatter(reformat_large_tick_values))
         if savefigure is True:
             plt.savefig(join(destination_dir,f'{ticker}_result_2.png'),
-                             bbox_inches='tight')
+                        bbox_inches='tight')
         return
 
     # customize display for numpy and pandas
@@ -133,7 +134,20 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
                   'display.width', None,
                   'display.max_colwidth', 20)
 
-    df = ta.hist(ticker)
+    now = datetime.now()
+    today = now.strftime("%Y-%m-%d")
+
+    def Bday(bdays=int):
+        d = 0
+        bday = datetime.now()
+        while d<=bdays:
+            bday -= timedelta(days=1)
+            d += 1
+            while bday.weekday() in holidays.WEEKEND or bday in holidays.VN():
+                bday -= timedelta(days=1)
+        return bday.strftime("%Y-%m-%d")
+
+    df = ta.hist(ticker, Bday(hdays), today)
 
     # cleaning data
     df['trading_date'] \
@@ -152,7 +166,7 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
             = df['logr'].iloc[i] - df['logr'].iloc[i-1]
     df['change_logr'].iloc[0] = df['change_logr'].iloc[1]
     df['close'] = df['close'] * 1000
-    df.drop(columns=['ref', 'high', 'low', 
+    df.drop(columns=['ref', 'high', 'low',
                      'change', 'change_percent',
                      'total_volume', 'total_value'], inplace=True)
 
@@ -162,7 +176,7 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
     print(f'p_logr of {ticker} is', p_logr)
 
     # D'Agostino-Pearson test for change in log return model
-    stat_change_logr, p_change_logr\
+    stat_change_logr, p_change_logr \
         = sc.stats.normaltest(df['change_logr'], nan_policy='omit')
     print(f'p_change_logr of {ticker} is', p_change_logr)
 
@@ -182,7 +196,7 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
 
             loc = np.nanmean(df['logr'])
             scale = np.nanstd(df['logr'])
-            logr = np.random.normal(loc, scale, size=(simulation, days))
+            logr = np.random.normal(loc, scale, size=(simulation, pdays))
 
         elif p_skew <= alpha < p_kur:
 
@@ -194,7 +208,7 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
             scale = (std**2*(deg_free-2)/deg_free)**0.5
 
             logr = sc.stats.t.rvs(deg_free, loc, scale,
-                                   size=(simulation, days))
+                                  size=(simulation, pdays))
 
         elif p_skew > alpha >= p_kur:
 
@@ -210,7 +224,7 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
             loc = mean - scale*theta*(2/np.pi)**0.5
 
             logr = sc.stats.skewnorm.rvs(a, loc, scale,
-                                          size=(simulation, days))
+                                         size=(simulation, pdays))
 
         else:
             mean = np.nanmean(df['logr'])
@@ -222,15 +236,15 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
             nc = mean*(1-3/(4*deg_free-1))
 
             logr = sc.stats.nct.rvs(deg_free, nc, loc, scale,
-                                     size=(simulation, days))
+                                    size=(simulation, pdays))
 
         # Convert logr back to simulated price
         price_t = df['close'].loc[
             df['trading_date'] == df['trading_date'].max()].iloc[0]
-        simulated_price = np.zeros(shape=(simulation, days), dtype=np.int64)
+        simulated_price = np.zeros(shape=(simulation, pdays), dtype=np.int64)
         for i in range(simulation):
             simulated_price[i, 0] = np.exp(logr[i, 0]) * price_t
-            for j in range(1, days):
+            for j in range(1, pdays):
                 simulated_price[i, j] \
                     = np.exp(logr[i, j]) * simulated_price[i, j-1]
         df_historical \
@@ -255,7 +269,7 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
             loc = 0
             scale = np.nanstd(df['change_logr'])
             change_logr \
-                = np.random.normal(loc, scale, size=(simulation, days))
+                = np.random.normal(loc, scale, size=(simulation, pdays))
 
         elif p_skew <= alpha < p_kur:
 
@@ -267,7 +281,7 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
             scale = (std**2*(deg_free-2)/deg_free)**0.5
 
             change_logr = sc.stats.t.rvs(deg_free, loc, scale,
-                                         size=(simulation, days))
+                                         size=(simulation, pdays))
 
         elif p_skew > alpha >= p_kur:
 
@@ -283,7 +297,7 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
             loc = mean - scale*theta*(2/np.pi)**0.5
 
             change_logr = sc.stats.skewnorm.rvs(a, loc, scale,
-                                                size=(simulation, days))
+                                                size=(simulation, pdays))
 
         else:
             mean = 0
@@ -295,19 +309,19 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
             nc = mean*(1-3/(4*deg_free-1))
 
             change_logr = sc.stats.nct.rvs(deg_free, nc, loc, scale,
-                                           size=(simulation, days))
+                                           size=(simulation, pdays))
 
         # Convert change_logr back to simulated price
         price_t \
             = df['close'].loc[df['trading_date']
                               == df['trading_date'].max()].iloc[0]
 
-        simulated_price = np.zeros(shape=(simulation, days),
+        simulated_price = np.zeros(shape=(simulation, pdays),
                                    dtype=np.int64)
         for i in range(simulation):
             simulated_price[i, 0] \
                 = np.exp(change_logr[i, 0]) * price_t
-            for j in range(1, days):
+            for j in range(1, pdays):
                 simulated_price[i, j] \
                     = np.exp(change_logr[i, j]) * simulated_price[i, j-1]
         df_historical \
@@ -318,16 +332,16 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
         print(f'p_logr of {ticker} is', p_logr)
         print(f'p_change_logr of {ticker} is', p_change_logr)
         raise KeyError(f'{ticker} cannot be simulated'
-                         f' with given significance level')
+                       f' with given significance level')
 
     # Post-processing and graphing
     pro_days = list()
-    for j in range(days * 2):
+    for j in range(pdays * 2):
         if pd.to_datetime(df['trading_date'].max()
                           + pd.Timedelta(days=j + 1)).weekday() < 5:
             pro_days.append(df['trading_date'].max()
                             + pd.Timedelta(days=j + 1))
-    pro_days = pro_days[:days]
+    pro_days = pro_days[:pdays]
 
     simulation_no = [i for i in range(1, simulation + 1)]
     df_simulated_price \
