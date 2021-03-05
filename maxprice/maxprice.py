@@ -85,42 +85,45 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
                                    'database', folder, file), index_col=[0])
 
         for ticker in peers:
-            string = highlow.loc[ticker][-1].replace('(', '').replace(')', '')
-            string = string.split(',')
-            table.loc[ticker, 'low_return'] = float(string[3])
-            table.loc[ticker, 'high_return'] = float(string[4])
+            if isinstance(highlow.loc[ticker][-1], str):
+                string = highlow.loc[ticker][-1].replace('(', '').replace(')','')
+                string = string.split(',')
+                table.loc[ticker, 'low_return'] = float(string[3])
+                table.loc[ticker, 'high_return'] = float(string[4])
+            else:
+                pass
 
         x = table.index
         ylow = table['low_return']
         yhigh = table['high_return']
 
+        # bat dau tu day
+        ax.scatter(x, ylow,
+                   color='firebrick', edgecolors='firebrick',
+                   marker='^')
+        ax.scatter(x, yhigh,
+                   color='forestgreen', edgecolors='forestgreen',
+                   marker='v')
+        ax.plot([x, x],
+                [ylow.iloc[i], yhigh.iloc[i]],
+                color='black')
+        ax.annotate(x[i], xy=(x[i], ylow.iloc[i]),
+                       xycoords=ax.transData,
+                       xytext=(3,5),
+                       textcoords='offset pixels',
+                       ha='left', fontsize=7)
 
-        #     ax.scatter(x.iloc[i,0], ylow.iloc[i,0],
-        #                color='firebrick', edgecolors='firebrick',
-        #                marker='^')
-        #     ax.scatter(x.iloc[i,0], yhigh.iloc[i,0],
-        #                color='forestgreen', edgecolors='forestgreen',
-        #                marker='v')
-        #     ax.plot([x.iloc[i,0], x.iloc[i,0]],
-        #             [ylow.iloc[i,0], yhigh.iloc[i,0]],
-        #             color='black')
-        #     ax.annotate(x.index[i], xy=(x.iloc[i,0], ylow.iloc[i,0]),
-        #                    xycoords=ax.transData,
-        #                    xytext=(3,5),
-        #                    textcoords='offset pixels',
-        #                    ha='left', fontsize=7)
-        #
-        # ax.xaxis.set_major_locator(MaxNLocator(min_n_ticks=10,
-        #                                        integer=True,
-        #                                        steps=[1,2,5],
-        #                                        symmetric=True))
-        # ax.yaxis.set_major_locator(MaxNLocator(symmetric=True))
-        # ax.yaxis.set_major_formatter(mpl.ticker.PercentFormatter(1.0))
-        #
-        # ax.axhline(0, ls='--', linewidth=0.5, color='black')
-        # ax.axvline(0, ls='--', linewidth=0.5, color='black')
-        #
-        # plt.show()
+        ax.xaxis.set_major_locator(MaxNLocator(min_n_ticks=10,
+                                               integer=True,
+                                               steps=[1,2,5],
+                                               symmetric=True))
+        ax.yaxis.set_major_locator(MaxNLocator(symmetric=True))
+        ax.yaxis.set_major_formatter(mpl.ticker.PercentFormatter(1.0))
+
+        ax.axhline(0, ls='--', linewidth=0.5, color='black')
+        ax.axvline(0, ls='--', linewidth=0.5, color='black')
+
+        plt.show()
 
         return
 
