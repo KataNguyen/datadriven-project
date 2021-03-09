@@ -5,7 +5,608 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/component_table_bank.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/result_table_bank.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart1/chart1_HBC.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart1/chart1_MWG.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart1/chart1_VNM.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart2/chart2_HBC.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart2/chart2_MWG.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart2/chart2_VNM.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/ABS_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/APC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/BAX_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/BMP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/BTP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/CAP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/CLC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/CLW_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/CNG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/D2D_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/DHA_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/DMC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/DSN_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/DVP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/DXP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/EID_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/FLC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/GAS_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/GDT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/GVR_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/HAP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/HHS_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/HLD_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/HMH_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/HSL_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/HTI_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/HTV_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/ICG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/IDV_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/KDH_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/L14_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/LIX_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/NBB_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/NCT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/NET_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/NNC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/NRC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/NTH_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/NTL_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/PDN_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/PGD_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/PHN_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/PHR_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/PMC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/PPC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/SAB_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/SFI_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/SGN_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/SMB_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/SZB_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/SZL_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/TBC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/TCH_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/TCL_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/TCO_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/TCT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/TIP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/TLG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/TMP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/TRC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/TV4_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/UIC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/VCS_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/VNM_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/VRE_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/VSC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group A/WCS_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/AAV_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/ACL_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/AGG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/AGM_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/ANV_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/AST_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/BCC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/BCE_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/BCG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/BMC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/C32_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/CAV_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/CCL_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/CRC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/CSV_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/CTD_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/CTF_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/CVT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/DBC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/DCM_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/DDG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/DGC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/DGW_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/DHC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/DHG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/DHT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/DIG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/DPG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/DPM_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/DPR_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/DRC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/DRH_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/ELC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/FIR_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/FIT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/FMC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/GAB_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/GIL_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/GKM_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/GMC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/GSP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/HAH_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/HAT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/HAX_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/HDC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/HII_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/HMC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/HPG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/HSG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/HTN_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/HUB_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/IJC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/IMP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/INN_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/ITA_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/ITC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/ITD_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/KBC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/KDC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/KSB_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/LDG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/LHC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/LHG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/LSS_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/MWG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/NDN_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/NHH_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/NKG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/NLG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/NSC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/NTP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/NVL_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/PAC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/PDR_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/PET_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/PLP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/PME_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/PNJ_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/PSD_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/PTB_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/PVT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/RAL_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/REE_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/S99_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/SAV_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/SBA_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/SBV_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/SCI_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/SDG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/SKG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/SLS_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/SMC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/SRC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/ST8_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/STK_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/SVC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/SZC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/TA9_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/TAC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/TCD_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/TCM_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/TDC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/TDN_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/THG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/TIG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/TLD_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/TMS_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/TNA_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/TRA_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/TTT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/TV2_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/TVT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/TYA_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/VC3_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/VGS_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/VHC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/VHM_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/VID_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/VIP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/VJC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/VNE_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/VPG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/VPS_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/VRC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/VSI_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group B/VTO_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/AAA_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/BFC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/BWE_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/C47_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/CEO_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/CII_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/CMG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/CSM_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/CTI_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/DBD_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/DBT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/DCL_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/DQC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/DTD_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/FCN_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/FPT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/FRT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/GEX_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/GMD_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/HBC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/HDG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/HJS_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/HPX_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/HRC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/HT1_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/HVH_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/ICT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/IDJ_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/LCG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/LGC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/MDC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/NT2_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/PAN_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/PC1_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/PGC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/PGS_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/PHC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/PLC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/PMG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/POW_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/PVC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/PVD_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/PVS_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/SAM_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/SD5_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/SHA_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/SHN_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/SHP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/SJD_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/SJE_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/SJS_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/SRA_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/SRF_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/TDM_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/THT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/TTB_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/VC7_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/VDP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/VMC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/VPD_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/VPI_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/VTB_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group C/VTV_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/ASM_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/CDC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/CKG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/CMX_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/DAG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/DNM_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/DNP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/GEG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/IDC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/IDI_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/LIG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/MSN_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/NAF_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/PSH_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/RDP_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/SBT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/SCR_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/SD9_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/SFG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/SGR_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/SGT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/SHI_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/TDT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/TNG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/TVD_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/VGC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/VIC_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/VIT_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Old/Group D/VNG_maxprice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_analysis/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakeven_price/monte_carlo.py" beforeDir="false" afterPath="$PROJECT_DIR$/breakeven_price/monte_carlo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/execution_time.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(bank).py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(bank).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen).py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen)_exp.py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(gen).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(ins).py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(ins).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(sec).py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(sec).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/MWG_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/VNM_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/component_talbe.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/result_table.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/result_table_gen(pca)-allvariables.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/function_phs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/function_phs/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/maxprice/maxprice.py" beforeDir="false" afterPath="$PROJECT_DIR$/maxprice/maxprice.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/AAA_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/AGG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/CTD_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/ABS_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/APC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/BAX_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/BMP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/BTP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/CAP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/CLC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/CLW_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/CNG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/D2D_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/DHA_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/DMC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/DSN_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/DVP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/DXP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/EID_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/FLC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/GAS_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/GDT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/GVR_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/HAP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/HHS_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/HLD_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/HMH_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/HSL_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/HTI_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/HTV_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/ICG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/IDV_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/KDH_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/L14_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/LIX_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/NBB_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/NCT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/NET_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/NNC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/NRC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/NTH_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/NTL_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/PDN_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/PGD_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/PHN_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/PHR_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/PMC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/PPC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/SAB_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/SFI_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/SGN_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/SMB_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/SZB_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/SZL_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/TBC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/TCH_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/TCL_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/TCO_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/TCT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/TIP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/TLG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/TMP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/TRC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/TV4_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/UIC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/VCS_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/VNM_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/VRE_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/VSC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group A/WCS_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/AAV_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/ACL_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/AGG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/AGM_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/ANV_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/AST_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/BCC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/BCE_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/BCG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/BMC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/C32_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/CAV_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/CCL_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/CRC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/CSV_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/CTD_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/CTF_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/CVT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/DBC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/DCM_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/DDG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/DGC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/DGW_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/DHC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/DHG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/DHT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/DIG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/DPG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/DPM_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/DPR_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/DRC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/DRH_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/ELC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/FIR_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/FIT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/FMC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/GAB_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/GIL_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/GKM_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/GMC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/GSP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/HAH_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/HAT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/HAX_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/HDC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/HII_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/HMC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/HPG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/HSG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/HTN_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/HUB_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/IJC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/IMP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/INN_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/ITA_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/ITC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/ITD_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/KBC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/KDC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/KSB_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/LDG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/LHC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/LHG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/LSS_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/MWG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/NDN_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/NHH_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/NKG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/NLG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/NSC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/NTP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/NVL_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/PAC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/PDR_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/PET_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/PLP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/PME_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/PNJ_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/PSD_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/PTB_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/PVT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/RAL_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/REE_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/S99_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/SAV_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/SBA_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/SBV_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/SCI_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/SDG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/SKG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/SLS_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/SMC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/SRC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/ST8_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/STK_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/SVC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/SZC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/TA9_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/TAC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/TCD_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/TCM_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/TDC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/TDN_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/THG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/TIG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/TLD_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/TMS_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/TNA_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/TRA_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/TTT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/TV2_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/TVT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/TYA_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/VC3_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/VGS_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/VHC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/VHM_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/VID_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/VIP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/VJC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/VNE_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/VPG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/VPS_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/VRC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/VSI_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group B/VTO_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/AAA_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/BFC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/BWE_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/C47_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/CEO_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/CII_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/CMG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/CSM_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/CTI_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/DBD_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/DBT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/DCL_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/DQC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/DTD_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/FCN_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/FPT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/FRT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/GEX_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/GMD_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/HBC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/HDG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/HJS_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/HPX_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/HRC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/HT1_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/HVH_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/ICT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/IDJ_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/LCG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/LGC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/MDC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/NT2_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/PAN_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/PC1_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/PGC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/PGS_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/PHC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/PLC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/PMG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/POW_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/PVC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/PVD_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/PVS_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/SAM_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/SD5_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/SHA_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/SHN_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/SHP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/SJD_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/SJE_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/SJS_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/SRA_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/SRF_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/TDM_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/THT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/TTB_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/VC7_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/VDP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/VMC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/VPD_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/VPI_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/VTB_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group C/VTV_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/ASM_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/CDC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/CKG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/CMX_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/DAG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/DNM_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/DNP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/GEG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/IDC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/IDI_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/LIG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/MSN_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/NAF_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/PSH_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/RDP_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/SBT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/SCR_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/SD9_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/SFG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/SGR_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/SGT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/SHI_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/TDT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/TNG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/TVD_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/VGC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/VIC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/VIT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/Group D/VNG_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/HBC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/SBT_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/result/TDC_maxprice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/phs/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/request_phs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_phs/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +654,7 @@
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/request_phs/request_data.py" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.pyOptions" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -71,7 +672,7 @@
       <recent name="C:\Users\Admin\PycharmProjects\datadriven-project\credit_rating" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.__init__">
+  <component name="RunManager" selected="Python.pca_kmeans_lipl(bank)">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -108,25 +709,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="monte_carlo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="datadriven-project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/breakeven_price" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/breakeven_price/monte_carlo.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pca_kmeans_interpolation(gen)_exp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="pca_kmeans_lipl(bank)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -135,7 +718,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(gen)_exp.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(bank).py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -144,7 +727,25 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pca_kmeans_interpolation(sec)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="pca_kmeans_lipl(gen)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="datadriven-project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/credit_rating" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(gen).py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pca_kmeans_lipl(sec)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -156,7 +757,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/credit_rating/pca_kmeans_interpolation(sec).py" />
+      <option name="SCRIPT_NAME" value="C:\Users\hiepdang\PycharmProjects\datadriven-project\credit_rating\pca_kmeans_lipl(sec).py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -168,18 +769,18 @@
     <list>
       <item itemvalue="Python.request_data" />
       <item itemvalue="Python.__init__" />
-      <item itemvalue="Python.pca_kmeans_interpolation(sec)" />
       <item itemvalue="Python.maxprice" />
-      <item itemvalue="Python.monte_carlo" />
-      <item itemvalue="Python.pca_kmeans_interpolation(gen)_exp" />
+      <item itemvalue="Python.pca_kmeans_lipl(sec)" />
+      <item itemvalue="Python.pca_kmeans_lipl(gen)" />
+      <item itemvalue="Python.pca_kmeans_lipl(bank)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pca_kmeans_lipl(bank)" />
+        <item itemvalue="Python.pca_kmeans_lipl(gen)" />
+        <item itemvalue="Python.pca_kmeans_lipl(gen)" />
         <item itemvalue="Python.__init__" />
         <item itemvalue="Python.maxprice" />
-        <item itemvalue="Python.__init__" />
-        <item itemvalue="Python.__init__" />
-        <item itemvalue="Python.pca_kmeans_interpolation(gen)_exp" />
       </list>
     </recent_temporary>
   </component>

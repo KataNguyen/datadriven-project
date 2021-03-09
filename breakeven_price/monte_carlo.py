@@ -25,23 +25,6 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
 
     global destination_dir
 
-    def reformat_large_tick_values(tick_val, pos):
-        """
-        Turns large tick values (in the billions, millions and thousands)
-        such as 4500 into 4.5K and also appropriately turns 4000 into 4K
-        (no zero after the decimal)
-        """
-        if tick_val >= 1000:
-            val = round(tick_val/1000, 1)
-            if tick_val%1000 > 0:
-                new_tick_format = '{:,}K'.format(val)
-            else:
-                new_tick_format = '{:,}K'.format(int(val))
-        else:
-            new_tick_format = int(tick_val)
-        new_tick_format = str(new_tick_format)
-        return new_tick_format
-
     def graph_ticker():
 
         fig1, ax1 = plt.subplots(1, 1, figsize=(6, 5))
@@ -64,9 +47,7 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
                      xytext=(0,-2), textcoords='offset pixels',
                      ha='left', va='top', fontsize=7)
         ax1.yaxis \
-            .set_major_formatter(matplotlib.ticker \
-            .FuncFormatter(
-            reformat_large_tick_values))
+            .set_major_formatter(FuncFormatter(priceKformat))
         ax1.annotate('Worst Case over \n'
                      + f'{int(simulation):,d}' + ' Simulations: '
                      + f'{round((breakeven_price/price_t-1)*100, 2):,} % \n'
@@ -99,8 +80,7 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
                         ha='left', va='center', fontsize=8)
 
         ax2[0].tick_params(axis='y', left=False, labelleft=False)
-        ax2[0].xaxis.set_major_formatter(
-            matplotlib.ticker.FuncFormatter(reformat_large_tick_values))
+        ax2[0].xaxis.set_major_formatter(FuncFormatter(priceKformat))
 
         sns.ecdfplot(last_price, stat='proportion', ax=ax2[1],
                      legend=False, color='black')
@@ -119,8 +99,7 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
                         ha='left', va='center', fontsize=8)
 
         ax2[1].tick_params(axis='y', left=False, labelleft=False)
-        ax2[1].xaxis.set_major_formatter(
-            matplotlib.ticker.FuncFormatter(reformat_large_tick_values))
+        ax2[1].xaxis.set_major_formatter(FuncFormatter(priceKformat))
         if savefigure is True:
             plt.savefig(join(destination_dir,f'{ticker}_result_2.png'),
                         bbox_inches='tight')

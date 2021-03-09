@@ -1509,6 +1509,8 @@ class ta:
                     prices.loc[ticker, period] = np.nan
 
         prices.replace([np.inf, -np.inf, -1, 1], np.nan, inplace=True)
+        prices.to_csv(join(database_path, 'price', 'prices.csv'))
+
         return prices
 
 
@@ -1545,7 +1547,7 @@ class ta:
         for ticker in tickers:
             try:
                 price_data[ticker] = self.hist(ticker)
-            except (KeyError, IndexError):
+            except (KeyError, IndexError, ValueError):
                 continue
 
         def Bday(date=str):
@@ -1583,6 +1585,7 @@ class ta:
                     returns.loc[ticker, period] = np.nan
 
         returns.replace([np.inf, -np.inf, -1, 1], np.nan, inplace=True)
+        returns.to_csv(join(database_path, 'returns', 'returns.csv'))
 
         return returns
 
@@ -1685,7 +1688,7 @@ class ta:
 
             export_name = 'prhighlow.csv'
             d.to_csv(join(dirname(dirname((realpath(__file__)))),
-                          'database', 'prhighlow', export_name))
+                          'database', 'price', export_name))
         else:
             d = 'Error!'
 

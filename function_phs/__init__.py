@@ -2,6 +2,30 @@ from phs import *
 
 ###############################################################################
 
+def priceKformat(tick_val, pos) -> str:
+
+    """
+    Turns large tick values (in the billions, millions and thousands)
+    such as 4500 into 4.5K and also appropriately turns 4000 into 4K
+    (no zero after the decimal)
+
+    :param tick_val: price value
+    :param pos: ignored
+    :type tick_val: float
+
+    :return: formated price value
+    """
+
+    if tick_val >= 1000:
+        val = round(tick_val/1000, 1)
+        if tick_val % 1000 > 0:
+            new_tick_format = '{:,}K'.format(val)
+        else:
+            new_tick_format = '{:,}K'.format(int(val))
+    else:
+        new_tick_format = int(tick_val)
+    new_tick_format = str(new_tick_format)
+    return new_tick_format
 
 def adjprice(price: Union[float, int]) -> str:
 
