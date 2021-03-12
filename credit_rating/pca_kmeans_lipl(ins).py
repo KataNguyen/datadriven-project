@@ -168,9 +168,9 @@ df = df.replace(to_replace=0, value=1e3)
 df = df.loc[df['ins_revenue']>0]
 
 
-df['ln_asset'] = np.log(df['asset'])
-df['ln_equity'] = np.log(df['equity'])
-df['ln_revenue'] = np.log(df['ins_revenue'])
+df['asset_'] = df['asset']
+df['equity_'] = df['equity']
+df['revenue_'] = df['ins_revenue']
 #df['(-)risk_retention'] = -df['net_premium'] / df['gross_premium']
 df['(-)loss_ratio'] = -df['net_claim'] / df['ins_revenue']
 df['roe'] = df['net_income'] / df['equity']

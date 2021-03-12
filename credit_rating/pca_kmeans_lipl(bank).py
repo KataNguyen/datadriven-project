@@ -225,17 +225,17 @@ for year, quarter in period_tuple:
 # replace 0 values with 1000 VND to avoid 0 denominator
 df = df.loc[~(df==0).all(axis=1)] # remove no-data companies first
 df = df.replace(to_replace=0, value=1e3)
-# remove negative revenue companies
+
+
+df['asse_'] = df['asset']
+df['equity_'] = df['equity']
 df['income'] = df['int_income'] + df['feecomisn_income']\
                + df['gainlossfxgold'] + df['gainlosstrading']\
                + df['gainlossinst'] + df['other_income']\
                + df['dividend_income']
+# remove negative revenue companies
 df = df.loc[df['income']>0]
 
-
-df['ln_asset'] = np.log(df['asset'])
-df['ln_equity'] = np.log(df['equity'])
-df['ln_income'] = np.log(df['income']) ; df.drop('income',axis=1,inplace=True)
 df['nim'] = df['net_int_income'] / (df['balnce_sbv']+df['balnce_inst']
                                     + df['trading_sec']+df['loans_customer']
                                     + df['invst_sec'])
