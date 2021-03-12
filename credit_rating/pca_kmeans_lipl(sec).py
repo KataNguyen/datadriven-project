@@ -19,8 +19,10 @@ pd.options.mode.chained_assignment = None
 
 agg_data = fa.all('sec')  #################### expensive
 
-quantities = ['ca', 'cl', 'cash', 'revenue', 'cogs', 'ar', 'fixed_asset',
-              'lib', 'asset', 'gprofit', 'net_income', 'equity']
+quantities = ['cur_asset', 'cur_lib', 'inv', 'cash', 'revenue', 'asset',
+              'liability', 'net_income', 'pbt', 'int_expense', 'st_debt',
+              'lt_debt', 'equity', 'alwnce_doubtful', 'brokerage_rev',
+              'ar', 'gross_profit']
 
 periods = fa.periods
 tickers = fa.tickers('sec')
@@ -45,14 +47,18 @@ df = pd.DataFrame(columns=col, index=index)
 for year, quarter in period_tuple:
     for ticker in tickers:
         for quantity in quantities:
-            if quantity == 'ca':
+            if quantity == 'cur_asset':
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
                                    ('bs', 'A.I.')]
-            elif quantity == 'cl':
+            elif quantity == 'cur_lib':
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
-                                    ('bs', 'B.I.1.')]
+                                   ('bs', 'B.I.1.')]
+            elif quantity == 'inv':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'A.I.1.14.')]
             elif quantity == 'cash':
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
@@ -60,39 +66,55 @@ for year, quarter in period_tuple:
             elif quantity == 'revenue':
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
-                                    ('is', '3.')]
-            elif quantity == 'cogs':
-                df.loc[(year, quarter, ticker), quantity] \
-                    = -agg_data.loc[(year, quarter, ticker),
-                                    ('is', '4.')]
-            elif quantity == 'ar':
-                df.loc[(year, quarter, ticker), quantity] \
-                    = agg_data.loc[(year, quarter, ticker),
-                                   ('bs', 'A.I.1.3.')]
-            elif quantity == 'fixed_asset':
-                df.loc[(year, quarter, ticker), quantity] \
-                    = agg_data.loc[(year, quarter, ticker),
-                                   ('bs', 'A.II.2.')]
-            elif quantity == 'lib':
-                df.loc[(year, quarter, ticker), quantity] \
-                    = agg_data.loc[(year, quarter, ticker),
-                                   ('bs', 'B.I.')]
+                                   ('is', '3.')]
             elif quantity == 'asset':
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
                                    ('bs', 'A.')]
-            elif quantity == 'gprofit':
+            elif quantity == 'liability':
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
-                                   ('is', '5.')]
+                                   ('bs', 'B.I.')]
             elif quantity == 'net_income':
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
                                    ('is', '17.')]
+            elif quantity == 'pbt':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('is', '15.')]
+            elif quantity == 'int_expense':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = -agg_data.loc[(year, quarter, ticker),
+                                    ('is', '7.2.')]
+            elif quantity == 'st_debt':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'B.I.1.1.')]
+            elif quantity == 'lt_debt':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'B.I.2.1.')]
             elif quantity == 'equity':
                 df.loc[(year, quarter, ticker), quantity] \
                     = agg_data.loc[(year, quarter, ticker),
                                    ('bs', 'B.II.')]
+            elif quantity == 'alwnce_doubtful':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = -agg_data.loc[(year, quarter, ticker),
+                                    ('bs', 'A.I.1.13.')]
+            elif quantity == 'brokerage_rev':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('is', '1.6.')]
+            elif quantity == 'ar':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('bs', 'A.I.1.3.')]
+            elif quantity == 'gross_profit':
+                df.loc[(year, quarter, ticker), quantity] \
+                    = agg_data.loc[(year, quarter, ticker),
+                                   ('is', '5.')]
             else:
                 pass
 
@@ -100,37 +122,55 @@ for year, quarter in period_tuple:
 # replace 0 values with 1000 VND to avoid 0 denominator
 df = df.loc[~(df==0).all(axis=1)] # remove no-data companies first
 df = df.replace(to_replace=0, value=1e3)
+# remove negative revenue companies
+df = df.loc[df['revenue']>0]
+
 
 df['ln_asset'] = np.log(df['asset'])
 df['ln_equity'] = np.log(df['equity'])
-df['cur_ratio'] = df['ca'] / df['cl']
-df['cash_ratio'] = df['cash'] / df['cl']
+df['ln_revenue'] = np.log(df['revenue'])
+df['cur_ratio'] = df['cur_asset'] / df['cur_lib']
+df['acid_test'] = (df['cur_asset'] - df['inv']) / df['cur_lib']
+df['cash_ratio'] = df['cash'] / df['cur_lib']
+df['asset_turnover'] = df['revenue'] / df['asset']
+df['curasset_turnover'] = df['revenue'] / df['cur_asset']
+df['debt_ratio'] = df['liability'] / df['asset']
+df['np_ar'] = df['alwnce_doubtful'] / df['brokerage_rev']
+df['lt_debt/equity'] = df['lt_debt'] / df['equity']
+df['lt_debt/asset'] = df['lt_debt'] / df['asset']
+df['debt/equity'] = (df['st_debt'] + df['lt_debt']) / df['equity']
+df['debt/asset'] = (df['st_debt'] + df['lt_debt']) / df['asset']
+df['st_debt/equity'] = df['st_debt'] / df['equity']
+df['st_debt/asset'] = df['st_debt'] / df['asset']
+df['lib/equity'] = df['liability'] / df['equity']
 df['ar_turnover'] = df['revenue'] / df['ar']
-df['fixed_turnover'] = df['revenue'] / df['fixed_asset']
-df['(-)debt/asset'] = -df['lib'] / df['asset']
-df['roe'] = df['net_income'] / df['equity']
 df['roa'] = df['net_income'] / df['asset']
+df['roe'] = df['net_income'] / df['equity']
+df['roca'] = df['net_income'] / df['cur_asset']
+df['rotc'] = (df['pbt'] - df['int_expense']) \
+             / (df['lt_debt'] + df['st_debt'] + df['equity'])
 
 # handle negative revenue, return negative quantities_new
-df['np_margin'] = np.nan
-df['gp_margin'] = np.nan
+df['net_margin'] = np.nan
+df['gross_margin'] = np.nan
 df['wc_turnover'] = np.nan
 for row in range(df.shape[0]):
     if df['revenue'].iloc[row]>0:
-        df['np_margin'].iloc[row] \
-            = df['net_income'].iloc[row]/df['revenue'].iloc[row]
-        df['gp_margin'].iloc[row] \
-            = df['gprofit'].iloc[row] / df['revenue'].iloc[row]
+        df['net_margin'].iloc[row] \
+            = df['net_income'].iloc[row] / df['revenue'].iloc[row]
+        df['gross_margin'].iloc[row] \
+            = df['gross_profit'].iloc[row] / df['revenue'].iloc[row]
         df['wc_turnover'].iloc[row] \
-            = df['revenue'].iloc[row]/(df['ca'].iloc[row]-df['cl'].iloc[row])
+            = df['revenue'].iloc[row]\
+              /(df['cur_asset'].iloc[row]-df['cur_lib'].iloc[row])
     else:
-        df['np_margin'].iloc[row] \
+        df['net_margin'].iloc[row] \
             = -df['net_income'].iloc[row] / df['revenue'].iloc[row] # net_income must also < 0
-        df['gp_margin'].iloc[row] \
-            = -df['gprofit'].iloc[row] / df['revenue'].iloc[row] # gprofit must also < 0
+        df['gross_margin'].iloc[row] \
+            = -df['gross_profit'].iloc[row] / df['revenue'].iloc[row] # gprofit must also < 0
         df['wc_turnover'].iloc[row] \
-            = df['revenue'].iloc[row]/(np.abs(df['ca'].iloc[row]-df['cl'].iloc[row]))
-        # equivalent to 2 if phrases
+            = df['revenue'].iloc[row]\
+              /(np.abs(df['cur_asset'].iloc[row]-df['cur_lib'].iloc[row]))
 
 df = df.drop(columns=quantities)
 df.sort_index(axis=1, inplace=True)
@@ -215,7 +255,7 @@ for year, quarter in zip(years, quarters):
         = kmeans.loc['securities', str(year) + 'q' + str(quarter)]\
         .cluster_centers_.tolist()
 
-del df_xs # for memory saving
+#del df_xs # for memory saving
 
 radius_centers = pd.DataFrame(index=kmeans_index, columns=periods)
 for col in range(centers.shape[1]):
@@ -307,6 +347,7 @@ export_component_table()
 df = pd.read_csv(join(destination_dir, component_filename+'.csv'),
                  index_col=['year','quarter','ticker'])
 
+
 result_filename = 'result_table_sec'
 def export_result_table():
     global destination_dir
@@ -317,187 +358,77 @@ export_result_table()
 result_table = pd.read_csv(join(destination_dir, result_filename+'.csv'),
                            index_col=['ticker'])
 
-def graph_ticker(ticker: str):
-    table = pd.DataFrame(index=['credit_score'],
-                         columns=periods)
-
-    table.loc['credit_score', periods] \
-        = result_table.xs(key=ticker, axis=0, level=1).values
-
-    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(8,6))
-    ax.set_title(ticker,
-                 fontsize=15, fontweight='bold', color='darkslategrey',
-                 fontfamily='Times New Roman')
-
-    xloc = np.arange(table.shape[1]) # label locations
-    rects = ax.bar(xloc, table.iloc[0], width=0.8,
-                   color='tab:blue', label='Credit Score', edgecolor='black')
-    for rect in rects:
-        height = rect.get_height()
-        ax.annotate('{:.0f}'.format(height),
-                    xy=(rect.get_x()+rect.get_width()/2, height),
-                    xytext=(0,3),  # 3 points vertical offset
-                    textcoords="offset points",
-                    ha='center', va='bottom', fontsize=11)
-
-    ax.set_xticks(np.arange(len(xloc)))
-    ax.set_xticklabels(table.columns.tolist(), rotation=45, x=xloc,
-                       fontfamily='Times New Roman', fontsize=11)
-
-    ax.set_yticks(np.array([0,25,50,75,100]))
-    ax.tick_params(axis='y', labelcolor='black', labelsize=11)
-
-    Acolor = 'green'
-    Bcolor = 'olivedrab'
-    Ccolor = 'darkorange'
-    Dcolor = 'firebrick'
-
-    ax.axhline(100, ls='--', linewidth=0.5, color=Acolor)
-    ax.axhline(75, ls='--', linewidth=0.5, color=Bcolor)
-    ax.axhline(50, ls='--', linewidth=0.5, color=Ccolor)
-    ax.axhline(25, ls='--', linewidth=0.5, color=Dcolor)
-    ax.fill_between([-0.4,xloc[-1]+0.4], 100, 75,
-                    color=Acolor, alpha=0.2)
-    ax.fill_between([-0.4,xloc[-1]+0.4], 75, 50,
-                    color=Bcolor, alpha=0.25)
-    ax.fill_between([-0.4,xloc[-1]+0.4], 50, 25,
-                    color=Ccolor, alpha=0.2)
-    ax.fill_between([-0.4,xloc[-1]+0.4], 25, 0,
-                    color=Dcolor, alpha=0.2)
-
-    plt.xlim(-0.6, xloc[-1] + 0.6)
-
-    ax.set_ylim(top=110)
-    midpoints = np.array([87.5, 62.5, 37.5, 12.5])/110
-    labels = ['Group A', 'Group B', 'Group C', 'Group D']
-    colors = [Acolor, Bcolor, Ccolor, Dcolor]
-    for loc in zip(midpoints, labels, colors):
-        ax.annotate(loc[1],
-                    xy=(-0.1, loc[0]),
-                    xycoords='axes fraction',
-                    textcoords="offset points",
-                    xytext=(0,-5),
-                    ha='center', va='bottom',
-                    color=loc[2], fontweight='bold',
-                    fontsize='large')
-
-    ax.legend(loc='best', framealpha=5)
-    ax.margins(tight=True)
-    plt.subplots_adjust(left=0.15, bottom=0.1, right=0.95, top=0.9)
-    plt.savefig(join(destination_dir, f'{ticker}_result.png'))
-
 
 def graph_crash(benchmark:float,
                 period:str,
                 exchange:str='HOSE'):
-    crash_list = ta.crash(benchmark, period, 'sec', exchange)
-    for ticker in crash_list:
-        try:
-            graph_ticker(ticker)
-            plt.savefig(join(destination_dir,
-                             f'crash_{period}_{ticker}_result.png'),
-                        bbox_inches='tight')
-        except KeyError:
-            continue
+    crash = ta.crash(benchmark, 'sec', exchange)
+    compare_rs(crash[period])
 
 
-def graph_all():
-    global tickers
-    for ticker in tickers:
-        try:
-            graph_ticker(ticker)
-        except KeyError:
-            pass
-
-
-def breakdown(ticker:str):
-    table = df.xs(ticker, axis=0, level=2)
-    num_quantities = table.shape[1]
-    fig = plt.subplots(num_quantities, 1,
-                       figsize=(6,14), sharex=True)
-    plt.suptitle(f'Raw Component Movement: {ticker}', x=0.52, ha='center',
-                 fontweight='bold', color='darkslategrey',
-                 fontfamily='Times New Roman', fontsize=17)
-    colors = plt.rcParams["axes.prop_cycle"]()
-    for i in range(num_quantities):
-        yval = table[table.columns[i]].values
-        while len(yval) < len(fa.periods):
-            yval = np.insert(yval, 0, np.nan)
-        fig[1][i].plot(periods, yval,
-                       color=next(colors)["color"])
-        fig[1][i].grid(True, which='both', axis='x', alpha=0.6)
-        fig[1][i].margins(tight=True)
-        fig[1][i].set_yticks([])
-        fig[1][i].set_ylabel(table.columns[i], labelpad=1,
-                             ha='center', fontsize=8.5)
-
-    plt.subplots_adjust(left=0.05,
-                        right=0.98,
-                        bottom=0.04,
-                        top=0.95,
-                        hspace=0.1)
-    plt.xticks(rotation=45, fontfamily='Times New Roman', fontsize=11)
-    plt.savefig(join(destination_dir, f'{ticker}_components'))
-
-
-def breakdown_all(exchange:str):
-    for ticker in fa.tickers('sec', exchange):
-        try:
-            breakdown(ticker)
-        except KeyError:
-            pass
-
-def compare_industry(ticker:str):
-
+def compare_industry(tickers: list):
     df.dropna(axis=0, how='all', inplace=True)
-    median = df.groupby(axis=0, level=[0,1]).median()
-    # to avoid cases of missing data right at the first period, result in mis-shaped
-    quantities = pd.DataFrame(np.zeros_like(median),
-                              index=median.index,
-                              columns=median.columns)
-    ref_table = df.xs(ticker, axis=0, level=2)
-    quantities = pd.concat([quantities, ref_table], axis=0)
-    quantities = quantities.groupby(level=[0,1], axis=0).sum()
+    median = df.groupby(axis=0, level=[0, 1]).median()
+    for ticker in tickers:
+        # to avoid cases of missing data right at the first period, result in mis-shaped
+        quantities = pd.DataFrame(np.zeros_like(median),
+                                  index=median.index,
+                                  columns=median.columns)
+        ref_table = df.xs(ticker, axis=0, level=2)
+        quantities = pd.concat([quantities, ref_table], axis=0)
+        quantities = quantities.groupby(level=[0, 1], axis=0).sum()
 
-    comparison = pd.concat([quantities, median], axis=1, join='outer',
-                           keys=[ticker, 'median'])
+        comparison = pd.concat([quantities, median], axis=1, join='outer',
+                               keys=[ticker, 'median'])
 
-    fig, ax = plt.subplots(3, 4, figsize=(18,8),
-                           tight_layout=True)
+        periods = [f'{q[0]}q{q[1]}' for q in comparison.index]
+        variables \
+            = comparison.columns.get_level_values(
+            1).drop_duplicates().to_numpy()
 
-    periods = [str(q[0]) + 'q' + str(q[1]) for q in comparison.index]
-    variables \
-        = comparison.columns.get_level_values(1).drop_duplicates().to_numpy()
-    variables = np.append(variables, [None, None])
-    variables = np.reshape(variables, (3,4))
-    for row in range(3):
-        for col in range(4):
-            w = 0.35
-            l = np.arange(len(periods))  # the label locations
-            if variables[row,col] is None:
-                ax[row, col].axis('off')
-            else:
-                ax[row,col].bar(l-w/2, quantities.iloc[:, row*4+col],
-                                width=w, label=ticker,
-                                color='tab:orange', edgecolor='black')
-                ax[row,col].bar(l+w/2, median.iloc[:, row*4+col],
-                                width=w, label='Industry\'s Average',
-                                color='tab:blue', edgecolor='black')
-                plt.setp(ax[row,col].xaxis.get_majorticklabels(), rotation=45)
-                ax[row,col].set_xticks(l)
-                ax[row,col].set_xticklabels(periods, fontsize=7)
-                ax[row, col].set_yticks([])
-                ax[row,col].set_autoscaley_on(True)
-                ax[row,col].set_title(variables[row,col], fontsize=9)
+        chartsperrow = 6
+        rowsrequired = int(np.ceil(len(variables) / chartsperrow))
+        variables = np.append(variables,
+                              [None] * (chartsperrow * rowsrequired - len(
+                                  variables)))
+        variables = np.reshape(variables, (rowsrequired, chartsperrow))
+        fig, ax = plt.subplots(rowsrequired, chartsperrow,
+                               figsize=(chartsperrow * 4, rowsrequired * 3),
+                               tight_layout=True)
+        for row in range(rowsrequired):
+            for col in range(chartsperrow):
+                w = 0.35
+                l = np.arange(len(periods))  # the label locations
+                if variables[row, col] is None:
+                    ax[row, col].axis('off')
+                else:
+                    ax[row, col].bar(l - w/2,
+                                     quantities.iloc[:,
+                                     row * chartsperrow + col],
+                                     width=w, label=ticker,
+                                     color='tab:orange', edgecolor='black')
+                    ax[row, col].bar(l + w/2,
+                                     median.iloc[:, row * chartsperrow + col],
+                                     width=w, label='Industry\'s Average',
+                                     color='tab:blue', edgecolor='black')
+                    plt.setp(ax[row, col].xaxis.get_majorticklabels(),
+                             rotation=45)
+                    ax[row, col].set_xticks(l)
+                    ax[row, col].set_xticklabels(periods, fontsize=7)
+                    ax[row, col].set_yticks([])
+                    ax[row, col].set_autoscaley_on(True)
+                    ax[row, col].set_title(variables[row, col], fontsize=9)
 
-    fig.suptitle(f'{ticker} \n Comparison with the industry\'s average',
-                 fontweight='bold', color='darkslategrey',
-                 fontfamily='Times New Roman', fontsize=18)
-    handles, labels = ax[0,0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc='upper left',
-               bbox_to_anchor=(0.01, 0.98), ncol=2, fontsize=10,
-               markerscale=0.7)
-    plt.savefig(join(destination_dir, f'{ticker}_compare_industry.png'))
+        fig.suptitle(f'{ticker}\n'
+                     f'Comparison With The Industry\'s Average \n'
+                     f'All {len(quantities_new)} Variables In Use \n',
+                     fontweight='bold', color='darkslategrey',
+                     fontfamily='Times New Roman', fontsize=18)
+        handles, labels = ax[0, 0].get_legend_handles_labels()
+        fig.legend(handles, labels, loc='upper left',
+                   bbox_to_anchor=(0.01, 0.98), ncol=2, fontsize=10,
+                   markerscale=0.7)
+        plt.savefig(join(destination_dir, f'{ticker}_compare_industry.png'))
 
 
 def compare_rs(tickers: list):
@@ -524,7 +455,7 @@ def compare_rs(tickers: list):
             after = np.nan
             k = 0
             if not np.isnan(before) and np.isnan(rs_rating.iloc[i, j]):
-                while np.isnan(after):
+                while np.isnan(after) and j+k<rs_rating.shape[1]-1:
                     k += 1
                     after = rs_rating.iloc[i, j+k]
                 rs_rating.iloc[i, j] = before + (after-before)/(k+1)
@@ -633,12 +564,6 @@ def mlist_group(year:int, quarter:int) -> dict:
         d[group] = tickers
 
     return d
-
-
-# Output results
-#graph_all('gics', 1)
-#graph_crash(-0.5, 'gics', 1, '2020q3', 'gen', 'HOSE')
-#breakdown_all('gen')
 
 
 execution_time = time.time() - start_time

@@ -213,7 +213,7 @@ class fa:
         tickers = []
         tickers_ = dict()
         for segment in self.financials:
-            folder = f'fs_{segment}_industry'
+            folder = f'fs_{segment}'
             file = f'is_{self.latest_period[:4]}q{self.latest_period[-1]}.xlsm'
             raw_fiinpro \
                 = openpyxl.load_workbook(
@@ -267,7 +267,7 @@ class fa:
         if fs_type not in self.fs_types:
             raise ValueError(f'fs_type must be in {self.fs_types}')
 
-        folder = f'fs_{segment}_industry'
+        folder = f'fs_{segment}'
 
         files = [f for f in listdir(join(database_path, folder))
                  if f.startswith(f'{fs_type}')
@@ -875,7 +875,7 @@ class fa:
         """
 
         segment = self.segment(ticker)
-        folder = 'fs_' + segment + '_industry'
+        folder = f'fs_{segment}'
         file_names = listdir(join(self.database_path, folder))
         file_names = [f for f in file_names if not f.startswith('~$')]
         file_names.sort()
@@ -1201,7 +1201,7 @@ class fa:
         :return: pandas.DataFrame
         """
 
-        folder = 'market_cap'
+        folder = 'marketcap'
         file = [f for f in listdir(join(self.database_path, folder))
                if isfile(join(self.database_path, folder, f))][-1]
 
@@ -1590,30 +1590,39 @@ class ta:
         return returns
 
 
-    def crash(self, benchmark=-0.5, period:str=fa.latest_period,
-              segment:str='all', exchange:str='all') -> list:
+    @staticmethod
+    def crash(benchmark=-0.5, segment:str= 'all', exchange:str= 'all')\
+            -> dict:
 
         """
         This method returns all tickers whose stock return
         lower than 'benchmark' in a given period
 
         :param benchmark: negative number in [-1,0]
-        :param period: allow values in fa.periods
         :param segment: allow values in fa.segments
         :param exchange: allow values in ['HOSE', 'HNX', 'UPCOM'] or 'all'
 
-        :return: list
+        :return: dict[period]
         """
 
-        returns = self.returns(segment, exchange)
-        crash = list()
-        for ticker in returns.index:
-            if returns.loc[ticker, period] <= benchmark:
-                crash.append(ticker)
-            else:
-                pass
+        folder = 'price' ; file = 'prhighlow.csv'
+        table = pd.read_csv(join(database_path, folder, file),
+                            index_col=[0])
+        tickers = fa.tickers(segment, exchange)
 
-        return crash
+        crash_dict = dict()
+        for period in fa.periods:
+            crash_dict[period] = []
+            for ticker in tickers:
+                t = table.loc[ticker,period]
+                if isinstance(t, str):
+                    string = t.replace('(', '').replace(')', '')
+                    string = string.split(',')
+                    low_return = float(string[3])
+                    if low_return <= benchmark:
+                        crash_dict[period] += [ticker]
+
+        return crash_dict
 
 
     def prhighlow(self, ticker:str, fquarters:int=0) \

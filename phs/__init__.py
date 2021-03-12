@@ -25,4 +25,8 @@ from sklearn.cluster import KMeans
 from scipy.stats import rankdata
 from scipy.interpolate import interp1d
 from sklearn.decomposition import PCA
-from
+
+###############################################################################
+
+from bs4 import BeautifulSoup
+from urllib.request import urlopen

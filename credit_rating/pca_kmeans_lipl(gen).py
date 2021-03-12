@@ -167,6 +167,9 @@ del agg_data # for memory savings
 # replace 0 values with 1000 VND to avoid 0 denominator
 df = df.loc[~(df==0).all(axis=1)] # remove no-data companies first
 df = df.replace(to_replace=0, value=1e3)
+# remove negative revenue companies
+df = df.loc[df['revenue']>0]
+
 
 df['ln_asset'] = np.log(df['asset'])
 df['ln_equity'] = np.log(df['equity'])
@@ -540,6 +543,7 @@ export_component_table()
 df = pd.read_csv(join(destination_dir, component_filename+'.csv'),
                  index_col=['year','quarter','ticker'])
 
+
 result_filename = 'result_table_gen'
 def export_result_table():
     global destination_dir
@@ -550,12 +554,13 @@ export_result_table()
 result_table = pd.read_csv(join(destination_dir, result_filename+'.csv'),
                            index_col=['standard','level','industry','ticker'])
 
+
 def graph_ticker(ticker: str, standard: str, level: int):
     table = pd.DataFrame(index=['credit_score'],
                          columns=periods)
 
     table.loc['credit_score', periods] \
-        = result_table.xs(key=(standard, standard + '_l' + str(level)),
+        = result_table.xs(key=(standard, f'{standard}_l{str(level)}'),
                           axis=0, level=[0,1])\
         .xs(key=ticker, axis=0, level=1).values
 
@@ -623,118 +628,77 @@ def graph_ticker(ticker: str, standard: str, level: int):
     plt.savefig(join(destination_dir, f'{ticker}_result.png'))
 
 
-def graph_crash(benchmark:float, standard:str, level:int,
-                period:str, segment:str , exchange:str='HOSE'):
-    crash_list = ta.crash(benchmark, period, segment, exchange)
-    for ticker in crash_list:
-        try:
-            graph_ticker(ticker, standard, level)
-            plt.savefig(join(destination_dir,
-                             f'crash_{period}_{ticker}_result.png'),
-                        bbox_inches='tight')
-        except KeyError:
-            continue
+def graph_crash(benchmark:float,
+                period:str,
+                exchange:str='HOSE'):
+    crash = ta.crash(benchmark, 'gen', exchange)
+    compare_rs(crash[period])
 
 
-def graph_all(standard:str, level:int):
-    global tickers
-    for ticker in tickers:
-        try:
-            graph_ticker(ticker, standard, level)
-        except KeyError:
-            pass
-
-
-def breakdown(ticker:str):
-    table = df.xs(ticker, axis=0, level=2)
-    num_quantities = len(quantities_new)
-    fig = plt.subplots(num_quantities, 1,
-                       figsize=(6,14), sharex=True)
-    plt.suptitle(f'Raw Component Movement: {ticker}', x=0.52, ha='center',
-                 fontweight='bold', color='darkslategrey',
-                 fontfamily='Times New Roman', fontsize=17)
-    colors = plt.rcParams["axes.prop_cycle"]()
-    for i in range(num_quantities):
-        yval = table[quantities_new[i]].values
-        while len(yval) < len(periods):
-            yval = np.insert(yval, 0, np.nan)
-        fig[1][i].plot(periods, yval,
-                       color=next(colors)["color"])
-        fig[1][i].grid(True, which='both', axis='x', alpha=0.6)
-        fig[1][i].margins(tight=True)
-        fig[1][i].set_yticks([])
-        fig[1][i].set_ylabel(quantities_new[i], labelpad=1,
-                             ha='center', fontsize=8.5)
-
-    plt.subplots_adjust(left=0.05,
-                        right=0.98,
-                        bottom=0.04,
-                        top=0.95,
-                        hspace=0.1)
-    plt.xticks(rotation=45, fontfamily='Times New Roman', fontsize=11)
-    plt.savefig(join(destination_dir,'breakdown', f'{ticker}_components'))
-
-
-def breakdown_all(segment:str, exchange:str):
-    for ticker in fa.tickers(segment, exchange):
-        try:
-            breakdown(ticker)
-        except KeyError:
-            pass
-
-def compare_industry(ticker:str, standard:str, level:int):
+def compare_industry(tickers:list, standard:str, level:int):
 
     full_list = fa.classification(standard).iloc[:,level-1]
-    industry = full_list.loc[ticker]
-    peers = full_list.loc[full_list == industry].index.tolist()
+    for ticker in tickers:
+        industry = full_list.loc[ticker]
+        peers = full_list.loc[full_list == industry].index.tolist()
 
-    table = df.loc[df.index.get_level_values(2).isin(peers)]
-    table.dropna(axis=0, how='all', inplace=True)
+        table = df.loc[df.index.get_level_values(2).isin(peers)]
+        table.dropna(axis=0, how='all', inplace=True)
 
-    median = table.groupby(axis=0, level=[0,1]).median()
-    quantities = table.xs(ticker, axis=0, level=2)
+        median = table.groupby(axis=0, level=[0,1]).median()
+        quantities = table.xs(ticker, axis=0, level=2)
 
-    comparison = pd.concat([quantities, median], axis=1, join='outer',
-                           keys=[ticker, 'median'])
+        comparison = pd.concat([quantities, median], axis=1, join='outer',
+                               keys=[ticker, 'median'])
 
-    fig, ax = plt.subplots(3,5, figsize=(18,8),
-                           tight_layout=True)
+        periods = [f'{q[0]}q{q[1]}' for q in comparison.index]
+        variables \
+            = comparison.columns.get_level_values(1)\
+            .drop_duplicates().to_numpy()
 
-    periods = [str(q[0]) + 'q' + str(q[1]) for q in comparison.index]
-    variables \
-        = comparison.columns.get_level_values(1).drop_duplicates().to_numpy()
-    variables = np.append(variables, None)
-    variables = np.reshape(variables, (3,5))
-    for row in range(3):
-        for col in range(5):
-            w = 0.35
-            l = np.arange(len(periods))  # the label locations
-            if variables[row,col] is None:
-                ax[row, col].axis('off')
-            else:
-                ax[row,col].bar(l-w/2, quantities.iloc[:, row*5+col],
-                                width=w, label=ticker,
-                                color='tab:orange', edgecolor='black')
-                ax[row,col].bar(l+w/2, median.iloc[:, row*5+col],
-                                width=w, label='Industry\'s Average',
-                                color='tab:blue', edgecolor='black')
-                plt.setp(ax[row,col].xaxis.get_majorticklabels(), rotation=45)
-                ax[row,col].set_xticks(l)
-                ax[row,col].set_xticklabels(periods, fontsize=7)
-                ax[row, col].set_yticks([])
-                ax[row,col].set_autoscaley_on(True)
-                ax[row,col].set_title(variables[row,col], fontsize=9)
+        chartsperrow = 6
+        rowsrequired = int(np.ceil(len(variables) / chartsperrow))
+        variables = np.append(variables,
+                              [None] * (chartsperrow * rowsrequired - len(
+                                  variables)))
+        variables = np.reshape(variables, (rowsrequired, chartsperrow))
+        fig, ax = plt.subplots(rowsrequired, chartsperrow,
+                               figsize=(chartsperrow * 4, rowsrequired * 3),
+                               tight_layout=True)
+        for row in range(rowsrequired):
+            for col in range(chartsperrow):
+                w = 0.35
+                l = np.arange(len(periods))  # the label locations
+                if variables[row, col] is None:
+                    ax[row, col].axis('off')
+                else:
+                    ax[row, col].bar(l - w / 2,
+                                     quantities.iloc[:,
+                                     row * chartsperrow + col],
+                                     width=w, label=ticker,
+                                     color='tab:orange', edgecolor='black')
+                    ax[row, col].bar(l + w / 2,
+                                     median.iloc[:, row * chartsperrow + col],
+                                     width=w, label='Industry\'s Average',
+                                     color='tab:blue', edgecolor='black')
+                    plt.setp(ax[row, col].xaxis.get_majorticklabels(),
+                             rotation=45)
+                    ax[row, col].set_xticks(l)
+                    ax[row, col].set_xticklabels(periods, fontsize=7)
+                    ax[row, col].set_yticks([])
+                    ax[row, col].set_autoscaley_on(True)
+                    ax[row, col].set_title(variables[row, col], fontsize=9)
 
-    fig.suptitle(f'{ticker} \n Comparison with the industry\'s average',
-                 fontweight='bold', color='darkslategrey',
-                 fontfamily='Times New Roman', fontsize=14)
-    handles, labels = ax[0,0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc='upper left',
-               bbox_to_anchor=(0.01, 0.98), ncol=2, fontsize=9,
-               markerscale=0.7)
-
-    plt.show()
-
+        fig.suptitle(f'{ticker}\n'
+                     f'Comparison With The Industry\'s Average \n'
+                     f'All {len(quantities_new)} Variables In Use \n',
+                     fontweight='bold', color='darkslategrey',
+                     fontfamily='Times New Roman', fontsize=18)
+        handles, labels = ax[0, 0].get_legend_handles_labels()
+        fig.legend(handles, labels, loc='upper left',
+                   bbox_to_anchor=(0.01, 0.98), ncol=2, fontsize=10,
+                   markerscale=0.7)
+        plt.savefig(join(destination_dir, f'{ticker}_compare_industry.png'))
 
 def compare_rs(tickers: list, standard: str, level: int):
 
@@ -760,7 +724,7 @@ def compare_rs(tickers: list, standard: str, level: int):
             after = np.nan
             k = 0
             if not np.isnan(before) and np.isnan(rs_rating.iloc[i, j]):
-                while np.isnan(after):
+                while np.isnan(after) and j+k<rs_rating.shape[1]-1:
                     k += 1
                     after = rs_rating.iloc[i, j + k]
                 rs_rating.iloc[i, j] = before + (after - before) / (k + 1)
@@ -878,12 +842,6 @@ def mlist_group(standard:str, level:int, year:int, quarter:int) -> dict:
         d[group] = tickers
 
     return d
-
-
-# Output results
-#graph_all('gics', 1)
-#graph_crash(-0.5, 'gics', 1, '2020q3', 'gen', 'HOSE')
-#breakdown_all('gen')
 
 
 execution_time = time.time() - start_time
