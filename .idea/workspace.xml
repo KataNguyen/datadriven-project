@@ -5,11 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Industry/ACB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Industry/MBB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Industry/TCB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Industry/VCB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Industry/VPB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Research/ACB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Research/MBB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Research/TCB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Research/VCB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Research/VPB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group B/Compare with Research/TPB_compare_rs.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(bank).py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(bank).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(gen).py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(gen).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(ins).py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(ins).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(sec).py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(sec).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/BMI_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/BVH_compare_industry.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/PGI_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/PHS_compare_industry.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/PTI_compare_industry.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/SSI_compare_industry.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/VCB_compare_industry.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/VCB_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/component_table_bank.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/component_table_bank.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/component_table_ins.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/component_table_ins.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/component_table_sec.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/component_table_sec.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/component_talbe_gen.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/component_talbe_gen.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/result_table_bank.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/result_table_bank.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/result_table_gen.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/result_table_gen.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/result_table_ins.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/result_table_ins.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/result_table_sec.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/result_table_sec.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,13 +214,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
-    </task>
-    <task id="LOCAL-00004" summary="post_breakeven_price">
-      <created>1610697332189</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1610697332189</updated>
     </task>
     <task id="LOCAL-00005" summary="post_breakeven_price">
       <created>1610713792945</created>
@@ -535,7 +551,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615543914334</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="post_breakeven_price">
+      <created>1615545468325</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1615545468325</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -227,7 +227,7 @@ df = df.loc[~(df==0).all(axis=1)] # remove no-data companies first
 df = df.replace(to_replace=0, value=1e3)
 
 
-df['asse_'] = df['asset']
+df['asset_'] = df['asset']
 df['equity_'] = df['equity']
 df['income'] = df['int_income'] + df['feecomisn_income']\
                + df['gainlossfxgold'] + df['gainlosstrading']\
