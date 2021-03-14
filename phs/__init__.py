@@ -1,9 +1,10 @@
 import numpy as np
 import pandas as pd
 import matplotlib as mpl ; mpl.use('Agg')
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt ; plt.ioff()
 from matplotlib.ticker import MaxNLocator
 from matplotlib.ticker import FuncFormatter
+from matplotlib.dates import DateFormatter
 import matplotlib.ticker
 import openpyxl
 import os
@@ -18,6 +19,11 @@ import json
 import holidays
 from typing import Union
 import itertools
+
+###############################################################################
+
+from scipy import stats
+
 
 ###############################################################################
 

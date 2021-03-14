@@ -5,34 +5,587 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Industry/ACB_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Industry/MBB_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Industry/TCB_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Industry/VCB_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Industry/VPB_compare_industry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Research/ACB_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Research/MBB_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Research/TCB_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Research/VCB_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group A/Compare with Research/VPB_compare_rs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group B/Compare with Research/TPB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/BCE_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/BCG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group B/Compare with Industry/TPB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group C/Compare with Industry/BID_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group C/Compare with Industry/CTG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group C/Compare with Industry/EIB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group C/Compare with Industry/HDB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group C/Compare with Industry/NVB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group C/Compare with Industry/SHB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Bank/Group C/Compare with Industry/STB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/C47_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/CDC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/CEO_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/CII_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/CTI_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/DBT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/DDG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/DNM_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/DNP_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/DRH_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/DTD_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/FCN_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/GEG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/GEX_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/BAX_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/BMP_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/CAP_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/CAV_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/CLC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/CLW_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/CTD_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/CVN_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/D2D_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/DCM_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/DGC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/DGW_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/DHA_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/DHC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/DHG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/DIG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/DMC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/DPM_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/DPR_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/DRC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/DSN_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/DVP_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/DXP_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/EID_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/FIT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/FMC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/GAS_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/GDT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/GSP_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/GVR_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/HAP_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/HAR_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/HAX_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/HHS_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/HJS_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/HLD_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/HMC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/HMH_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/HPG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/HSL_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/HTI_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/HTV_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/ICG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/IMP_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/KDH_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/KSB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/LHC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/LIX_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/NBB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/NCT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/NET_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/NNC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/NRC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/NT2_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/NTH_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/NTL_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/PDN_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/PDR_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/PGD_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/PHN_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/PHR_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/PMC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/PME_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/PNJ_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/POW_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/PPC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/PVT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/SAB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/SCS_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/SFI_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/SGN_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/SKG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/SMB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/STK_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/SVC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/SZB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/SZL_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/TBC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/TCH_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/TCL_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/TCO_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/TCT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/TIP_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/TLG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/TMP_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/TMS_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/TRA_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/TRC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/TTT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/TV2_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/TV4_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/UIC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/VCS_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/VGS_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/VHC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/VHM_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/VNM_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/VPG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/VRE_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/VSC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/VTO_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Industry/WCS_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/BAX_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/BMP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/CAP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/CAV_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/CLC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/CLW_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/CTD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/CVN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/D2D_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/DCM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/DGC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/DGW_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/DHA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/DHC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/DHG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/DIG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/DMC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/DPM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/DPR_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/DRC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/DSN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/DVP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/DXP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/EID_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/FIT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/FMC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/GAS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/GDT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/GSP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/GVR_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/HAP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/HAR_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/HAX_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/HHS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/HJS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/HLD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/HMC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/HMH_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/HPG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/HSL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/HTI_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/HTV_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/ICG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/IMP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/KDH_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/KSB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/LHC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/LIX_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/NBB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/NCT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/NET_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/NNC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/NRC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/NT2_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/NTH_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/NTL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/PDN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/PDR_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/PGD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/PHN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/PHR_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/PMC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/PME_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/PNJ_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/POW_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/PPC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/PVT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/SAB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/SCS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/SFI_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/SGN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/SKG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/SMB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/STK_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/SVC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/SZL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/TBC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/TCH_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/TCL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/TCO_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/TCT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/TIP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/TLG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/TMP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/TMS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/TRA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/TRC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/TTT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/TV2_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/TV4_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/UIC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/VCS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/VGS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/VHC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/VHM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/VNM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/VPG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/VRE_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/VSC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/VTO_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group A/Compare with Research/WCS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/AAA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/AAV_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/ACC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/ACL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/AGM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/ANV_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/APC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/ASM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/AST_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/BCC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/BFC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/BMC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/BTP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/BWE_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/C32_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/CCL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/CMG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/CNG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/CRC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/CSM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/CSV_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/CTF_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/CVT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/DBC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/DBD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/DCL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/DHT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/DPG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/DQC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/ELC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/FIR_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/FLC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/FPT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/FRT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/GAB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/GIL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/GKM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/GMC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/GMD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/HAH_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/HAT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/HDC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/HDG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/HII_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/HPX_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/HSG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/HT1_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/HTN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/HUB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/IDC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/IDI_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/IDV_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/IJC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/INN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/ITA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/ITC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/ITD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/KBC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/KDC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/L14_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/LCG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/LDG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/LGC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/LHG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/LSS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/MDC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/MSN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/MWG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/NDN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/NHH_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/NKG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/NLG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/NSC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/NTP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/NVL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/PAC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/PAN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/PC1_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/PET_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/PLC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/PSD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/PTB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/PVS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/RAL_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/REE_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/S99_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/SAM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/SAV_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/SBA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/SBT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/SBV_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/SCI_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/SDG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/SHP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/SJD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/SJS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/SLS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/SMC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/SRA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/SRC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/ST8_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/TA9_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/TAC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/TCD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/TCM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/TDC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/TDM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/TDN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/THG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/THT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/TIG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/TLD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/TNA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/TVC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/TVT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/TYA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/VC3_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/VDP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/VGC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/VID_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/VIT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/VJC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/VNE_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/VPD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/VPI_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/VPS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/VRC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/VTB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Comapre with Research/VTV_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/AAA_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/AAV_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/ABS_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/ACC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/ACL_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/AGG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/AGM_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/ANV_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/APC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/ASM_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/AST_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/BCC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/BFC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/BMC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/BTP_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/BWE_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/C32_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/CCL_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/CMG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/CNG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/CRC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/CSM_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/CSV_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/CTF_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/CVT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/DBC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/DBD_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/DCL_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/DHT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/DPG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/DQC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/ELC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/FIR_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/FLC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/FPT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/FRT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/GAB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/GIL_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/GKM_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/GMC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/GMD_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/HAH_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/HAT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/HDC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/HDG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/HII_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/HPX_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/HSG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/HT1_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/HTN_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/HUB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/IDC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/IDI_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/IDV_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/IJC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/INN_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/ITA_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/ITC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/ITD_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/KBC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/KDC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/L14_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/LCG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/LDG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/LGC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/LHG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/LSS_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/MDC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/MSN_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/MWG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/NDN_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/NHH_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/NKG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/NLG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/NSC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/NTP_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/NVL_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/PAC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/PAN_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/PC1_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/PET_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/PLC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/PSD_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/PTB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/PVS_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/RAL_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/REE_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/S99_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/SAM_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/SAV_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/SBA_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/SBT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/SBV_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/SCI_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/SDG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/SHP_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/SJD_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/SJS_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/SLS_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/SMC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/SRA_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/SRC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/ST8_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/TA9_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/TAC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/TCD_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/TCM_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/TDC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/TDM_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/TDN_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/THG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/THT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/TIG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/TLD_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/TNA_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/TVC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/TVT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/TYA_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/VC3_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/VDP_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/VGC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/VID_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/VIT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/VJC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/VNE_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/VPD_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/VPI_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/VPS_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/VRC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/VTB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group B/Compare with Industry/VTV_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/BCE_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/BCG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/C47_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/CDC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/CEO_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/CII_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/CTI_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/DBT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/DDG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/DNM_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/DNP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/DRH_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/DTD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/FCN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/GEG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/GEX_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/HBC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/HRC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/HVH_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/IDJ_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/ILB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/LIG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/NAF_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/PGC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/PGS_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/PHC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/PLP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/PMG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/PVC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/PVD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/SCR_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/SD5_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/SFG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/SGT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/SHA_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/SHI_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/SHN_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/SJE_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/SRF_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/SZC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/TNG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/VC7_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/VHE_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/VIC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/VIP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/VMC_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group C/Compare with Research/VSI_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group D/Compare with Research/CMX_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group D/Compare with Research/DAG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group D/Compare with Research/RDP_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group D/Compare with Research/SD9_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group D/Compare with Research/SGR_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group D/Compare with Research/TDT_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group D/Compare with Research/TTB_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group D/Compare with Research/TVD_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/Gen/Group D/Compare with Research/VNG_compare_rs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/HBC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/HRC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/HVH_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/ICT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/IDJ_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/ILB_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/LIG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/NAF_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/PGC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/PGS_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/PHC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/PLP_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/PMG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/PVC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/PVD_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/SCR_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/SD5_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/SFG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/SGT_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/SHA_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/SHI_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/SHN_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/SJE_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/SRF_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/SZC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/TNG_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/VC7_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/VHE_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/VIC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/VIP_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/VMC_compare_industry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/credit_rating/result/VSI_compare_industry.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/BMI_compare_rs.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/BVH_compare_industry.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/PGI_compare_rs.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/PHS_compare_industry.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/PTI_compare_industry.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/SSI_compare_industry.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/VCB_compare_industry.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/VCB_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/breakeven_price/monte_carlo.py" beforeDir="false" afterPath="$PROJECT_DIR$/breakeven_price/monte_carlo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(gen).py" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(gen).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/TPB_compare_industry.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/credit_rating/result/component_table_bank.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/component_table_bank.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/component_table_ins.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/component_table_ins.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/component_table_sec.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/component_table_sec.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/component_talbe_gen.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/component_talbe_gen.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/result_table_bank.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/result_table_bank.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/result_table_gen.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/result_table_gen.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/result_table_ins.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/result_table_ins.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/credit_rating/result/result_table_sec.csv" beforeDir="false" afterPath="$PROJECT_DIR$/credit_rating/result/result_table_sec.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/phs/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +638,7 @@
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="datadriven-project" is-module-sdk="true" working-directory="$PROJECT_DIR$">
+        <option name="useSoftWraps" value="true" />
         <option name="myUseModuleSdk" value="true" />
         <option name="myModuleName" value="datadriven-project" />
         <option name="myWorkingDirectory" value="$PROJECT_DIR$" />
@@ -214,13 +768,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
-    </task>
-    <task id="LOCAL-00005" summary="post_breakeven_price">
-      <created>1610713792945</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1610713792945</updated>
     </task>
     <task id="LOCAL-00006" summary="post_breakeven_price">
       <created>1610715007296</created>
@@ -558,7 +1105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615545468325</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="post_breakeven_price">
+      <created>1615610599374</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1615610599374</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

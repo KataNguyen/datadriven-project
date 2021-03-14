@@ -639,14 +639,21 @@ def compare_industry(tickers:list, standard:str, level:int):
 
     full_list = fa.classification(standard).iloc[:,level-1]
     for ticker in tickers:
+        # to avoid cases of missing data right at the first period, result in mis-shaped
         industry = full_list.loc[ticker]
         peers = full_list.loc[full_list == industry].index.tolist()
 
         table = df.loc[df.index.get_level_values(2).isin(peers)]
         table.dropna(axis=0, how='all', inplace=True)
 
-        median = table.groupby(axis=0, level=[0,1]).median()
-        quantities = table.xs(ticker, axis=0, level=2)
+        median = table.groupby(axis=0, level=[0, 1]).median()
+        quantities = pd.DataFrame(np.zeros_like(median),
+                                  index=median.index,
+                                  columns=median.columns)
+
+        ref_table = table.xs(ticker, axis=0, level=2)
+        quantities = pd.concat([quantities, ref_table], axis=0)
+        quantities = quantities.groupby(level=[0, 1], axis=0).sum()
 
         comparison = pd.concat([quantities, median], axis=1, join='outer',
                                keys=[ticker, 'median'])
@@ -672,12 +679,12 @@ def compare_industry(tickers:list, standard:str, level:int):
                 if variables[row, col] is None:
                     ax[row, col].axis('off')
                 else:
-                    ax[row, col].bar(l - w / 2,
+                    ax[row, col].bar(l - w/2,
                                      quantities.iloc[:,
                                      row * chartsperrow + col],
                                      width=w, label=ticker,
                                      color='tab:orange', edgecolor='black')
-                    ax[row, col].bar(l + w / 2,
+                    ax[row, col].bar(l + w/2,
                                      median.iloc[:, row * chartsperrow + col],
                                      width=w, label='Industry\'s Average',
                                      color='tab:blue', edgecolor='black')
