@@ -24,7 +24,6 @@ import itertools
 
 from scipy import stats
 
-
 ###############################################################################
 
 from sklearn.cluster import KMeans
