@@ -171,7 +171,7 @@ df = df.replace(to_replace=0, value=1e3)
 df = df.loc[df['revenue']>0]
 
 
-df['asset_'] = df['asset']
+df['cash&ppe'] = df['cash'] + df['ppe']
 df['equity_'] = df['equity']
 df['revenue_'] = df['revenue']
 df['cur_ratio'] = df['cur_asset'] / df['cur_liability']
@@ -284,13 +284,13 @@ for standard in standards:
                 df_xs.dropna(axis=0, how='any', inplace=True)
                 if df_xs.shape[0] < min_tickers:
                     kmeans.loc[
-                    (standard, standard + '_l' + str(level), industry), :] \
+                    (standard,f'{standard}_l{level}',industry),:] \
                         = None
                     labels.loc[
-                    (standard, standard + '_l' + str(level), industry), :] \
+                    (standard,f'{standard}_l{level}',industry),:] \
                         = None
                     centers.loc[
-                    (standard, standard + '_l' + str(level), industry), :] \
+                    (standard,f'{standard}_l{level}',industry),:] \
                         = None
                 else:
                     for quantity in quantities_new:
@@ -351,16 +351,12 @@ for standard in standards:
                     cols = ['PC_'+str(i+1) for i in range(PCs.shape[1])]
                     df_xs = pd.DataFrame(PCs, index=idx, columns=cols)
 
-                    benmrks.loc[(standard,
-                                standard+'_l'+str(level),
-                                industry),
-                                str(year) + 'q' + str(quarter)] = PCs[0]
+                    benmrks.loc[(standard, f'{standard}_l{level}', industry),
+                                f'{year}q{quarter}'] = PCs[0]
 
                     # Kmeans algorithm
-                    kmeans.loc[(standard,
-                                standard+'_l'+str(level),
-                                industry),
-                                str(year) + 'q' + str(quarter)] \
+                    kmeans.loc[(standard, f'{standard}_l{level}',industry),
+                               f'{year}q{quarter}'] \
                         = KMeans(n_clusters=centroids,
                                  init='k-means++',
                                  n_init=10,
@@ -369,39 +365,29 @@ for standard in standards:
                                  random_state=1)\
                         .fit(df_xs.dropna(axis=0, how='any'))
 
-                    kmeans_tickers.loc[(standard,
-                                        standard + '_l' + str(level),
-                                        industry),
-                                       str(year) + 'q' + str(quarter)] \
+                    kmeans_tickers.loc[(standard, f'{standard}_l{level}',
+                                        industry), f'{year}q{quarter}'] \
                         = df_xs.index.get_level_values(2).to_list()
 
-                    kmeans_coord.loc[(standard, standard + '_l' + str(level),
-                                     industry),
-                                     str(year) + 'q' + str(quarter)] \
+                    kmeans_coord.loc[(standard, f'{standard}_l{level}',
+                                     industry), f'{year}q{quarter}'] \
                         = df_xs.values
 
-                    labels.loc[(standard,
-                                standard + '_l' + str(level),
-                                industry),
-                                str(year) + 'q' + str(quarter)] \
-                        = kmeans.loc[(standard,
-                                      standard+'_l'+str(level),
+                    labels.loc[(standard, f'{standard}_l{level}', industry),
+                               f'{year}q{quarter}'] \
+                        = kmeans.loc[(standard, f'{standard}_l{level}',
                                       industry),
-                                     str(year) + 'q' + str(quarter)].labels_\
+                                     f'{year}q{quarter}'].labels_\
                         .tolist()
 
-                    centers.loc[(standard,
-                                 standard + '_l' + str(level),
-                                 industry),
-                                str(year) + 'q' + str(quarter)] \
-                        = kmeans.loc[(standard,
-                                      standard+'_l'+str(level),
-                                      industry),
-                                     str(year) + 'q' + str(quarter)]\
+                    centers.loc[(standard, f'{standard}_l{level}', industry),
+                                f'{year}q{quarter}'] \
+                        = kmeans.loc[(standard, f'{standard}_l{level}',
+                                      industry), f'{year}q{quarter}']\
                         .cluster_centers_.tolist()
                     print(f'Passed:: Standard: {standard.upper()} '
-                          f'- Level: {int(level)} -- {industry} '
-                          f'-- Year: {int(year)}, Quarter: {int(quarter)}')
+                          f'- Level: {level} -- {industry} '
+                          f'-- Year: {year}, Quarter: {quarter}')
 
 del df_xs # for memory saving
 
@@ -555,77 +541,80 @@ result_table = pd.read_csv(join(destination_dir, result_filename+'.csv'),
                            index_col=['standard','level','industry','ticker'])
 
 
-def graph_ticker(ticker: str, standard: str, level: int):
+def graph_tickers(tickers: list, standard: str, level: int):
     table = pd.DataFrame(index=['credit_score'],
                          columns=periods)
+    for ticker in tickers:
+        for period in periods:
+            table.loc['credit_score', period] \
+                = result_table.loc[
+                pd.IndexSlice[standard,f'{standard}_l{level}',:,ticker],
+                period].iloc[0]
 
-    table.loc['credit_score', periods] \
-        = result_table.xs(key=(standard, f'{standard}_l{str(level)}'),
-                          axis=0, level=[0,1])\
-        .xs(key=ticker, axis=0, level=1).values
+        fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(8,6))
+        ax.set_title(ticker + '\n' + standard.upper()
+                     + ' Level {} Classification'.format(level),
+                     fontsize=15, fontweight='bold', color='darkslategrey',
+                     fontfamily='Times New Roman')
 
-    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(8,6))
-    ax.set_title(ticker + '\n' + standard.upper()
-                 + ' Level {} Classification'.format(level),
-                 fontsize=15, fontweight='bold', color='darkslategrey',
-                 fontfamily='Times New Roman')
+        xloc = np.arange(table.shape[1]) # label locations
+        rects = ax.bar(xloc, table.iloc[0], width=0.8,
+                       color='tab:blue',
+                       label='Credit Score',
+                       edgecolor='black')
+        for rect in rects:
+            height = rect.get_height()
+            ax.annotate('{:.0f}'.format(height),
+                        xy=(rect.get_x()+rect.get_width()/2, height),
+                        xytext=(0,3),  # 3 points vertical offset
+                        textcoords="offset points",
+                        ha='center', va='bottom', fontsize=11)
 
-    xloc = np.arange(table.shape[1]) # label locations
-    rects = ax.bar(xloc, table.iloc[0], width=0.8,
-                   color='tab:blue', label='Credit Score', edgecolor='black')
-    for rect in rects:
-        height = rect.get_height()
-        ax.annotate('{:.0f}'.format(height),
-                    xy=(rect.get_x()+rect.get_width()/2, height),
-                    xytext=(0,3),  # 3 points vertical offset
-                    textcoords="offset points",
-                    ha='center', va='bottom', fontsize=11)
+        ax.set_xticks(np.arange(len(xloc)))
+        ax.set_xticklabels(table.columns.tolist(), rotation=45, x=xloc,
+                           fontfamily='Times New Roman', fontsize=11)
 
-    ax.set_xticks(np.arange(len(xloc)))
-    ax.set_xticklabels(table.columns.tolist(), rotation=45, x=xloc,
-                       fontfamily='Times New Roman', fontsize=11)
+        ax.set_yticks(np.array([0,25,50,75,100]))
+        ax.tick_params(axis='y', labelcolor='black', labelsize=11)
 
-    ax.set_yticks(np.array([0,25,50,75,100]))
-    ax.tick_params(axis='y', labelcolor='black', labelsize=11)
+        Acolor = 'green'
+        Bcolor = 'olivedrab'
+        Ccolor = 'darkorange'
+        Dcolor = 'firebrick'
 
-    Acolor = 'green'
-    Bcolor = 'olivedrab'
-    Ccolor = 'darkorange'
-    Dcolor = 'firebrick'
+        ax.axhline(100, ls='--', linewidth=0.5, color=Acolor)
+        ax.axhline(75, ls='--', linewidth=0.5, color=Bcolor)
+        ax.axhline(50, ls='--', linewidth=0.5, color=Ccolor)
+        ax.axhline(25, ls='--', linewidth=0.5, color=Dcolor)
+        ax.fill_between([-0.4,xloc[-1]+0.4], 100, 75,
+                        color=Acolor, alpha=0.2)
+        ax.fill_between([-0.4,xloc[-1]+0.4], 75, 50,
+                        color=Bcolor, alpha=0.25)
+        ax.fill_between([-0.4,xloc[-1]+0.4], 50, 25,
+                        color=Ccolor, alpha=0.2)
+        ax.fill_between([-0.4,xloc[-1]+0.4], 25, 0,
+                        color=Dcolor, alpha=0.2)
 
-    ax.axhline(100, ls='--', linewidth=0.5, color=Acolor)
-    ax.axhline(75, ls='--', linewidth=0.5, color=Bcolor)
-    ax.axhline(50, ls='--', linewidth=0.5, color=Ccolor)
-    ax.axhline(25, ls='--', linewidth=0.5, color=Dcolor)
-    ax.fill_between([-0.4,xloc[-1]+0.4], 100, 75,
-                    color=Acolor, alpha=0.2)
-    ax.fill_between([-0.4,xloc[-1]+0.4], 75, 50,
-                    color=Bcolor, alpha=0.25)
-    ax.fill_between([-0.4,xloc[-1]+0.4], 50, 25,
-                    color=Ccolor, alpha=0.2)
-    ax.fill_between([-0.4,xloc[-1]+0.4], 25, 0,
-                    color=Dcolor, alpha=0.2)
+        plt.xlim(-0.6, xloc[-1] + 0.6)
 
-    plt.xlim(-0.6, xloc[-1] + 0.6)
+        ax.set_ylim(top=110)
+        midpoints = np.array([87.5, 62.5, 37.5, 12.5])/110
+        labels = ['Group A', 'Group B', 'Group C', 'Group D']
+        colors = [Acolor, Bcolor, Ccolor, Dcolor]
+        for loc in zip(midpoints, labels, colors):
+            ax.annotate(loc[1],
+                        xy=(-0.1, loc[0]),
+                        xycoords='axes fraction',
+                        textcoords="offset points",
+                        xytext=(0,-5),
+                        ha='center', va='bottom',
+                        color=loc[2], fontweight='bold',
+                        fontsize='large')
 
-    ax.set_ylim(top=110)
-    midpoints = np.array([87.5, 62.5, 37.5, 12.5])/110
-    labels = ['Group A', 'Group B', 'Group C', 'Group D']
-    colors = [Acolor, Bcolor, Ccolor, Dcolor]
-    for loc in zip(midpoints, labels, colors):
-        ax.annotate(loc[1],
-                    xy=(-0.1, loc[0]),
-                    xycoords='axes fraction',
-                    textcoords="offset points",
-                    xytext=(0,-5),
-                    ha='center', va='bottom',
-                    color=loc[2], fontweight='bold',
-                    fontsize='large')
-
-    ax.legend(loc='best', framealpha=5)
-    ax.margins(tight=True)
-    plt.subplots_adjust(left=0.15, bottom=0.1, right=0.95, top=0.9)
-    plt.savefig(join(destination_dir, f'{ticker}_result.png'))
+        ax.legend(loc='best', framealpha=5)
+        ax.margins(tight=True)
+        plt.subplots_adjust(left=0.15, bottom=0.1, right=0.95, top=0.9)
+        plt.savefig(join(destination_dir, f'{ticker}_result.png'))
 
 
 def graph_crash(benchmark:float,
@@ -635,7 +624,7 @@ def graph_crash(benchmark:float,
     compare_rs(crash[period])
 
 
-def compare_industry(tickers:list, standard:str, level:int):
+def compare_industry(tickers:list, standard:str, level:int, nperiods:int=12):
 
     full_list = fa.classification(standard).iloc[:,level-1]
     for ticker in tickers:
@@ -666,8 +655,8 @@ def compare_industry(tickers:list, standard:str, level:int):
         chartsperrow = 6
         rowsrequired = int(np.ceil(len(variables) / chartsperrow))
         variables = np.append(variables,
-                              [None] * (chartsperrow * rowsrequired - len(
-                                  variables)))
+                              [None] * (chartsperrow*rowsrequired
+                                        - len(variables)))
         variables = np.reshape(variables, (rowsrequired, chartsperrow))
         fig, ax = plt.subplots(rowsrequired, chartsperrow,
                                figsize=(chartsperrow * 4, rowsrequired * 3),
@@ -677,24 +666,34 @@ def compare_industry(tickers:list, standard:str, level:int):
                 w = 0.35
                 l = np.arange(len(periods))  # the label locations
                 if variables[row, col] is None:
-                    ax[row, col].axis('off')
+                    ax[row,col].axis('off')
                 else:
-                    ax[row, col].bar(l - w/2,
-                                     quantities.iloc[:,
-                                     row * chartsperrow + col],
+
+                    y_quantities = pd.Series([np.nan]*len(periods),
+                                             index=periods)
+                    y_quantities.iloc[-nperiods:] \
+                        = quantities.iloc[-nperiods:, row * chartsperrow + col]
+                    ax[row,col].bar(l - w/2, y_quantities,
                                      width=w, label=ticker,
                                      color='tab:orange', edgecolor='black')
-                    ax[row, col].bar(l + w/2,
-                                     median.iloc[:, row * chartsperrow + col],
+
+                    y_median = pd.Series([np.nan]*len(periods),
+                                         index=periods)
+                    y_median.iloc[-nperiods:] \
+                        = median.iloc[-nperiods:, row * chartsperrow + col]
+                    ax[row,col].bar(l + w/2, y_median,
                                      width=w, label='Industry\'s Average',
                                      color='tab:blue', edgecolor='black')
+
+                    ax[row,col].axhline(y=0, color='black', alpha=0.5, lw=1)
+
                     plt.setp(ax[row, col].xaxis.get_majorticklabels(),
                              rotation=45)
-                    ax[row, col].set_xticks(l)
-                    ax[row, col].set_xticklabels(periods, fontsize=7)
-                    ax[row, col].set_yticks([])
-                    ax[row, col].set_autoscaley_on(True)
-                    ax[row, col].set_title(variables[row, col], fontsize=9)
+                    ax[row,col].set_xticks(l)
+                    ax[row,col].set_xticklabels(periods, fontsize=7)
+                    ax[row,col].set_yticks([])
+                    ax[row,col].set_autoscaley_on(True)
+                    ax[row,col].set_title(variables[row, col], fontsize=9)
 
         fig.suptitle(f'{ticker}\n'
                      f'Comparison With The Industry\'s Average \n'
@@ -706,6 +705,7 @@ def compare_industry(tickers:list, standard:str, level:int):
                    bbox_to_anchor=(0.01, 0.98), ncol=2, fontsize=10,
                    markerscale=0.7)
         plt.savefig(join(destination_dir, f'{ticker}_compare_industry.png'))
+
 
 def compare_rs(tickers: list, standard: str, level: int):
 

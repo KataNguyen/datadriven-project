@@ -7,7 +7,9 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
     # pre-prcessing
     input_folder = join(dirname(dirname(realpath(__file__))),
                            'credit_rating', 'result')
-    file_name = 'result_table_gen(pca)-allvariables.csv'
+
+    segment = fa.segment(ticker)
+    file_name = f'result_table_{segment}.csv'
     rating_file = join(input_folder, file_name)
 
     destination_dir = join(dirname(dirname(realpath(__file__))),
@@ -16,9 +18,14 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
     # maxPrice calculation
     last_period = fa.periods[-1]
     rating_result = pd.read_csv(rating_file, index_col='ticker')
-    rating_result \
-        = rating_result.loc[rating_result['level'] == f'{standard}_l{level}'].T
-    rating_result.drop(index=['standard', 'level', 'industry'], inplace=True)
+    if segment == 'gen':
+        rating_result \
+            = rating_result.loc[rating_result['level']
+                                == f'{standard}_l{level}'].T
+        rating_result.drop(index=['standard', 'level', 'industry'],
+                           inplace=True)
+    else:
+        rating_result = rating_result.T
 
     score = rating_result[[ticker]] ; score.columns = ['score']
     highlow = ta.prhighlow(ticker, fquarters=1)
@@ -117,7 +124,8 @@ def maxprice(ticker:str, standard:str, level:int, savefigure:bool=True):
                                    'database', folder, file), index_col=[0])
         for ticker_ in peers:
             if isinstance(highlow.loc[ticker_][-1], str):
-                string = highlow.loc[ticker_][-1].replace('(', '').replace(')','')
+                string = highlow.loc[ticker_][-1]\
+                    .replace('(', '').replace(')','')
                 string = string.split(',')
                 table.loc[ticker_,'low_return'] = float(string[3])
                 table.loc[ticker_,'high_return'] = float(string[4])

@@ -10,14 +10,15 @@ from matplotlib.ticker import FuncFormatter
 import matplotlib.transforms as transforms
 
 destination_dir \
-    = join(dirname(realpath(__file__)), 'monte_carlo_result')
+    = join(dirname(realpath(__file__)), 'result')
+
 
 q_upper = 0.95
 q_lower = 0
 
 def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
                 simulation=100000, savefigure:bool=True,
-                fulloutput:bool=False):
+                fulloutput:bool=False, seed=1):
 
     start_time = time.time()
 
@@ -25,82 +26,98 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
 
     def graph_ticker():
 
-        fig1, ax1 = plt.subplots(1, 1, figsize=(6, 5))
-        ax1.plot(df_historical['trading_date'], df_historical['close'],
-                 color='darkblue')
-        ax1.plot(ubound, color='orange', alpha=5)
-        ax1.plot(dbound, color='orange', alpha=5)
-        ax1.plot(connect, color='orange', alpha=5)
-        ax1.fill_between(pro_days, ubound.iloc[:, 0], dbound.iloc[:, 0],
-                         color='green', alpha=0.1)
-        ax1.set_title(ticker)
-        ax1.set_ylabel('Stock Price')
-        ax1.xaxis.set_major_formatter(DateFormatter('%d/%m/%Y'))
-        plt.xticks(rotation=45)
-        ax1.axhline(breakeven_price, ls='--', linewidth=0.5, color='red')
-        ax1.annotate('Breakeven Price: ' + adjprice(breakeven_price),
-                     xy=(0.8,breakeven_price),
-                     xycoords=transforms
-                     .blended_transform_factory(ax1.transAxes, ax1.transData),
-                     xytext=(0,-2), textcoords='offset pixels',
-                     ha='left', va='top', fontsize=7)
-        ax1.yaxis \
+        fig, ax = plt.subplots(1, 2, figsize=(12,5.5),
+                               sharey=True,
+                               gridspec_kw={'width_ratios':[2,1]})
+        plt.subplots_adjust(left=0.05, right=0.95,
+                            bottom=0.05, top=0.95,
+                            wspace=0.01)
+
+        ax[0].set_ylim(np.round(np.min([df_historical['close'].min()*0.95,
+                                        np.quantile(df_simulated_price.values,
+                                                    0.00)])*0.95, -2),
+                       np.round(np.max([df_historical['close'].max()*1.05,
+                                        np.quantile(df_simulated_price.values,
+                                                    0.95)])*1.05,-2))
+
+        doublediff1 = np.diff(np.sign(np.diff(df_historical['close']
+                                              .values)))
+        peak_locations = np.where(doublediff1 == -2)[0] + 1 \
+                         + df_historical.index[0]
+        doublediff2 \
+            = np.diff(np.sign(np.diff(-1*df_historical['close'].values)))
+        trough_locations = np.where(doublediff2 == -2)[0] + 1 + \
+                           df_historical.index[0]
+        ax[0].scatter(df_historical['trading_date'][peak_locations],
+                      df_historical['close'][peak_locations],
+                      marker='^', color='tab:green',
+                      s=10, label='Peak')
+        ax[0].scatter(df_historical['trading_date'][trough_locations],
+                      df_historical['close'][trough_locations],
+                      marker='v', color='tab:red',
+                      s=10, label='Trough')
+
+        ax[0].plot(df_historical['trading_date'], df_historical['close'],
+                   color='midnightblue', alpha=0.9, lw=1.5, label=f'{ticker}')
+        ax[0].set_ylabel('Stock Price', fontsize=12)
+        ax[0].xaxis.set_major_formatter(DateFormatter('%m/%Y'))
+        ax[0].yaxis.set_major_formatter(
+            matplotlib.ticker.FuncFormatter(priceKformat))
+        plt.xticks(rotation=15)
+        plt.yticks(fontsize=11)
+        ax[0].grid(axis='both', alpha=0.3)
+
+        ax[0].plot(connect, color='tab:red', lw=2, alpha=0.5)
+        ax[0].plot(ubound, color='tab:red', lw=2, alpha=0.5)
+        ax[0].plot(dbound, color='tab:red', lw=2, alpha=0.5,
+                   label='Best Case/ Worst Case')
+        ax[0].legend(loc='upper right', fontsize=8)
+
+        ax[0].fill_between(pro_days, ubound.iloc[:,0], dbound.iloc[:,0],
+                           color='green', alpha=0.15)
+        ax[0].axhline(breakeven_price, ls='--', lw=0.6, color='red')
+
+        ax[0].annotate('Breakeven Price: ' + adjprice(breakeven_price),
+                       xy=(0.65,breakeven_price),
+                       xycoords=transforms
+                       .blended_transform_factory(ax[0].transAxes,
+                                                  ax[0].transData),
+                       xytext=(0,2), textcoords='offset pixels',
+                       ha='left', va='bottom', fontsize=8, color='red')
+
+        ax[0].yaxis\
             .set_major_formatter(FuncFormatter(priceKformat))
-        ax1.annotate('Worst Case over \n'
-                     + f'{int(simulation):,d}' + ' Simulations: '
-                     + f'{round((breakeven_price/price_t-1)*100, 2):,} % \n'
-                     + 'Trading Days: ' + f'{pdays} \n'
-                     + 'Breakeven Price: ' + adjprice(breakeven_price),
-                     xy=(0.7, 1.01),
-                     xycoords=ax1.transAxes,
-                     ha='left', va='bottom', fontsize=6)
+        ax[0].annotate('Worst Case over \n'
+                       + f'{int(simulation):,d}' + ' Simulations: '
+                       + f'{round((breakeven_price/price_t-1)*100, 2):,} % \n'
+                       + f'Trading Days: {pdays} \n'
+                       + 'Breakeven Price: ' + adjprice(breakeven_price),
+                       xy=(0.77, 1.01),
+                       xycoords=ax[0].transAxes,
+                       ha='left', va='bottom', fontsize=7)
+
+        sns.histplot(y=last_price, ax=ax[1], bins=200,
+                     legend=False, color='tab:blue', stat='density')
+        ax[1].set_xlabel('Density')
+        ax[1].set_ylabel('Stock Price')
+        ax[1].axhline(breakeven_price, ls='--', linewidth=0.5, color='red')
+
+        ax[1].annotate('Breakeven Price: ' + adjprice(breakeven_price),
+                       xy=(0.57,breakeven_price),
+                       xycoords=transforms.blended_transform_factory
+                       (ax[1].transAxes,ax[1].transData),
+                       xytext=(0,2), textcoords='offset pixels',
+                       ha='left', va='bottom', fontsize=8, color='red')
+
+        ax[1].tick_params(axis='x', bottom=False, labelbottom=False)
+        ax[1].yaxis.set_major_formatter(FuncFormatter(priceKformat))
+
+        ax[1].grid(axis='both', alpha=0.1)
+
         if savefigure is True:
-            plt.savefig(join(destination_dir,f'{ticker}_result_1.png'),
+            plt.savefig(join(destination_dir,f'{ticker}.png'),
                         bbox_inches='tight')
 
-        fig2, ax2 = plt.subplots(1, 2, figsize=(8, 5))
-        fig2.suptitle('Projected Stock Price: ' + ticker)
-        fig2.subplots_adjust(left=0.05, right=0.95, bottom=0.15,
-                             top=0.9, wspace=0.15)
-
-        sns.histplot(last_price, ax=ax2[0], bins=100,
-                     legend=False, color='darkblue', stat='density')
-        ax2[0].set_xlabel('Stock Price')
-        ax2[0].set_ylabel('Density')
-        ax2[0].axvline(breakeven_price, ls='--', linewidth=0.5,
-                       color='red')
-
-        ax2[0].annotate('Breakeven Price:\n' + adjprice(breakeven_price),
-                        xy=(breakeven_price,0.85),
-                        xycoords=transforms.blended_transform_factory \
-                            (ax2[0].transData,ax2[0].transAxes),
-                        xytext=(2,0), textcoords='offset pixels',
-                        ha='left', va='center', fontsize=8)
-
-        ax2[0].tick_params(axis='y', left=False, labelleft=False)
-        ax2[0].xaxis.set_major_formatter(FuncFormatter(priceKformat))
-
-        sns.ecdfplot(last_price, stat='proportion', ax=ax2[1],
-                     legend=False, color='black')
-        ax2[1].set_xlabel('Stock Price')
-        ax2[1].set_ylabel('Probability')
-        # ax2[1].axhline(0.01, ls='--', linewidth=0.5, color='red')
-        ax2[1].axvline(breakeven_price, ls='--', linewidth=0.5,
-                       color='red')
-
-        ax2[1].annotate('Breakeven Price:\n' + adjprice(breakeven_price),
-                        xy=(breakeven_price,0.85),
-                        xycoords=transforms
-                        .blended_transform_factory \
-                            (ax2[1].transData,ax2[1].transAxes),
-                        xytext=(2,0), textcoords='offset pixels',
-                        ha='left', va='center', fontsize=8)
-
-        ax2[1].tick_params(axis='y', left=False, labelleft=False)
-        ax2[1].xaxis.set_major_formatter(FuncFormatter(priceKformat))
-        if savefigure is True:
-            plt.savefig(join(destination_dir,f'{ticker}_result_2.png'),
-                        bbox_inches='tight')
         return
 
     # customize display for numpy and pandas
@@ -173,7 +190,9 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
 
             loc = np.nanmean(df['logr'])
             scale = np.nanstd(df['logr'])
-            logr = np.random.normal(loc, scale, size=(simulation, pdays))
+
+            numpy.random.seed(seed)
+            logr = np.random.normal(loc, scale, size=(simulation,pdays))
 
         elif p_skew <= alpha < p_kur:
 
@@ -185,7 +204,8 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
             scale = (std**2*(deg_free-2)/deg_free)**0.5
 
             logr = sc.stats.t.rvs(deg_free, loc, scale,
-                                  size=(simulation, pdays))
+                                  size=(simulation,pdays),
+                                  random_state=seed)
 
         elif p_skew > alpha >= p_kur:
 
@@ -201,7 +221,8 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
             loc = mean - scale*theta*(2/np.pi)**0.5
 
             logr = sc.stats.skewnorm.rvs(a, loc, scale,
-                                         size=(simulation, pdays))
+                                         size=(simulation,pdays),
+                                         random_state=seed)
 
         else:
             mean = np.nanmean(df['logr'])
@@ -213,12 +234,13 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
             nc = mean*(1-3/(4*deg_free-1))
 
             logr = sc.stats.nct.rvs(deg_free, nc, loc, scale,
-                                    size=(simulation, pdays))
+                                    size=(simulation,pdays),
+                                    random_state=seed)
 
         # Convert logr back to simulated price
         price_t = df['close'].loc[
             df['trading_date'] == df['trading_date'].max()].iloc[0]
-        simulated_price = np.zeros(shape=(simulation, pdays), dtype=np.int64)
+        simulated_price = np.zeros(shape=(simulation,pdays), dtype=np.int64)
         for i in range(simulation):
             simulated_price[i, 0] = np.exp(logr[i, 0]) * price_t
             for j in range(1, pdays):
@@ -245,8 +267,10 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
 
             loc = 0
             scale = np.nanstd(df['change_logr'])
+
+            numpy.random.seed(seed)
             change_logr \
-                = np.random.normal(loc, scale, size=(simulation, pdays))
+                = np.random.normal(loc, scale, size=(simulation,pdays))
 
         elif p_skew <= alpha < p_kur:
 
@@ -258,7 +282,8 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
             scale = (std**2*(deg_free-2)/deg_free)**0.5
 
             change_logr = sc.stats.t.rvs(deg_free, loc, scale,
-                                         size=(simulation, pdays))
+                                         size=(simulation,pdays),
+                                         random_state=seed)
 
         elif p_skew > alpha >= p_kur:
 
@@ -274,7 +299,8 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
             loc = mean - scale*theta*(2/np.pi)**0.5
 
             change_logr = sc.stats.skewnorm.rvs(a, loc, scale,
-                                                size=(simulation, pdays))
+                                                size=(simulation,pdays),
+                                                random_state=seed)
 
         else:
             mean = 0
@@ -286,14 +312,15 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
             nc = mean*(1-3/(4*deg_free-1))
 
             change_logr = sc.stats.nct.rvs(deg_free, nc, loc, scale,
-                                           size=(simulation, pdays))
+                                           size=(simulation,pdays),
+                                           random_state=seed)
 
         # Convert change_logr back to simulated price
         price_t \
             = df['close'].loc[df['trading_date']
                               == df['trading_date'].max()].iloc[0]
 
-        simulated_price = np.zeros(shape=(simulation, pdays),
+        simulated_price = np.zeros(shape=(simulation,pdays),
                                    dtype=np.int64)
         for i in range(simulation):
             simulated_price[i, 0] \
@@ -325,7 +352,7 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
         = pd.DataFrame(data=simulated_price,
                        columns=pro_days,
                        index=simulation_no).transpose()
-    last_price = df_simulated_price.iloc[-1, :]
+    last_price = df_simulated_price.iloc[-1,:]
     ubound = pd.DataFrame(df_simulated_price
                           .quantile(q=q_upper, axis=1,
                                     interpolation='linear'))
@@ -335,11 +362,10 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
     breakeven_price = dbound.min().iloc[0]
     connect_date = pd.date_range(df['trading_date'].max(),
                                  pro_days[0])[[0,-1]]
-    connect = pd.DataFrame({'price_u': [price_t, ubound.iloc[0, 0]],
-                            'price_d': [price_t, dbound.iloc[0, 0]]},
+    connect = pd.DataFrame({'price_u': [price_t, ubound.iloc[0,0]],
+                            'price_d': [price_t, dbound.iloc[0,0]]},
                            index=connect_date)
     graph_ticker()
-    plt.close('all')
 
     print(f'Breakeven price of {ticker} is ' + str(breakeven_price))
     print("The execution time is: %s seconds" %(int(time.time()-start_time)))

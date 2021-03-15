@@ -71,8 +71,8 @@ def seopdate(period:str) -> tuple:
     sop_date = sop_date.strftime('%Y-%m-%d')
 
     # end of the period
-    fq = lambda quarter: 1 if quarter==4 else 3*quarter+1
-    fy = lambda year: year+1 if quarter==4 else year
+    fq = lambda quarter: 1 if quarter == 4 else 3*quarter + 1
+    fy = lambda year: year + 1 if quarter == 4 else year
     eop_date = datetime(year=fy(year), month=fq(quarter), day=1) \
                + timedelta(days=-1)
     while eop_date.weekday() in holidays.WEEKEND \
