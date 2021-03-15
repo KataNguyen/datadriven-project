@@ -191,7 +191,7 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
             loc = np.nanmean(df['logr'])
             scale = np.nanstd(df['logr'])
 
-            numpy.random.seed(seed)
+            np.random.seed(seed)
             logr = np.random.normal(loc, scale, size=(simulation,pdays))
 
         elif p_skew <= alpha < p_kur:
@@ -268,7 +268,7 @@ def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
             loc = 0
             scale = np.nanstd(df['change_logr'])
 
-            numpy.random.seed(seed)
+            np.random.seed(seed)
             change_logr \
                 = np.random.normal(loc, scale, size=(simulation,pdays))
 
