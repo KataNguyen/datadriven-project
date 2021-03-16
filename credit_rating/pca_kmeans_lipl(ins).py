@@ -276,17 +276,17 @@ for year, quarter in zip(years, quarters):
                  random_state=1)\
         .fit(df_xs.dropna(axis=0, how='any'))
 
-    kmeans_tickers.loc['insurance', str(year) + 'q' + str(quarter)] \
+    kmeans_tickers.loc['insurance', f'{year}q{quarter}'] \
         = df_xs.index.get_level_values(2).tolist()
 
-    kmeans_coord.loc['insurance', str(year) + 'q' + str(quarter)] \
+    kmeans_coord.loc['insurance', f'{year}q{quarter}'] \
         = df_xs.values
 
-    labels.loc['insurance', str(year) + 'q' + str(quarter)] \
-        = kmeans.loc['insurance', str(year) + 'q' + str(quarter)].labels_.tolist()
+    labels.loc['insurance', f'{year}q{quarter}'] \
+        = kmeans.loc['insurance', f'{year}q{quarter}'].labels_.tolist()
 
-    centers.loc['insurance', str(year) + 'q' + str(quarter)] \
-        = kmeans.loc['insurance', str(year) + 'q' + str(quarter)]\
+    centers.loc['insurance', f'{year}q{quarter}'] \
+        = kmeans.loc['insurance', f'{year}q{quarter}']\
         .cluster_centers_.tolist()
 
 # del df_xs # for memory saving

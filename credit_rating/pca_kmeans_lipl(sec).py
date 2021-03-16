@@ -233,7 +233,7 @@ for year, quarter in zip(years, quarters):
                       - df_xs_min) / (df_xs_max-df_xs_min) * 2
 
     # Kmeans algorithm
-    kmeans.loc['securities', str(year) + 'q' + str(quarter)] \
+    kmeans.loc['securities', f'{year}q{quarter}'] \
         = KMeans(n_clusters=centroids,
                  init='k-means++',
                  n_init=10,
@@ -242,17 +242,17 @@ for year, quarter in zip(years, quarters):
                  random_state=1)\
         .fit(df_xs.dropna(axis=0, how='any'))
 
-    kmeans_tickers.loc['securities', str(year) + 'q' + str(quarter)] \
+    kmeans_tickers.loc['securities', f'{year}q{quarter}'] \
         = df_xs.index.get_level_values(2).tolist()
 
-    kmeans_coord.loc['securities', str(year) + 'q' + str(quarter)] \
+    kmeans_coord.loc['securities', f'{year}q{quarter}'] \
         = df_xs.values
 
-    labels.loc['securities', str(year) + 'q' + str(quarter)] \
-        = kmeans.loc['securities', str(year) + 'q' + str(quarter)].labels_.tolist()
+    labels.loc['securities', f'{year}q{quarter}'] \
+        = kmeans.loc['securities', f'{year}q{quarter}'].labels_.tolist()
 
-    centers.loc['securities', str(year) + 'q' + str(quarter)] \
-        = kmeans.loc['securities', str(year) + 'q' + str(quarter)]\
+    centers.loc['securities', f'{year}q{quarter}'] \
+        = kmeans.loc['securities', f'{year}q{quarter}']\
         .cluster_centers_.tolist()
 
 #del df_xs # for memory saving

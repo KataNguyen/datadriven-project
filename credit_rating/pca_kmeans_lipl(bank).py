@@ -357,7 +357,7 @@ for year, quarter in zip(years, quarters):
                       - df_xs_min) / (df_xs_max-df_xs_min) * 2
 
     # Kmeans algorithm
-    kmeans.loc['bank', str(year) + 'q' + str(quarter)] \
+    kmeans.loc['bank', f'{year}q{quarter}'] \
         = KMeans(n_clusters=centroids,
                  init='k-means++',
                  n_init=10,
@@ -366,17 +366,17 @@ for year, quarter in zip(years, quarters):
                  random_state=1)\
         .fit(df_xs.dropna(axis=0, how='any'))
 
-    kmeans_tickers.loc['bank', str(year) + 'q' + str(quarter)] \
+    kmeans_tickers.loc['bank', f'{year}q{quarter}'] \
         = df_xs.index.get_level_values(2).tolist()
 
-    kmeans_coord.loc['bank', str(year) + 'q' + str(quarter)] \
+    kmeans_coord.loc['bank', f'{year}q{quarter}'] \
         = df_xs.values
 
-    labels.loc['bank', str(year) + 'q' + str(quarter)] \
-        = kmeans.loc['bank', str(year) + 'q' + str(quarter)].labels_.tolist()
+    labels.loc['bank', f'{year}q{quarter}'] \
+        = kmeans.loc['bank', f'{year}q{quarter}'].labels_.tolist()
 
     centers.loc['bank', str(year) + 'q' + str(quarter)] \
-        = kmeans.loc['bank', str(year) + 'q' + str(quarter)]\
+        = kmeans.loc['bank', f'{year}q{quarter}']\
         .cluster_centers_.tolist()
 
 del df_xs # for memory saving
@@ -532,7 +532,8 @@ def compare_industry(tickers:list):
                     ax[row,col].bar(l+w/2, median.iloc[:, row*chartsperrow + col],
                                     width=w, label='Industry\'s Average',
                                     color='tab:blue', edgecolor='black')
-                    plt.setp(ax[row,col].xaxis.get_majorticklabels(), rotation=45)
+                    plt.setp(ax[row,col].xaxis.get_majorticklabels(),
+                             rotation=45)
                     ax[row,col].set_xticks(l)
                     ax[row,col].set_xticklabels(periods, fontsize=7)
                     ax[row, col].set_yticks([])
