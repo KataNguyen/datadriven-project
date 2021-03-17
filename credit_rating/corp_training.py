@@ -1,4 +1,3 @@
-
 ###############################################################################
 
 # while
@@ -49,4 +48,79 @@ while asset < 300:
     years += 1
 
 ###############################################################################
+
+# for
+
+# Dự đoán kết quả của đoạn code sau:
+words = ['car', 'window', 'pencil']
+for w in words:
+    print('This is a ' + w)
+
+# range function
+list(range(0, 20))
+list(range(0, 20, 2))
+list(range(0, 20, 3))
+list(range(20, 0, -1))
+list(range(20, 5, -2))
+list(range(0, 20, -1))
+
+# Tạo một list các phần tử từ 1 đến 100
+
+my_list = list(range(1,101,1))
+print(my_list)
+
+my_list = []
+for n in range(1,101,1):
+    my_list += [n]
+print(my_list)
+
+# Tạo một list các số chẵn từ -50 đến 50
+my_list = list(range(-51,51,2))
+print(my_list)
+
+my_list = []
+for n in range(-51,51,2):
+    my_list += [n]
+
+# Tạo một list chứa 20 số chính phương đầu tiên
+my_list = []
+for num in range(1,21):
+    my_list += [num**2]
+
+# Bài 7:
+flattened_list = []
+nest_list = [[1,4,9,16,25],
+             ['a','b','c','d','e'],
+             ['X1','X2','Y1','Y2','Y3']]
+for sub_list in nest_list:
+    for n in sub_list:
+        flattened_list += [n]
+print(flattened_list)
+
+# Tung một con xúc xắc 3 lần, liệt kê tất cả các trường hợp
+i = 1
+for k in range(1,7):
+    for l in range(1,7):
+        for m in range(1,7):
+            print('========================\n')
+            print('Lần thử thứ ' + str(i) +':')
+            print('----')
+            print('Số điểm của lần tung 1: ' + str(k))
+            print('Số điểm của lần tung 2: ' + str(l))
+            print('Số điểm của lần tung 3: ' + str(m))
+            i += 1
+
+# Tung một con xúc xắc 3 lần, tính xác suất để tổng số điểm sau 3 lần tung
+# nhỏ hơn 10
+total_score = 0
+total_trials = 0
+passed_trials = 0
+for k in range(1,7):
+    for l in range(1,7):
+        for m in range(1,7):
+            total_trials += 1
+            total_score = k + l + m
+            if total_score < 10:
+                passed_trials += 1
+print('Xác suất cần tìm là: ' + str(passed_trials/total_trials*100) + '%')
 
