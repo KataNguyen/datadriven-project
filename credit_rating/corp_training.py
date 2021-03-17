@@ -124,3 +124,48 @@ for k in range(1,7):
                 passed_trials += 1
 print('Xác suất cần tìm là: ' + str(passed_trials/total_trials*100) + '%')
 
+# Bài 10:
+
+# Bước 1: Tạo một bộ bài
+card_deck = list(range(1,14)) * 4
+for i in range(len(card_deck)):
+    if card_deck[i] > 10:
+        card_deck[i] = 10
+
+# Bước 2: Chơi tất cả các game có thể có
+points = []
+for card1 in card_deck:
+    remaining = card_deck.copy()
+    remaining.remove(card1)
+    for card2 in remaining:
+        remaining.remove(card2)
+        for card3 in remaining:
+            raw_point = card1 + card2 + card3
+            point = raw_point % 10
+            points += [point]
+
+# Câu a:
+pass_trials = 0
+for point in points:
+    if point == 9:
+        pass_trials += 1
+print('Xác suất cần tìm là: ' + str(passed_trials/len(points)*100) + '%')
+
+x = 15
+if x < 10:
+    print(x)
+
+if x % 2 == 0:
+    print('x is even')
+elif x > 20:
+    print('x is greater than 20')
+else:
+    print('x is odd and less than 20')
+
+
+if x % 2 == 0:
+    print('x is even')
+if x > 20:
+    print('x is greater than 20')
+else:
+    print('x is odd and less than 20')
