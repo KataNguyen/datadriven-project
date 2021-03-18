@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
-      <change afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/corp_training/Python Training - Week 1.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/corp_training/Python Training - Week 1.pptx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentation/Credit  Rating - Version 1.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/presentation/Credit  Rating - Version 1.pptx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentation/Credit Rating - Version 2.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/presentation/Credit Rating - Version 2.pptx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentation/Credit rating - Handover.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/presentation/Credit rating - Handover.pptx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentation/Data-Driven Projects.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/presentation/Data-Driven Projects.pptx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentation/Work from anywhere.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/presentation/Work from anywhere.pptx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +68,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hiepdang\PycharmProjects\datadriven-project\presentation" />
       <recent name="C:\Users\hiepdang\PycharmProjects\datadriven-project\credit_rating" />
       <recent name="C:\Users\Admin\PycharmProjects\datadriven-project\credit_rating" />
     </key>
@@ -210,13 +205,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
-    </task>
-    <task id="LOCAL-00018" summary="post_breakeven_price">
-      <created>1611213586604</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1611213586604</updated>
     </task>
     <task id="LOCAL-00019" summary="post_breakeven_price">
       <created>1611213847705</created>
@@ -554,7 +542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616031706448</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="post_breakeven_price">
+      <created>1616036118536</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1616036118536</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
