@@ -618,10 +618,12 @@ def graph_tickers(tickers: list, standard: str, level: int):
 
 
 def graph_crash(benchmark:float,
+                standard,
+                level,
                 period:str,
                 exchange:str='HOSE'):
     crash = ta.crash(benchmark, 'gen', exchange)
-    compare_rs(crash[period])
+    compare_rs(crash[period], standard, level)
 
 
 def compare_industry(tickers:list, standard:str, level:int, nperiods:int=12):

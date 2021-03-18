@@ -1129,10 +1129,9 @@ class fa:
             .drop_duplicates().tolist()
         return industries
 
+    @staticmethod
+    def peers(ticker:str, standard:str, level:int):
 
-    def peers(self, ticker:str, standard:str, level:int):
-
-        avoid_static = self.periods
         df = fa.classification(standard)
         col = f'{standard}_l{level}'
         industry = df.loc[ticker, col]
