@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +72,7 @@
       <recent name="C:\Users\Admin\PycharmProjects\datadriven-project\credit_rating" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.corp_training">
+  <component name="RunManager" selected="Python.pca_kmeans_lipl(gen)">
     <configuration name="corp_training" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -162,9 +161,6 @@
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/credit_rating" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -189,11 +185,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pca_kmeans_lipl(gen)" />
         <item itemvalue="Python.corp_training" />
         <item itemvalue="Python.corp_training" />
         <item itemvalue="Python.pca_kmeans_lipl(gen)" />
         <item itemvalue="Python.pca_kmeans_lipl(gen)" />
-        <item itemvalue="Python.pca_kmeans_lipl(bank)" />
       </list>
     </recent_temporary>
   </component>
