@@ -359,9 +359,78 @@ result_table = pd.read_csv(join(destination_dir, result_filename+'.csv'),
                            index_col=['ticker'])
 
 
+def graph_tickers(tickers: list):
+
+    table = result_table.loc[tickers]
+
+    for ticker in tickers:
+        fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(8,6))
+        ax.set_title(ticker, fontsize=15, fontweight='bold',
+                     color='darkslategrey', fontfamily='Times New Roman')
+
+        xloc = np.arange(table.shape[1]) # label locations
+        rects = ax.bar(xloc, table.loc[ticker], width=0.8,
+                       color='tab:blue',
+                       label='Credit Score',
+                       edgecolor='black')
+        for rect in rects:
+            height = rect.get_height()
+            ax.annotate('{:.0f}'.format(height),
+                        xy=(rect.get_x()+rect.get_width()/2, height),
+                        xytext=(0,3),  # 3 points vertical offset
+                        textcoords="offset points",
+                        ha='center', va='bottom', fontsize=11)
+
+        ax.set_xticks(np.arange(len(xloc)))
+        ax.set_xticklabels(table.columns.tolist(), rotation=45, x=xloc,
+                           fontfamily='Times New Roman', fontsize=11)
+
+        ax.set_yticks(np.array([0,25,50,75,100]))
+        ax.tick_params(axis='y', labelcolor='black', labelsize=11)
+
+        Acolor = 'green'
+        Bcolor = 'olivedrab'
+        Ccolor = 'darkorange'
+        Dcolor = 'firebrick'
+
+        ax.axhline(100, ls='--', linewidth=0.5, color=Acolor)
+        ax.axhline(75, ls='--', linewidth=0.5, color=Bcolor)
+        ax.axhline(50, ls='--', linewidth=0.5, color=Ccolor)
+        ax.axhline(25, ls='--', linewidth=0.5, color=Dcolor)
+        ax.fill_between([-0.4,xloc[-1]+0.4], 100, 75,
+                        color=Acolor, alpha=0.2)
+        ax.fill_between([-0.4,xloc[-1]+0.4], 75, 50,
+                        color=Bcolor, alpha=0.25)
+        ax.fill_between([-0.4,xloc[-1]+0.4], 50, 25,
+                        color=Ccolor, alpha=0.2)
+        ax.fill_between([-0.4,xloc[-1]+0.4], 25, 0,
+                        color=Dcolor, alpha=0.2)
+
+        plt.xlim(-0.6, xloc[-1] + 0.6)
+
+        ax.set_ylim(top=110)
+        midpoints = np.array([87.5, 62.5, 37.5, 12.5])/110
+        labels = ['Group A', 'Group B', 'Group C', 'Group D']
+        colors = [Acolor, Bcolor, Ccolor, Dcolor]
+        for loc in zip(midpoints, labels, colors):
+            ax.annotate(loc[1],
+                        xy=(-0.1, loc[0]),
+                        xycoords='axes fraction',
+                        textcoords="offset points",
+                        xytext=(0,-5),
+                        ha='center', va='bottom',
+                        color=loc[2], fontweight='bold',
+                        fontsize='large')
+
+        ax.legend(loc='best', framealpha=5)
+        ax.margins(tight=True)
+        plt.subplots_adjust(left=0.15, bottom=0.1, right=0.95, top=0.9)
+        plt.savefig(join(destination_dir, f'{ticker}_result.png'))
+
+
 def graph_crash(benchmark:float,
                 period:str,
-                exchange:str='HOSE'):
+                exchange:str='all'):
     crash = ta.crash(benchmark, 'sec', exchange)
     compare_rs(crash[period])
 

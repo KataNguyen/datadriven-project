@@ -27,6 +27,7 @@ def priceKformat(tick_val, pos) -> str:
     new_tick_format = str(new_tick_format)
     return new_tick_format
 
+
 def adjprice(price: Union[float, int]) -> str:
 
     """

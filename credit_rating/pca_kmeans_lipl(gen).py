@@ -621,7 +621,7 @@ def graph_crash(benchmark:float,
                 standard,
                 level,
                 period:str,
-                exchange:str='HOSE'):
+                exchange:str='all'):
     crash = ta.crash(benchmark, 'gen', exchange)
     compare_rs(crash[period], standard, level)
 

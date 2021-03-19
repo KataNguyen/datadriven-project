@@ -1640,7 +1640,7 @@ class ta:
 
         if ticker != 'all':
             periods\
-                = fa.periods + [period_cal(fa.periods[-1],0,q+1) for q in
+                = fa.periods + [period_cal(fa.periods[-1],0,q) for q in
                                 range(fquarters)]
 
             full_price = self.hist(ticker)[['trading_date','close']]
@@ -1681,6 +1681,7 @@ class ta:
                     full_price.set_index('trading_date', inplace=True)
                     full_price = full_price['close']
                     for period_ in d.columns:
+                        try:
                             start_date, end_date = seopdate(period_)
                             price_section = full_price.loc[start_date:end_date]
                             s = price_section.iloc[0]
@@ -1689,9 +1690,11 @@ class ta:
                             lr = lp/s - 1
                             hr = hp/s - 1
                             d.loc[ticker_,period_] = (s,lp,hp,lr,hr)
-                except (ValueError, IndexError):
+                        except IndexError:
+                            # handle not applicable date (IndexError)
+                            pass
+                except ValueError:
                     # handle ticker that not available (ValueError)
-                    # and not applicable date (IndexError)
                     pass
 
             export_name = 'prhighlow.csv'

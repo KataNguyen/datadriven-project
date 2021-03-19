@@ -2,7 +2,8 @@ from function_phs import *
 from request_phs import *
 from breakeven_price.monte_carlo import *
 
-def maxprice(tickers:list, standard:str, level:int, savefigure:bool=True):
+def maxprice(tickers:list, standard:str='bics', level:int=1,
+             savefigure:bool=True):
 
     # pre-prcessing
     input_folder = join(dirname(dirname(realpath(__file__))),
@@ -91,8 +92,7 @@ def maxprice(tickers:list, standard:str, level:int, savefigure:bool=True):
                     ax.xaxis.grid(True, alpha=0.05)
                     ax.yaxis.grid(True, alpha=0.2)
 
-                ax.xaxis.set_major_locator(MaxNLocator(min_n_ticks=10,
-                                                       integer=True,
+                ax.xaxis.set_major_locator(MaxNLocator(integer=True,
                                                        steps=[1,2,5]))
                 ax.yaxis.set_major_formatter(FuncFormatter(priceKformat))
                 ax.axhline(maxprice, ls='--', linewidth=0.5, color='tab:red')
@@ -118,14 +118,13 @@ def maxprice(tickers:list, standard:str, level:int, savefigure:bool=True):
 
                 if savefigure is True:
                     plt.savefig(join(destination_dir, 'Chart1',
-                                     f'chart1_{ticker}.png'),
+                                     f'{ticker}_chart1.png'),
                                 bbox_inches='tight')
 
             def graph_maxprice2():
 
                 nonlocal rating_result
-
-                peers = fa.peers(ticker, standard, level+3)
+                peers = fa.peers(ticker, standard, level+1)
                 peers = list(set(peers) & set(rating_result.columns))
                 # (some ticker were excluded by not having data for CreditRating)
                 rating_result = rating_result[peers]
@@ -186,7 +185,6 @@ def maxprice(tickers:list, standard:str, level:int, savefigure:bool=True):
                 ax.xaxis.set_major_locator(MaxNLocator(min_n_ticks=10,
                                                        integer=True,
                                                        steps=[1,2,5]))
-                ax.yaxis.set_major_locator(MaxNLocator(symmetric=True))
                 ax.yaxis.set_major_formatter(mpl.ticker.PercentFormatter(1.0))
 
                 ax.axhline(0, ls='--', linewidth=0.5, color='black')
@@ -224,7 +222,7 @@ def maxprice(tickers:list, standard:str, level:int, savefigure:bool=True):
 
                 if savefigure is True:
                     plt.savefig(join(destination_dir, 'Chart2',
-                                     f'chart2_{ticker}.png'),
+                                     f'{ticker}_chart2.png'),
                                 bbox_inches='tight')
 
                 return
@@ -237,4 +235,4 @@ def maxprice(tickers:list, standard:str, level:int, savefigure:bool=True):
         except (ValueError, KeyError):
             print(f'{ticker} does not exist in {standard} classification')
 
-    return full_dict
+    return maxprice_dict
