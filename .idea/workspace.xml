@@ -4,7 +4,77 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="" />
+    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart1/DAH_chart1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart1/HNF_chart1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart1/HVH_chart1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart1/LCG_chart1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart1/TNI_chart1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart1/TVB_chart1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart2/DAH_chart2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart2/DTL_chart2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart2/HNF_chart2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart2/HVH_chart2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart2/LCG_chart2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart2/TNI_chart2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart2/TVB_chart2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/AMV_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/AST_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/BHK_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/BST_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/BTH_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/CCL_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/CCP_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/CCR_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/DAS_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/E29_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/FIT_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/FRT_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/HOT_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/HSL_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/IJC_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/KGM_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q1/KHL_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/BPW_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/C92_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/CMC_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/DAT_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/DL1_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/DTL_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/FDG_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/G20_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/HCT_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/KHL_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/LM7_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/MEC_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/NGC_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/NOS_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/PBT_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/PCN_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/PTE_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/PVA_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/SCJ_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/SGO_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/SJC_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/SPP_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/TNS_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/TOP_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/TSJ_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q2/V21_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q3/CCP_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q3/E29_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q3/KTC_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q3/LO5_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q3/NOS_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q3/PDC_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q3/PTE_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q3/STT_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/credit_rating/result/_Crash/2020q3/VTE_compare_rs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxprice/maxprice.py" beforeDir="false" afterPath="$PROJECT_DIR$/maxprice/maxprice.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/presentation/Credit rating - Handover.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/presentation/Credit rating - Handover.pptx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/request_phs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_phs/__init__.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,7 +127,6 @@
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="datadriven-project" is-module-sdk="true" working-directory="$PROJECT_DIR$">
-        <option name="useSoftWraps" value="true" />
         <option name="myUseModuleSdk" value="true" />
         <option name="myModuleName" value="datadriven-project" />
         <option name="myWorkingDirectory" value="$PROJECT_DIR$" />
@@ -71,17 +140,17 @@
       <recent name="C:\Users\Admin\PycharmProjects\datadriven-project\credit_rating" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.pca_kmeans_lipl(gen)">
-    <configuration name="maxprice" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.__init__">
+    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/maxprice" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/request_phs" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/maxprice/maxprice.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/request_phs/__init__.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -164,19 +233,19 @@
     </configuration>
     <list>
       <item itemvalue="Python.request_data" />
-      <item itemvalue="Python.maxprice" />
       <item itemvalue="Python.pca_kmeans_lipl(bank)" />
       <item itemvalue="Python.pca_kmeans_lipl(sec)" />
       <item itemvalue="Python.pca_kmeans_lipl(ins)" />
       <item itemvalue="Python.pca_kmeans_lipl(gen)" />
+      <item itemvalue="Python.__init__" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.__init__" />
         <item itemvalue="Python.pca_kmeans_lipl(gen)" />
         <item itemvalue="Python.pca_kmeans_lipl(gen)" />
         <item itemvalue="Python.pca_kmeans_lipl(ins)" />
         <item itemvalue="Python.pca_kmeans_lipl(sec)" />
-        <item itemvalue="Python.pca_kmeans_lipl(bank)" />
       </list>
     </recent_temporary>
   </component>
@@ -188,20 +257,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
-    </task>
-    <task id="LOCAL-00023" summary="post_breakeven_price">
-      <created>1611226261359</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1611226261359</updated>
-    </task>
-    <task id="LOCAL-00024" summary="post_breakeven_price">
-      <created>1611231556325</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1611231556325</updated>
     </task>
     <task id="LOCAL-00025" summary="post_breakeven_price">
       <created>1611250507470</created>
@@ -532,7 +587,21 @@
       <option name="project" value="LOCAL" />
       <updated>1616163626953</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="post_breakeven_price">
+      <created>1616298541039</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1616298541039</updated>
+    </task>
+    <task id="LOCAL-00073" summary="post_breakeven_price">
+      <created>1616298620605</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1616298620605</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">

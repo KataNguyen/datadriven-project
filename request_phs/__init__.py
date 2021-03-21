@@ -1624,7 +1624,7 @@ class ta:
         return crash_dict
 
 
-    def prhighlow(self, ticker:str, fquarters:int=0) \
+    def prhighlow(self, ticker:str, fquarters:int=1) \
             -> Union[dict, pd.DataFrame]:
 
         """
@@ -1640,7 +1640,7 @@ class ta:
 
         if ticker != 'all':
             periods\
-                = fa.periods + [period_cal(fa.periods[-1],0,q) for q in
+                = fa.periods + [period_cal(fa.periods[-1],0,q+1) for q in
                                 range(fquarters)]
 
             full_price = self.hist(ticker)[['trading_date','close']]

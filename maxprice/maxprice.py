@@ -2,8 +2,23 @@ from function_phs import *
 from request_phs import *
 from breakeven_price.monte_carlo import *
 
-def maxprice(tickers:list, standard:str='bics', level:int=1,
+def maxprice(tickers:list, model_period=fa.periods[-1],
+             standard:str='bics', level:int=1,
              savefigure:bool=True):
+
+    """
+    This model return the lowest possible stock price given the observed
+    relationship between next period's lowest price and current period's
+    credit score
+
+    :param tickers: ticker list
+    :param model_period: the period of calculation, usually is fa.period[-1],
+     else of back-testing only
+    :param standard: industry classification for credit rating's model
+    :param level: industry level for credit rating's model
+    :param savefigure: whether to save the figure
+    """
+
 
     # pre-prcessing
     input_folder = join(dirname(dirname(realpath(__file__))),
@@ -19,7 +34,6 @@ def maxprice(tickers:list, standard:str='bics', level:int=1,
                                    'maxprice', 'result')
 
             # maxPrice calculation
-            last_period = fa.periods[-1]
             rating_result = pd.read_csv(rating_file, index_col='ticker')
             if segment == 'gen':
                 rating_result \
@@ -34,11 +48,14 @@ def maxprice(tickers:list, standard:str='bics', level:int=1,
             highlow = ta.prhighlow(ticker, fquarters=1)
             plow = highlow['low'][['low_price']] * 1000
             plow = plow.shift(periods=-1, axis=0).loc[score.index]
+            # shift 1 period because we want 1-period forward-looking
             phigh = highlow['high'][['high_price']] * 1000
             phigh = phigh.shift(periods=-1, axis=0).loc[score.index]
+            # shift 1 period because we want 1-period forward-looking
             table = pd.concat([pd.DataFrame(score),plow], axis=1)
+            table = table.loc[:model_period]
             last_score = table['score'].iloc[-1]
-            table = table.head(-1)
+            table = table.head(-1) # because we only use observed/happened data
             table['multiple'] = table['low_price']/table['score']
             min_multiple = table['multiple'].min()
 
@@ -46,14 +63,14 @@ def maxprice(tickers:list, standard:str='bics', level:int=1,
                 return min_multiple*score
             maxprice = fprice(last_score)
 
-            eopdate = seopdate(last_period)[1]
+            eopdate = seopdate(model_period)[1]
             refprice = ta.hist(ticker,eopdate,eopdate)['close'].iloc[0] * 1000
             discount = maxprice/refprice - 1
 
             def graph_maxprice1():
 
                 nonlocal rating_result
-                x = rating_result[[ticker]]
+                x = rating_result[[ticker]].loc[:model_period]
                 ylow = plow
                 yhigh = phigh
 
@@ -61,7 +78,7 @@ def maxprice(tickers:list, standard:str='bics', level:int=1,
 
                 for i in range(x.shape[0]):
 
-                    if x.index[i] == last_period:
+                    if x.index[i] == model_period:
                         c = 'tab:red'
                         a = 1
                         fw = 'bold'
@@ -128,13 +145,14 @@ def maxprice(tickers:list, standard:str='bics', level:int=1,
                 peers = list(set(peers) & set(rating_result.columns))
                 # (some ticker were excluded by not having data for CreditRating)
                 rating_result = rating_result[peers]
+                rating_result = rating_result.loc[:model_period]
 
                 delta_scores = rating_result.diff(periods=1, axis=0)
-                delta_scores = delta_scores.loc[[last_period]].T
+                delta_scores = delta_scores.loc[[model_period]].T
 
                 fig, ax = plt.subplots(1,1, figsize=(8,6))
 
-                table = pd.DataFrame(delta_scores)
+                table = delta_scores
                 table.columns = ['score']
                 table[['low_return','high_return']] = np.nan
 
@@ -142,9 +160,10 @@ def maxprice(tickers:list, standard:str='bics', level:int=1,
                 highlow = pd.read_csv(join(dirname(dirname(realpath(__file__))),
                                            'database', folder, file),
                                       index_col=[0])
+                highlow = highlow[model_period]
                 for ticker_ in peers:
-                    if isinstance(highlow.loc[ticker_][-1], str):
-                        string = highlow.loc[ticker_][-1]\
+                    if isinstance(highlow.loc[ticker_], str):
+                        string = highlow.loc[ticker_]\
                             .replace('(', '').replace(')','')
                         string = string.split(',')
                         table.loc[ticker_,'low_return'] = float(string[3])
@@ -163,12 +182,24 @@ def maxprice(tickers:list, standard:str='bics', level:int=1,
                             a = 0.2
                             fw = 'normal'
 
+                        last_period = fa.periods[-1]
+                        if model_period == last_period:
+                            label_low \
+                                = f'Lowest Return since eop {last_period}'
+                            label_high \
+                                = f'Highest Return since eop {last_period}'
+                        else:
+                            label_low = f'Lowest Return in ' \
+                                        f'{period_cal(model_period,0,1)}'
+                            label_high = f'Lowest Return in ' \
+                                        f'{period_cal(model_period,0,1)}'
+
                         ax.scatter(xloc, ylow,
-                                   label=f'Lowest Return since eop {last_period}',
+                                   label=label_low,
                                    color='firebrick', edgecolors='firebrick',
                                    marker='^', alpha=a)
                         ax.scatter(xloc, yhigh,
-                                   label=f'Highest Return since eop {last_period}',
+                                   label=label_high,
                                    color='forestgreen', edgecolors='forestgreen',
                                    marker='v', alpha=a)
                         ax.plot([xloc, xloc], [ylow, yhigh],
@@ -201,8 +232,8 @@ def maxprice(tickers:list, standard:str='bics', level:int=1,
                             ha='left', fontsize=7,
                             color='tab:red', fontweight='bold')
 
-                subtext_cur = '{'+f'{last_period}'+'}'
-                subtext_pre = '{'+f'{period_cal(last_period,quarters=-1)}'+'}'
+                subtext_cur = '{'+f'{model_period}'+'}'
+                subtext_pre = '{'+f'{period_cal(model_period,quarters=-1)}'+'}'
                 ax.set_xlabel(fr'$CreditScore_{subtext_cur}  -  $'
                               + fr'$CreditScore_{subtext_pre}$', labelpad=10)
                 ax.set_ylabel('Return', labelpad=2, rotation=90)
