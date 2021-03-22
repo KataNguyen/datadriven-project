@@ -258,8 +258,86 @@ def maxprice(tickers:list, model_period=fa.periods[-1],
 
                 return
 
+
+            def graph_comment():
+
+                nonlocal rating_result
+                score_cur = rating_result.loc[model_period,ticker]
+                score_pre \
+                    = rating_result.loc[period_cal(model_period,0,-1),ticker]
+
+                if score_cur > 75:
+                    group = 'A'
+                elif score_cur > 50:
+                    group = 'B'
+                elif score_cur > 25:
+                    group = 'C'
+                else:
+                    group = 'D'
+
+                nonlocal maxprice
+                nonlocal discount
+
+                def ftext(score_cur,score_pre):
+                    if score_cur > score_pre:
+                        t = f'upgraded {int(abs(score_cur-score_pre))} points.'
+                    elif score_cur < score_pre:
+                        t = f'downgraded {int(abs(score_cur-score_pre))} points.'
+                    else:
+                        t = 'remained unchanged.'
+                    return t
+
+                fig, ax = plt.subplots(1, 1, figsize=(7.8, 2),
+                                       edgecolor='black')
+                ax.annotate(f'Comment from Hiep:',
+                            xy=(0,1), xycoords=ax.transAxes,
+                            xytext=(8,-8), textcoords='offset points',
+                            ha='left', va='top',
+                            fontsize=11, fontstyle='oblique',
+                            fontfamily='Times New Roman')
+                ax.annotate(f'{ticker} has Credit Score of '
+                            f'{int(score_cur)} (Group {group}) in the last period, '
+                            + ftext(score_cur,score_pre) + '\n'
+                            f'Max Price is conservatively set at '
+                            f'{int(maxprice):,}VND, which takes into account '
+                            f'all of the company\'s'
+                            f'\nfinancial aspects.\n',
+                            xy=(0,1), xycoords=ax.transAxes,
+                            xytext=(8,-34), textcoords='offset points',
+                            ha='left', va='top',
+                            fontsize=11, fontstyle='italic',
+                            fontfamily='Times New Roman')
+                ax.annotate(f'This Max Price is equivalent to a discount of'
+                            f' {discount:.2%} '
+                            f'compared to {ticker}\'s open price in '
+                            f'{period_cal(model_period,0,1)}.',
+                            xy=(0,1), xycoords=ax.transAxes,
+                            xytext=(8,-73), textcoords='offset points',
+                            ha='left', va='top',
+                            fontsize=11, fontstyle='italic',
+                            fontfamily='Times New Roman')
+                ax.annotate(f'It should be noticed that this price'
+                            f' does not reflect {ticker}\'s market risk.',
+                            xy=(0,1), xycoords=ax.transAxes,
+                            xytext=(8,-89), textcoords='offset points',
+                            ha='left', va='top',
+                            fontsize=11, fontstyle='italic',
+                            fontfamily='Times New Roman')
+
+                ax.tick_params(bottom=False,
+                               left=False,
+                               labelbottom=False,
+                               labelleft=False)
+
+                if savefigure is True:
+                    plt.savefig(join(destination_dir, 'Comment',
+                                     f'{ticker}_comment.png'),
+                                bbox_inches='tight')
+
             graph_maxprice1()
             graph_maxprice2()
+            graph_comment()
+
             maxprice_dict[ticker] \
                 = int(adjprice(maxprice).replace(',',''))
 
