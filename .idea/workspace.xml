@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart1/LGL_chart1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/maxprice/result/Chart2/LGL_chart2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/maxprice/result/Comment/VCB_comment.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_mining/vsd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxprice/maxprice.py" beforeDir="false" afterPath="$PROJECT_DIR$/maxprice/maxprice.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxprice/result/Chart1/VCB_chart1.png" beforeDir="false" afterPath="$PROJECT_DIR$/maxprice/result/Chart1/VCB_chart1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxprice/result/Chart2/VCB_chart2.png" beforeDir="false" afterPath="$PROJECT_DIR$/maxprice/result/Chart2/VCB_chart2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/corp_training/corp_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/corp_training/corp_training.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/phs/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/presentation/Credit rating - Handover.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/presentation/Credit rating - Handover.pptx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/text_analysis/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/text_analysis/vsd.vn.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,11 +61,12 @@
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/request_phs/request_data.py" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="datadriven-project" is-module-sdk="true" working-directory="$PROJECT_DIR$">
+        <option name="useSoftWraps" value="true" />
         <option name="myUseModuleSdk" value="true" />
         <option name="myModuleName" value="datadriven-project" />
         <option name="myWorkingDirectory" value="$PROJECT_DIR$" />
@@ -79,11 +80,14 @@
       <recent name="C:\Users\Admin\PycharmProjects\datadriven-project\credit_rating" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.__init__">
+  <component name="RunManager" selected="Python.vsd">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/request_phs" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -98,28 +102,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pca_kmeans_lipl(bank)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="datadriven-project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/credit_rating" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(bank).py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="pca_kmeans_lipl(gen)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/credit_rating" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -138,6 +127,9 @@
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/credit_rating" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -152,16 +144,16 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pca_kmeans_lipl(sec)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="vsd" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/credit_rating" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/text_mining" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/credit_rating/pca_kmeans_lipl(sec).py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/text_mining/vsd.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -172,19 +164,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.request_data" />
-      <item itemvalue="Python.pca_kmeans_lipl(bank)" />
-      <item itemvalue="Python.pca_kmeans_lipl(sec)" />
       <item itemvalue="Python.pca_kmeans_lipl(ins)" />
       <item itemvalue="Python.pca_kmeans_lipl(gen)" />
       <item itemvalue="Python.__init__" />
+      <item itemvalue="Python.vsd" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.vsd" />
+        <item itemvalue="Python.vsd" />
         <item itemvalue="Python.__init__" />
         <item itemvalue="Python.pca_kmeans_lipl(gen)" />
         <item itemvalue="Python.pca_kmeans_lipl(gen)" />
-        <item itemvalue="Python.pca_kmeans_lipl(ins)" />
-        <item itemvalue="Python.pca_kmeans_lipl(sec)" />
       </list>
     </recent_temporary>
   </component>
@@ -196,13 +187,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
-    </task>
-    <task id="LOCAL-00026" summary="post_breakeven_price">
-      <created>1611251038390</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1611251038390</updated>
     </task>
     <task id="LOCAL-00027" summary="post_breakeven_price">
       <created>1611275929801</created>
@@ -540,7 +524,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616311817395</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="post_breakeven_price">
+      <created>1616388094786</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1616388094786</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">

@@ -112,7 +112,6 @@ for k in range(1,7):
 
 # Tung một con xúc xắc 3 lần, tính xác suất để tổng số điểm sau 3 lần tung
 # nhỏ hơn 10
-total_score = 0
 total_trials = 0
 passed_trials = 0
 for k in range(1,7):
@@ -145,11 +144,13 @@ for card1 in card_deck:
             points += [point]
 
 # Câu a:
-pass_trials = 0
+passed_trials = 0
 for point in points:
     if point == 9:
-        pass_trials += 1
+        passed_trials += 1
 print('Xác suất cần tìm là: ' + str(passed_trials/len(points)*100) + '%')
+
+# Câu b:
 
 x = 15
 if x < 10:

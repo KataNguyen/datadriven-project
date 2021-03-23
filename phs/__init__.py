@@ -35,3 +35,4 @@ from sklearn.decomposition import PCA
 
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+import lxml

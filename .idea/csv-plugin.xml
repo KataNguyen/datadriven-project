@@ -129,6 +129,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\text_mining\vsd.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\text_mining\vsd.vn.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
