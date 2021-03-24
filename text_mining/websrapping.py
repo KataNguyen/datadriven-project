@@ -54,23 +54,49 @@ class vsd:
     @staticmethod
     def tinnghiepvutochucphathanh(num_hours:int=48):
 
+        num_hours = 48
+
         PATH = join(dirname(dirname(realpath(__file__))),'phs','geckodriver')
         driver = webdriver.Firefox(executable_path=PATH)
 
         url = 'https://vsd.vn/vi/alo/-f-_bsBS4BBXga52z2eexg'
-
         driver.get(url)
 
-        elem = driver.find_element_by_tag_name('body')
-        elem = elem.find_element_by_tag_name('div')
-        elem = elem.find_element_by_tag_name('main')
-        elem = elem.find_element_by_tag_name('div')
-        elem = elem.find_element_by_tag_name('div')
-        elem = elem.find_element_by_tag_name('div')
-        elem = elem.find_element_by_tag_name('div')
-        elem = elem.find_element_by_tag_name('ul')
-        elem = elem.find_elements_by_tag_name('li')
+        now = datetime.now()
+        fromtime = now
 
-        elems = []
-        for elem_ in elem:
-            elems += [elem_.find_element_by_tag_name('a')]
+        news_headlines = []
+        news_urls = []
+        news_time = []
+
+        while fromtime >= now - timedelta(hours=num_hours):
+            tags = driver.find_elements_by_xpath('/html/body/div/main'
+                                                 '/div/div/div/div/ul/li')
+            for tag_ in tags:
+                wait_sec = np.random.random(1)[0] * 2
+                time.sleep(wait_sec)
+                h3_tag = tag_.find_element_by_tag_name('h3')
+                news_headlines += [h3_tag.text]
+                news_urls += [h3_tag.find_element_by_tag_name('a')
+                                  .get_attribute('href')]
+                news_time += [tag_.find_element_by_tag_name('div').text]
+
+            fromtime_str = news_time[-1][-21:]
+            fromtime = datetime.strptime(fromtime_str, '%d/%m/%Y - %H:%M:%S')
+
+            # Turn Page
+            page_buttons = driver.find_elements_by_xpath('/html/body/div/main/'
+                                                         'div/div/div/div/'
+                                                         'div/div/div/button')
+            page_buttons = page_buttons[-2]
+            page_buttons.click()
+
+
+class hnx:
+    def __init__(self):
+        pass
+
+
+class hose:
+    def __init__(self):
+        pass
