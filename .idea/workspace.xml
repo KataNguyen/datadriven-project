@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/text_mining/vsd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phs/geckodriver.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_mining/geckodriver.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/corp_training/corp_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/corp_training/corp_training.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/phs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/phs/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentation/Credit rating - Handover.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/presentation/Credit rating - Handover.pptx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/text_analysis/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/text_analysis/vsd.vn.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/text_mining/vsd.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/websrapping.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +77,7 @@
       <recent name="C:\Users\Admin\PycharmProjects\datadriven-project\credit_rating" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.vsd">
+  <component name="RunManager" selected="Python.websrapping">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -144,7 +141,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="vsd" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="websrapping" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -153,7 +150,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/text_mining/vsd.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\hiepdang\PycharmProjects\datadriven-project\text_mining\websrapping.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -167,11 +164,11 @@
       <item itemvalue="Python.pca_kmeans_lipl(ins)" />
       <item itemvalue="Python.pca_kmeans_lipl(gen)" />
       <item itemvalue="Python.__init__" />
-      <item itemvalue="Python.vsd" />
+      <item itemvalue="Python.websrapping" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.vsd" />
+        <item itemvalue="Python.websrapping" />
         <item itemvalue="Python.vsd" />
         <item itemvalue="Python.__init__" />
         <item itemvalue="Python.pca_kmeans_lipl(gen)" />
@@ -187,13 +184,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
-    </task>
-    <task id="LOCAL-00027" summary="post_breakeven_price">
-      <created>1611275929801</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1611275929801</updated>
     </task>
     <task id="LOCAL-00028" summary="post_breakeven_price">
       <created>1611282626380</created>
@@ -531,7 +521,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616388094786</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="post_breakeven_price">
+      <created>1616493327890</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1616493327890</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">

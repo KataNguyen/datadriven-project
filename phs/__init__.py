@@ -33,6 +33,8 @@ from sklearn.decomposition import PCA
 
 ###############################################################################
 
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import lxml
