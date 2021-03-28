@@ -44,8 +44,8 @@ JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: 
 JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
 JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
 JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
-ertificate errors will be ignored for this session
-console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+1616594565359	Marionette	INFO	Stopped listening on port 63059
+: WebExtensions: reset-default-search: No addons in our list are installed.
 Marionette threw an error: [Exception... "Failure"  nsresult: "0x80004005 (NS_ERROR_FAILURE)"  location: "JS frame :: chrome://marionette/content/capture.js :: capture.canvas :: line 139"  data: no]
 capture.canvas@chrome://marionette/content/capture.js:139:62
 takeScreenshot@chrome://marionette/content/actors/MarionetteCommandsParent.jsm:262:32
@@ -216,7 +216,8 @@ console.warn: SearchSettings: "get: No settings file exists, new profile?" (new 
 1616553804916	Marionette	INFO	Listening on port 52776
 1616553805398	Marionette	WARN	TLS certificate errors will be ignored for this session
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-n error: [Exception... "Failure"  nsresult: "0x80004005 (NS_ERROR_FAILURE)"  location: "JS frame :: chrome://marionette/content/capture.js :: capture.canvas :: line 139"  data: no]
+1616594565188	Marionette	INFO	Stopped listening on port 52776
+OR_FAILURE)"  location: "JS frame :: chrome://marionette/content/capture.js :: capture.canvas :: line 139"  data: no]
 capture.canvas@chrome://marionette/content/capture.js:139:62
 takeScreenshot@chrome://marionette/content/actors/MarionetteCommandsParent.jsm:262:32
 
@@ -520,19 +521,106 @@ Marionette threw an error: [Exception... "Failure"  nsresult: "0x80004005 (NS_ER
 capture.canvas@chrome://marionette/content/capture.js:139:62
 takeScreenshot@chrome://marionette/content/actors/MarionetteCommandsParent.jsm:262:32
 
-1616557544125	geckodriver	INFO	Listening on 127.0.0.1:62874
-1616557547222	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\hiepdang\\AppData\\Local\\Temp\\rust_mozprofileSaWUM8"
+1616594565208	Marionette	INFO	Stopped listening on port 63399
+6557547222	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\hiepdang\\AppData\\Local\\Temp\\rust_mozprofileSaWUM8"
 Can't find symbol 'eglSwapBuffersWithDamageEXT'.
 Can't find symbol 'eglSetDamageRegionKHR'.
 console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
 1616557549109	Marionette	INFO	Listening on port 62888
 1616557549268	Marionette	WARN	TLS certificate errors will be ignored for this session
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-1616558854387	geckodriver	INFO	Listening on 127.0.0.1:64111
-1616558857444	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\hiepdang\\AppData\\Local\\Temp\\rust_mozprofile4I3U9r"
+1616594565189	Marionette	INFO	Stopped listening on port 62888
+6558857444	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\hiepdang\\AppData\\Local\\Temp\\rust_mozprofile4I3U9r"
 Can't find symbol 'eglSwapBuffersWithDamageEXT'.
 Can't find symbol 'eglSetDamageRegionKHR'.
 console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
 1616558859315	Marionette	INFO	Listening on port 64120
 1616558859492	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+1616594565185	Marionette	INFO	Stopped listening on port 64120
+1616909594883	geckodriver	INFO	Listening on 127.0.0.1:49717
+1616909597957	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\hiepdang\\AppData\\Local\\Temp\\rust_mozprofilebrCxHq"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+Can't find symbol 'eglSetDamageRegionKHR'.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1616909600422	Marionette	INFO	Listening on port 49728
+1616909600618	Marionette	WARN	TLS certificate errors will be ignored for this session
+1616909686570	geckodriver	INFO	Listening on 127.0.0.1:50168
+1616909689610	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\hiepdang\\AppData\\Local\\Temp\\rust_mozprofileseIEHK"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+Can't find symbol 'eglSetDamageRegionKHR'.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1616909691448	Marionette	INFO	Listening on port 50179
+1616909691659	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://activity-stream/lib/ASRouter.jsm, line 987: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIObserverService.removeObserver]
+1616909693292	Marionette	INFO	Stopped listening on port 50179
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1616909697424	geckodriver	INFO	Listening on 127.0.0.1:50231
+1616909700447	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\hiepdang\\AppData\\Local\\Temp\\rust_mozprofile2822pA"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+Can't find symbol 'eglSetDamageRegionKHR'.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1616909702149	Marionette	INFO	Listening on port 50242
+1616909702529	Marionette	WARN	TLS certificate errors will be ignored for this session
+1616909706988	Marionette	INFO	Stopped listening on port 50242
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1616909857902	geckodriver	INFO	Listening on 127.0.0.1:50667
+1616909860938	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\hiepdang\\AppData\\Local\\Temp\\rust_mozprofileOMASX9"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+Can't find symbol 'eglSetDamageRegionKHR'.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1616909862569	Marionette	INFO	Listening on port 50678
+1616909862996	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+1616911588591	Marionette	INFO	Stopped listening on port 50678
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+l\\Temp\\rust_mozprofileWCEf9k"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+Can't find symbol 'eglSetDamageRegionKHR'.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1616909946796	Marionette	INFO	Listening on port 50823
+1616909947087	Marionette	WARN	TLS certificate errors will be ignored for this session
+1616909969701	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:235:19
+TimedPromise@chrome://marionette/content/sync.js:220:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:418:10
+webdriverClickElement@chrome://marionette/content/interaction.js:179:31
+1616909984853	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:235:19
+TimedPromise@chrome://marionette/content/sync.js:220:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:418:10
+webdriverClickElement@chrome://marionette/content/interaction.js:179:31
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+1616911588605	Marionette	INFO	Stopped listening on port 50823
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+"--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\hiepdang\\AppData\\Local\\Temp\\rust_mozprofileHQXarw"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+Can't find symbol 'eglSetDamageRegionKHR'.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1616911555210	Marionette	INFO	Listening on port 52605
+1616911555548	Marionette	WARN	TLS certificate errors will be ignored for this session
+1616911588646	Marionette	INFO	Stopped listening on port 52605
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1616911828100	geckodriver	INFO	Listening on 127.0.0.1:53144
+1616911831157	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\hiepdang\\AppData\\Local\\Temp\\rust_mozprofileFZOFWS"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+Can't find symbol 'eglSetDamageRegionKHR'.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1616911832964	Marionette	INFO	Listening on port 53155
+1616911833211	Marionette	WARN	TLS certificate errors will be ignored for this session
+1616911890339	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:235:19
+TimedPromise@chrome://marionette/content/sync.js:220:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:418:10
+webdriverClickElement@chrome://marionette/content/interaction.js:179:31
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.

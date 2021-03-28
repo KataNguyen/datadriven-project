@@ -143,6 +143,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\text_mining\websrapping.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
