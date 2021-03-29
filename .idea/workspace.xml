@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2021_8_33_AM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2021_8_33_AM__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_01_2021_12_59_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_01_2021_12_59_PM__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/phs/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/text_mining/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/geckodriver.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/text_mining/websrapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/websrapping.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +55,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/request_phs/request_data.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -144,6 +143,9 @@
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/text_mining" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -159,16 +161,15 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.request_data" />
-      <item itemvalue="Python.pca_kmeans_lipl(ins)" />
-      <item itemvalue="Python.pca_kmeans_lipl(gen)" />
       <item itemvalue="Python.__init__" />
+      <item itemvalue="Python.pca_kmeans_lipl(gen)" />
+      <item itemvalue="Python.pca_kmeans_lipl(ins)" />
       <item itemvalue="Python.websrapping" />
+      <item itemvalue="Python.request_data" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.websrapping" />
-        <item itemvalue="Python.vsd" />
         <item itemvalue="Python.__init__" />
         <item itemvalue="Python.pca_kmeans_lipl(gen)" />
         <item itemvalue="Python.pca_kmeans_lipl(gen)" />

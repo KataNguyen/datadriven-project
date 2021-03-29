@@ -1,5 +1,7 @@
 from phs import *
 from request_phs import *
+import request_phs
+
 
 def tinnghiepvutochucphathanh_bs4(num_hours:int=48):
 
@@ -56,8 +58,8 @@ class vsd:
 
         num_hours = 48
 
-        PATH = join(dirname(dirname(realpath(__file__))),'phs','geckodriver')
-        driver = webdriver.Firefox(executable_path=PATH)
+        PATH = 'D:\Python\Selenium\chromedriver.exe'
+        driver = webdriver.Chrome(PATH)
 
         url = 'https://vsd.vn/vi/alo/-f-_bsBS4BBXga52z2eexg'
         driver.get(url)
@@ -90,11 +92,81 @@ class vsd:
                                                          'div/div/div/button')
             page_buttons = page_buttons[-2]
             page_buttons.click()
-
-
+######IMPORT PACKAGE###
+from selenium import webdriver
+from time import sleep
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+import datetime
+from datetime import datetime
+from datetime import timedelta
+import numpy as np
+import requests
+import pandas as pd
+from pandas import ExcelWriter
+import io
+from selenium.webdriver.support.select import Select
+######
 class hnx:
     def __init__(self):
         pass
+
+
+def thongtincongbo(num_hours: int = 48):
+
+    num_hours = 48
+
+    PATH = 'D:\Python\Selenium\chromedriver.exe'
+    driver = webdriver.Chrome(PATH)
+
+    url = 'https://www.hnx.vn/thong-tin-cong-bo-ny-tcph.html'
+    driver.get(url)
+
+    now = datetime.now()
+    fromtime = now
+
+    news_time = []
+    orders = []
+###Expand to 50 rows
+    driver.find_element_by_xpath("//select[@id='divNumberRecordOnPageTCPH']/option[text()='50']").click()
+    time.sleep(0.8)
+    while fromtime >= now - timedelta(hours=num_hours):
+        tags = driver.find_elements_by_tag_name('tbody')
+        del tags[0]
+        cont = tags[0].text
+###Create Data frame
+        order = cont.replace("\n", "*")
+        need = order.split("*")
+        df = pd.DataFrame(need)
+        df_split = df[0].str.split(' ',4)
+        df['STT'] = df_split.str.get(0)
+        df['Date'] = df_split.str.get(1)
+        df['Time'] = df_split.str.get(2)
+        df['Firm'] = df_split.str.get(3)
+        df['Infor'] = df_split.str.get(-1)
+        df["Date-Time"] = df["Date"] + ' ' + df["Time"]
+        final = df[["STT", "Date-Time",'Firm','Infor']]
+        news_time = df.get_value(-1, 'Date-Time')
+        ###Export
+        writer = ExcelWriter('PythonExport.xlsx')
+        df.to_excel(writer, 'Sheet1')
+        writer.save()
+
+
+        wait_sec = np.random.random(1)[0] * 2
+        time.sleep(wait_sec)
+        fromtime_str = news_time[-1][-21:]
+        fromtime = datetime.strptime(fromtime_str, '%d/%m/%Y - %H:%M:%S')
+
+        # Turn Page
+        page_buttons = driver.find_elements_by_xpath('/html/body/div/main/'
+                                                     'div/div/div/div/'
+                                                     'div/div/div/button')
+        page_buttons = page_buttons[-2]
+        page_buttons.click()
 
 
 class hose:

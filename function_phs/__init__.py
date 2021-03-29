@@ -28,7 +28,7 @@ def priceKformat(tick_val, pos) -> str:
     return new_tick_format
 
 
-def adjprice(price: Union[float, int]) -> str:
+def adjprice(price) -> str:
 
     """
     This method returns adjusted price for minimum price steps,
