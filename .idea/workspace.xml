@@ -185,13 +185,6 @@
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
     </task>
-    <task id="LOCAL-00029" summary="post_breakeven_price">
-      <created>1611294457265</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1611294457266</updated>
-    </task>
     <task id="LOCAL-00030" summary="post_breakeven_price">
       <created>1612170489974</created>
       <option name="number" value="00030" />
@@ -528,7 +521,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616549891698</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="post_breakeven_price">
+      <created>1616560181906</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1616560181906</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
