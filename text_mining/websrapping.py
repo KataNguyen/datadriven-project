@@ -149,7 +149,9 @@ def thongtincongbo(num_hours: int = 48):
         df['Infor'] = df_split.str.get(-1)
         df["Date-Time"] = df["Date"] + ' ' + df["Time"]
         final = df[["STT", "Date-Time",'Firm','Infor']]
-        news_time = df.get_value(-1, 'Date-Time')
+
+        news_time = df['Date-Time'].iloc[-1]
+
         ###Export
         writer = ExcelWriter('PythonExport.xlsx')
         df.to_excel(writer, 'Sheet1')
