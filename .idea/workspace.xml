@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="post_breakeven_price">
-      <change afterPath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh.xlsx" afterDir="false" />
+    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/function_phs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/function_phs/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/presentation/Credit rating - Handover.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/presentation/Credit rating - Handover.pptx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/text_mining/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/geckodriver.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/text_mining/websrapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/websrapping.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,6 +142,9 @@
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/text_mining" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -161,11 +160,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.request_data" />
-      <item itemvalue="Python.pca_kmeans_lipl(ins)" />
-      <item itemvalue="Python.pca_kmeans_lipl(gen)" />
       <item itemvalue="Python.__init__" />
+      <item itemvalue="Python.pca_kmeans_lipl(gen)" />
+      <item itemvalue="Python.pca_kmeans_lipl(ins)" />
       <item itemvalue="Python.websrapping" />
+      <item itemvalue="Python.request_data" />
     </list>
     <recent_temporary>
       <list>
@@ -185,20 +184,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
-    </task>
-    <task id="LOCAL-00032" summary="post_breakeven_price">
-      <created>1612231333623</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1612231333623</updated>
-    </task>
-    <task id="LOCAL-00033" summary="post_breakeven_price">
-      <created>1612264448628</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1612264448628</updated>
     </task>
     <task id="LOCAL-00034" summary="post_breakeven_price">
       <created>1612347492645</created>
@@ -529,7 +514,21 @@
       <option name="project" value="LOCAL" />
       <updated>1616914501386</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="post_breakeven_price">
+      <created>1617182231245</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1617182231245</updated>
+    </task>
+    <task id="LOCAL-00082" summary="post_breakeven_price">
+      <created>1617182252141</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1617182252141</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
