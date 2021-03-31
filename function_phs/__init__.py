@@ -31,7 +31,7 @@ def priceKformat(tick_val, pos) -> str:
 def adjprice(price: Union[float, int]) -> str:
 
     """
-    This method returns adjusted price for minimum price steps,
+    This function returns adjusted price for minimum price steps,
     used for display only
 
     :param price: stock price
@@ -50,10 +50,44 @@ def adjprice(price: Union[float, int]) -> str:
     return price_string
 
 
+def bdate(date:str, bdays:int) -> str:
+
+    """
+    This function return the business date before/after a certain business days
+    since a given date
+
+    :param date: allow string like 'yyyy-mm-dd', 'yyyy/mm/dd'
+    :param bdays: allow positive integer (after) or negative integer (before)
+
+    :return: string of type 'yyyy-mm-dd'
+    """
+
+    year = int(date[:4])
+    month = int(date[5:7])
+    day = int(date[-2:])
+
+    step = int(np.sign(bdays))
+
+    given_date = datetime(year, month, day)
+    result_date = given_date
+
+    d = 0
+    while abs(d) < abs(bdays):
+        d += step
+        result_date += timedelta(days=step)
+        while result_date.weekday() in holidays.WEEKEND \
+                or result_date in holidays.VN():
+            result_date += timedelta(days=step)
+
+    result_date = result_date.strftime('%Y-%m-%d')
+
+    return result_date
+
+
 def seopdate(period:str) -> tuple:
 
     """
-    This method returns (start date, end date) of a period
+    This function returns (start date, end date) of a period
 
     :param period: target period: '2020q4', '2020q3', etc.
     :type period: str
