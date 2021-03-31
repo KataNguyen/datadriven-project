@@ -48,8 +48,8 @@ class vsd:
         news_recordsdate = []
         news_paymentdate = []
 
-        output_table = pd.DataFrame()
         while fromtime >= now - timedelta(hours=num_hours):
+            output_table = pd.DataFrame()
             tags = driver.find_elements_by_xpath('/html/body/div[1]/main/'
                                                  'div/div/div/div[1]/ul/li')
             tags.reverse()
@@ -119,11 +119,9 @@ class vsd:
                         mask_dividend += [any([keyword in row
                                                for keyword in dividend_kws])]
 
-                    print(mask_dividend)
                     dividends \
                         = list(np.array(content_split)[np.array(mask_dividend)])
                     dividends = f(dividends)
-                    print(dividends)
                     news_dict['Tỷ lệ thực hiện'] = dividends
 
 
@@ -153,7 +151,6 @@ class vsd:
                     except KeyError:
                         news_paymentdate += ['']
 
-
                     sub_driver.quit()
 
                 else:
@@ -167,7 +164,7 @@ class vsd:
                                            'Ngày đăng ký cuối cùng': news_recordsdate,
                                            'Ngày thanh toán': news_paymentdate,
                                            'Link': news_urls}
-                                      )])
+                                      )], ignore_index=True)
 
             # Turn Page
             nextpage_button = driver.find_elements_by_xpath(
@@ -181,75 +178,74 @@ class vsd:
             except IndexError:
                 fromtime = now
 
-            driver.quit()
+        output_table['Mã cổ phiếu'] = ''
+        output_table['Lý do, mục đích'] = ''
+        output_table['Chuyển từ sàn'] = ''
+        output_table['Chuyển đến sàn'] = ''
+        output_table['Ngày giao dịch không hưởng quyền'] = ''
 
-            output_table['Mã cổ phiếu'] = ''
-            output_table['Lý do, mục đích'] = ''
-            output_table['Chuyển từ sàn'] = ''
-            output_table['Chuyển đến sàn'] = ''
-            output_table['Ngày giao dịch không hưởng quyền'] = ''
-
-            for row in range(output_table.shape[0]):
+        for row in range(output_table.shape[0]):
 
 
-                output_table['Tiêu đề'].iloc[row] \
-                    = output_table['Tiêu đề'].iloc[row].split(': ')
-                output_table['Mã cổ phiếu'].iloc[row] \
-                    = output_table['Tiêu đề'].iloc[row][0]
-                output_table['Lý do, mục đích'].iloc[row] \
-                    = output_table['Tiêu đề'].iloc[row][1]
+            output_table['Tiêu đề'].iloc[row] \
+                = output_table['Tiêu đề'].iloc[row].split(': ')
+            output_table['Mã cổ phiếu'].iloc[row] \
+                = output_table['Tiêu đề'].iloc[row][0]
+            output_table['Lý do, mục đích'].iloc[row] \
+                = output_table['Tiêu đề'].iloc[row][1]
 
 
+            output_table['Chuyển từ sàn'].iloc[row] \
+                = np.array(
+                output_table['Lý do, mục đích'].iloc[row].split())\
+            [[word.isupper() for word in output_table['Lý do, mục đích']
+                    .iloc[row].split()],]
+            try:
                 output_table['Chuyển từ sàn'].iloc[row] \
-                    = np.array(
-                    output_table['Lý do, mục đích'].iloc[row].split())\
-                [[word.isupper() for word in output_table['Lý do, mục đích']
-                        .iloc[row].split()],]
-                try:
-                    output_table['Chuyển từ sàn'].iloc[row] \
-                        = output_table['Chuyển từ sàn'].iloc[row][1]
-                except IndexError:
-                    output_table['Chuyển từ sàn'].iloc[row] = ''
+                    = output_table['Chuyển từ sàn'].iloc[row][1]
+            except IndexError:
+                output_table['Chuyển từ sàn'].iloc[row] = ''
 
 
+            output_table['Chuyển đến sàn'].iloc[row] \
+                = np.array(
+                output_table['Lý do, mục đích'].iloc[row].split())\
+            [[word.isupper() for word in output_table['Lý do, mục đích']
+                    .iloc[row].split()],]
+            try:
                 output_table['Chuyển đến sàn'].iloc[row] \
-                    = np.array(
-                    output_table['Lý do, mục đích'].iloc[row].split())\
-                [[word.isupper() for word in output_table['Lý do, mục đích']
-                        .iloc[row].split()],]
-                try:
-                    output_table['Chuyển đến sàn'].iloc[row] \
-                        = output_table['Chuyển đến sàn'].iloc[row][2]
-                except IndexError:
-                    output_table['Chuyển đến sàn'].iloc[row] = ''
+                    = output_table['Chuyển đến sàn'].iloc[row][2]
+            except IndexError:
+                output_table['Chuyển đến sàn'].iloc[row] = ''
 
-                rtime = output_table['Ngày đăng ký cuối cùng'].iloc[row]
-                if rtime != '':
-                    ryear = rtime[-4:]
-                    rmonth = rtime[-7:-5]
-                    rday = rtime[-10:-8]
+            rtime = output_table['Ngày đăng ký cuối cùng'].iloc[row]
+            if rtime != '':
+                ryear = rtime[-4:]
+                rmonth = rtime[-7:-5]
+                rday = rtime[-10:-8]
 
-                    result = bdate(f'{ryear}-{rmonth}-{rday}',-1)
-                    year = result[:4]
-                    month = result[5:7]
-                    day = result[-2:]
-                    output_table['Ngày giao dịch không hưởng quyền'].iloc[row] \
-                                        = f'{day}/{month}/{year}'
+                result = bdate(f'{ryear}-{rmonth}-{rday}',-1)
+                year = result[:4]
+                month = result[5:7]
+                day = result[-2:]
+                output_table['Ngày giao dịch không hưởng quyền'].iloc[row] \
+                                    = f'{day}/{month}/{year}'
 
-            output_table.drop(['Tiêu đề'], axis=1, inplace=True)
+        output_table.drop(['Tiêu đề'], axis=1, inplace=True)
 
-            output_table = output_table[['Thời gian',
-                                         'Mã cổ phiếu',
-                                         'Lý do, mục đích',
-                                         'Tỷ lệ thực hiện',
-                                         'Ngày đăng ký cuối cùng',
-                                         'Ngày giao dịch không hưởng quyền',
-                                         'Ngày thanh toán',
-                                         'Chuyển từ sàn',
-                                         'Chuyển đến sàn',
-                                         'Link']]
+        output_table = output_table[['Thời gian',
+                                     'Mã cổ phiếu',
+                                     'Lý do, mục đích',
+                                     'Tỷ lệ thực hiện',
+                                     'Ngày đăng ký cuối cùng',
+                                     'Ngày giao dịch không hưởng quyền',
+                                     'Ngày thanh toán',
+                                     'Chuyển từ sàn',
+                                     'Chuyển đến sàn',
+                                     'Link']]
 
         output_table.to_excel(destination_path, index=False)
+        driver.quit()
 
         print(f'Finished ::: Total execution time: {int(time.time()-start_time)}s')
 
