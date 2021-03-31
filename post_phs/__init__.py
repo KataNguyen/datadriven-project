@@ -1,3 +1,4 @@
+from function_phs import *
 from request_phs import *
 from breakeven_price.monte_carlo import monte_carlo
 
@@ -9,7 +10,7 @@ class post:
     def __init__(self):
         pass
 
-    def breakeven(self, tickers=None, exchanges=None) -> pd.DataFrame:
+    def breakeven(self, tickers:list=None, exchanges:list=None) -> pd.DataFrame:
 
         """
         This method post Monte Carlo model's results in breakeven_price
@@ -37,15 +38,7 @@ class post:
         for ticker in tickers:
             try:
                 price = monte_carlo(ticker=ticker)
-                if price < 10000:
-                    breakeven_price[ticker] \
-                        = '{:.0f}'.format(round(price,-1))
-                elif 10000 <= price < 50000:
-                    breakeven_price[ticker] \
-                        = '{:.0f}'.format(50 * round(price/50))
-                else:
-                    breakeven_price[ticker] \
-                        = '{:.0f}'.format(round(price,-2))
+                breakeven_price[ticker] = int(adjprice(price).replace(',',''))
             except (ValueError, KeyError, IndexError):
                 print(ticker + ' cannot be run by Monte Carlo')
                 pass

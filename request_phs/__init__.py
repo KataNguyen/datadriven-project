@@ -1,18 +1,5 @@
-import numpy as np
-import pandas as pd
-import openpyxl
-import os
-import sys
-from os import listdir
-from os.path import isfile, isdir, join, realpath, dirname
-from win32com.client import Dispatch
-import time
-from datetime import datetime, timedelta
-import requests
-import json
-import holidays
-from typing import Union
-
+from phs import *
+from function_phs import *
 
 ###############################################################################
 
@@ -49,6 +36,8 @@ class internal:
 
         :param exchanges: allow ['HOSE', 'HNX', 'UPCOM'] or 'all'
         :type exchanges: list
+
+        :return: list
         """
 
         tickers = []
@@ -68,6 +57,7 @@ class internal:
 
         :param ticker: allow any ticker in mlist(exchanges='all')
         :type ticker: str
+
         :return: deposit rate
         """
 
@@ -83,6 +73,7 @@ class internal:
 
         :param ticker: allow any ticker in mlist(exchanges='all')
         :type ticker: str
+
         :return: deposit rate
         """
 
@@ -98,6 +89,7 @@ class internal:
 
         :param ticker: allow any ticker in mlist(exchanges='all')
         :type ticker: str
+
         :return: max price
         """
 
@@ -113,6 +105,7 @@ class internal:
 
         :param ticker: allow any ticker in mlist(exchanges='all')
         :type ticker: str
+
         :return: general room
         """
 
@@ -136,17 +129,21 @@ class fa:
 
         folders = [f for f in listdir(self.database_path)
                    if f.startswith('fs_')]
-        fs_types = []
-        for folder in folders:
-            fs_types = [name.split('_')[0]
-                        for name in listdir(join(self.database_path, folder))
-                        if isfile(join(self.database_path, folder, name))]
-        fs_types = list(set(fs_types))
-        self.fs_types = [x for x in fs_types if not x.startswith('~$')]
-        self.fs_types.sort() # Returns all valid financial statements
 
         self.segments = [x.split('_')[1] for x in folders]
         self.segments.sort() # Returns all valid segments
+
+        fs_types = []
+        for folder in folders:
+            fs_types += [name.split('_')[0]
+                         for name in listdir(join(self.database_path, folder))
+                         if isfile(join(self.database_path, folder, name))]
+        fs_types = list(set(fs_types))
+        self.fs_types = [x for x in fs_types if not x.startswith('~$')]
+        for num in [str(i) for i in range(1,4)]:
+            for element in self.fs_types:
+                if num in element: self.fs_types.remove(element)
+        self.fs_types.sort() # Returns all valid financial statements
 
         periods = []
         for folder in folders:
@@ -172,6 +169,7 @@ class fa:
         This method handles cached data in newly-added files
 
         :param: None
+
         :return: None
         """
 
@@ -185,16 +183,19 @@ class fa:
                           if isfile(join(self.database_path, folder, file))]
 
             for file in file_names:
-                excel = Dispatch("Excel.Application")
-                excel.Visible = True
-                excel.Workbooks.Open(os.path.join(self.database_path,
-                                                  folder, file))
-                time.sleep(3)  # suspend 3 secs for excel to catch up python
-                excel.Range("A1:XFD1048576").Select()
-                excel.Selection.Copy()
-                excel.Selection.PasteSpecial(Paste=-4163)
-                excel.ActiveWorkbook.Save()
-                excel.ActiveWorkbook.Close()
+                if file.startswith('~'):
+                    pass
+                else:
+                    excel = Dispatch("Excel.Application")
+                    excel.Visible = True
+                    excel.Workbooks.Open(os.path.join(self.database_path,
+                                                      folder, file))
+                    time.sleep(3)  # suspend 3 secs for excel to catch up python
+                    excel.Range("A1:XFD1048576").Select()
+                    excel.Selection.Copy()
+                    excel.Selection.PasteSpecial(Paste=-4163)
+                    excel.ActiveWorkbook.Save()
+                    excel.ActiveWorkbook.Close()
 
 
     def fin_tickers(self, sector_break:bool=False) \
@@ -205,15 +206,15 @@ class fa:
 
         :param sector_break: False: ignore sectors, True: show sectors
         :type sector_break: bool
+
         :return: list (sector_break=False), dictionary (sector_break=True)
         """
 
         tickers = []
         tickers_ = dict()
         for segment in self.financials:
-            folder = 'fs_' + segment + '_industry'
-            file = 'is_' + self.latest_period[:4] + 'q' \
-                   + self.latest_period[-1] + '.xlsm'
+            folder = f'fs_{segment}'
+            file = f'is_{self.latest_period[:4]}q{self.latest_period[-1]}.xlsm'
             raw_fiinpro \
                 = openpyxl.load_workbook(
                 os.path.join(self.database_path, folder, file)).active
@@ -229,16 +230,16 @@ class fa:
             # remove OTC
             a = clean_data.loc[:, 3] != 'OTC'
             if sector_break is False:
-                tickers += clean_data.loc[:, 1][a].tolist()
+                tickers += clean_data.loc[:,1][a].tolist()
             else:
-                tickers_[segment] = clean_data.loc[:, 1][a].tolist()
+                tickers_[segment] = clean_data.loc[:,1][a].tolist()
                 tickers = tickers_
 
         return tickers
 
 
-    def core(self, year:int, quarter:int, fs_type:str, segment:str,
-              exchange:str='all') -> pd.DataFrame:
+    def core(self, year:int, quarter:int,
+             fs_type:str, segment:str, exchange:str='all') -> pd.DataFrame:
 
         """
         This method extracts data from Github server, clean up
@@ -264,49 +265,60 @@ class fa:
             raise ValueError(f'sector must be in {self.segments}')
 
         if fs_type not in self.fs_types:
-            raise ValueError(f'sector must be in {self.fs_types}')
+            raise ValueError(f'fs_type must be in {self.fs_types}')
 
-        folder = 'fs_' + segment + '_industry'
-        file = fs_type + '_' + str(year) + 'q' + str(quarter) + '.xlsm'
+        folder = f'fs_{segment}'
 
-        # create Workbook object, select active Worksheet
-        raw_fiinpro \
-            = openpyxl.load_workbook(
-            os.path.join(self.database_path, folder, file)).active
+        files = [f for f in listdir(join(database_path, folder))
+                 if f.startswith(f'{fs_type}')
+                 and f.endswith(f'_{year}q{quarter}.xlsm')]
 
-        # delete StoxPlux Sign
-        raw_fiinpro.delete_rows(idx=raw_fiinpro.max_row - 21,
-                                amount=1000)
+        clean_data = dict()
+        for i in range(len(files)):
 
-        # delete header rows
-        raw_fiinpro.delete_rows(idx=0, amount=7)
-        raw_fiinpro.delete_rows(idx=2, amount=1)
+            # create Workbook object, select active Worksheet
+            raw_fiinpro \
+                = openpyxl.load_workbook(
+                os.path.join(self.database_path, folder, files[i])).active
 
-        # import to DataFrame, no column labels, no index
-        clean_data = pd.DataFrame(raw_fiinpro.values)
+            # delete StoxPlux Sign
+            raw_fiinpro.delete_rows(idx=raw_fiinpro.max_row-21,
+                                    amount=1000)
 
-        # assign column labels and index
-        clean_data.columns = clean_data.iloc[0, :]
-        clean_data.drop(index=[0], inplace=True)
-        clean_data.index \
-            = pd.MultiIndex.from_arrays([[year] * len(clean_data),
-                                         [quarter] * len(clean_data),
-                                         clean_data['Ticker'].tolist()])
-        clean_data.index.set_names(['year', 'quarter', 'fs'], inplace=True)
+            # delete header rows
+            raw_fiinpro.delete_rows(idx=0, amount=7)
+            raw_fiinpro.delete_rows(idx=2, amount=1)
 
-        # rename 2 columns
-        clean_data.rename(columns=
-                          {'Name': 'full_name', 'Exchange': 'exchange'},
-                          inplace=True)
+            # import to DataFrame, no column labels, no index
+            clean_data[i] = pd.DataFrame(raw_fiinpro.values)
 
-        # drop unwanted columns and index
-        clean_data.drop(columns=['No', 'Ticker'], inplace=True)
+            # assign column labels and index
+            clean_data[i].columns = clean_data[i].iloc[0,:]
+            clean_data[i].drop(index=[0], inplace=True)
+            clean_data[i].index \
+                = pd.MultiIndex.from_arrays([[year] * len(clean_data[i]),
+                                             [quarter] * len(clean_data[i]),
+                                             clean_data[i]['Ticker'].tolist()])
+            clean_data[i].index.set_names(['year','quarter','fs'],
+                                          inplace=True)
 
-        # fill na with 0s
-        clean_data.fillna(0, inplace=True)
+            # rename 2 columns
+            clean_data[i].rename(columns=
+                              {'Name': 'full_name', 'Exchange': 'exchange'},
+                              inplace=True)
 
-        # remove OTC
-        clean_data = clean_data.loc[clean_data['exchange'] != 'OTC']
+            # drop unwanted columns and index
+            clean_data[i].drop(columns=['No', 'Ticker'], inplace=True)
+
+            # fill na with 0s
+            clean_data[i].fillna(0, inplace=True)
+
+            # remove OTC
+            clean_data[i] = clean_data[i].loc[clean_data[i]['exchange']
+                                              != 'OTC']
+
+        clean_data = pd.concat([clean_data[i] for i in range(len(clean_data))],
+                               axis=1)
 
         if segment == 'bank':
             if fs_type == 'bs':
@@ -314,7 +326,7 @@ class fa:
                 for col in range(2, len(clean_data.columns)):
                     if clean_data.columns[col] \
                             .startswith(
-                        ('A.', 'B.', 'C.', 'D.', 'E.', 'F.', 'G.')):
+                        ('A.','B.','C.','D.','E.','F.','G.')):
                         clean_data.rename(
                             columns={clean_data.columns[col]
                                      : clean_data.columns[col].split()[0]},
@@ -338,7 +350,7 @@ class fa:
                 for col in range(2, len(clean_data.columns)):
                     l = clean_data.columns[col].split('.')
                     a = l[1]
-                    if a in ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']:
+                    if a in ['I','II','III','IV','V','VI','VII']:
                         subheader.append(a)
                     else:
                         name_new = l
@@ -363,7 +375,7 @@ class fa:
                 for col in range(len(clean_data.columns) - 1, 1, -1):
                     if clean_data.columns[col] \
                             .startswith(
-                        ('I', 'II', 'III', 'IV', 'V', 'VI', 'VII')):
+                        ('I','II','III','IV','V','VI','VII')):
                         clean_data.rename(
                             columns={clean_data.columns[col]
                                      : clean_data.columns[col].split()[0]},
@@ -388,7 +400,7 @@ class fa:
                 for col in range(2, len(clean_data.columns)):
                     if clean_data.columns[col] \
                             .startswith(
-                        ('I', 'II', 'III', 'IV', 'V', 'VI', 'VII')):
+                        ('I','II','III','IV','V','VI','VII')):
                         clean_data.rename(
                             columns={clean_data.columns[col]
                                      : clean_data.columns[col].split()[0]},
@@ -407,6 +419,13 @@ class fa:
                         col_list[i] += 'b.'
                 clean_data.columns = col_list
 
+            elif fs_type == 'fn':
+                for col in range(2, len(clean_data.columns)):
+                    clean_data.rename(
+                        columns={clean_data.columns[col]
+                                 : clean_data.columns[col].split()[0]},
+                        inplace=True)
+
 
         elif segment == 'gen':
             # remove financial
@@ -415,10 +434,10 @@ class fa:
             clean_data.drop(index=fin, level=2, inplace=True)
             if fs_type == 'bs':
                 header = list()
-                for col in range(len(clean_data.columns) - 1, 1, -1):
+                for col in range(len(clean_data.columns)-1,1,-1):
                     if clean_data.columns[col] \
                             .startswith(
-                        ('A.', 'B.', 'C.', 'D.', 'E.', 'F.', 'G.')):
+                        ('A.','B.','C.','D.','E.','F.','G.')):
                         clean_data.rename(
                             columns={clean_data.columns[col]
                                      : clean_data.columns[col].split()[0]},
@@ -442,7 +461,7 @@ class fa:
                 for col in range(2, len(clean_data.columns)):
                     l = clean_data.columns[col].split('.')
                     a = l[1]
-                    if a in ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']:
+                    if a in ['I','II','III','IV','V','VI','VII']:
                         subheader.append(a)
                     else:
                         name_new = l
@@ -458,9 +477,8 @@ class fa:
                 duplicated = clean_data.columns.duplicated()
                 col_list = clean_data.columns.tolist()
                 for i in range(2, len(clean_data.columns)):
-                    if duplicated[i] and col_list[i].split('.', 1)[1] \
-                            not in ['I.', 'II.', 'III.', 'IV', 'V.', 'VI.',
-                                    'VII.']:
+                    if duplicated[i] and col_list[i].split('.',1)[1] \
+                            not in ['I.','II.','III.','IV','V.','VI.','VII.']:
                         col_list[i] += 'b.'
                 clean_data.columns = col_list
 
@@ -469,7 +487,7 @@ class fa:
                 for i in range(2, len(clean_data.columns)):
                     l = col_list[i].split('.')
                     if duplicated[i] and l[1] \
-                            in ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']:
+                            in ['I','II','III','IV','V','VI','VII']:
                         col_list[i] = l[0] + '.'
                 clean_data.columns = col_list
 
@@ -484,8 +502,7 @@ class fa:
                 header = list()
                 for col in range(2, len(clean_data.columns)):
                     if clean_data.columns[col] \
-                            .startswith(
-                        ('I', 'II', 'III', 'IV', 'V', 'VI', 'VII')):
+                            .startswith(('I','II','III','IV','V','VI','VII')):
                         clean_data.rename(
                             columns={clean_data.columns[col]
                                      : clean_data.columns[col].split()[0]},
@@ -510,7 +527,7 @@ class fa:
                 for col in range(2, len(clean_data.columns)):
                     if clean_data.columns[col] \
                             .startswith(
-                        ('I', 'II', 'III', 'IV', 'V', 'VI', 'VII')):
+                        ('I','II','III','IV','V','VI','VII')):
                         clean_data.rename(
                             columns={clean_data.columns[col]
                                      : clean_data.columns[col].split()[0]},
@@ -529,6 +546,13 @@ class fa:
                                 columns={clean_data.columns[col]
                                          : clean_data.columns[col].split()[0]},
                                 inplace=True)
+
+            elif fs_type == 'fn':
+                for col in range(2, len(clean_data.columns)):
+                    clean_data.rename(
+                        columns={clean_data.columns[col]
+                                 : clean_data.columns[col].split()[0]},
+                        inplace=True)
 
 
         elif segment == 'ins':
@@ -698,14 +722,21 @@ class fa:
                         col_list[i] = '.'.join(a[:-1]) + '.'
                 clean_data.columns = col_list
 
+            elif fs_type == 'fn':
+                for col in range(2, len(clean_data.columns)):
+                    clean_data.rename(
+                        columns={clean_data.columns[col]
+                                 : clean_data.columns[col].split()[0]},
+                        inplace=True)
+
 
         elif segment == 'sec':
             if fs_type == 'bs':
                 header = list()
-                for col in range(len(clean_data.columns) - 1, 1, -1):
+                for col in range(len(clean_data.columns)-1,1,-1):
                     if clean_data.columns[col] \
                             .startswith(
-                        ('A.', 'B.', 'C.', 'D.', 'E.', 'F.', 'G.')):
+                        ('A.','B.','C.','D.','E.','F.','G.')):
                         clean_data.rename(
                             columns={clean_data.columns[col]
                                      : clean_data.columns[col].split()[0]},
@@ -736,7 +767,7 @@ class fa:
                 for col in range(2, len(clean_data.columns)):
                     l = clean_data.columns[col].split('.')
                     a = l[1]
-                    if a in ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']:
+                    if a in ['I','II','III','IV','V','VI','VII']:
                         subheader.append(a)
                     else:
                         name_new = l
@@ -754,16 +785,16 @@ class fa:
                 for i in range(2, len(clean_data.columns)):
                     l = col_list[i].split('.')
                     if duplicated[i] and l[1] \
-                            in ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']:
+                            in ['I','II','III','IV','V','VI','VII']:
                         col_list[i] = l[0] + '.'
                 clean_data.columns = col_list
 
                 col_list = clean_data.columns.tolist()
                 for i in range(2, len(clean_data.columns)):
                     l = col_list[i].split('.')
-                    if l[0] in ['1', '2', '3', '4', '5'] and l[1] \
-                            in ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']:
-                        col_list[i] = col_list[i].replace('.' + l[1], '')
+                    if l[0] in ['1','2','3','4','5'] and l[1] \
+                            in ['I','II','III','IV','V','VI','VII']:
+                        col_list[i] = col_list[i].replace(f'.{l[1]}', '')
                 clean_data.columns = col_list
 
             elif fs_type == 'is':
@@ -778,6 +809,21 @@ class fa:
 
             elif fs_type == 'cfd':
                 pass
+
+            elif fs_type == 'fn':
+                for col in range(2, len(clean_data.columns)):
+                    clean_data.rename(
+                        columns={clean_data.columns[col]
+                                 : clean_data.columns[col].split()[0]},
+                        inplace=True)
+
+                col_list = clean_data.columns.tolist()
+                duplicated = clean_data.columns.duplicated()
+                for i in range(2, len(clean_data.columns)):
+                    if duplicated[i]:
+                        col_list[i] += 'b.'
+                clean_data.columns = col_list
+
 
         clean_data.columns \
             = pd.MultiIndex.from_product([[fs_type],
@@ -798,6 +844,7 @@ class fa:
 
         :param ticker: stock's fs
         :type ticker: str
+
         :return: str
         """
 
@@ -823,19 +870,22 @@ class fa:
 
         :param ticker: stock's ticker
         :type ticker: str
+
         :return: pandas.DataFrame
         """
 
         segment = self.segment(ticker)
-        folder = 'fs_' + segment + '_industry'
+        folder = f'fs_{segment}'
         file_names = listdir(join(self.database_path, folder))
         file_names = [f for f in file_names if not f.startswith('~$')]
         file_names.sort()
 
-        refs = [(int(name[-11:-7]), int(name[-6]), name[:2]
-                    if name[2] == '_' else name[:3]) for name in file_names]
+        refs = [(int(name[-11:-7]), int(name[-6]), name[:2] \
+                if name[2] in '_1234' else name[:3])
+                for name in file_names]
 
         inds = list()
+        dict_ind = dict()
         for fs_type in self.fs_types:
             try:
                 inds += self.core(refs[-1][0],
@@ -846,9 +896,6 @@ class fa:
                     .columns.tolist()
             except KeyError:
                 continue
-
-        dict_ind = dict()
-        for fs_type in self.fs_types:
             dict_ind[fs_type] = [x[1] for x in inds if x[0] == fs_type]
 
         fs = pd.concat(
@@ -873,6 +920,7 @@ class fa:
         :param exchange: allow values in ['HOSE', 'HNX', 'UPCOM']
         :type segment: str
         :type exchange: str
+
         :return: pandas.DataFrame
         """
 
@@ -905,6 +953,7 @@ class fa:
         This method returns stock exchanges of all tickers
 
         :param: None
+
         :return: pandas.DataFrame
         """
 
@@ -945,6 +994,7 @@ class fa:
         :param exchange: allow values in ['HOSE', 'HNX', 'UPCOM'] or 'all'
         :type segment: str
         :type exchange: str
+
         :return: list
         """
 
@@ -977,6 +1027,7 @@ class fa:
         :param fs_type: allow valies in request_fstype()
         :type segment: str
         :type fs_type: str
+
         :return: list
         """
 
@@ -1002,6 +1053,7 @@ class fa:
 
         :param standard: allow values in fa.standards
         :type standard: str
+
         :return: pandas.DataFrame
         """
 
@@ -1050,6 +1102,7 @@ class fa:
 
         :param standard: allow values in fa.standards
         :type standard: str
+
         :return: list
         """
 
@@ -1067,13 +1120,24 @@ class fa:
         :param level: allow values in request_industry_level() (number only)
         :type standard: str
         :type level: str
+
         :return: list
         """
 
         industries \
-            = self.classification(standard)[standard + '_l' + str(level)] \
+            = self.classification(standard)[f'{standard}_l{str(level)}'] \
             .drop_duplicates().tolist()
         return industries
+
+    @staticmethod
+    def peers(ticker:str, standard:str, level:int):
+
+        df = fa.classification(standard)
+        col = f'{standard}_l{level}'
+        industry = df.loc[ticker, col]
+        peers = df[col].loc[df[col]==industry].index.to_list()
+
+        return peers
 
 
     def ownerships(self) -> pd.DataFrame:
@@ -1082,6 +1146,7 @@ class fa:
         This method returns ownership structure of all tickers
 
         :param: None
+
         :return: pandas.DataFrame
         """
 
@@ -1098,7 +1163,7 @@ class fa:
         raw_fiinpro = openpyxl.load_workbook(
             os.path.join(self.database_path, folder, file)).active
         # delete StoxPlux Sign
-        raw_fiinpro.delete_rows(idx=raw_fiinpro.max_row - 21, amount=1000)
+        raw_fiinpro.delete_rows(idx=raw_fiinpro.max_row-21, amount=1000)
 
         # delete header rows
         raw_fiinpro.delete_rows(idx=0, amount=7)
@@ -1131,10 +1196,11 @@ class fa:
         This method returns market capitalization of all stocks
 
         :param: None
+
         :return: pandas.DataFrame
         """
 
-        folder = 'market_cap'
+        folder = 'marketcap'
         file = [f for f in listdir(join(self.database_path, folder))
                if isfile(join(self.database_path, folder, f))][-1]
 
@@ -1147,7 +1213,7 @@ class fa:
         raw_fiinpro = openpyxl.load_workbook(
             os.path.join(self.database_path, folder, file)).active
         # delete StoxPlux Sign
-        raw_fiinpro.delete_rows(idx=raw_fiinpro.max_row - 21, amount=1000)
+        raw_fiinpro.delete_rows(idx=raw_fiinpro.max_row-21, amount=1000)
 
         # delete header rows
         raw_fiinpro.delete_rows(idx=0, amount=7)
@@ -1181,6 +1247,7 @@ class fa:
 
         :param ticker: stock's ticker
         :type ticker: str
+
         :return: str
         """
 
@@ -1217,6 +1284,7 @@ class ta:
         :param ticker: allow values in fa.tickers()
         :param fromdate: [optional] allow any date with format: 'yyyy-mm-dd' or 'yyyy/mm/dd'
         :param todate: [optional] allow any date with format: 'yyyy-mm-dd' or 'yyyy/mm/dd'
+
         :return: pandas.DataFrame
         """
 
@@ -1235,6 +1303,7 @@ class ta:
                                       headers={
                                           'content-type': 'application/json'})
                     history = pd.DataFrame(json.loads(r.json()['d']))
+                    if history.empty: raise ValueError('ticker not available')
                 except KeyError:
                     raise Exception(
                         'Date Format Required: yyyy-mm-dd, yyyy/mm/dd')
@@ -1251,6 +1320,7 @@ class ta:
                                            .strftime("%Y-%m-%d")}),
                                   headers={'content-type': 'application/json'})
                 history = pd.DataFrame(json.loads(r.json()['d']))
+                if history.empty: raise ValueError('ticker not available')
             except KeyError:
                 try:
                     r = requests.post(self.address_hist,
@@ -1264,6 +1334,7 @@ class ta:
                                       headers={
                                           'content-type': 'application/json'})
                     history = pd.DataFrame(json.loads(r.json()['d']))
+                    if history.empty: raise ValueError('ticker not available')
                 except KeyError:
                     raise Exception(
                         'Date Format Required: yyyy-mm-dd, yyyy/mm/dd')
@@ -1290,7 +1361,7 @@ class ta:
 
         history['ref'].iloc[0] = history['open'].iloc[0]
 
-        for col in ['ref', 'open', 'close', 'high', 'low']:
+        for col in ['ref','open','close','high','low']:
             for i in range(1, history.shape[0]):
                 if history[col].iloc[i] == 0:
                     history[col].iloc[i] = history[col].iloc[i - 1]
@@ -1385,6 +1456,7 @@ class ta:
         :param exchange: allow values in ['HOSE', 'HNX', 'UPCOM'] or 'all'
         :type segment: str
         :type exchange: str
+
         :return: pandas.DataFrame
         """
 
@@ -1436,6 +1508,8 @@ class ta:
                     prices.loc[ticker, period] = np.nan
 
         prices.replace([np.inf, -np.inf, -1, 1], np.nan, inplace=True)
+        prices.to_csv(join(database_path, 'price', 'prices.csv'))
+
         return prices
 
 
@@ -1450,6 +1524,7 @@ class ta:
         :param exchange: allow values in ['HOSE', 'HNX', 'UPCOM'] or 'all'
         :type segment: str
         :type exchange: str
+
         :return: pandas.DataFrame
         """
 
@@ -1471,7 +1546,7 @@ class ta:
         for ticker in tickers:
             try:
                 price_data[ticker] = self.hist(ticker)
-            except (KeyError, IndexError):
+            except (KeyError, IndexError, ValueError):
                 continue
 
         def Bday(date=str):
@@ -1509,33 +1584,126 @@ class ta:
                     returns.loc[ticker, period] = np.nan
 
         returns.replace([np.inf, -np.inf, -1, 1], np.nan, inplace=True)
+        returns.to_csv(join(database_path, 'returns', 'returns.csv'))
 
         return returns
 
 
-    def crash(self, benchmark=-0.5, period:str=fa.latest_period,
-              segment:str='all', exchange:str='all') -> list:
+    @staticmethod
+    def crash(benchmark=-0.5, segment:str= 'all', exchange:str= 'all')\
+            -> dict:
 
         """
         This method returns all tickers whose stock return
         lower than 'benchmark' in a given period
 
         :param benchmark: negative number in [-1,0]
-        :param period: allow values in fa.periods
         :param segment: allow values in fa.segments
         :param exchange: allow values in ['HOSE', 'HNX', 'UPCOM'] or 'all'
-        :return: list
+
+        :return: dict[period]
         """
 
-        returns = self.returns(segment, exchange)
-        crash = list()
-        for ticker in returns.index:
-            if returns.loc[ticker, period] <= benchmark:
-                crash.append(ticker)
-            else:
-                pass
+        folder = 'price' ; file = 'prhighlow.csv'
+        table = pd.read_csv(join(database_path, folder, file),
+                            index_col=[0])
+        tickers = fa.tickers(segment, exchange)
 
-        return crash
+        crash_dict = dict()
+        for period in fa.periods:
+            crash_dict[period] = []
+            for ticker in tickers:
+                t = table.loc[ticker,period]
+                if isinstance(t, str):
+                    string = t.replace('(', '').replace(')', '')
+                    string = string.split(',')
+                    low_return = float(string[3])
+                    if low_return <= benchmark:
+                        crash_dict[period] += [ticker]
+
+        return crash_dict
+
+
+    def prhighlow(self, ticker:str, fquarters:int=1) \
+            -> Union[dict, pd.DataFrame]:
+
+        """
+        This function returns the lowest price/return in all periods
+
+        :param ticker: stock's ticker or 'all'
+        :param fquarters: number of quarters needed after the latest reporting period
+        :type ticker: str
+
+        :return: a dictionary of 'high' and 'low' (if ticker != 'all')
+        or a DataFrame of (start_price, low_price, high_price, low_return, high_return)
+        """
+
+        if ticker != 'all':
+            periods\
+                = fa.periods + [period_cal(fa.periods[-1],0,q+1) for q in
+                                range(fquarters)]
+
+            full_price = self.hist(ticker)[['trading_date','close']]
+            full_price.set_index('trading_date', inplace=True)
+            full_price = full_price['close']
+
+            d = dict()
+            for type_ in ['high','low']:
+                d[type_] = pd.DataFrame(index=periods,
+                                        columns=['start_price',
+                                                 f'{type_}_price',
+                                                 f'{type_}_return'])
+                for period in periods:
+                    try:
+                        start_date, end_date = seopdate(period)
+                        price_section = full_price.loc[start_date:end_date]
+                        d[type_].loc[period, 'start_price'] \
+                            = price_section.iloc[0]
+                        if type_ == 'high':
+                            d[type_].loc[period, f'{type_}_price'] \
+                                = price_section.max()
+                        else:
+                            d[type_].loc[period, f'{type_}_price'] \
+                                = price_section.min()
+                    except IndexError:
+                        pass
+                d[type_][f'{type_}_return'] \
+                    = d[type_][f'{type_}_price']/d[type_]['start_price']-1
+
+        elif ticker=='all':
+            periods\
+                = fa.periods + [period_cal(fa.periods[-1],0,q+1) for q in
+                                range(fquarters)]
+            d = pd.DataFrame(index=fa.tickers(), columns=periods)
+            for ticker_ in d.index:
+                try:
+                    full_price = self.hist(ticker_)[['trading_date', 'close']]
+                    full_price.set_index('trading_date', inplace=True)
+                    full_price = full_price['close']
+                    for period_ in d.columns:
+                        try:
+                            start_date, end_date = seopdate(period_)
+                            price_section = full_price.loc[start_date:end_date]
+                            s = price_section.iloc[0]
+                            lp = price_section.min()
+                            hp = price_section.max()
+                            lr = lp/s - 1
+                            hr = hp/s - 1
+                            d.loc[ticker_,period_] = (s,lp,hp,lr,hr)
+                        except IndexError:
+                            # handle not applicable date (IndexError)
+                            pass
+                except ValueError:
+                    # handle ticker that not available (ValueError)
+                    pass
+
+            export_name = 'prhighlow.csv'
+            d.to_csv(join(dirname(dirname((realpath(__file__)))),
+                          'database', 'price', export_name))
+        else:
+            d = 'Error!'
+
+        return d
 
 
     def now(self, ticker:str) -> float:

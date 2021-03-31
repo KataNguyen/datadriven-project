@@ -1,3 +1,4 @@
+from function_phs import *
 from request_phs import *
 import scipy as sc
 from scipy import stats
@@ -7,116 +8,116 @@ import seaborn as sns
 from matplotlib.dates import DateFormatter
 from matplotlib.ticker import FuncFormatter
 import matplotlib.transforms as transforms
-matplotlib.use('Agg')
-plt.ioff()
 
 destination_dir \
-    = join(dirname(realpath(__file__)), 'monte_carlo_result')
+    = join(dirname(realpath(__file__)), 'result')
+
 
 q_upper = 0.95
 q_lower = 0
 
-def monte_carlo(ticker:str, days=66, alpha=0.05,
+def monte_carlo(ticker:str, hdays=252, pdays=66, alpha=0.05,
                 simulation=100000, savefigure:bool=True,
-                fulloutput:bool=False):
+                fulloutput:bool=False, seed=1):
 
     start_time = time.time()
 
     global destination_dir
 
-    def reformat_large_tick_values(tick_val, pos):
-        """
-        Turns large tick values (in the billions, millions and thousands)
-        such as 4500 into 4.5K and also appropriately turns 4000 into 4K
-        (no zero after the decimal)
-        """
-        if tick_val >= 1000:
-            val = round(tick_val/1000, 1)
-            if tick_val%1000 > 0:
-                new_tick_format = '{:,}K'.format(val)
-            else:
-                new_tick_format = '{:,}K'.format(int(val))
-        else:
-            new_tick_format = int(tick_val)
-        new_tick_format = str(new_tick_format)
-        return new_tick_format
-
     def graph_ticker():
 
-        fig1, ax1 = plt.subplots(1, 1, figsize=(6, 5))
-        ax1.plot(df_historical['trading_date'], df_historical['close'],
-                 color='darkblue')
-        ax1.plot(ubound, color='orange', alpha=5)
-        ax1.plot(dbound, color='orange', alpha=5)
-        ax1.plot(connect, color='orange', alpha=5)
-        ax1.fill_between(pro_days, ubound.iloc[:, 0], dbound.iloc[:, 0],
-                         color='green', alpha=0.1)
-        ax1.set_title(ticker)
-        ax1.set_ylabel('Stock Price')
-        ax1.xaxis.set_major_formatter(DateFormatter('%d/%m/%Y'))
-        plt.xticks(rotation=15)
-        ax1.axhline(breakeven_price, ls='--', linewidth=0.5, color='red')
-        ax1.text(df['trading_date']
-                 .iloc[int(max(-200, -df['trading_date'].count()))],
-                 breakeven_price*1.02,
-                 'Breakeven Price: '
-                 +str(f"{round(breakeven_price):,d}"),
-                 fontsize=7)
-        ax1.yaxis\
-            .set_major_formatter(matplotlib.ticker\
-            .FuncFormatter(
-            reformat_large_tick_values))
+        fig, ax = plt.subplots(1, 2, figsize=(12,5.5),
+                               sharey=True,
+                               gridspec_kw={'width_ratios':[2,1]})
+        plt.subplots_adjust(left=0.05, right=0.95,
+                            bottom=0.05, top=0.95,
+                            wspace=0.01)
 
-        ax1.text(0.7, 1.01, "1% Worst case: "
-                 +'{:,}'.format(round((breakeven_price/price_t-1)*100, 2))
-                 +'%', fontsize=6, transform=ax1.transAxes)
-        ax1.text(0.7, 1.04, "Working days: "
-                 +'{}'.format(days), fontsize=6, transform=ax1.transAxes)
-        ax1.text(0.7, 1.07, "Breakeven Price: "
-                 +'{:,}'.format(int(breakeven_price)),
-                 fontsize=6, transform=ax1.transAxes)
+        ax[0].set_ylim(np.round(np.min([df_historical['close'].min()*0.95,
+                                        np.quantile(df_simulated_price.values,
+                                                    0.00)])*0.95, -2),
+                       np.round(np.max([df_historical['close'].max()*1.05,
+                                        np.quantile(df_simulated_price.values,
+                                                    0.95)])*1.05,-2))
+
+        doublediff1 = np.diff(np.sign(np.diff(df_historical['close']
+                                              .values)))
+        peak_locations = np.where(doublediff1 == -2)[0] + 1 \
+                         + df_historical.index[0]
+        doublediff2 \
+            = np.diff(np.sign(np.diff(-1*df_historical['close'].values)))
+        trough_locations = np.where(doublediff2 == -2)[0] + 1 + \
+                           df_historical.index[0]
+        ax[0].scatter(df_historical['trading_date'][peak_locations],
+                      df_historical['close'][peak_locations],
+                      marker='^', color='tab:green',
+                      s=10, label='Peak')
+        ax[0].scatter(df_historical['trading_date'][trough_locations],
+                      df_historical['close'][trough_locations],
+                      marker='v', color='tab:red',
+                      s=10, label='Trough')
+
+        ax[0].plot(df_historical['trading_date'], df_historical['close'],
+                   color='midnightblue', alpha=0.9, lw=1.5, label=f'{ticker}')
+        ax[0].set_ylabel('Stock Price', fontsize=12)
+        ax[0].xaxis.set_major_formatter(DateFormatter('%m/%Y'))
+        ax[0].yaxis.set_major_formatter(
+            matplotlib.ticker.FuncFormatter(priceKformat))
+        plt.xticks(rotation=15)
+        plt.yticks(fontsize=11)
+        ax[0].grid(axis='both', alpha=0.3)
+
+        ax[0].plot(connect, color='tab:red', lw=2, alpha=0.5)
+        ax[0].plot(ubound, color='tab:red', lw=2, alpha=0.5)
+        ax[0].plot(dbound, color='tab:red', lw=2, alpha=0.5,
+                   label='Best Case/ Worst Case')
+        ax[0].legend(loc='upper right', fontsize=8)
+
+        ax[0].fill_between(pro_days, ubound.iloc[:,0], dbound.iloc[:,0],
+                           color='green', alpha=0.15)
+        ax[0].axhline(breakeven_price, ls='--', lw=0.6, color='red')
+
+        ax[0].annotate('Breakeven Price: ' + adjprice(breakeven_price),
+                       xy=(0.65,breakeven_price),
+                       xycoords=transforms
+                       .blended_transform_factory(ax[0].transAxes,
+                                                  ax[0].transData),
+                       xytext=(0,2), textcoords='offset pixels',
+                       ha='left', va='bottom', fontsize=8, color='red')
+
+        ax[0].yaxis\
+            .set_major_formatter(FuncFormatter(priceKformat))
+        ax[0].annotate('Worst Case over \n'
+                       + f'{int(simulation):,d}' + ' Simulations: '
+                       + f'{round((breakeven_price/price_t-1)*100, 2):,} % \n'
+                       + f'Trading Days: {pdays} \n'
+                       + 'Breakeven Price: ' + adjprice(breakeven_price),
+                       xy=(0.77, 1.01),
+                       xycoords=ax[0].transAxes,
+                       ha='left', va='bottom', fontsize=7)
+
+        sns.histplot(y=last_price, ax=ax[1], bins=200,
+                     legend=False, color='tab:blue', stat='density')
+        ax[1].set_xlabel('Density')
+        ax[1].set_ylabel('Stock Price')
+        ax[1].axhline(breakeven_price, ls='--', linewidth=0.5, color='red')
+
+        ax[1].annotate('Breakeven Price: ' + adjprice(breakeven_price),
+                       xy=(0.57,breakeven_price),
+                       xycoords=transforms.blended_transform_factory
+                       (ax[1].transAxes,ax[1].transData),
+                       xytext=(0,2), textcoords='offset pixels',
+                       ha='left', va='bottom', fontsize=8, color='red')
+
+        ax[1].tick_params(axis='x', bottom=False, labelbottom=False)
+        ax[1].yaxis.set_major_formatter(FuncFormatter(priceKformat))
+
+        ax[1].grid(axis='both', alpha=0.1)
+
         if savefigure is True:
-            plt.savefig(join(destination_dir,f'{ticker}_result_1.png'),
+            plt.savefig(join(destination_dir,f'{ticker}.png'),
                         bbox_inches='tight')
 
-        fig2, ax2 = plt.subplots(1, 2, figsize=(8, 5))
-        fig2.suptitle('Projected Stock Price: ' + ticker)
-        fig2.subplots_adjust(left=0.05, right=0.95, bottom=0.15,
-                             top=0.9, wspace=0.15)
-
-        sns.histplot(last_price, ax=ax2[0], bins=100,
-                     legend=False, color='darkblue', stat='density')
-        ax2[0].set_xlabel('Stock Price')
-        ax2[0].set_ylabel('Density')
-        ax2[0].axvline(breakeven_price, ls='--', linewidth=0.5,
-                       color='red')
-        ax2[0].text(breakeven_price*1.05, 0.85,
-                    'Breakeven Price:\n'+str(
-                        f"{round(breakeven_price):,d}"), fontsize=8,
-                    transform=transforms.blended_transform_factory(
-                        ax2[0].transData, ax2[0].transAxes))
-        ax2[0].tick_params(axis='y', left=False, labelleft=False)
-        ax2[0].xaxis.set_major_formatter(
-            matplotlib.ticker.FuncFormatter(reformat_large_tick_values))
-
-        sns.ecdfplot(last_price, stat='proportion', ax=ax2[1],
-                     legend=False, color='black')
-        ax2[1].set_xlabel('Stock Price')
-        ax2[1].set_ylabel('Probability')
-        # ax2[1].axhline(0.01, ls='--', linewidth=0.5, color='red')
-        ax2[1].axvline(breakeven_price, ls='--', linewidth=0.5,
-                       color='red')
-        ax2[1].text(breakeven_price*1.05, 0.85,
-                    'Breakeven Price:\n'+str(
-                        f"{round(breakeven_price):,d}"), fontsize=8,
-                    transform=transforms.blended_transform_factory(
-                        ax2[0].transData, ax2[0].transAxes))
-        ax2[1].tick_params(axis='y', left=False, labelleft=False)
-        ax2[1].xaxis.set_major_formatter(
-            matplotlib.ticker.FuncFormatter(reformat_large_tick_values))
-        if savefigure is True:
-            plt.savefig(join(destination_dir,f'{ticker}_result_2.png'),
-                             bbox_inches='tight')
         return
 
     # customize display for numpy and pandas
@@ -127,7 +128,20 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
                   'display.width', None,
                   'display.max_colwidth', 20)
 
-    df = ta.hist(ticker)
+    now = datetime.now()
+    today = now.strftime("%Y-%m-%d")
+
+    def Bday(bdays=int):
+        d = 0
+        bday = datetime.now()
+        while d<=bdays:
+            bday -= timedelta(days=1)
+            d += 1
+            while bday.weekday() in holidays.WEEKEND or bday in holidays.VN():
+                bday -= timedelta(days=1)
+        return bday.strftime("%Y-%m-%d")
+
+    df = ta.hist(ticker, Bday(hdays), today)
 
     # cleaning data
     df['trading_date'] \
@@ -146,7 +160,7 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
             = df['logr'].iloc[i] - df['logr'].iloc[i-1]
     df['change_logr'].iloc[0] = df['change_logr'].iloc[1]
     df['close'] = df['close'] * 1000
-    df.drop(columns=['ref', 'high', 'low', 
+    df.drop(columns=['ref', 'high', 'low',
                      'change', 'change_percent',
                      'total_volume', 'total_value'], inplace=True)
 
@@ -156,7 +170,7 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
     print(f'p_logr of {ticker} is', p_logr)
 
     # D'Agostino-Pearson test for change in log return model
-    stat_change_logr, p_change_logr\
+    stat_change_logr, p_change_logr \
         = sc.stats.normaltest(df['change_logr'], nan_policy='omit')
     print(f'p_change_logr of {ticker} is', p_change_logr)
 
@@ -176,7 +190,9 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
 
             loc = np.nanmean(df['logr'])
             scale = np.nanstd(df['logr'])
-            logr = np.random.normal(loc, scale, size=(simulation, days))
+
+            np.random.seed(seed)
+            logr = np.random.normal(loc, scale, size=(simulation,pdays))
 
         elif p_skew <= alpha < p_kur:
 
@@ -188,7 +204,8 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
             scale = (std**2*(deg_free-2)/deg_free)**0.5
 
             logr = sc.stats.t.rvs(deg_free, loc, scale,
-                                   size=(simulation, days))
+                                  size=(simulation,pdays),
+                                  random_state=seed)
 
         elif p_skew > alpha >= p_kur:
 
@@ -204,7 +221,8 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
             loc = mean - scale*theta*(2/np.pi)**0.5
 
             logr = sc.stats.skewnorm.rvs(a, loc, scale,
-                                          size=(simulation, days))
+                                         size=(simulation,pdays),
+                                         random_state=seed)
 
         else:
             mean = np.nanmean(df['logr'])
@@ -216,15 +234,16 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
             nc = mean*(1-3/(4*deg_free-1))
 
             logr = sc.stats.nct.rvs(deg_free, nc, loc, scale,
-                                     size=(simulation, days))
+                                    size=(simulation,pdays),
+                                    random_state=seed)
 
         # Convert logr back to simulated price
         price_t = df['close'].loc[
             df['trading_date'] == df['trading_date'].max()].iloc[0]
-        simulated_price = np.zeros(shape=(simulation, days), dtype=np.int64)
+        simulated_price = np.zeros(shape=(simulation,pdays), dtype=np.int64)
         for i in range(simulation):
             simulated_price[i, 0] = np.exp(logr[i, 0]) * price_t
-            for j in range(1, days):
+            for j in range(1, pdays):
                 simulated_price[i, j] \
                     = np.exp(logr[i, j]) * simulated_price[i, j-1]
         df_historical \
@@ -248,8 +267,10 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
 
             loc = 0
             scale = np.nanstd(df['change_logr'])
+
+            np.random.seed(seed)
             change_logr \
-                = np.random.normal(loc, scale, size=(simulation, days))
+                = np.random.normal(loc, scale, size=(simulation,pdays))
 
         elif p_skew <= alpha < p_kur:
 
@@ -261,7 +282,8 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
             scale = (std**2*(deg_free-2)/deg_free)**0.5
 
             change_logr = sc.stats.t.rvs(deg_free, loc, scale,
-                                         size=(simulation, days))
+                                         size=(simulation,pdays),
+                                         random_state=seed)
 
         elif p_skew > alpha >= p_kur:
 
@@ -277,7 +299,8 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
             loc = mean - scale*theta*(2/np.pi)**0.5
 
             change_logr = sc.stats.skewnorm.rvs(a, loc, scale,
-                                                size=(simulation, days))
+                                                size=(simulation,pdays),
+                                                random_state=seed)
 
         else:
             mean = 0
@@ -289,19 +312,20 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
             nc = mean*(1-3/(4*deg_free-1))
 
             change_logr = sc.stats.nct.rvs(deg_free, nc, loc, scale,
-                                           size=(simulation, days))
+                                           size=(simulation,pdays),
+                                           random_state=seed)
 
         # Convert change_logr back to simulated price
         price_t \
             = df['close'].loc[df['trading_date']
                               == df['trading_date'].max()].iloc[0]
 
-        simulated_price = np.zeros(shape=(simulation, days),
+        simulated_price = np.zeros(shape=(simulation,pdays),
                                    dtype=np.int64)
         for i in range(simulation):
             simulated_price[i, 0] \
                 = np.exp(change_logr[i, 0]) * price_t
-            for j in range(1, days):
+            for j in range(1, pdays):
                 simulated_price[i, j] \
                     = np.exp(change_logr[i, j]) * simulated_price[i, j-1]
         df_historical \
@@ -312,23 +336,23 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
         print(f'p_logr of {ticker} is', p_logr)
         print(f'p_change_logr of {ticker} is', p_change_logr)
         raise KeyError(f'{ticker} cannot be simulated'
-                         f' with given significance level')
+                       f' with given significance level')
 
     # Post-processing and graphing
     pro_days = list()
-    for j in range(days * 2):
+    for j in range(pdays * 2):
         if pd.to_datetime(df['trading_date'].max()
                           + pd.Timedelta(days=j + 1)).weekday() < 5:
             pro_days.append(df['trading_date'].max()
                             + pd.Timedelta(days=j + 1))
-    pro_days = pro_days[:days]
+    pro_days = pro_days[:pdays]
 
     simulation_no = [i for i in range(1, simulation + 1)]
     df_simulated_price \
         = pd.DataFrame(data=simulated_price,
                        columns=pro_days,
                        index=simulation_no).transpose()
-    last_price = df_simulated_price.iloc[-1, :]
+    last_price = df_simulated_price.iloc[-1,:]
     ubound = pd.DataFrame(df_simulated_price
                           .quantile(q=q_upper, axis=1,
                                     interpolation='linear'))
@@ -338,23 +362,24 @@ def monte_carlo(ticker:str, days=66, alpha=0.05,
     breakeven_price = dbound.min().iloc[0]
     connect_date = pd.date_range(df['trading_date'].max(),
                                  pro_days[0])[[0,-1]]
-    connect = pd.DataFrame({'price_u': [price_t, ubound.iloc[0, 0]],
-                            'price_d': [price_t, dbound.iloc[0, 0]]},
+    connect = pd.DataFrame({'price_u': [price_t, ubound.iloc[0,0]],
+                            'price_d': [price_t, dbound.iloc[0,0]]},
                            index=connect_date)
     graph_ticker()
-    plt.close('all')
 
     print(f'Breakeven price of {ticker} is ' + str(breakeven_price))
-    print("The execution time is: %s seconds" %(time.time()-start_time))
+    print("The execution time is: %s seconds" %(int(time.time()-start_time)))
 
     if fulloutput is False:
         return breakeven_price
     else:
         input_ = dict()
-        input_['breakeven_price'] = breakeven_price
-        input_['historical_price'] = df_historical
+        input_['breakeven_price'] = breakeven_price   # float
+        input_['historical_price'] \
+            = pd.DataFrame(df_historical['close'].to_numpy(),
+                           index=df_historical['trading_date'].to_numpy())
         input_['simulated_price'] = df_simulated_price.T
-        input_['last_price'] = last_price
-        input_['ubound'] = ubound
-        input_['dbound'] = dbound
+        input_['last_price'] = last_price.to_numpy()
+        input_['ubound'] = ubound   # pd.DataFrame
+        input_['dbound'] = dbound   # pd.DataFrame
         return input_
