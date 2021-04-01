@@ -10,9 +10,12 @@ class vsd:
     def tinnghiepvutochucphathanh(num_hours:int=48):
 
         start_time = time.time()
+        now = datetime.now()
 
+        report_time = now.strftime('%Y-%m-%d %H %M %S')
         destination_path = join(dirname(dirname(realpath(__file__))),
-                                'text_mining','tinnghiepvutochucphathanh.xlsx')
+                                'text_mining',
+                                f'tinnghiepvutochucphathanh - {report_time}.xlsx')
 
         PATH = join(dirname(dirname(realpath(__file__))),'phs','geckodriver')
         driver = webdriver.Firefox(executable_path=PATH)
@@ -20,7 +23,6 @@ class vsd:
         url = 'https://vsd.vn/vi/alo/-f-_bsBS4BBXga52z2eexg'
         driver.get(url)
 
-        now = datetime.now()
         fromtime = now
 
         keywords = ['Cổ tức',
@@ -48,10 +50,9 @@ class vsd:
         news_recordsdate = []
         news_paymentdate = []
 
+        output_table = pd.DataFrame()
         while fromtime >= now - timedelta(hours=num_hours):
-            output_table = pd.DataFrame()
-            tags = driver.find_elements_by_xpath('/html/body/div[1]/main/'
-                                                 'div/div/div/div[1]/ul/li')
+            tags = driver.find_elements_by_xpath('//*[@id="d_list_news"]/ul/li')
             tags.reverse()
             for tag_ in tags:
                 wait_sec = np.random.random(1)[0] + 0.5
@@ -172,11 +173,10 @@ class vsd:
                 "='changePage']")[-2]
             nextpage_button.click()
 
-            try:
-                # handle the case that no needed news appears in first page
-                fromtime = news_time[0]
-            except IndexError:
-                fromtime = now
+            last_tag = driver.find_elements_by_xpath('//*[@id="d_list_news"]/ul/li')[0]
+            fromtime = last_tag.find_element_by_tag_name('div').text
+            fromtime = datetime.strptime(fromtime[-21:],
+                                         '%d/%m/%Y - %H:%M:%S')
 
         output_table['Mã cổ phiếu'] = ''
         output_table['Lý do, mục đích'] = ''
@@ -195,41 +195,43 @@ class vsd:
                 = output_table['Tiêu đề'].iloc[row][1]
 
 
-            output_table['Chuyển từ sàn'].iloc[row] \
+            from_exchange_array \
                 = np.array(
                 output_table['Lý do, mục đích'].iloc[row].split())\
             [[word.isupper() for word in output_table['Lý do, mục đích']
                     .iloc[row].split()],]
             try:
-                output_table['Chuyển từ sàn'].iloc[row] \
-                    = output_table['Chuyển từ sàn'].iloc[row][1]
+                output_table['Chuyển từ sàn'].iloc[row] = from_exchange_array[1]
             except IndexError:
                 output_table['Chuyển từ sàn'].iloc[row] = ''
 
 
-            output_table['Chuyển đến sàn'].iloc[row] \
+            to_exchange_array \
                 = np.array(
                 output_table['Lý do, mục đích'].iloc[row].split())\
             [[word.isupper() for word in output_table['Lý do, mục đích']
                     .iloc[row].split()],]
             try:
                 output_table['Chuyển đến sàn'].iloc[row] \
-                    = output_table['Chuyển đến sàn'].iloc[row][2]
+                    = to_exchange_array[2]
             except IndexError:
                 output_table['Chuyển đến sàn'].iloc[row] = ''
 
             rtime = output_table['Ngày đăng ký cuối cùng'].iloc[row]
             if rtime != '':
-                ryear = rtime[-4:]
-                rmonth = rtime[-7:-5]
-                rday = rtime[-10:-8]
+                try:
+                    ryear = rtime[-4:]
+                    rmonth = rtime[-7:-5]
+                    rday = rtime[-10:-8]
 
-                result = bdate(f'{ryear}-{rmonth}-{rday}',-1)
-                year = result[:4]
-                month = result[5:7]
-                day = result[-2:]
-                output_table['Ngày giao dịch không hưởng quyền'].iloc[row] \
-                                    = f'{day}/{month}/{year}'
+                    result = bdate(f'{ryear}-{rmonth}-{rday}',-1)
+                    year = result[:4]
+                    month = result[5:7]
+                    day = result[-2:]
+                    output_table['Ngày giao dịch không hưởng quyền'].iloc[row] \
+                                        = f'{day}/{month}/{year}'
+                except ValueError:
+                    pass
 
         output_table.drop(['Tiêu đề'], axis=1, inplace=True)
 
@@ -247,9 +249,151 @@ class vsd:
         output_table.to_excel(destination_path, index=False)
         driver.quit()
 
-        print(f'Finished ::: Total execution time: {int(time.time()-start_time)}s')
+        print(f'Finished ::: Total execution time: {int(time.time()-start_time)}s\n')
 
         return output_table
+
+
+    @staticmethod
+    def tinnghiepvuvoithanhvienluuky(num_hours:int=48):
+
+        start_time = time.time()
+        now = datetime.now()
+
+        report_time = now.strftime('%Y-%m-%d %H %M %S')
+        destination_path = join(dirname(dirname(realpath(__file__))),
+                                'text_mining',
+                                f'TinNghiepVuVoiThanhVienLuuKy - {report_time}.xlsx')
+
+        PATH = join(dirname(dirname(realpath(__file__))),'phs','geckodriver')
+        driver = webdriver.Firefox(executable_path=PATH)
+
+        url = 'https://www.vsd.vn/vi/alc/4'
+        driver.get(url)
+
+        fromtime = now
+
+        keywords = ['ngày hạch toán của cổ phiếu niêm yết',
+                    'Ngày hạch toán của cổ phiếu niêm yết',
+                    'ngày hạch toán của chứng quyền niêm yết',
+                    'Ngày hạch toán của chứng quyền niêm yết']
+
+        excluded_words = ['bổ sung']
+
+        news_time = []
+        news_headlines = []
+        news_urls = []
+
+        news_tradedate = []
+
+        output_table = pd.DataFrame()
+        while fromtime >= now - timedelta(hours=num_hours):
+            tags = driver.find_elements_by_xpath('//*[@id="d_list_news"]/ul/li')
+
+            tags.reverse()
+            for tag_ in tags:
+                wait_sec = np.random.random(1)[0] + 0.5
+                time.sleep(wait_sec)
+
+                h3_tag = tag_.find_element_by_tag_name('h3')
+
+                txt = h3_tag.text
+                check = [word in txt not in excluded_words for word in keywords]
+
+                if any(check):
+
+                    news_headlines += [txt]
+
+                    sub_url = h3_tag.find_element_by_tag_name('a') \
+                        .get_attribute('href')
+                    news_urls += [sub_url]
+
+                    news_time_ = tag_.find_element_by_tag_name('div').text
+                    news_time_ \
+                        = datetime.strptime(news_time_[-21:],
+                                            '%d/%m/%Y - %H:%M:%S')
+                    news_time += [news_time_]
+
+
+                    sub_driver = webdriver.Firefox(executable_path=PATH)
+                    sub_driver.get(sub_url)
+
+                    info_heads \
+                        = sub_driver.find_elements_by_xpath(
+                        "//*[@id='wrapper']/main"
+                        "/div/div/div/div[1]/div[2]/div/div/div")
+                    info_heads = info_heads[1:]
+
+                    info_heads_text = [head.text[:-1]
+                                       for head in info_heads]
+
+                    info_tails \
+                        = sub_driver.find_elements_by_xpath(
+                        "//div[substring(@class,string-length(@class)"
+                        "-string-length('item-info-main')+1)='item-info-main']")
+                    info_tails_text = [tail.text for tail in info_tails]
+
+                    news_dict = {h: t for h, t in
+                                 zip(info_heads_text, info_tails_text)}
+
+                    try:
+                        news_tradedate += [news_dict['Ngày giao dịch chính thức']]
+                    except KeyError:
+                        news_tradedate += ['']
+
+                    sub_driver.quit()
+
+                else:
+                    pass
+
+            output_table = pd.concat([output_table,
+                                      pd.DataFrame(
+                                          {'Thời gian': news_time,
+                                           'Tiêu đề': news_headlines,
+                                           'Ngày giao dịch chính thức': news_tradedate,
+                                           'Link': news_urls}
+                                      )], ignore_index=True)
+
+            output_table['Mã cổ phiếu / chứng quyền'] = ''
+            output_table['Lý do, mục đích'] = ''
+
+            for row in range(output_table.shape[0]):
+
+
+                output_table['Tiêu đề'].iloc[row] \
+                    = output_table['Tiêu đề'].iloc[row].split(': ')
+                output_table['Mã cổ phiếu / chứng quyền'].iloc[row] \
+                    = output_table['Tiêu đề'].iloc[row][0]
+                output_table['Lý do, mục đích'].iloc[row] \
+                    = output_table['Tiêu đề'].iloc[row][1]
+
+            # Turn Page
+            nextpage_button = driver.find_elements_by_xpath(
+                "//*[@id='d_number_of_page']/button")[-2]
+            nextpage_button.click()
+
+
+            last_tag = driver.find_elements_by_xpath('//*[@id="d_list_news"]/ul/li')[0]
+            fromtime = last_tag.find_element_by_tag_name('div').text
+            fromtime = datetime.strptime(fromtime[-21:],
+                                         '%d/%m/%Y - %H:%M:%S')
+
+
+        output_table.drop(['Tiêu đề'], axis=1, inplace=True)
+
+        output_table = output_table[['Thời gian',
+                                     'Mã cổ phiếu / chứng quyền',
+                                     'Lý do, mục đích',
+                                     'Ngày giao dịch chính thức',
+                                     'Link']]
+
+        output_table.to_excel(destination_path, index=False)
+        driver.quit()
+
+        print(f'Finished ::: Total execution time: {int(time.time()-start_time)}s\n')
+
+        return output_table
+
 
 vsd = vsd()
 
