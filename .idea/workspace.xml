@@ -5,12 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/text_mining/TinNghiepVuVoiThanhVienLuuKy - 2021-04-02 08 37 02.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/text_mining/TinNghiepVuVoiThanhVienLuuKy - 2021-04-02 08 54 08.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/text_mining/input/fixedmp.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh - 2021-04-02 14-21-55.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh - 2021-04-02 14-28-08.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh - 2021-04-02 14-44-30.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/text_mining/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/geckodriver.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/text_mining/websrapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/websrapping.py" afterDir="false" />
@@ -28,12 +22,8 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="local" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -59,7 +49,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/request_phs/request_data.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -93,27 +83,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/request_phs/__init__.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="corp_training" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="datadriven-project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/corp_training" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/corp_training/corp_training.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -184,19 +153,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.request_data" />
-      <item itemvalue="Python.pca_kmeans_lipl(ins)" />
-      <item itemvalue="Python.pca_kmeans_lipl(gen)" />
       <item itemvalue="Python.__init__" />
+      <item itemvalue="Python.pca_kmeans_lipl(gen)" />
+      <item itemvalue="Python.pca_kmeans_lipl(ins)" />
       <item itemvalue="Python.websrapping" />
-      <item itemvalue="Python.corp_training" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.websrapping" />
         <item itemvalue="Python.websrapping" />
-        <item itemvalue="Python.websrapping" />
-        <item itemvalue="Python.websrapping" />
-        <item itemvalue="Python.websrapping" />
+        <item itemvalue="Python.__init__" />
+        <item itemvalue="Python.pca_kmeans_lipl(gen)" />
+        <item itemvalue="Python.pca_kmeans_lipl(gen)" />
       </list>
     </recent_temporary>
   </component>
@@ -208,6 +176,55 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
+    </task>
+    <task id="LOCAL-00030" summary="post_breakeven_price">
+      <created>1612170489974</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1612170489974</updated>
+    </task>
+    <task id="LOCAL-00031" summary="post_breakeven_price">
+      <created>1612170560827</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1612170560827</updated>
+    </task>
+    <task id="LOCAL-00032" summary="post_breakeven_price">
+      <created>1612231333623</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1612231333623</updated>
+    </task>
+    <task id="LOCAL-00033" summary="post_breakeven_price">
+      <created>1612264448628</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1612264448628</updated>
+    </task>
+    <task id="LOCAL-00034" summary="post_breakeven_price">
+      <created>1612347492645</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1612347492645</updated>
+    </task>
+    <task id="LOCAL-00035" summary="post_breakeven_price">
+      <created>1612426417486</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1612426417486</updated>
+    </task>
+    <task id="LOCAL-00036" summary="post_breakeven_price">
+      <created>1612519940619</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1612519940619</updated>
     </task>
     <task id="LOCAL-00037" summary="post_breakeven_price">
       <created>1613563027394</created>
@@ -503,56 +520,7 @@
       <option name="project" value="LOCAL" />
       <updated>1616560181906</updated>
     </task>
-    <task id="LOCAL-00079" summary="post_breakeven_price">
-      <created>1616594536523</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1616594536523</updated>
-    </task>
-    <task id="LOCAL-00080" summary="post_breakeven_price">
-      <created>1616914501386</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1616914501386</updated>
-    </task>
-    <task id="LOCAL-00081" summary="post_breakeven_price">
-      <created>1617182231245</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1617182231245</updated>
-    </task>
-    <task id="LOCAL-00082" summary="post_breakeven_price">
-      <created>1617182252141</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1617182252141</updated>
-    </task>
-    <task id="LOCAL-00083" summary="post_breakeven_price">
-      <created>1617182530261</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1617182530261</updated>
-    </task>
-    <task id="LOCAL-00084" summary="post_breakeven_price">
-      <created>1617190086563</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1617190086563</updated>
-    </task>
-    <task id="LOCAL-00085" summary="post_breakeven_price">
-      <created>1617281203296</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1617281203296</updated>
-    </task>
-    <option name="localTasksCounter" value="86" />
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">

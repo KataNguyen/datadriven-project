@@ -185,6 +185,7 @@ class vsd:
                 "='changePage']")[-2]
             nextpage_button.click()
 
+            # Check time
             last_tag = driver.find_elements_by_xpath('//*[@id="d_list_news"]/ul/li')[0]
             fromtime = last_tag.find_element_by_tag_name('div').text
             fromtime = datetime.strptime(fromtime[-21:],
@@ -286,25 +287,40 @@ class vsd:
                 h3_tag = tag_.find_element_by_tag_name('h3')
 
                 if h3_tag.text[:3].isupper():
-                    pass
+                    continue
                 else:
-
                     txt = h3_tag
-                    news_headlines += [txt]
+                    check = [word in txt for word in keywords]
+                    if any(check):
+                        news_headlines += [txt]
 
-                    sub_url = h3_tag.find_element_by_tag_name('a') \
-                        .get_attribute('href')
-                    news_urls += [sub_url]
+                        sub_url = h3_tag.find_element_by_tag_name('a') \
+                            .get_attribute('href')
+                        news_urls += [sub_url]
 
-                    news_time_ = tag_.find_element_by_tag_name('div').text
-                    news_time_ \
-                        = datetime.strptime(news_time_[-21:],
-                                            '%d/%m/%Y - %H:%M:%S')
-                    news_time += [news_time_]
+                        news_time_ = tag_.find_element_by_tag_name('div').text
+                        news_time_ \
+                            = datetime.strptime(news_time_[-21:],
+                                                '%d/%m/%Y - %H:%M:%S')
+                        news_time += [news_time_]
 
+            output_table = pd.concat([output_table,
+                                      pd.DataFrame(
+                                          {'Thời gian': news_time,
+                                           'Tiêu đề': news_headlines,
+                                           'Link': news_urls}
+                                      )], ignore_index=True)
 
+            # Turn Page
+            nextpage_button = driver.find_elements_by_xpath(
+                "//*[@id='d_number_of_page']/button")[-2]
+            nextpage_button.click()
 
-
+            # Check time
+            last_tag = driver.find_elements_by_xpath('//*[@id="d_list_news"]/ul/li')[0]
+            fromtime = last_tag.find_element_by_tag_name('div').text
+            fromtime = datetime.strptime(fromtime[-21:],
+                                         '%d/%m/%Y - %H:%M:%S')
 
 
         print(f'Finished ::: Total execution time: {int(time.time()-start_time)}s\n')
@@ -417,7 +433,6 @@ class vsd:
 
             for row in range(output_table.shape[0]):
 
-
                 output_table['Tiêu đề'].iloc[row] \
                     = output_table['Tiêu đề'].iloc[row].split(': ')
                 output_table['Mã cổ phiếu / chứng quyền'].iloc[row] \
@@ -430,7 +445,7 @@ class vsd:
                 "//*[@id='d_number_of_page']/button")[-2]
             nextpage_button.click()
 
-
+            # Check time
             last_tag = driver.find_elements_by_xpath('//*[@id="d_list_news"]/ul/li')[0]
             fromtime = last_tag.find_element_by_tag_name('div').text
             fromtime = datetime.strptime(fromtime[-21:],
