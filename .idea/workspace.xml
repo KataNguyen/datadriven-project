@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh-all.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_mining/TinNghiepVuVoiThanhVienLuuKy - 2021-04-02 08 37 02.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_mining/TinNghiepVuVoiThanhVienLuuKy - 2021-04-02 08 54 08.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_mining/input/fixedmp.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh - 2021-04-02 14-21-55.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh - 2021-04-02 14-28-08.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh - 2021-04-02 14-44-30.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/text_mining/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/geckodriver.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/text_mining/websrapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/websrapping.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +28,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="local" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -33,13 +42,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="hiddenUrls">
-      <set>
-        <option value="https://github.com/phs-vn/datadriven-project" />
-      </set>
-    </option>
   </component>
   <component name="ProjectId" id="1n5YlsAutC8aCTgLokcu8z9IkuT" />
   <component name="ProjectLevelVcsManager">
@@ -194,7 +196,7 @@
         <item itemvalue="Python.websrapping" />
         <item itemvalue="Python.websrapping" />
         <item itemvalue="Python.websrapping" />
-        <item itemvalue="Python.corp_training" />
+        <item itemvalue="Python.websrapping" />
       </list>
     </recent_temporary>
   </component>
@@ -206,13 +208,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
-    </task>
-    <task id="LOCAL-00036" summary="post_breakeven_price">
-      <created>1612519940619</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1612519940619</updated>
     </task>
     <task id="LOCAL-00037" summary="post_breakeven_price">
       <created>1613563027394</created>
@@ -550,7 +545,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617190086563</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="post_breakeven_price">
+      <created>1617281203296</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1617281203296</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">

@@ -7,14 +7,18 @@ class vsd:
         pass
 
     @staticmethod
-    def tinnghiepvutochucphathanh(num_hours:int=48):
+    def tinnghiepvutochucphathanh(num_hours:int=48, fixed_mp:bool=False):
 
         start_time = time.time()
         now = datetime.now()
 
-        report_time = now.strftime('%Y-%m-%d %H %M %S')
-        destination_path = join(dirname(dirname(realpath(__file__))),
-                                'text_mining',
+        report_time = now.strftime('%Y-%m-%d %H-%M-%S')
+
+        fixedmp_path = join(dirname(realpath(__file__)),'input','fixedmp.xlsx')
+        fixedmp_table = pd.read_excel(fixedmp_path, usecols=['Stock'])
+        fixedmp_list = list(fixedmp_table['Stock'])
+
+        destination_path = join(dirname(realpath(__file__)),
                                 f'tinnghiepvutochucphathanh - {report_time}.xlsx')
 
         PATH = join(dirname(dirname(realpath(__file__))),'phs','geckodriver')
@@ -42,16 +46,17 @@ class vsd:
                     'quyền mua',
                     'chuyển dữ liệu đăng ký']
 
-        news_time = []
-        news_headlines = []
-        news_urls = []
-
-        news_ratios = []
-        news_recordsdate = []
-        news_paymentdate = []
-
         output_table = pd.DataFrame()
         while fromtime >= now - timedelta(hours=num_hours):
+
+            news_time = []
+            news_headlines = []
+            news_urls = []
+
+            news_ratios = []
+            news_recordsdate = []
+            news_paymentdate = []
+
             tags = driver.find_elements_by_xpath('//*[@id="d_list_news"]/ul/li')
             tags.reverse()
             for tag_ in tags:
@@ -59,7 +64,14 @@ class vsd:
                 time.sleep(wait_sec)
                 h3_tag = tag_.find_element_by_tag_name('h3')
 
-                txt = h3_tag.text
+                if fixed_mp is True:
+                    if h3_tag.text[:3] in fixedmp_list:
+                        txt = h3_tag.text
+                    else:
+                        continue
+                else:
+                    txt = h3_tag.text
+
                 check = [word in txt for word in keywords]
 
                 if any(check):
@@ -249,7 +261,54 @@ class vsd:
         output_table.to_excel(destination_path, index=False)
         driver.quit()
 
+        #######################################################################
+
+        url = 'https://vsd.vn/vi/tin-thi-truong-phai-sinh'
+        driver.get(url)
+
+        keywords = ['tỷ lệ ký quỹ ban đầu',
+                    'Tỷ lệ ký quỹ ban đầu',
+                    'hợp đồng tương lai',
+                    'Hợp đồng tương lai',
+                    'HĐTL']
+
+        while fromtime >= now - timedelta(hours=num_hours):
+
+            news_time = []
+            news_headlines = []
+            news_urls = []
+
+            tags = driver.find_elements_by_xpath('//*[@id="tab1"]/ul/li')
+            tags.reverse()
+            for tag_ in tags:
+                wait_sec = np.random.random(1)[0] + 0.5
+                time.sleep(wait_sec)
+                h3_tag = tag_.find_element_by_tag_name('h3')
+
+                if h3_tag.text[:3].isupper():
+                    pass
+                else:
+
+                    txt = h3_tag
+                    news_headlines += [txt]
+
+                    sub_url = h3_tag.find_element_by_tag_name('a') \
+                        .get_attribute('href')
+                    news_urls += [sub_url]
+
+                    news_time_ = tag_.find_element_by_tag_name('div').text
+                    news_time_ \
+                        = datetime.strptime(news_time_[-21:],
+                                            '%d/%m/%Y - %H:%M:%S')
+                    news_time += [news_time_]
+
+
+
+
+
+
         print(f'Finished ::: Total execution time: {int(time.time()-start_time)}s\n')
+
 
         return output_table
 
@@ -261,8 +320,7 @@ class vsd:
         now = datetime.now()
 
         report_time = now.strftime('%Y-%m-%d %H %M %S')
-        destination_path = join(dirname(dirname(realpath(__file__))),
-                                'text_mining',
+        destination_path = join(dirname(realpath(__file__)),
                                 f'TinNghiepVuVoiThanhVienLuuKy - {report_time}.xlsx')
 
         PATH = join(dirname(dirname(realpath(__file__))),'phs','geckodriver')
@@ -273,21 +331,21 @@ class vsd:
 
         fromtime = now
 
-        keywords = ['ngày hạch toán của cổ phiếu niêm yết',
-                    'Ngày hạch toán của cổ phiếu niêm yết',
-                    'ngày hạch toán của chứng quyền niêm yết',
-                    'Ngày hạch toán của chứng quyền niêm yết']
+        keywords = ['ngày hạch toán của cổ phiếu',
+                    'Ngày hạch toán của cổ phiếu',
+                    'ngày hạch toán của chứng quyền',
+                    'Ngày hạch toán của chứng quyền ']
 
         excluded_words = ['bổ sung']
 
-        news_time = []
-        news_headlines = []
-        news_urls = []
-
-        news_tradedate = []
-
         output_table = pd.DataFrame()
         while fromtime >= now - timedelta(hours=num_hours):
+
+            news_time = []
+            news_headlines = []
+            news_urls = []
+            news_tradedate = []
+
             tags = driver.find_elements_by_xpath('//*[@id="d_list_news"]/ul/li')
 
             tags.reverse()
@@ -298,9 +356,10 @@ class vsd:
                 h3_tag = tag_.find_element_by_tag_name('h3')
 
                 txt = h3_tag.text
-                check = [word in txt not in excluded_words for word in keywords]
+                check_1 = [word not in txt for word in excluded_words]
+                check_2 = [word in txt for word in keywords]
 
-                if any(check):
+                if all(check_1) and any(check_2):
 
                     news_headlines += [txt]
 
@@ -320,9 +379,8 @@ class vsd:
 
                     info_heads \
                         = sub_driver.find_elements_by_xpath(
-                        "//*[@id='wrapper']/main"
-                        "/div/div/div/div[1]/div[2]/div/div/div")
-                    info_heads = info_heads[1:]
+                        "//div[substring(@class,string-length(@class)"
+                        "-string-length('item-info')+1)='item-info']")
 
                     info_heads_text = [head.text[:-1]
                                        for head in info_heads]
