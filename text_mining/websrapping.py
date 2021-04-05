@@ -1,4 +1,3 @@
-from phs import *
 from request_phs import *
 
 class vsd:
@@ -7,7 +6,7 @@ class vsd:
         pass
 
     @staticmethod
-    def tinnghiepvutochucphathanh(num_hours:int=48, fixed_mp:bool=False):
+    def tinnghiepvuTCPH(num_hours:int=48, fixed_mp:bool=False):
 
         start_time = time.time()
         now = datetime.now()
@@ -263,6 +262,9 @@ class vsd:
         driver.quit()
 
         #######################################################################
+
+        PATH = join(dirname(dirname(realpath(__file__))),'phs','geckodriver')
+        driver = webdriver.Firefox(executable_path=PATH)
 
         url = 'https://vsd.vn/vi/tin-thi-truong-phai-sinh'
         driver.get(url)

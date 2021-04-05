@@ -170,3 +170,11 @@ if x > 20:
     print('x is greater than 20')
 else:
     print('x is odd and less than 20')
+
+x = 100
+my_list = []
+while x >= 0:
+    my_list += [x]
+    x -= 1
+    if x == -1:
+        continue

@@ -87,6 +87,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\customer\customer.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\customer_behavior\characteristic.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\function_phs\__init__.py">
           <value>
             <Attribute>

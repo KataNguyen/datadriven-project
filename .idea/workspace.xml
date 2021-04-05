@@ -5,7 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/corp_training/Python Training - Week 2.pptx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/corp_training/Python Training - Week 3.pptx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/corp_training/Tài liệu buổi 1.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/corp_training/Tài liệu buổi 2.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/corp_training/Tài liệu đọc thêm - Buổi 1.pptx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer/customer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/customer/personal_info.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh - 2021-04-05 17-05-15.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh - 2021-04-05 17-08-35.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh - 2021-04-05 17-09-31.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh - 2021-04-05 17-13-16.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/corp_training/Python Training - Week 1.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/corp_training/Python Training - Week 1.pptx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/corp_training/corp_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/corp_training/corp_training.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/text_mining/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/geckodriver.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/text_mining/websrapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/websrapping.py" afterDir="false" />
     </list>
@@ -91,6 +106,24 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="customer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="datadriven-project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/customer" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/customer/customer.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="pca_kmeans_lipl(gen)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -157,14 +190,15 @@
       <item itemvalue="Python.pca_kmeans_lipl(gen)" />
       <item itemvalue="Python.pca_kmeans_lipl(ins)" />
       <item itemvalue="Python.websrapping" />
+      <item itemvalue="Python.customer" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.websrapping" />
-        <item itemvalue="Python.websrapping" />
-        <item itemvalue="Python.__init__" />
-        <item itemvalue="Python.pca_kmeans_lipl(gen)" />
-        <item itemvalue="Python.pca_kmeans_lipl(gen)" />
+        <item itemvalue="Python.customer" />
+        <item itemvalue="Python.customer" />
+        <item itemvalue="Python.customer" />
+        <item itemvalue="Python.customer" />
       </list>
     </recent_temporary>
   </component>
@@ -176,13 +210,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610681573052</updated>
-    </task>
-    <task id="LOCAL-00030" summary="post_breakeven_price">
-      <created>1612170489974</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1612170489974</updated>
     </task>
     <task id="LOCAL-00031" summary="post_breakeven_price">
       <created>1612170560827</created>
@@ -520,7 +547,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616560181906</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="post_breakeven_price">
+      <created>1617374353576</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1617374353576</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
