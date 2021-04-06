@@ -4,26 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/corp_training/Python Training - Week 2.pptx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/corp_training/Python Training - Week 3.pptx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/corp_training/Tài liệu buổi 1.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/corp_training/Tài liệu buổi 2.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/corp_training/Tài liệu đọc thêm - Buổi 1.pptx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer/customer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/customer/personal_info.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh - 2021-04-05 17-05-15.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh - 2021-04-05 17-08-35.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh - 2021-04-05 17-09-31.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/text_mining/tinnghiepvutochucphathanh - 2021-04-05 17-13-16.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/corp_training/Python Training - Week 1.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/corp_training/Python Training - Week 1.pptx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/corp_training/corp_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/corp_training/corp_training.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/text_mining/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/geckodriver.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/text_mining/websrapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/websrapping.py" afterDir="false" />
-    </list>
+    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,6 +91,9 @@
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/customer" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -170,6 +154,9 @@
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/text_mining" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -185,12 +172,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.request_data" />
       <item itemvalue="Python.__init__" />
+      <item itemvalue="Python.customer" />
       <item itemvalue="Python.pca_kmeans_lipl(gen)" />
       <item itemvalue="Python.pca_kmeans_lipl(ins)" />
       <item itemvalue="Python.websrapping" />
-      <item itemvalue="Python.customer" />
+      <item itemvalue="Python.request_data" />
     </list>
     <recent_temporary>
       <list>
