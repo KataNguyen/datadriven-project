@@ -577,7 +577,7 @@ class hnx:
                 news_time = driver.find_element_by_xpath \
                     (fr"//*[@id='_tableDatas']/tbody/tr[{each_inf}]/td[2]")
 
-                if datetime.text.strptime(news_time, '%d/%m/%Y %H:%M') \
+                if datetime.text.strptime(news_time,'%d/%m/%Y %H:%M') \
                         < now - timedelta(hours=num_hours):
                     break
 

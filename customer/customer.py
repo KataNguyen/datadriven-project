@@ -3,13 +3,20 @@ from request_phs import *
 info_path = join(dirname(dirname(__file__)),
                  'database', 'customer', 'personal_info.xlsx')
 
-info_table = pd.read_excel(info_path, index_col=[0])
-info_table.columns = ['DOB', 'GENDER', 'ADDRESS', 'AOD', 'FTD']
+info_table = pd.read_excel(info_path)
+info_table.columns = ['TRADING CODE', 'DOB', 'GENDER', 'ADDRESS', 'AOD', 'FTD']
 
-dob = info_table[['DOB']]
-dob['YEAR'] = pd.NaT
-for account in dob.index:
-    if isinstance(dob.loc[account,'DOB'], str):
-        pass
-    else:
-        dob['YEAR'] = dob['DOB'].datetime.year
+def ytime(datetime_obj):
+    try:
+        year = datetime_obj.year
+    except AttributeError:
+        year = pd.NaT
+    return year
+
+info_table = info_table[info_table['YOB'].dtype(str)]
+info_table['YOB'] = info_table['DOB'].apply(ytime)
+
+yob_analysis = pd.pivot_table(info_table,
+                              values='TRADING CODE',
+                              index=['YOB'], aggfunc='count')
+
