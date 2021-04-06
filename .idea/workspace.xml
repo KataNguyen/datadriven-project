@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/geckodriver.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/datadriven-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/datadriven-project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2021_8_33_AM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2021_8_33_AM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_01_2021_12_59_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_01_2021_12_59_PM__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="QUi 7/4/2021">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/text_mining/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/geckodriver.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/text_mining/websrapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/websrapping.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +30,11 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="Qui_PHS" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_USER" value="KataNguyen" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_NAME" value="datadriven-project" />
   </component>
   <component name="ProjectId" id="1n5YlsAutC8aCTgLokcu8z9IkuT" />
   <component name="ProjectLevelVcsManager">
@@ -163,6 +161,9 @@
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/text_mining" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -178,12 +179,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.request_data" />
       <item itemvalue="Python.__init__" />
       <item itemvalue="Python.customer" />
       <item itemvalue="Python.pca_kmeans_lipl(gen)" />
       <item itemvalue="Python.pca_kmeans_lipl(ins)" />
       <item itemvalue="Python.websrapping" />
+      <item itemvalue="Python.request_data" />
     </list>
     <recent_temporary>
       <list>
@@ -203,13 +204,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1617679769484</updated>
-    </task>
-    <task id="LOCAL-00033" summary="post_breakeven_price">
-      <created>1612264448628</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1612264448628</updated>
     </task>
     <task id="LOCAL-00034" summary="post_breakeven_price">
       <created>1612347492645</created>
@@ -548,7 +542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617679769484</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="QUi 7/4/2021">
+      <created>1617737995820</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1617737995821</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -577,6 +578,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="post_breakeven_price" />
     <MESSAGE value="Hiep Dang Push" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hiep Dang Push" />
+    <MESSAGE value="QUi 7/4/2021" />
+    <option name="LAST_COMMIT_MESSAGE" value="QUi 7/4/2021" />
   </component>
 </project>
