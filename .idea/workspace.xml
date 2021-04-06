@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/geckodriver.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/datadriven-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/datadriven-project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2021_8_33_AM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2021_8_33_AM__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_01_2021_12_59_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_01_2021_12_59_PM__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/corp_training/corp_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/corp_training/corp_training.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/text_mining/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/geckodriver.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/text_mining/websrapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/websrapping.py" afterDir="false" />
     </list>
@@ -176,18 +180,18 @@
     <list>
       <item itemvalue="Python.request_data" />
       <item itemvalue="Python.__init__" />
+      <item itemvalue="Python.customer" />
       <item itemvalue="Python.pca_kmeans_lipl(gen)" />
       <item itemvalue="Python.pca_kmeans_lipl(ins)" />
       <item itemvalue="Python.websrapping" />
-      <item itemvalue="Python.customer" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.websrapping" />
-        <item itemvalue="Python.customer" />
         <item itemvalue="Python.websrapping" />
-        <item itemvalue="Python.pca_kmeans_lipl(ins)" />
-        <item itemvalue="Python.pca_kmeans_lipl(gen)" />
+        <item itemvalue="Python.websrapping" />
+        <item itemvalue="Python.websrapping" />
+        <item itemvalue="Python.websrapping" />
       </list>
     </recent_temporary>
   </component>
@@ -574,56 +578,5 @@
     <MESSAGE value="post_breakeven_price" />
     <MESSAGE value="Hiep Dang Push" />
     <option name="LAST_COMMIT_MESSAGE" value="Hiep Dang Push" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/text_mining/websrapping.py</url>
-          <line>521</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/text_mining/websrapping.py</url>
-          <line>594</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/text_mining/websrapping.py</url>
-          <line>595</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/text_mining/websrapping.py</url>
-          <line>596</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/text_mining/websrapping.py</url>
-          <line>597</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/text_mining/websrapping.py</url>
-          <line>598</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/text_mining/websrapping.py</url>
-          <line>599</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/text_mining/websrapping.py</url>
-          <line>600</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/text_mining/websrapping.py</url>
-          <line>601</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
