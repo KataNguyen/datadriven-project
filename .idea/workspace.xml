@@ -172,12 +172,12 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.request_data" />
       <item itemvalue="Python.__init__" />
-      <item itemvalue="Python.customer" />
       <item itemvalue="Python.pca_kmeans_lipl(gen)" />
       <item itemvalue="Python.pca_kmeans_lipl(ins)" />
       <item itemvalue="Python.websrapping" />
-      <item itemvalue="Python.request_data" />
+      <item itemvalue="Python.customer" />
     </list>
     <recent_temporary>
       <list>
