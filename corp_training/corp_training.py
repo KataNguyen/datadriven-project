@@ -152,6 +152,7 @@ print('Xác suất cần tìm là: ' + str(passed_trials/len(points)*100) + '%')
 
 # Câu b:
 
+
 x = 15
 if x < 10:
     print(x)
