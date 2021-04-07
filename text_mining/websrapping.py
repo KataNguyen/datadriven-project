@@ -494,9 +494,9 @@ def thongtinTCPH(num_hours:int=48):
 
     num_hours = 48
 
-    # PATH = join(dirname(dirname(realpath(__file__))),'phs','geckodriver')
-    PATH = 'D:\Python\Selenium\geckodriver.exe'
-    driver = webdriver.Firefox(executable_path=PATH)
+    # PATH = 'D:\Python\Selenium\geckodriver.exe'
+    PATH = join(dirname(dirname(realpath(__file__))),'phs','chromedriver')
+    driver = webdriver.Chrome(executable_path=PATH)
 
     url = 'https://www.hnx.vn/thong-tin-cong-bo-ny-tcph.html'
     driver.get(url)
@@ -513,25 +513,33 @@ def thongtinTCPH(num_hours:int=48):
                  'cổ phiếu', 'quyền mua']
 
     ###Expand to 50 rows
-    driver.find_element_by_xpath \
-        ("//select[@id='divNumberRecordOnPageTCPH']/option[text()='50']")\
-        .click()
-    time.sleep(2)
+    # driver.find_element_by_xpath \
+    #     ("//select[@id='divNumberRecordOnPageTCPH']/option[text()='50']")\
+    #     .click()
+    # time.sleep(2)
 
+    news_time = now.strftime('%d/%m/%Y %H:%M')
     ###Create raw dataframe
-    for i in range(1, 100):
-        driver.find_element_by_xpath(
-            f"//li[@onclick='pageNextTinTCPH({i})']").click()
+
+    firm = []
+    title = []
+    date_time = []
+    firm_name = []
+    while datetime.strptime(news_time, '%d/%m/%Y %H:%M') \
+                    >= now - timedelta(hours=num_hours):
+
+        driver.find_elements_by_xpath(
+            f"//*[@id='d_number_of_page']/li")[-2].click()
         time.sleep(2)
         driver.execute_script("window.scrollTo(0,100)")
-        firm = []
-        title = []
-        date_time = []
-        firm_name = []
+
+        # title_select = driver.find_elements_by_xpath(
+        #     "//a[substring"
+        #     "(@onclick,1,string-length('return funcViewDetailArticlesByID'))"
+        #     "='return funcViewDetailArticlesByID']")
+
         title_select = driver.find_elements_by_xpath(
-            "//a[substring"
-            "(@onclick,1,string-length('return funcViewDetailArticlesByID'))"
-            "='return funcViewDetailArticlesByID']")
+            "//*[@id='_tableDatas']/tbody/*/td[5]/a")
 
         title_select_ = [t.text for t in title_select]
         title_click = []
@@ -550,26 +558,22 @@ def thongtinTCPH(num_hours:int=48):
             else:
                 continue
             inf = title_check.index(check)+1
-            title += driver.find_elements_by_xpath(
-                f"//*[@i='_tableDatas']"
-                f"/tbody/tr[{inf}]/td[5]/a")
-            firm += driver.find_elements_by_xpath(
-                f"//*[@id='_tableDatas']"
-                f"/tbody/tr[{inf}]/td[3]/a")
-            date_time += driver.find_elements_by_xpath(
-                f"//*[@id='_tableDatas']"
-                f"/tbody/tr[{inf}]/td[2]")
-            firm_name += driver.find_elements_by_xpath(
-                f"//*[@id='_tableDatas']"
-                f"/tbody/tr[{inf}]/td[4]")
+            title += [driver.find_elements_by_xpath\
+                (fr"//*[@id='_tableDatas']/tbody/tr[{inf}]/td[5]")[-1].text]
+            firm += [driver.find_elements_by_xpath\
+                (fr"//*[@id='_tableDatas']/tbody/tr[{inf}]/td[3]")[-1].text]
+            date_time += [driver.find_elements_by_xpath\
+                (fr"//*[@id='_tableDatas']/tbody/tr[{inf}]/td[2]")[-1].text]
+            firm_name += [driver.find_elements_by_xpath\
+                (fr"//*[@id='_tableDatas']/tbody/tr[{inf}]/td[4]")[-1].text]
 
             click_obj = title_click[inf-1]
             click_obj.click()
-            wait = WebDriverWait(driver,15)
+            # wait = WebDriverWait(driver,15)
             # wait.until(EC.text_to_be_present_in_element(
             #     (By.XPATH, "//*[@id='divViewDetailArticles']/div[5]/input"
             #      ), "Thoát"))
-            time.sleep(1)
+            time.sleep(5)
             att_file \
                 = driver.find_element_by_xpath(
                 "//div[@id='divViewDetailArticles']/div[2]/div[3]")
@@ -587,21 +591,14 @@ def thongtinTCPH(num_hours:int=48):
                 box_text_ += [box_text.text]
 
             driver.find_element_by_xpath(
-                r"//*[@id='btnExitPopups']").click()
+                r"//*[@id='divViewDetailArticles']/div[5]/input").click()
 
-            news_time = driver.find_element_by_xpath\
-                (fr"//*[@id='_tableDatas']/tbody/tr[{inf}]/td[@class='tdCenterAlign']")
+            news_time = driver.find_elements_by_xpath\
+                (fr"//*[@id='_tableDatas']/tbody/tr[{inf}]/td[2]")[-1].text
 
-            if datetime.strptime(news_time, '%d/%m/%Y %H:%M') \
-                    < now - timedelta(hours=num_hours):
-                break
 
-        firm_ = [f.text for f in firm]
-        date_time_ = [d.text for d in date_time]
-        title_ = [t.text for t in title]
-        firm_name_ = [fn.text for fn in firm_name]
-        df = pd.DataFrame(list(zip(firm_, firm_name_, date_time_,
-                                   title_, box_text_, link_all)),
+        df = pd.DataFrame(list(zip(firm, firm_name, date_time,
+                                   title, box_text_, link_all)),
                           columns=['Mã CK', 'Tên TCPH', 'Ngày đăng tin',
                                    'Tiêu đề tin', 'Nội dung',
                                    'File đính kèm'])
@@ -617,23 +614,33 @@ def thongtinTCPH(num_hours:int=48):
     for each_row in range(df.shape[0]):
         noidung = df['Nội dung'].iloc[each_row]
         ndmd = np.array(noidung)[['*' in word for word in noidung]]
+
+
         for ndmd_ in ndmd:
             df['Lý do và mục đích'].iloc[each_row] += \
                 ndmd_.lstrip().lstrip('*') + '\n'
+
+
         tlth = np.array(noidung)[['Tỷ lệ thực hiện' \
                                   in word for word in noidung]]
         for tlth_ in tlth:
             df['Tỷ lệ thực hiện'].iloc[each_row] += \
                 tlth_.lstrip().lstrip('-') + '\n'
+
+
         ndkcc = np.array(noidung)[['Ngày đăng ký cuối cùng' \
                                    in word for word in noidung]]
         for ndkcc_ in ndkcc:
             df['Ngày đăng ký cuối cùng'].iloc[each_row] += ndkcc_ + '\n'
+
+
         ngdkhq = np.array(noidung)[['Ngày giao dịch không hưởng quyền' \
                                     in word for word in noidung]]
         for ngdkhq_ in ngdkhq:
             df['Ngày giao dịch không hưởng quyền'].iloc[each_row] \
                 += ngdkhq_ + '\n'
+
+
         thth = np.array(noidung)[['Thời gian thực hiện' \
                                   in word for word in noidung]]
         for thth_ in thth:
@@ -646,12 +653,6 @@ def thongtinTCPH(num_hours:int=48):
     driver.quit()
 
 
-
-def get_kw(kws,col):
-    check_kws = np.array(col)[[kws in word for word in col]]
-    for kws in check_kws:
-        df.iloc[each_row] += \
-            kws.lstrip().lstrip('*') + '\n'
 
 class hose:
     def __init__(self):
