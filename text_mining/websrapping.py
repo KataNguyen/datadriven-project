@@ -657,3 +657,5 @@ def thongtinTCPH(num_hours:int=48):
 class hose:
     def __init__(self):
         pass
+
+print('')
