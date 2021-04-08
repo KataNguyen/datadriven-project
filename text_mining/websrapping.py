@@ -604,7 +604,7 @@ class hnx:
                     box_text += ['']
                     link_elems = driver.find_elements_by_xpath(
                         "//div[@class='divLstFileAttach']/p/a")
-                    links += [[link.get_attribute('href') + '\n' for link in link_elems]]
+                    links += [[link.get_attribute('href') for link in link_elems]]
                 else: # nếu có nội dung, ko có link
                     links += ['']
                     box_text += [content]
@@ -680,7 +680,7 @@ class hnx:
             df['File đính kèm'].iloc[table_row] = ''
             for l in ls:
                 if l != '':
-                    df['File đính kèm'].iloc[table_row] += l
+                    df['File đính kèm'].iloc[table_row] += l + '\n'
 
         df.drop(['Nội dung'], axis=1, inplace=True)
 
