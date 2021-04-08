@@ -11,7 +11,7 @@ class vsd:
         start_time = time.time()
         now = datetime.now()
 
-        report_time = now.strftime('%Y-%m-%d %H-%M-%S')
+        report_time = now.strftime('%Y-%m-%d -- %H-%M-%S')
 
         fixedmp_path = join(dirname(realpath(__file__)),'input','fixedmp.xlsx')
         fixedmp_table = pd.read_excel(fixedmp_path, usecols=['Stock'])
@@ -20,8 +20,10 @@ class vsd:
         destination_path = join(dirname(realpath(__file__)),
                                 f'tinnghiepvutochucphathanh - {report_time}.xlsx')
 
-        PATH = join(dirname(dirname(realpath(__file__))),'phs','geckodriver')
-        driver = webdriver.Firefox(executable_path=PATH)
+        PATH = join(dirname(dirname(realpath(__file__))),'phs','chromedriver')
+        driver = webdriver.Chrome(executable_path=PATH)
+
+        driver.maximize_window()
 
         url = 'https://vsd.vn/vi/alo/-f-_bsBS4BBXga52z2eexg'
         driver.get(url)
@@ -88,7 +90,7 @@ class vsd:
                     news_time += [news_time_]
 
 
-                    sub_driver = webdriver.Firefox(executable_path=PATH)
+                    sub_driver = webdriver.Chrome(executable_path=PATH)
                     sub_driver.get(sub_url)
 
                     # handle no-heading-table news
@@ -269,6 +271,8 @@ class vsd:
         url = 'https://vsd.vn/vi/tin-thi-truong-phai-sinh'
         driver.get(url)
 
+        driver.maximize_window()
+
         keywords = ['tỷ lệ ký quỹ ban đầu',
                     'Tỷ lệ ký quỹ ban đầu',
                     'hợp đồng tương lai',
@@ -332,12 +336,12 @@ class vsd:
 
 
     @staticmethod
-    def tinnghiepvuvoithanhvienluuky(num_hours:int=48):
+    def tinnghiepvuTVLK(num_hours:int=48):
 
         start_time = time.time()
         now = datetime.now()
 
-        report_time = now.strftime('%Y-%m-%d %H %M %S')
+        report_time = now.strftime('%Y-%m-%d -- %H-%M-%S')
         destination_path = join(dirname(realpath(__file__)),
                                 f'TinNghiepVuVoiThanhVienLuuKy - {report_time}.xlsx')
 
@@ -478,166 +482,220 @@ class hnx:
     def __init__(self):
         pass
 
-    from selenium.webdriver.common.keys import Keys
-    from selenium.webdriver.common.by import By
-    from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
-    from selenium.webdriver.support.select import Select
-    from selenium.webdriver.support import expected_conditions as EC
-
-
     @staticmethod
     def thongtinTCPH(num_hours:int=48):
 
-        num_hours = 24
+        now = datetime.now()
+        report_time = now.strftime('%Y-%m-%d -- %H-%M-%S')
 
-        PATH = join(dirname(dirname(realpath(__file__))),'phs','geckodriver')
-        driver = webdriver.Firefox(executable_path=PATH)
+        from_time = now
+
+        destination_path = join(dirname(realpath(__file__)),
+                                f'tinnghiepvutochucphathanh - {report_time}.xlsx')
+
+        PATH = join(dirname(dirname(realpath(__file__))),'phs','chromedriver')
+        driver = webdriver.Chrome(executable_path=PATH)
+
+        ignored_exceptions \
+            = (NoSuchElementException, StaleElementReferenceException)
 
         url = 'https://www.hnx.vn/thong-tin-cong-bo-ny-tcph.html'
         driver.get(url)
 
         driver.maximize_window()
-        now = datetime.now()
-        link_all = []
-        box_text_ = []
-        key_words = ['Cổ tức', 'Tạm ứng cổ tức',
-                     'Tạm ứng', 'Chi trả', 'Bằng tiền',
-                     'Cổ phiếu', 'Quyền mua',
-                     'cổ tức', 'tạm ứng cổ tức',
-                     'tạm ứng', 'chi trả', 'bằng tiền',
-                     'cổ phiếu', 'quyền mua']
 
-        ###Expand to 50 rows
-        driver.find_element_by_xpath \
-            ("//select[@id='divNumberRecordOnPageTCPH']/option[text()='50']")\
-            .click()
-        time.sleep(2)
+        key_words = ['Cổ tức',
+                     'Tạm ứng cổ tức',
+                     'Tạm ứng',
+                     'Chi trả',
+                     'Bằng tiền',
+                     'Quyền mua',
+                     'cổ tức',
+                     'tạm ứng cổ tức',
+                     'tạm ứng',
+                     'chi trả',
+                     'bằng tiền',
+                     'quyền mua']
 
-        ###Create raw dataframe
-        for i in range(1, 100):
-            driver.find_element_by_xpath(
-                f"//li[@onclick='pageNextTinTCPH({i})']").click()
-            time.sleep(2)
-            driver.execute_script("window.scrollTo(0,100)")
-            firm = []
-            title = []
-            date_time = []
-            firm_name = []
-            title_select = driver.find_elements_by_xpath(
-                "//a[substring"
-                "(@onclick,1,string-length('return funcViewDetailArticlesByID'))"
-                "='return funcViewDetailArticlesByID']")
+        links = []
+        box_text = []
+        firms = []
+        titles = []
+        times = []
+        tickers = []
+        df = pd.DataFrame()
 
-            title_select_ = [t.text for t in title_select]
-            title_click = []
-            for j in range(len(title_select_)):
-                if title_select_[j] != '':
-                    title_click.append(title_select[j])
+        while from_time >= now - timedelta(hours=num_hours):
 
-            for each_inf in range(1, 51):
-                firm += driver.find_elements_by_xpath(
-                    f"//*[@id='_tableDatas']"
-                    f"/tbody/tr[{each_inf}]/td[3]/a")
-                date_time += driver.find_elements_by_xpath(
-                    f"//*[@id='_tableDatas']"
-                    f"/tbody/tr[{each_inf}]/td[2]")
-                title += driver.find_elements_by_xpath(
-                    f"//*[@i='_tableDatas']"
-                    f"/tbody/tr[{each_inf}]/td[5]/a")
-                firm_name += driver.find_elements_by_xpath(
-                    f"//*[@id='_tableDatas']"
-                    f"/tbody/tr[{each_inf}]/td[4]")
+            # Next-page click (qua trang)
+            nextpage_elem \
+                = WebDriverWait(driver, 60,
+                                ignored_exceptions=ignored_exceptions) \
+                .until(expected_conditions.presence_of_all_elements_located(
+                (By.XPATH, "//*[@id='d_number_of_page']/li")))[-2]
+            nextpage_elem.click()
 
-                click_obj = title_click[each_inf-1]
-                click_obj.click()
-                wait = WebDriverWait(driver,15)
-                wait.until(EC.visibility_of_element_located
-                           ((By.XPATH,
-                             "//*[@id='divViewDetailArticles']/div[1]/b")))
-                att_file \
-                    = driver.find_element_by_xpath(
-                    "//div[@id='divViewDetailArticles']/div[2]/div[3]")
-                content_file = att_file.text
-                if content_file != '':
-                    box_text_ += ['']
-                    links = driver.find_elements_by_xpath(
-                        r"//*[@id='divViewDetailArticles']/div[2]/div[3]/p/a")
-                    link_all += [
-                        [link.get_attribute('href') for link in links]]
+            wait_sec = np.random.random(1)[0] + 1
+            time.sleep(wait_sec)
+
+
+            def f():
+                # wait for the element to appear, avoid stale element reference
+                ticker_elems \
+                    = WebDriverWait(driver, 60,
+                                    ignored_exceptions=ignored_exceptions) \
+                    .until(
+                    expected_conditions.presence_of_all_elements_located(
+                        (By.XPATH, "//*[@id='_tableDatas']/tbody/*/td[3]/a")))
+                title_elems \
+                    = WebDriverWait(driver, 60,
+                                    ignored_exceptions=ignored_exceptions) \
+                    .until(
+                    expected_conditions.presence_of_all_elements_located(
+                        (By.XPATH, "//*[@id='_tableDatas']/tbody/*/td[5]/a")))
+                return ticker_elems, title_elems
+
+            try:
+                ticker_elems, title_elems = f()
+                tickers_inpage = [t.text for t in ticker_elems if t.text != '']
+                titles_inpage = [t.text for t in title_elems if t.text != '']
+                title_elems = [t for t in title_elems if t.text != '']
+            except ignored_exceptions:
+                time.sleep(15)
+                ticker_elems, title_elems = f()
+                tickers_inpage = [t.text for t in ticker_elems if t.text != '']
+                titles_inpage = [t.text for t in title_elems if t.text != '']
+                title_elems = [t for t in title_elems if t.text != '']
+
+
+            ticker_title_inpage = [f'{ticker} {title}' for ticker,title
+                                   in zip(tickers_inpage, titles_inpage)]
+
+            for ticker_title in ticker_title_inpage:
+                sub_check = [key_word in ticker_title for key_word in key_words]
+                if any(sub_check):
+                    pass
                 else:
-                    link_all += ['']
-                    box_text = driver.find_element_by_xpath(
-                        "//*[@id ='divViewDetailArticles']/div[2]/div[2]")
-                    box_text_ += [box_text.text]
+                    continue
 
+                title_no = ticker_title_inpage.index(ticker_title)+1
+                titles += [driver.find_elements_by_xpath\
+                    (f"//*[@id='_tableDatas']/tbody/tr[{title_no}]/td[5]")[-1].text]
+                firms += [driver.find_elements_by_xpath\
+                    (f"//*[@id='_tableDatas']/tbody/tr[{title_no}]/td[3]")[-1].text]
+                times += [driver.find_elements_by_xpath\
+                    (f"//*[@id='_tableDatas']/tbody/tr[{title_no}]/td[2]")[-1].text]
+                tickers += [driver.find_elements_by_xpath\
+                    (f"//*[@id='_tableDatas']/tbody/tr[{title_no}]/td[4]")[-1].text]
+
+                # open popup window:
+                click_obj = title_elems[title_no-1]
+                click_obj.click()
+
+                wait_sec = np.random.random(1)[0] + 1.5
+                time.sleep(wait_sec)
+
+                # evaluate popup content
+                popup_content \
+                    = driver.find_element_by_xpath(
+                    "//div[@class='Box-Noidung']")
+                content = popup_content.text
+                if content in ['.', '', ' ']: # nếu có link, ko có nội dung
+                    box_text += ['']
+                    link_elems = driver.find_elements_by_xpath(
+                        "//div[@class='divLstFileAttach']/p/a")
+                    links += [[link.get_attribute('href') + '\n' for link in link_elems]]
+                else: # nếu có nội dung, ko có link
+                    links += ['']
+                    box_text += [content]
+
+                # exit pop-up windows
                 driver.find_element_by_xpath(
-                    r"//*[@id='btnExitPopups']").click()
+                    "//*[@id='divViewDetailArticles']/*/input").click()
 
-                news_time = driver.find_element_by_xpath \
-                    (fr"//*[@id='_tableDatas']/tbody/tr[{each_inf}]/td[2]")
+                wait_sec = np.random.random(1)[0] + 1
+                time.sleep(wait_sec)
 
-                if datetime.text.strptime(news_time,'%d/%m/%Y %H:%M') \
-                        < now - timedelta(hours=num_hours):
-                    break
+                # check time
+                from_time = driver.find_elements_by_xpath(
+                    "//*[@id='_tableDatas']/tbody/tr[10]/td[2]")[-1].text
+                from_time = datetime.strptime(from_time, '%d/%m/%Y %H:%M')
 
-            firm_ = [f.text for f in firm]
-            date_time_ = [d.text for d in date_time]
-            title_ = [t.text for t in title]
-            firm_name_ = [fn.text for fn in firm_name]
-            df = pd.DataFrame(list(zip(firm_, firm_name_, date_time_,
-                                       title_, box_text_, link_all)),
-                              columns=['Mã CK', 'Tên TCPH', 'Ngày đăng tin',
-                                       'Tiêu đề tin', 'Nội dung',
+            # export to DataFrame
+            df = pd.DataFrame(list(zip(times, tickers, firms,
+                                       titles, box_text, links)),
+                              columns=['Thời gian', 'Mã CK', 'Tên TCPH',
+                                       'Tiêu đề', 'Nội dung',
                                        'File đính kèm'])
 
-        ###Drop unrelated newsdf
-        for row in df['Tiêu đề tin']:
-            sub_check = []
-            for kw in key_words:
-                sub_check += [kw in row]
-            if any(sub_check):
-                pass
-            else:
-                df.drop(df[df['Tiêu đề tin'] == row].index, inplace=True)
-
         df['Nội dung'] = df['Nội dung'].str.split('\n')
-        df['Lý do và mục đích'] = ''
+        df['Lý do / mục đích'] = ''
         df['Tỷ lệ thực hiện'] = ''
         df['Ngày đăng ký cuối cùng'] = ''
         df['Ngày giao dịch không hưởng quyền'] = ''
         df['Thời gian thực hiện'] = ''
-        for each_row in range(df.shape[0]):
-            noidung = df['Nội dung'].iloc[each_row]
-            ndmd = np.array(noidung)[['*' in word for word in noidung]]
-            for ndmd_ in ndmd:
-                df['Lý do và mục đích'].iloc[each_row] += \
-                    ndmd_.lstrip().lstrip('*') + '\n'
-            tlth = np.array(noidung)[['Tỷ lệ thực hiện' \
-                                      in word for word in noidung]]
-            for tlth_ in tlth:
-                df['Tỷ lệ thực hiện'].iloc[each_row] += \
-                    tlth_.lstrip().lstrip('-') + '\n'
-            ndkcc = np.array(noidung)[['Ngày đăng ký cuối cùng' \
-                                       in word for word in noidung]]
-            for ndkcc_ in ndkcc:
-                df['Ngày đăng ký cuối cùng'].iloc[each_row] += ndkcc_ + '\n'
-            ngdkhq = np.array(noidung)[['Ngày giao dịch không hưởng quyền' \
-                                        in word for word in noidung]]
-            for ngdkhq_ in ngdkhq:
-                df['Ngày giao dịch không hưởng quyền'].iloc[each_row] \
-                    += ngdkhq_ + '\n'
-            thth = np.array(noidung)[['Thời gian thực hiện' \
-                                      in word for word in noidung]]
-            for thth_ in thth:
-                df['Thời gian thực hiện'].iloc[each_row] += \
-                    thth_.lstrip().lstrip('-') + '\n'
+        for table_row in range(df.shape[0]):
+            content_rows = df['Nội dung'].iloc[table_row]
+
+            reasons = np.array(content_rows)[['*' in row for row in content_rows]]
+            for reason in reasons:
+                df['Lý do / mục đích'].iloc[table_row] \
+                    += reason.lstrip().lstrip('*') + '\n'
+
+            ratios = np.array(content_rows)[['Tỷ lệ thực hiện'
+                                             in row for row in content_rows]]
+            for ratio in ratios:
+                df['Tỷ lệ thực hiện'].iloc[table_row] \
+                    += ratio.lstrip().lstrip('-') + '\n'
+
+            record_dates = np.array(content_rows)[['Ngày đăng ký cuối cùng'
+                                                   in row for row in content_rows]]
+
+            for record_date in record_dates:
+                df['Ngày đăng ký cuối cùng'].iloc[table_row] \
+                    += record_date + '\n'
+
+                rtime = df['Ngày đăng ký cuối cùng'].iloc[table_row]
+
+                try:
+                    ryear = rtime[-5:-1]
+                    rmonth = rtime[-8:-6]
+                    rday = rtime[-11:-9]
+                    result = bdate(f'{ryear}-{rmonth}-{rday}', -1)
+                    year = result[:4]
+                    month = result[5:7]
+                    day = result[-2:]
+                    df['Ngày giao dịch không hưởng quyền'].iloc[table_row] \
+                        += f'{day}/{month}/{year}' + '\n'
+                except ValueError:
+                    pass
+
+            payment_dates = np.array(content_rows)[['Thời gian thực hiện'
+                                                    in row for row in content_rows]]
+            for payment_date in payment_dates:
+                df['Thời gian thực hiện'].iloc[table_row] \
+                    += payment_date.lstrip().lstrip('-') + '\n'
+
+            ls = df['File đính kèm'].iloc[table_row]
+            df['File đính kèm'].iloc[table_row] = ''
+            for l in ls:
+                if l != '':
+                    df['File đính kèm'].iloc[table_row] += l
+
         df.drop(['Nội dung'], axis=1, inplace=True)
 
-        ###Final dataframe
-        ###Export
+        df = df[['Thời gian',
+                 'Mã CK',
+                 'Tên TCPH',
+                 'Tiêu đề',
+                 'Lý do / mục đích',
+                 'Tỷ lệ thực hiện',
+                 'Ngày đăng ký cuối cùng',
+                 'Ngày giao dịch không hưởng quyền',
+                 'Thời gian thực hiện',
+                 'File đính kèm']]
 
-        df.to_excel(os.path.dirname(realpath(__file__)), index=False)
+        df.to_excel(destination_path, index=False)
         driver.quit()
 
 

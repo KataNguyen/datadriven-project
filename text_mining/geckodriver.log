@@ -26290,3 +26290,5 @@ console.warn: SearchSettings: "get: No settings file exists, new profile?" (new 
 Can't find symbol 'eglSwapBuffersWithDamageEXT'.
 Can't find symbol 'eglSetDamageRegionKHR'.
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+JavaScript error: , line 0: NS_ERROR_NOT_AVAILABLE
+1617770094690	Marionette	INFO	Stopped listening on port 60879

@@ -13,7 +13,6 @@ def ytime(datetime_obj):
         year = pd.NaT
     return year
 
-info_table = info_table[info_table['YOB'].dtype(str)]
 info_table['YOB'] = info_table['DOB'].apply(ytime)
 
 yob_analysis = pd.pivot_table(info_table,
