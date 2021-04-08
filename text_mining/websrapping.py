@@ -582,11 +582,11 @@ class hnx:
                 titles += [driver.find_elements_by_xpath\
                     (f"//*[@id='_tableDatas']/tbody/tr[{title_no}]/td[5]")[-1].text]
                 firms += [driver.find_elements_by_xpath\
-                    (f"//*[@id='_tableDatas']/tbody/tr[{title_no}]/td[3]")[-1].text]
+                    (f"//*[@id='_tableDatas']/tbody/tr[{title_no}]/td[4]")[-1].text]
                 times += [driver.find_elements_by_xpath\
                     (f"//*[@id='_tableDatas']/tbody/tr[{title_no}]/td[2]")[-1].text]
                 tickers += [driver.find_elements_by_xpath\
-                    (f"//*[@id='_tableDatas']/tbody/tr[{title_no}]/td[4]")[-1].text]
+                    (f"//*[@id='_tableDatas']/tbody/tr[{title_no}]/td[3]")[-1].text]
 
                 # open popup window:
                 click_obj = title_elems[title_no-1]
