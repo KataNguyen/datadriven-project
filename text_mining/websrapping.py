@@ -527,16 +527,22 @@ class hnx:
 
         while from_time >= now - timedelta(hours=num_hours):
 
-            # Next-page click (qua trang)
-            nextpage_elem \
-                = WebDriverWait(driver, 60,
-                                ignored_exceptions=ignored_exceptions) \
-                .until(expected_conditions.presence_of_all_elements_located(
-                (By.XPATH, "//*[@id='d_number_of_page']/li")))[-2]
-            nextpage_elem.click()
+            first_no = driver.find_elements_by_xpath(
+                "//*[@id='_tableDatas']/tbody/tr[1]/td[1]")[-1].text
 
-            wait_sec = np.random.random(1)[0] + 1
-            time.sleep(wait_sec)
+            if int(first_no) == 1:
+                pass
+            else:
+                # Next-page click (qua trang)
+                nextpage_elem \
+                    = WebDriverWait(driver, 60,
+                                    ignored_exceptions=ignored_exceptions) \
+                    .until(expected_conditions.presence_of_all_elements_located(
+                    (By.XPATH, "//*[@id='d_number_of_page']/li")))[-2]
+                nextpage_elem.click()
+
+                wait_sec = np.random.random(1)[0] + 1
+                time.sleep(wait_sec)
 
 
             def f():

@@ -198,13 +198,6 @@
       <option name="presentableId" value="Default" />
       <updated>1617679769484</updated>
     </task>
-    <task id="LOCAL-00037" summary="post_breakeven_price">
-      <created>1613563027394</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1613563027394</updated>
-    </task>
     <task id="LOCAL-00038" summary="post_breakeven_price">
       <created>1613659582046</created>
       <option name="number" value="00038" />
@@ -542,7 +535,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617862967229</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="Hiep Dang Push">
+      <created>1617867226832</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1617867226832</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
