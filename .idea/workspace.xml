@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="15/4">
-      <change afterPath="$PROJECT_DIR$/text_mining/tincongbotuso - 2021-04-15 -- 10-14-49.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/text_mining/tincongbotuso - 2021-04-15 -- 11-03-35.xlsx" afterDir="false" />
+    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="15/4 Final">
+      <change afterPath="$PROJECT_DIR$/text_mining/tincongbotuso - 2021-04-15 -- 11-45-47.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_mining/tincongbotuso - 2021-04-15 -- 13-18-46.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_mining/tincongbotuso - 2021-04-15 -- 13-42-21.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/text_mining/websrapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/websrapping.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +35,7 @@
     </file-type-list>
   </component>
   <component name="GithubProjectSettings">
-    <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="main" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="Qui_PHS" />
     <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_USER" value="KataNguyen" />
     <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_NAME" value="datadriven-project" />
   </component>
@@ -76,7 +76,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.websrapping">
-    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Combine_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -84,11 +84,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/request_phs" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../RS_in_VN/venv" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/request_phs/__init__.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../RS_in_VN/venv/Combine_data.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -164,6 +164,9 @@
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/text_mining" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -179,20 +182,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.request_data" />
-      <item itemvalue="Python.__init__" />
+      <item itemvalue="Python.Combine_data" />
       <item itemvalue="Python.customer" />
       <item itemvalue="Python.pca_kmeans_lipl(gen)" />
       <item itemvalue="Python.pca_kmeans_lipl(ins)" />
       <item itemvalue="Python.websrapping" />
+      <item itemvalue="Python.request_data" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.websrapping" />
+        <item itemvalue="Python.Combine_data" />
         <item itemvalue="Python.websrapping" />
-        <item itemvalue="Python.websrapping" />
-        <item itemvalue="Python.pca_kmeans_lipl(ins)" />
-        <item itemvalue="Python.pca_kmeans_lipl(gen)" />
+        <item itemvalue="Python.Combine_data" />
+        <item itemvalue="Python.Combine_data" />
       </list>
     </recent_temporary>
   </component>
@@ -204,13 +207,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1617679769484</updated>
-    </task>
-    <task id="LOCAL-00039" summary="post_breakeven_price">
-      <created>1613730226608</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1613730226608</updated>
     </task>
     <task id="LOCAL-00040" summary="post_breakeven_price">
       <created>1613994655995</created>
@@ -550,7 +546,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618453891460</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="15/4 Final">
+      <created>1618459811753</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1618459811753</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -580,6 +583,7 @@
     <MESSAGE value="post_breakeven_price" />
     <MESSAGE value="Hiep Dang Push" />
     <MESSAGE value="15/4" />
-    <option name="LAST_COMMIT_MESSAGE" value="15/4" />
+    <MESSAGE value="15/4 Final" />
+    <option name="LAST_COMMIT_MESSAGE" value="15/4 Final" />
   </component>
 </project>
