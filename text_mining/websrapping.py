@@ -705,6 +705,159 @@ class hnx:
         driver.quit()
 
 
+########Thogn tin tu so
+    @staticmethod
+    def thongtintuso(num_hours: int = 48):
+
+        now = datetime.now()
+        report_time = now.strftime('%Y-%m-%d -- %H-%M-%S')
+
+        from_time = now
+
+        destination_path = join(dirname(realpath(__file__)),
+                                f'tincongbotuso - {report_time}.xlsx')
+
+        PATH = join(dirname(dirname(realpath(__file__))), 'phs', 'chromedriver')
+        driver = webdriver.Chrome(executable_path=PATH)
+
+        ignored_exceptions \
+            = (NoSuchElementException, StaleElementReferenceException)
+
+        url = 'https://www.hnx.vn/thong-tin-cong-bo-ny-hnx.html'
+        driver.get(url)
+
+        driver.maximize_window()
+
+        key_words = ['tạm ngừng giao dịch',
+                    'vào diện' ,'hủy niêm yết',
+                    'vào diện' ,'ra khỏi diện',
+                    'kiểm soát', 'cảnh cáo',
+                    'hủy niêm yết',
+                    'không đủ điều kiện giao dịch ký quỹ',
+                    'ra khỏi','vào',
+                    'giao dịch đầu tiên cổ phiếu niêm yết']
+
+        links = []
+        box_text = []
+        titles = []
+        times = []
+        tickers = []
+        df = pd.DataFrame()
+
+        while from_time >= now - timedelta(hours=num_hours):
+
+            first_no = driver.find_elements_by_xpath(
+                "//*[@id='d_number_of_page']/li[1]")[0].text
+
+            if int(first_no) == 1:
+                pass
+            else:
+                # Next-page click (qua trang)
+                nextpage_elem \
+                    = WebDriverWait(driver, 60,
+                                    ignored_exceptions=ignored_exceptions) \
+                    .until(expected_conditions.presence_of_all_elements_located(
+                    (By.XPATH, "//*[@id='d_number_of_page']/li")))
+                ###Trich ra duoc 26 duong dan hoac 28 duong dan, da thu lay xpath cao hon nhung khong duoc
+                if len(nextpage_elem) == 26:
+                    nextpage_elem[5].click()
+                else:
+                    nextpage_elem[7].click()
+
+                wait_sec = np.random.random(1)[0] + 1
+                time.sleep(wait_sec)
+
+            def f():
+                # wait for the element to appear, avoid stale element reference
+                ticker_elems \
+                    = WebDriverWait(driver, 60,
+                                    ignored_exceptions=ignored_exceptions) \
+                    .until(
+                    expected_conditions.presence_of_all_elements_located(
+                        (By.XPATH, "//*[@id='_tableDatas']/tbody/*/td[3]/a")))
+                title_elems \
+                    = WebDriverWait(driver, 60,
+                                    ignored_exceptions=ignored_exceptions) \
+                    .until(
+                    expected_conditions.presence_of_all_elements_located(
+                        (By.XPATH, "//*[@id='_tableDatas']/tbody/*/td[4]/a")))
+                return ticker_elems, title_elems
+
+            try:
+                ticker_elems, title_elems = f()
+                tickers_inpage = [t.text for t in ticker_elems if t.text != '']
+                titles_inpage = [t.text for t in title_elems if t.text != '']
+                title_elems = [t for t in title_elems if t.text != '']
+            except ignored_exceptions:
+                time.sleep(15)
+                ticker_elems, title_elems = f()
+                tickers_inpage = [t.text for t in ticker_elems if t.text != '']
+                titles_inpage = [t.text for t in title_elems if t.text != '']
+                title_elems = [t for t in title_elems if t.text != '']
+
+            ticker_title_inpage = [f'{ticker} {title}' for ticker, title
+                                   in zip(tickers_inpage, titles_inpage)]
+
+            for ticker_title in ticker_title_inpage:
+                sub_check = [key_word in ticker_title for key_word in key_words]
+                if any(sub_check):
+                    pass
+                else:
+                    continue
+
+                title_no = ticker_title_inpage.index(ticker_title) + 1
+                titles += [driver.find_elements_by_xpath \
+                               (f"//*[@id='_tableDatas']/tbody/tr[{title_no}]/td[4]")[0].text]
+                times += [driver.find_elements_by_xpath \
+                              (f"//*[@id='_tableDatas']/tbody/tr[{title_no}]/td[2]")[0].text]
+                tickers += [driver.find_elements_by_xpath \
+                                (f"//*[@id='_tableDatas']/tbody/tr[{title_no}]/td[3]")[0].text]
+
+                # open popup window:
+                click_obj = title_elems[title_no - 1]
+                click_obj.click()
+
+                wait_sec = np.random.random(1)[0] + 1.5
+                time.sleep(wait_sec)
+
+                # evaluate popup content
+                popup_content \
+                    = driver.find_element_by_xpath(
+                    "//div[@class='Box-Noidung']")
+                content = popup_content.text
+                if content in ['.', '', ' ']:  # nếu có link, ko có nội dung
+                    box_text += ['']
+                    link_elems = driver.find_elements_by_xpath(
+                        "//div[@class='divLstFileAttach']/p/a")
+                    links += [[link.get_attribute('href') for link in link_elems]]
+                else:  # nếu có nội dung, ko có link
+                    links += ['']
+                    box_text += [content]
+
+                # exit pop-up windows
+                driver.find_element_by_xpath(
+                    "//*[@id='divViewDetailArticles']/*/input").click()
+
+                wait_sec = np.random.random(1)[0] + 1
+                time.sleep(wait_sec)
+
+                # check time
+                from_time = driver.find_elements_by_xpath(
+                    "//*[@id='_tableDatas']/tbody/tr[10]/td[2]")[0].text
+                from_time = datetime.strptime(from_time, '%d/%m/%Y %H:%M')
+
+            # export to DataFrame
+            df = pd.DataFrame(list(zip(times, tickers,
+                                       titles, box_text, links)),
+                              columns=['Thời gian', 'Mã CK',
+                                       'Tiêu đề', 'Nội dung',
+                                       'File đính kèm'])
+
+
+        df.to_excel(destination_path, index=False)
+        driver.quit()
+
+
 class hose:
     def __init__(self):
         pass

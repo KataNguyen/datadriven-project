@@ -5,6 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/text_mining/tincongbotuso - 2021-04-15 -- 08-31-41.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/datadriven-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/datadriven-project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2021_8_33_AM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2021_8_33_AM__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_01_2021_12_59_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_01_2021_12_59_PM__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/text_mining/websrapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/websrapping.py" afterDir="false" />
     </list>
@@ -49,7 +54,7 @@
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -174,10 +179,10 @@
     <list>
       <item itemvalue="Python.request_data" />
       <item itemvalue="Python.__init__" />
+      <item itemvalue="Python.customer" />
       <item itemvalue="Python.pca_kmeans_lipl(gen)" />
       <item itemvalue="Python.pca_kmeans_lipl(ins)" />
       <item itemvalue="Python.websrapping" />
-      <item itemvalue="Python.customer" />
     </list>
     <recent_temporary>
       <list>
