@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/text_mining/tincongbotuso - 2021-04-15 -- 08-31-41.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/datadriven-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/datadriven-project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2021_8_33_AM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2021_8_33_AM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_01_2021_12_59_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_01_2021_12_59_PM__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="15/4">
+      <change afterPath="$PROJECT_DIR$/text_mining/tincongbotuso - 2021-04-15 -- 10-14-49.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_mining/tincongbotuso - 2021-04-15 -- 11-03-35.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/text_mining/websrapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_mining/websrapping.py" afterDir="false" />
     </list>
@@ -36,6 +33,11 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="main" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_USER" value="KataNguyen" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_NAME" value="datadriven-project" />
   </component>
   <component name="ProjectId" id="1n5YlsAutC8aCTgLokcu8z9IkuT" />
   <component name="ProjectLevelVcsManager">
@@ -189,8 +191,8 @@
         <item itemvalue="Python.websrapping" />
         <item itemvalue="Python.websrapping" />
         <item itemvalue="Python.websrapping" />
-        <item itemvalue="Python.websrapping" />
-        <item itemvalue="Python.websrapping" />
+        <item itemvalue="Python.pca_kmeans_lipl(ins)" />
+        <item itemvalue="Python.pca_kmeans_lipl(gen)" />
       </list>
     </recent_temporary>
   </component>
@@ -202,13 +204,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1617679769484</updated>
-    </task>
-    <task id="LOCAL-00038" summary="post_breakeven_price">
-      <created>1613659582046</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1613659582046</updated>
     </task>
     <task id="LOCAL-00039" summary="post_breakeven_price">
       <created>1613730226608</created>
@@ -504,13 +499,13 @@
       <option name="project" value="LOCAL" />
       <updated>1617679521409</updated>
     </task>
-    <task active="true" id="LOCAL-00081" summary="Hiep Dang Push">
+    <task id="LOCAL-00081" summary="Hiep Dang Push">
       <changelist id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="" />
       <created>1617679597487</created>
       <option name="number" value="00081" />
       <option name="presentableId" value="LOCAL-00081" />
       <option name="project" value="LOCAL" />
-      <updated>1617679769484</updated>
+      <updated>1618453891460</updated>
     </task>
     <task id="LOCAL-00082" summary="Hiep Dang Push">
       <created>1617682952742</created>
@@ -547,7 +542,15 @@
       <option name="project" value="LOCAL" />
       <updated>1617867226832</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task active="true" id="LOCAL-00087" summary="15/4">
+      <changelist id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="15/4" />
+      <created>1618453702980</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1618453891460</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -576,6 +579,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="post_breakeven_price" />
     <MESSAGE value="Hiep Dang Push" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hiep Dang Push" />
+    <MESSAGE value="15/4" />
+    <option name="LAST_COMMIT_MESSAGE" value="15/4" />
   </component>
 </project>

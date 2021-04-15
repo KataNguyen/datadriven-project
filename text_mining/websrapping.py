@@ -746,27 +746,6 @@ class hnx:
 
         while from_time >= now - timedelta(hours=num_hours):
 
-            first_no = driver.find_elements_by_xpath(
-                "//*[@id='d_number_of_page']/li[1]")[0].text
-
-            if int(first_no) == 1:
-                pass
-            else:
-                # Next-page click (qua trang)
-                nextpage_elem \
-                    = WebDriverWait(driver, 60,
-                                    ignored_exceptions=ignored_exceptions) \
-                    .until(expected_conditions.presence_of_all_elements_located(
-                    (By.XPATH, "//*[@id='d_number_of_page']/li")))
-                ###Trich ra duoc 26 duong dan hoac 28 duong dan, da thu lay xpath cao hon nhung khong duoc
-                if len(nextpage_elem) == 26:
-                    nextpage_elem[5].click()
-                else:
-                    nextpage_elem[7].click()
-
-                wait_sec = np.random.random(1)[0] + 1
-                time.sleep(wait_sec)
-
             def f():
                 # wait for the element to appear, avoid stale element reference
                 ticker_elems \
@@ -836,7 +815,7 @@ class hnx:
 
                 # exit pop-up windows
                 driver.find_element_by_xpath(
-                    "//*[@id='divViewDetailArticles']/*/input").click()
+                    "//*[@id='divViewDetailArticles']/div[5]/input").click()
 
                 wait_sec = np.random.random(1)[0] + 1
                 time.sleep(wait_sec)
@@ -846,13 +825,28 @@ class hnx:
                     "//*[@id='_tableDatas']/tbody/tr[10]/td[2]")[0].text
                 from_time = datetime.strptime(from_time, '%d/%m/%Y %H:%M')
 
+            # Next-page click (qua trang)
+            nextpage_elem \
+                = WebDriverWait(driver, 60,
+                                ignored_exceptions=ignored_exceptions) \
+                .until(expected_conditions.presence_of_all_elements_located(
+                (By.XPATH, "//*[@id='d_number_of_page']/li")))
+            ###Trich ra duoc 26 duong dan hoac 28 duong dan, da thu lay xpath cao hon nhung khong duoc
+            if len(nextpage_elem) == 26:
+                nextpage_elem[5].click()
+            else:
+                nextpage_elem[7].click()
+
+            wait_sec = np.random.random(1)[0] + 1
+            time.sleep(wait_sec)
+
             # export to DataFrame
             df = pd.DataFrame(list(zip(times, tickers,
                                        titles, box_text, links)),
                               columns=['Thời gian', 'Mã CK',
                                        'Tiêu đề', 'Nội dung',
                                        'File đính kèm'])
-
+            df['File đính kèm'] = ['/n'.join(map(str, l)) for l in df['File đính kèm']]
 
         df.to_excel(destination_path, index=False)
         driver.quit()
