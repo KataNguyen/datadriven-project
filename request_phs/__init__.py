@@ -1794,7 +1794,7 @@ def down_limit(n:int=2,exchange:str='all'):
                 if df['down_limit_price'].iloc[-x] != df['close'].iloc[-x]:
                     break
                 else:
-                    count += 116/4
+                    count += 1
             if count >= n:
                 firm += [ticker]
         except ValueError:

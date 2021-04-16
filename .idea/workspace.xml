@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="15/4 Finall">
-      <change afterPath="$PROJECT_DIR$/Combine_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/function_phs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/function_phs/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/request_phs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_phs/__init__.py" afterDir="false" />
-    </list>
+    <list default="true" id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="16/4" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,7 +30,7 @@
     </file-type-list>
   </component>
   <component name="GithubProjectSettings">
-    <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="Qui_PHS" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="qui1" />
     <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_USER" value="KataNguyen" />
     <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_NAME" value="datadriven-project" />
   </component>
@@ -101,6 +96,9 @@
       <module name="datadriven-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/request_phs" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -190,8 +188,8 @@
       <list>
         <item itemvalue="Python.__init__" />
         <item itemvalue="Python.websrapping" />
-        <item itemvalue="Python.websrapping" />
-        <item itemvalue="Python.websrapping" />
+        <item itemvalue="Python.pca_kmeans_lipl(ins)" />
+        <item itemvalue="Python.pca_kmeans_lipl(gen)" />
         <item itemvalue="Python.Combine_data" />
       </list>
     </recent_temporary>
@@ -204,13 +202,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1617679769484</updated>
-    </task>
-    <task id="LOCAL-00041" summary="post_breakeven_price">
-      <created>1614162442609</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1614162442609</updated>
     </task>
     <task id="LOCAL-00042" summary="post_breakeven_price">
       <created>1614221864088</created>
@@ -528,13 +519,13 @@
       <option name="project" value="LOCAL" />
       <updated>1617867226832</updated>
     </task>
-    <task active="true" id="LOCAL-00087" summary="15/4">
+    <task id="LOCAL-00087" summary="15/4">
       <changelist id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="15/4" />
       <created>1618453702980</created>
       <option name="number" value="00087" />
       <option name="presentableId" value="LOCAL-00087" />
       <option name="project" value="LOCAL" />
-      <updated>1618453891460</updated>
+      <updated>1618569411168</updated>
     </task>
     <task id="LOCAL-00088" summary="15/4 Final">
       <created>1618459811753</created>
@@ -550,7 +541,15 @@
       <option name="project" value="LOCAL" />
       <updated>1618480278890</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task active="true" id="LOCAL-00090" summary="16/4">
+      <changelist id="7208358b-5728-4d14-8ab8-6a544e2f946e" name="Default Changelist" comment="16/4" />
+      <created>1618569126085</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1618569411168</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -582,6 +581,7 @@
     <MESSAGE value="15/4" />
     <MESSAGE value="15/4 Final" />
     <MESSAGE value="15/4 Finall" />
-    <option name="LAST_COMMIT_MESSAGE" value="15/4 Finall" />
+    <MESSAGE value="16/4" />
+    <option name="LAST_COMMIT_MESSAGE" value="16/4" />
   </component>
 </project>
