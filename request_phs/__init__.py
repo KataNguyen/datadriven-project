@@ -1744,5 +1744,72 @@ class ta:
 
 ta = ta()
 
+#########find stocks that hit the down-limit
+
+def adjprice(ref: Union[float, int]) -> float:
+
+    """
+    This function returns adjusted price for minimum price steps,
+    and adjust for hit limit
+
+    :param price: stock price
+    :type price: float or int
+
+    :return: int
+    """
+    price = ref*(1-0.07)
+    if price < 10:
+        price_string = float(round(price, 2))
+        if price_string > price:
+            pass
+        else:
+            price_string = price_string + 0.01
+            price_string = round(price_string, 2)
+    elif 10 <= price < 50:
+        price_string = float(round(price, 1))
+        if price_string > price:
+            pass
+        else:
+            price_string = price_string + 0.05
+            price_string = round(price_string, 2)
+    else:
+        price_string = float(round(price, 1))
+        if price_string > price:
+            pass
+        else:
+            price_string = price_string + 0.1
+            price_string = round(price_string,1)
+    return price_string
+
+
+def down_limit(n:int=2,exchange:str='all'):
+
+    firm = []
+    for ticker in fa.tickers(exchange=exchange):
+        try:
+            count = 0
+            df = ta.hist(ticker)
+            df['down_limit_price'] = df['ref'].map(adjprice)
+            for x in range(1, 5):
+                if df['down_limit_price'].iloc[-x] != df['close'].iloc[-x]:
+                    break
+                else:
+                    count += 116/4
+            if count >= n:
+                firm += [ticker]
+        except ValueError:
+            pass
+
+    return firm
+
+
+
+
+
+
+
+
+
+
 
 ###############################################################################

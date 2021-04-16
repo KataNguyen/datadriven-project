@@ -1,5 +1,4 @@
 from phs import *
-
 ###############################################################################
 
 def priceKformat(tick_val, pos) -> str:
@@ -28,7 +27,7 @@ def priceKformat(tick_val, pos) -> str:
     return new_tick_format
 
 
-def adjprice(price: Union[float, int]) -> str:
+def adjprice(price: Union[float, int]) -> int:
 
     """
     This function returns adjusted price for minimum price steps,
@@ -41,11 +40,23 @@ def adjprice(price: Union[float, int]) -> str:
     """
 
     if price < 10000:
-        price_string = f'{int(round(price, -1)):,d}'
+        price_string = int(round(price, -1))
+        if price_string < price:
+            pass
+        else:
+            price_string = price_string -10
     elif 10000 <= price < 50000:
-        price_string = f'{50 * int(round(price/50)):,d}'
+        price_string = 50 * int(round(price/50))
+        if int(price_string) < price:
+            pass
+        else:
+            price_string = price_string -50
     else:
-        price_string = f'{int(round(price, -2)):,d}'
+        price_string = int(round(price, -2))
+        if price_string < price:
+            pass
+        else:
+            price_string = price_string -100
 
     return price_string
 
